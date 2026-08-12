@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "draftopt"
 version = "0.1.0"
-description = "Fantasy football draft optimizer (V0: data + draft-state simulator)"
+description = "Fantasy football draft optimizer (V1: marginal lineup value + backtest)"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.115",
@@ -19,6 +19,7 @@ dev = ["pytest>=8"]
 [project.scripts]
 draftopt-ingest = "draftopt.ingest:main"
 draftopt-serve = "draftopt.serve:main"
+draftopt-backtest = "draftopt.backtest:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

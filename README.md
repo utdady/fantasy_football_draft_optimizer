@@ -1,6 +1,6 @@
-# V0 Draft Optimizer
+# Fantasy Draft Optimizer
 
-10-team PPR snake redraft simulator. Keyboard-first local web UI. Data from Sleeper, DynastyProcess (FantasyPros ECR + IDs), and ESPN.
+10-team PPR snake redraft practice room + V1 marginal lineup-value recommendations.
 
 ## Setup
 
@@ -17,7 +17,7 @@ pip install -e ".[dev]"
 python -m draftopt.ingest
 ```
 
-Writes snapshots under `data/raw/` and a SQLite DB at `data/draftopt.db`.
+Writes snapshots under `data/raw/` and SQLite at `data/draftopt.db`.
 
 ## Run the draft UI
 
@@ -25,15 +25,22 @@ Writes snapshots under `data/raw/` and a SQLite DB at `data/draftopt.db`.
 python -m draftopt.serve
 ```
 
-Open **http://127.0.0.1:8001** (8000 is used by another app on this machine).
+Open **http://127.0.0.1:8001**
 
-1. Enter your name, draft slot, and lineup preset (default: **no K, 7 bench**).
-2. CPU teams pick automatically (ADP + a little randomness).
-3. On your turn you have **90 seconds**. Filter/search the player table and press **Enter**, or click a row. If the clock hits zero, the app autodrafts the recommended player.
-4. **]** collapses/expands the TAKE rail. **Ctrl+Z** undoes your last pick (and CPU picks after it).
-5. At the end, a scorecard ranks all teams by projected points + ADP value.
+1. Enter name, slot, and lineup preset (default: no K, 7 bench).
+2. CPU teams pick with ADP + noise.
+3. On your turn (90s clock), TAKE uses **V1 marginal starter value** (FLEX-aware) from ESPN projections.
+4. Timeout autodrafts the V1 recommendation. `]` toggles TAKE. Ctrl+Z undoes your pick.
 
-V0 recommendation is remaining players sorted by ESPN ADP (ECR fallback).
+Baseline ADP strategy remains available for experiments (`strategy=adp` on API / backtest).
+
+## Backtest (ADP vs marginal)
+
+```powershell
+python -m draftopt.backtest --n 50 --slot 1 --preset league_default --seed 0
+```
+
+Runs synthetic snakes: user seat follows each strategy; CPUs stay ADP-noisy. Reports mean starter projected points and win rate.
 
 ## Tests
 

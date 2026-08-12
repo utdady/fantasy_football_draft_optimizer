@@ -11,7 +11,7 @@ from draftopt.draft.state import (
     round_for_pick,
     team_for_pick,
 )
-from draftopt.recommend import remaining_ranked
+from draftopt.pool import remaining_ranked
 
 # 70% ADP-weighted, 20% positional need, 10% deeper random.
 ADP_WEIGHT = 0.70

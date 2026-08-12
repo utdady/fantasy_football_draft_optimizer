@@ -19,10 +19,11 @@ from draftopt.draft.state import (
     undo_pick,
 )
 from draftopt.recommend import recommend
+from draftopt.strategies import get_strategy
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 
-app = FastAPI(title="Draft Optimizer V0")
+app = FastAPI(title="Draft Optimizer V1")
 
 
 def get_conn():
@@ -31,9 +32,13 @@ def get_conn():
     return conn
 
 
-def payload(conn, draft_id: str) -> dict:
+def payload(conn, draft_id: str, strategy: str = "marginal") -> dict:
     state = snapshot(conn, draft_id)
-    out = {"state": state, "recommend": recommend(conn, draft_id)}
+    out = {
+        "state": state,
+        "recommend": recommend(conn, draft_id, strategy=strategy),
+        "strategy": strategy,
+    }
     if state.get("complete"):
         out["grade"] = grade_draft(conn, draft_id)
     return out
@@ -92,10 +97,13 @@ def api_create_draft(body: CreateDraftBody):
 
 
 @app.get("/api/drafts/{draft_id}")
-def api_get_draft(draft_id: str):
+def api_get_draft(draft_id: str, strategy: str = Query(default="marginal")):
     conn = get_conn()
     try:
-        return payload(conn, draft_id)
+        get_strategy(strategy)  # validate
+        return payload(conn, draft_id, strategy=strategy)
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from e
     except DraftError as e:
         raise HTTPException(404, str(e)) from e
     finally:
@@ -171,14 +179,17 @@ def api_cpu(draft_id: str):
 
 
 @app.post("/api/drafts/{draft_id}/autopick")
-def api_autopick(draft_id: str):
+def api_autopick(draft_id: str, strategy: str = Query(default="marginal")):
     conn = get_conn()
     try:
-        recs = recommend(conn, draft_id, n=1)
+        get_strategy(strategy)
+        recs = recommend(conn, draft_id, n=1, strategy=strategy)
         if not recs:
             raise HTTPException(400, "no players remaining")
         record_user_pick(conn, draft_id, recs[0]["player_id"], made_by="timeout")
-        return payload(conn, draft_id)
+        return payload(conn, draft_id, strategy=strategy)
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from e
     except DraftError as e:
         raise HTTPException(400, str(e)) from e
     finally:

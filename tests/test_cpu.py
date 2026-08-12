@@ -4,7 +4,7 @@ import pytest
 
 from draftopt.draft.cpu import cpu_pick
 from draftopt.draft.state import DraftError, create_draft, record_user_pick, undo_pick
-from draftopt.recommend import recommend
+from draftopt.strategies.adp import ADPStrategy
 
 
 def test_cpu_cannot_pick_on_user_turn(catalog, conn):
@@ -36,5 +36,5 @@ def test_undo_removes_user_pick_and_later_cpu(catalog, conn):
     state = undo_pick(conn, draft_id)
     assert state["current_pick"] == 1
     assert state["picks"] == []
-    recs = recommend(conn, draft_id, n=1)
+    recs = ADPStrategy().recommend(conn, draft_id, n=1)
     assert recs[0]["player_id"] == "1002"

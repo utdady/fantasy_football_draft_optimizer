@@ -1,7 +1,6 @@
 import pytest
 
 from draftopt.draft.state import DraftError, create_draft, record_pick, resolve_player, search_remaining, undo_pick
-from draftopt.recommend import recommend
 
 
 def test_record_and_reject_duplicate(catalog, conn):
@@ -34,10 +33,12 @@ def test_search_and_resolve_punctuation(catalog, conn):
 
 
 def test_recommend_orders_by_espn_adp(catalog, conn):
+    from draftopt.strategies.adp import ADPStrategy
+
     draft_id = create_draft(conn, user_slot=1)
-    recs = recommend(conn, draft_id, n=3)
+    recs = ADPStrategy().recommend(conn, draft_id, n=3)
     assert recs[0]["name"] == "Bijan Robinson"
     assert recs[1]["name"] == "Ja'Marr Chase"
     record_pick(conn, draft_id, recs[0]["player_id"])
-    recs = recommend(conn, draft_id, n=3)
+    recs = ADPStrategy().recommend(conn, draft_id, n=3)
     assert recs[0]["name"] == "Ja'Marr Chase"

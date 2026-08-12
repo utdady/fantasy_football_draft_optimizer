@@ -219,12 +219,17 @@ function renderTake() {
     .map(
       (p) =>
         `<li><span class="pos ${p.position}">${p.position}</span> ${p.name}
-         <div class="muted">ADP ${fmt(p.adp_espn)} · ECR ${fmt(p.ecr_fp_ppr)}</div></li>`
+         <div class="muted">${p.marginal != null ? `Δ ${fmt(p.marginal)} · ` : ""}ADP ${fmt(p.adp_espn)} · ECR ${fmt(p.ecr_fp_ppr)}</div></li>`
     )
     .join("");
+  const marg =
+    top.marginal != null
+      ? `Δ ${fmt(top.marginal)} starter pts · ${fmt(top.lineup_before)} → ${fmt(top.lineup_after)}`
+      : "";
   takeBody.innerHTML = `
     <p class="primary"><span class="pos ${top.position}">${top.position}</span> ${top.name}</p>
-    <p class="muted">${top.why || ""} · ADP ${fmt(top.adp_espn)} · ECR ${fmt(top.ecr_fp_ppr)}</p>
+    <p class="muted">${top.why || ""}</p>
+    <p class="muted">${marg}${marg ? " · " : ""}ADP ${fmt(top.adp_espn)} · ECR ${fmt(top.ecr_fp_ppr)}</p>
     <h2 style="margin-top:0.9rem">Next</h2>
     <ol>${rest}</ol>`;
 }
