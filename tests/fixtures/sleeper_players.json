@@ -1,0 +1,46 @@
+{
+  "1001": {
+    "first_name": "Ja'Marr",
+    "last_name": "Chase",
+    "position": "WR",
+    "fantasy_positions": ["WR"],
+    "team": "CIN",
+    "status": "Active",
+    "injury_status": null,
+    "espn_id": 4241479,
+    "active": true
+  },
+  "1002": {
+    "first_name": "Bijan",
+    "last_name": "Robinson",
+    "position": "RB",
+    "fantasy_positions": ["RB"],
+    "team": "ATL",
+    "status": "Active",
+    "injury_status": null,
+    "espn_id": 4430737,
+    "active": true
+  },
+  "1003": {
+    "first_name": "Josh",
+    "last_name": "Allen",
+    "position": "QB",
+    "fantasy_positions": ["QB"],
+    "team": "BUF",
+    "status": "Active",
+    "injury_status": null,
+    "espn_id": 3918298,
+    "active": true
+  },
+  "SF": {
+    "first_name": "San Francisco",
+    "last_name": "49ers",
+    "position": "DEF",
+    "fantasy_positions": ["DEF"],
+    "team": "SF",
+    "status": "Active",
+    "injury_status": null,
+    "espn_id": 25,
+    "active": true
+  }
+}

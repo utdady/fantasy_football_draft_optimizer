@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Draft Optimizer V0</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <section id="setup" class="setup">
+    <div class="setup-card">
+      <h1>Draft Optimizer</h1>
+      <p class="sub">10-team PPR snake · 90-second clock on your pick</p>
+      <form id="setup-form">
+        <label>Your name
+          <input id="user-name" type="text" maxlength="40" required placeholder="e.g. Aditya" autofocus />
+        </label>
+        <label>Draft slot
+          <select id="user-slot"></select>
+        </label>
+        <label>Lineup
+          <select id="roster-preset"></select>
+        </label>
+        <p id="roster-desc" class="muted"></p>
+        <button type="submit">Start draft</button>
+        <button id="resume" type="button" class="hidden">Resume last draft</button>
+      </form>
+      <p id="setup-banner" class="banner hidden"></p>
+    </div>
+  </section>
+
+  <div id="draft-ui" class="hidden">
+    <header class="top">
+      <div>
+        <h1>Draft Optimizer</h1>
+        <p id="draft-sub" class="sub">V0 · 10-team PPR snake</p>
+      </div>
+      <div class="controls">
+        <button id="toggle-take" type="button" title="]">TAKE</button>
+        <button id="show-grade" type="button" class="hidden">Scorecard</button>
+        <button id="new-draft" type="button">New draft</button>
+        <button id="undo" type="button" title="Ctrl+Z">Undo my pick</button>
+      </div>
+    </header>
+
+    <p id="banner" class="banner hidden"></p>
+
+    <section class="pick-bar">
+      <div class="pick-row">
+        <div id="pick-meta">No draft yet</div>
+        <div id="clock" class="clock" hidden>1:30</div>
+      </div>
+      <div class="filters">
+        <form id="search-form" autocomplete="off">
+          <input id="search" type="text" placeholder="Type a player, then Enter" />
+        </form>
+        <select id="filter-pos">
+          <option value="ALL">All pos</option>
+          <option value="QB">QB</option>
+          <option value="RB">RB</option>
+          <option value="WR">WR</option>
+          <option value="TE">TE</option>
+          <option value="DST">DST</option>
+          <option value="K">K</option>
+        </select>
+        <select id="filter-team">
+          <option value="">All teams</option>
+        </select>
+        <select id="filter-sort">
+          <option value="adp">Sort: ADP</option>
+          <option value="ecr">Sort: ECR</option>
+          <option value="proj">Sort: Proj</option>
+          <option value="name">Sort: Name</option>
+        </select>
+      </div>
+      <div class="player-table-wrap">
+        <table class="player-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Player</th>
+              <th>Pos</th>
+              <th>Team</th>
+              <th>ADP</th>
+              <th>ECR</th>
+              <th>Proj</th>
+              <th>Inj</th>
+            </tr>
+          </thead>
+          <tbody id="player-rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <main class="layout" id="layout">
+      <section class="board-wrap" id="board-wrap">
+        <div id="board" class="board"></div>
+      </section>
+      <aside id="take" class="take">
+        <div class="take-head">
+          <h2>Take</h2>
+          <button id="collapse-take" type="button" aria-label="Collapse">›</button>
+        </div>
+        <div id="take-body">
+          <p class="muted">Waiting for your pick.</p>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <div id="grade-modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2>Draft scorecard</h2>
+        <button id="close-grade" type="button">Close</button>
+      </div>
+      <p id="grade-method" class="muted"></p>
+      <div id="grade-body"></div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

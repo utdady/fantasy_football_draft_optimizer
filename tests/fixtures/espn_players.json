@@ -1,0 +1,64 @@
+{
+  "players": [
+    {
+      "id": 4241479,
+      "player": {
+        "id": 4241479,
+        "fullName": "Ja'Marr Chase",
+        "defaultPositionId": 3,
+        "proTeamId": 4,
+        "injuryStatus": "ACTIVE",
+        "ownership": {"averageDraftPosition": 4.7, "percentOwned": 99.9},
+        "draftRanksByRankType": {"PPR": {"rank": 4}},
+        "stats": [
+          {"statSourceId": 1, "scoringPeriodId": 0, "statSplitTypeId": 0, "appliedTotal": 336.35}
+        ]
+      }
+    },
+    {
+      "id": 4430737,
+      "player": {
+        "id": 4430737,
+        "fullName": "Bijan Robinson",
+        "defaultPositionId": 2,
+        "proTeamId": 1,
+        "injuryStatus": "ACTIVE",
+        "ownership": {"averageDraftPosition": 2.62, "percentOwned": 99.8},
+        "draftRanksByRankType": {"PPR": {"rank": 2}},
+        "stats": [
+          {"statSourceId": 1, "scoringPeriodId": 0, "statSplitTypeId": 0, "appliedTotal": 352.97}
+        ]
+      }
+    },
+    {
+      "id": 3918298,
+      "player": {
+        "id": 3918298,
+        "fullName": "Josh Allen",
+        "defaultPositionId": 1,
+        "proTeamId": 2,
+        "injuryStatus": "ACTIVE",
+        "ownership": {"averageDraftPosition": 22.54, "percentOwned": 99.0},
+        "draftRanksByRankType": {"PPR": {"rank": 36}},
+        "stats": [
+          {"statSourceId": 1, "scoringPeriodId": 0, "statSplitTypeId": 0, "appliedTotal": 369.23}
+        ]
+      }
+    },
+    {
+      "id": 25,
+      "player": {
+        "id": 25,
+        "fullName": "49ers D/ST",
+        "defaultPositionId": 16,
+        "proTeamId": 25,
+        "injuryStatus": "ACTIVE",
+        "ownership": {"averageDraftPosition": 95.0, "percentOwned": 80.0},
+        "draftRanksByRankType": {"PPR": {"rank": 1}},
+        "stats": [
+          {"statSourceId": 1, "scoringPeriodId": 0, "statSplitTypeId": 0, "appliedTotal": 120.0}
+        ]
+      }
+    }
+  ]
+}

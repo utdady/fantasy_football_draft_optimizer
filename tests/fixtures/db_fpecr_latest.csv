@@ -1,0 +1,6 @@
+fp_page,page_type,player,id,pos,team,ecr,sd,best,worst,bye,scrape_date
+/nfl/rankings/ppr-cheatsheets.php,redraft-overall,Ja'Marr Chase,17288,WR,CIN,1.8,1.08,1,5,10,2026-08-07
+/nfl/rankings/ppr-cheatsheets.php,redraft-overall,Bijan Robinson,17290,RB,ATL,2.1,0.9,1,6,11,2026-08-07
+/nfl/rankings/ppr-cheatsheets.php,redraft-overall,Josh Allen,17200,QB,BUF,36.0,4.2,20,50,7,2026-08-07
+/nfl/rankings/dst-cheatsheets.php,redraft-dst,San Francisco 49ers,8120,DST,SF,1.0,0.5,1,3,8,2026-08-07
+/nfl/rankings/dynasty-overall.php,dynasty-overall,Ignore Me,99999,WR,DAL,1.0,0.1,1,1,1,2026-08-07
