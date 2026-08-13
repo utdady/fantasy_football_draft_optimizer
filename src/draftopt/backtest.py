@@ -467,8 +467,12 @@ def _print_matrix(matrix: dict) -> None:
     )
     header = f"{'slot':>4}"
     for name in strats:
-        header += f" {name:>10}"
-    if "marginal" in strats and "adp" in strats:
+        header += f" {name:>12}"
+    if "marginal_vor" in strats and "adp" in strats:
+        header += f" {'vor-adp':>8} {'v>adp':>7}"
+    if "marginal_vor" in strats and "marginal" in strats:
+        header += f" {'vor-raw':>8} {'v>raw':>7}"
+    elif "marginal" in strats and "adp" in strats:
         header += f" {'m-adp':>8} {'win%':>7}"
     if "marginal" in strats and "greedy" in strats:
         header += f" {'m-greed':>8} {'win%':>7}"
@@ -476,9 +480,15 @@ def _print_matrix(matrix: dict) -> None:
     for report in matrix["rows"]:
         line = f"{report['slot']:4d}"
         for name in strats:
-            line += f" {report['summaries'][name]['mean_starter_pts']:10.1f}"
+            line += f" {report['summaries'][name]['mean_starter_pts']:12.1f}"
         comps = report.get("comparisons") or {}
-        if "marginal_vs_adp" in comps:
+        if "marginal_vor_vs_adp" in comps:
+            c = comps["marginal_vor_vs_adp"]
+            line += f" {c['mean_delta']:+8.1f} {c['win_rate']:7.1%}"
+        if "marginal_vor_vs_marginal" in comps:
+            c = comps["marginal_vor_vs_marginal"]
+            line += f" {c['mean_delta']:+8.1f} {c['win_rate']:7.1%}"
+        elif "marginal_vs_adp" in comps and "marginal_vor" not in strats:
             c = comps["marginal_vs_adp"]
             line += f" {c['mean_delta']:+8.1f} {c['win_rate']:7.1%}"
         if "marginal_vs_greedy" in comps:
@@ -486,12 +496,12 @@ def _print_matrix(matrix: dict) -> None:
             line += f" {c['mean_delta']:+8.1f} {c['win_rate']:7.1%}"
         print(line)
     print("\nNote: win% = paired starter-points win rate (not wide-receiver rate).")
-    if matrix["rows"]:
-        print("\nAggregate position mix across slots (marginal):")
-        # merge marginal position counts across rows
+    focus = "marginal_vor" if "marginal_vor" in strats else "marginal"
+    if matrix["rows"] and focus in strats:
+        print(f"\nAggregate position mix across slots ({focus}):")
         totals: Counter[str] = Counter()
         for report in matrix["rows"]:
-            s = report["summaries"].get("marginal") or {}
+            s = report["summaries"].get(focus) or {}
             totals.update(s.get("position_counts") or {})
         t = sum(totals.values()) or 1
         share = {pos: totals[pos] / t for pos in totals}
@@ -522,7 +532,11 @@ def matrix_to_markdown(matrix: dict, *, title: str, notes: list[str] | None = No
     lines.append("")
     strats = matrix["strategies"]
     header = ["slot", *strats]
-    if "marginal" in strats and "adp" in strats:
+    if "marginal_vor" in strats and "adp" in strats:
+        header += ["vor−adp", "vor>adp"]
+    if "marginal_vor" in strats and "marginal" in strats:
+        header += ["vor−raw", "vor>raw"]
+    elif "marginal" in strats and "adp" in strats:
         header += ["marginal−adp", "win_rate"]
     if "marginal" in strats and "greedy" in strats:
         header += ["marginal−greedy", "win_vs_greedy"]
@@ -533,7 +547,15 @@ def matrix_to_markdown(matrix: dict, *, title: str, notes: list[str] | None = No
         for name in strats:
             cells.append(f"{report['summaries'][name]['mean_starter_pts']:.1f}")
         comps = report.get("comparisons") or {}
-        if "marginal_vs_adp" in comps:
+        if "marginal_vor_vs_adp" in comps:
+            c = comps["marginal_vor_vs_adp"]
+            cells.append(f"{c['mean_delta']:+.1f}")
+            cells.append(f"{c['win_rate']:.1%}")
+        if "marginal_vor_vs_marginal" in comps:
+            c = comps["marginal_vor_vs_marginal"]
+            cells.append(f"{c['mean_delta']:+.1f}")
+            cells.append(f"{c['win_rate']:.1%}")
+        elif "marginal_vs_adp" in comps and "marginal_vor" not in strats:
             c = comps["marginal_vs_adp"]
             cells.append(f"{c['mean_delta']:+.1f}")
             cells.append(f"{c['win_rate']:.1%}")
@@ -543,7 +565,10 @@ def matrix_to_markdown(matrix: dict, *, title: str, notes: list[str] | None = No
             cells.append(f"{c['win_rate']:.1%}")
         lines.append("| " + " | ".join(cells) + " |")
     lines.append("")
-    lines.append("`win_rate` = paired starter-points win rate (not wide-receiver share).")
+    lines.append(
+        "`win%` / `vor>adp` / `vor>raw` = paired starter-points win rate "
+        "(not wide-receiver share)."
+    )
     lines.append("")
     lines.append("## Position mix (user picks)")
     lines.append("")
