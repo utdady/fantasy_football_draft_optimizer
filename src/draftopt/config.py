@@ -13,7 +13,7 @@ PICK_CLOCK_SECONDS = 90
 ROSTER_PRESETS = {
     "league_default": {
         "id": "league_default",
-        "label": "My league (no K)",
+        "label": "Default (no K)",
         "description": "QB, 2 RB, 2 WR, TE, 2 FLEX, D/ST, 7 bench (+ IR, not drafted)",
         "slots": {
             "QB": 1,

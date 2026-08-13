@@ -5,9 +5,10 @@
 ## Setup
 
 ```powershell
-cd C:\Users\addyb\fantasy_football_draft_optimizer
+cd fantasy_football_draft_optimizer
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+# Windows: .\.venv\Scripts\Activate.ps1
+# macOS/Linux: source .venv/bin/activate
 pip install -e ".[dev]"
 ```
 

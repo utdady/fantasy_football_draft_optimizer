@@ -18,7 +18,7 @@ def test_espn_with_k_is_16_rounds():
 
 
 def test_create_draft_stores_roster(catalog, conn):
-    draft_id = create_draft(conn, user_slot=1, user_name="Aditya", roster_preset="league_default")
+    draft_id = create_draft(conn, user_slot=1, user_name="Tester", roster_preset="league_default")
     row = conn.execute("SELECT n_rounds, roster_json FROM drafts WHERE draft_id = ?", (draft_id,)).fetchone()
     assert row["n_rounds"] == 16
     assert "league_default" in row["roster_json"]
@@ -72,7 +72,7 @@ def test_search_hides_kickers_in_no_k_league(catalog, conn):
 
 
 def test_grade_ranks_teams(catalog, conn):
-    draft_id = create_draft(conn, user_slot=1, user_name="Aditya", n_rounds=2)
+    draft_id = create_draft(conn, user_slot=1, user_name="Tester", n_rounds=2)
     record_pick(conn, draft_id, "1002", made_by="user")
     grade = grade_draft(conn, draft_id)
     assert grade["user"]["is_user"] is True

@@ -8,19 +8,19 @@ from draftopt.strategies.adp import ADPStrategy
 
 
 def test_cpu_cannot_pick_on_user_turn(catalog, conn):
-    draft_id = create_draft(conn, user_slot=1, user_name="Aditya")
+    draft_id = create_draft(conn, user_slot=1, user_name="Tester")
     with pytest.raises(DraftError, match="not a CPU pick"):
         cpu_pick(conn, draft_id)
 
 
 def test_user_cannot_pick_on_cpu_turn(catalog, conn):
-    draft_id = create_draft(conn, user_slot=2, user_name="Aditya")
+    draft_id = create_draft(conn, user_slot=2, user_name="Tester")
     with pytest.raises(DraftError, match="not your pick"):
         record_user_pick(conn, draft_id, "1001")
 
 
 def test_cpu_picks_then_user_turn(catalog, conn):
-    draft_id = create_draft(conn, user_slot=1, user_name="Aditya")
+    draft_id = create_draft(conn, user_slot=1, user_name="Tester")
     record_user_pick(conn, draft_id, "1001")
     rng = random.Random(0)
     state = cpu_pick(conn, draft_id, rng=rng)
@@ -30,7 +30,7 @@ def test_cpu_picks_then_user_turn(catalog, conn):
 
 
 def test_undo_removes_user_pick_and_later_cpu(catalog, conn):
-    draft_id = create_draft(conn, user_slot=1, user_name="Aditya")
+    draft_id = create_draft(conn, user_slot=1, user_name="Tester")
     record_user_pick(conn, draft_id, "1001")
     cpu_pick(conn, draft_id, rng=random.Random(1))
     state = undo_pick(conn, draft_id)
