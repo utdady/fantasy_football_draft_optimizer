@@ -1,0 +1,327 @@
+{
+  "experiment": "pick20_nabers_vs_kyren_lookahead",
+  "seed": 0,
+  "slot": 1,
+  "target_overall": 20,
+  "board_driver": "marginal",
+  "preset": "league_default",
+  "freeze": {
+    "overall": 20,
+    "current_roster": [
+      {
+        "player_id": "11566",
+        "name": "Jayden Daniels",
+        "position": "QB",
+        "projection": 371.59,
+        "adp_espn": 51.05
+      }
+    ],
+    "current_lineup_ev": 371.59
+  },
+  "decision_at_20": {
+    "raw_choice": {
+      "player_id": "11632",
+      "name": "Malik Nabers",
+      "position": "WR",
+      "projection": 301.35,
+      "adp_espn": 37.97
+    },
+    "vor_choice": {
+      "player_id": "8150",
+      "name": "Kyren Williams",
+      "position": "RB",
+      "projection": 284.05,
+      "adp_espn": 42.5
+    },
+    "agree": false
+  },
+  "branch_a_vor_choice": {
+    "label": "Kyren + best WR@21",
+    "pick_now": {
+      "player_id": "8150",
+      "name": "Kyren Williams",
+      "position": "RB",
+      "projection": 284.05,
+      "adp_espn": 42.5
+    },
+    "pick_now_vor": 147.02,
+    "pick_21": {
+      "player_id": "11632",
+      "name": "Malik Nabers",
+      "position": "WR",
+      "projection": 301.35,
+      "adp_espn": 37.97
+    },
+    "pick_21_rule": "best remaining WR by ESPN proj",
+    "lineup": {
+      "total": 956.99,
+      "by_slot": {
+        "QB": [
+          {
+            "player_id": "11566",
+            "name": "Jayden Daniels",
+            "position": "QB",
+            "projection": 371.59,
+            "adp_espn": 51.05
+          }
+        ],
+        "RB": [
+          {
+            "player_id": "8150",
+            "name": "Kyren Williams",
+            "position": "RB",
+            "projection": 284.05,
+            "adp_espn": 42.5
+          }
+        ],
+        "WR": [
+          {
+            "player_id": "11632",
+            "name": "Malik Nabers",
+            "position": "WR",
+            "projection": 301.35,
+            "adp_espn": 37.97
+          }
+        ],
+        "TE": [],
+        "DST": [],
+        "K": [],
+        "FLEX": []
+      },
+      "slot_totals": {
+        "QB": 371.59,
+        "RB": 284.05,
+        "WR": 301.35,
+        "TE": 0,
+        "DST": 0,
+        "K": 0,
+        "FLEX": 0
+      },
+      "rb_starter_pts": 284.05,
+      "wr_starter_pts": 301.35,
+      "flex_contribution": 0,
+      "flex_players": [],
+      "bench": []
+    },
+    "vor_space_total": 309.52
+  },
+  "branch_b_alternative": {
+    "label": "Nabers + best RB@21",
+    "pick_now": {
+      "player_id": "11632",
+      "name": "Malik Nabers",
+      "position": "WR",
+      "projection": 301.35,
+      "adp_espn": 37.97
+    },
+    "pick_now_vor": 90.22,
+    "pick_21": {
+      "player_id": "8150",
+      "name": "Kyren Williams",
+      "position": "RB",
+      "projection": 284.05,
+      "adp_espn": 42.5
+    },
+    "pick_21_rule": "best remaining RB by ESPN proj",
+    "lineup": {
+      "total": 956.99,
+      "by_slot": {
+        "QB": [
+          {
+            "player_id": "11566",
+            "name": "Jayden Daniels",
+            "position": "QB",
+            "projection": 371.59,
+            "adp_espn": 51.05
+          }
+        ],
+        "RB": [
+          {
+            "player_id": "8150",
+            "name": "Kyren Williams",
+            "position": "RB",
+            "projection": 284.05,
+            "adp_espn": 42.5
+          }
+        ],
+        "WR": [
+          {
+            "player_id": "11632",
+            "name": "Malik Nabers",
+            "position": "WR",
+            "projection": 301.35,
+            "adp_espn": 37.97
+          }
+        ],
+        "TE": [],
+        "DST": [],
+        "K": [],
+        "FLEX": []
+      },
+      "slot_totals": {
+        "QB": 371.59,
+        "RB": 284.05,
+        "WR": 301.35,
+        "TE": 0,
+        "DST": 0,
+        "K": 0,
+        "FLEX": 0
+      },
+      "rb_starter_pts": 284.05,
+      "wr_starter_pts": 301.35,
+      "flex_contribution": 0,
+      "flex_players": [],
+      "bench": []
+    },
+    "vor_space_total": 309.52
+  },
+  "delta_nabers_minus_kyren": 0.0,
+  "commutative": true,
+  "secondary_if_other_gone": {
+    "kyren_branch": {
+      "label": "Kyren + best WR\u2260Nabers@21",
+      "pick_now": {
+        "player_id": "8150",
+        "name": "Kyren Williams",
+        "position": "RB",
+        "projection": 284.05,
+        "adp_espn": 42.5
+      },
+      "pick_21": {
+        "player_id": "7569",
+        "name": "Nico Collins",
+        "position": "WR",
+        "projection": 289.12,
+        "adp_espn": 27.78
+      },
+      "pick_21_rule": "best remaining WR by ESPN proj, excluding the other fork candidate",
+      "lineup": {
+        "total": 944.76,
+        "by_slot": {
+          "QB": [
+            {
+              "player_id": "11566",
+              "name": "Jayden Daniels",
+              "position": "QB",
+              "projection": 371.59,
+              "adp_espn": 51.05
+            }
+          ],
+          "RB": [
+            {
+              "player_id": "8150",
+              "name": "Kyren Williams",
+              "position": "RB",
+              "projection": 284.05,
+              "adp_espn": 42.5
+            }
+          ],
+          "WR": [
+            {
+              "player_id": "7569",
+              "name": "Nico Collins",
+              "position": "WR",
+              "projection": 289.12,
+              "adp_espn": 27.78
+            }
+          ],
+          "TE": [],
+          "DST": [],
+          "K": [],
+          "FLEX": []
+        },
+        "slot_totals": {
+          "QB": 371.59,
+          "RB": 284.05,
+          "WR": 289.12,
+          "TE": 0,
+          "DST": 0,
+          "K": 0,
+          "FLEX": 0
+        },
+        "rb_starter_pts": 284.05,
+        "wr_starter_pts": 289.12,
+        "flex_contribution": 0,
+        "flex_players": [],
+        "bench": []
+      }
+    },
+    "nabers_branch": {
+      "label": "Nabers + best RB\u2260Kyren@21",
+      "pick_now": {
+        "player_id": "11632",
+        "name": "Malik Nabers",
+        "position": "WR",
+        "projection": 301.35,
+        "adp_espn": 37.97
+      },
+      "pick_21": {
+        "player_id": "11584",
+        "name": "Bucky Irving",
+        "position": "RB",
+        "projection": 283.47,
+        "adp_espn": 56.0
+      },
+      "pick_21_rule": "best remaining RB by ESPN proj, excluding the other fork candidate",
+      "lineup": {
+        "total": 956.41,
+        "by_slot": {
+          "QB": [
+            {
+              "player_id": "11566",
+              "name": "Jayden Daniels",
+              "position": "QB",
+              "projection": 371.59,
+              "adp_espn": 51.05
+            }
+          ],
+          "RB": [
+            {
+              "player_id": "11584",
+              "name": "Bucky Irving",
+              "position": "RB",
+              "projection": 283.47,
+              "adp_espn": 56.0
+            }
+          ],
+          "WR": [
+            {
+              "player_id": "11632",
+              "name": "Malik Nabers",
+              "position": "WR",
+              "projection": 301.35,
+              "adp_espn": 37.97
+            }
+          ],
+          "TE": [],
+          "DST": [],
+          "K": [],
+          "FLEX": []
+        },
+        "slot_totals": {
+          "QB": 371.59,
+          "RB": 283.47,
+          "WR": 301.35,
+          "TE": 0,
+          "DST": 0,
+          "K": 0,
+          "FLEX": 0
+        },
+        "rb_starter_pts": 283.47,
+        "wr_starter_pts": 301.35,
+        "flex_contribution": 0,
+        "flex_players": [],
+        "bench": []
+      }
+    },
+    "delta_nabers_minus_kyren": 11.65,
+    "note": "Counterfactual: complementary #21 cannot be the other fork candidate (as if CPU took them between picks). Relevant when wait > 0; not the literal #20\u2192#21 board."
+  },
+  "verdict": "commutative_tie",
+  "meaning": "With back-to-back picks and both players still available, best WR after Kyren is Nabers and best RB after Nabers is Kyren \u2014 the branches draft the same two players (order irrelevant). This fork cannot adjudicate positional VOR; the relevant question is the secondary 'other player gone' gap, or a longer-wait fork.",
+  "scoring": {
+    "primary": "raw lineup_ev starter points (ESPN projections)",
+    "pick_21_rule": "highest ESPN proj at complementary position",
+    "footnote": "vor_space_total scores the same roster in VOR units"
+  }
+}
