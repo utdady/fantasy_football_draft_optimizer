@@ -1,0 +1,238 @@
+{
+  "experiment": "v2alpha_long_wait",
+  "seed": 0,
+  "preset": "league_default",
+  "freeze_20": {
+    "overall": 20,
+    "roster": [
+      {
+        "player_id": "11566",
+        "name": "Jayden Daniels",
+        "position": "QB",
+        "projection": 371.59,
+        "adp_espn": 51.05
+      }
+    ],
+    "next_user_pick": 21,
+    "picks_until_next": 0,
+    "raw_choice": {
+      "player_id": "11632",
+      "name": "Malik Nabers",
+      "position": "WR",
+      "projection": 301.35,
+      "adp_espn": 37.97
+    },
+    "vor_choice": {
+      "player_id": "8150",
+      "name": "Kyren Williams",
+      "position": "RB",
+      "projection": 284.05,
+      "adp_espn": 42.5
+    },
+    "v2_top": [
+      {
+        "name": "Nico Collins",
+        "position": "WR",
+        "ev_two_pick": 962.07,
+        "q_player": "Malik Nabers",
+        "why": "two-pick EV 962.1 (take now \u2192 ADP\u00d70 \u2192 Malik Nabers WR at #21)"
+      },
+      {
+        "name": "Malik Nabers",
+        "position": "WR",
+        "ev_two_pick": 962.07,
+        "q_player": "Nico Collins",
+        "why": "two-pick EV 962.1 (take now \u2192 ADP\u00d70 \u2192 Nico Collins WR at #21)"
+      },
+      {
+        "name": "Kyren Williams",
+        "position": "RB",
+        "ev_two_pick": 956.99,
+        "q_player": "Malik Nabers",
+        "why": "two-pick EV 957.0 (take now \u2192 ADP\u00d70 \u2192 Malik Nabers WR at #21)"
+      }
+    ],
+    "literal_v2_kyren_vs_nabers": {
+      "n_cpu_picks": 0,
+      "a": {
+        "pick_now": {
+          "player_id": "8150",
+          "name": "Kyren Williams",
+          "position": "RB",
+          "projection": 284.05,
+          "adp_espn": 42.5
+        },
+        "q": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "ev": 956.99,
+        "one_pick": 655.64
+      },
+      "b": {
+        "pick_now": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "q": {
+          "player_id": "7569",
+          "name": "Nico Collins",
+          "position": "WR",
+          "projection": 289.12,
+          "adp_espn": 27.78
+        },
+        "ev": 962.07,
+        "one_pick": 672.94
+      },
+      "delta_b_minus_a": 5.07
+    },
+    "survival_adp18_kyren_vs_nabers": {
+      "n_cpu_picks": 18,
+      "a": {
+        "pick_now": {
+          "player_id": "8150",
+          "name": "Kyren Williams",
+          "position": "RB",
+          "projection": 284.05,
+          "adp_espn": 42.5
+        },
+        "q": {
+          "player_id": "11584",
+          "name": "Bucky Irving",
+          "position": "RB",
+          "projection": 283.47,
+          "adp_espn": 56.0
+        },
+        "ev": 939.11,
+        "one_pick": 655.64
+      },
+      "b": {
+        "pick_now": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "q": {
+          "player_id": "8150",
+          "name": "Kyren Williams",
+          "position": "RB",
+          "projection": 284.05,
+          "adp_espn": 42.5
+        },
+        "ev": 956.99,
+        "one_pick": 672.94
+      },
+      "delta_b_minus_a": 17.88
+    }
+  },
+  "freeze_21_after_nabers": {
+    "overall": 21,
+    "roster": [
+      {
+        "player_id": "11566",
+        "name": "Jayden Daniels",
+        "position": "QB",
+        "projection": 371.59,
+        "adp_espn": 51.05
+      },
+      {
+        "player_id": "11632",
+        "name": "Malik Nabers",
+        "position": "WR",
+        "projection": 301.35,
+        "adp_espn": 37.97
+      }
+    ],
+    "next_user_pick": 40,
+    "picks_until_next": 18,
+    "raw_choice": {
+      "player_id": "7569",
+      "name": "Nico Collins",
+      "position": "WR",
+      "projection": 289.12,
+      "adp_espn": 27.78
+    },
+    "vor_choice": {
+      "player_id": "8150",
+      "name": "Kyren Williams",
+      "position": "RB",
+      "projection": 284.05,
+      "adp_espn": 42.5
+    },
+    "v2_top": [
+      {
+        "name": "Nico Collins",
+        "position": "WR",
+        "ev_two_pick": 1245.53,
+        "q_player": "Bucky Irving",
+        "picks_until_next": 18,
+        "why": "two-pick EV 1245.5 (take now \u2192 ADP\u00d718 \u2192 Bucky Irving RB at #40)"
+      },
+      {
+        "name": "Kyren Williams",
+        "position": "RB",
+        "ev_two_pick": 1240.46,
+        "q_player": "Bucky Irving",
+        "picks_until_next": 18,
+        "why": "two-pick EV 1240.5 (take now \u2192 ADP\u00d718 \u2192 Bucky Irving RB at #40)"
+      },
+      {
+        "name": "Bucky Irving",
+        "position": "RB",
+        "ev_two_pick": 1240.46,
+        "q_player": "Kyren Williams",
+        "picks_until_next": 18,
+        "why": "two-pick EV 1240.5 (take now \u2192 ADP\u00d718 \u2192 Kyren Williams RB at #40)"
+      }
+    ],
+    "v2_ev_vorish_vs_raw": {
+      "n_cpu_picks": 18,
+      "a": {
+        "pick_now": {
+          "player_id": "8150",
+          "name": "Kyren Williams",
+          "position": "RB",
+          "projection": 284.05,
+          "adp_espn": 42.5
+        },
+        "q": {
+          "player_id": "11584",
+          "name": "Bucky Irving",
+          "position": "RB",
+          "projection": 283.47,
+          "adp_espn": 56.0
+        },
+        "ev": 1240.46,
+        "one_pick": 956.99
+      },
+      "b": {
+        "pick_now": {
+          "player_id": "7569",
+          "name": "Nico Collins",
+          "position": "WR",
+          "projection": 289.12,
+          "adp_espn": 27.78
+        },
+        "q": {
+          "player_id": "11584",
+          "name": "Bucky Irving",
+          "position": "RB",
+          "projection": 283.47,
+          "adp_espn": 56.0
+        },
+        "ev": 1245.53,
+        "one_pick": 962.07
+      },
+      "delta_b_minus_a": 5.07
+    },
+    "note": "After Nabers at #20; branch A = Kyren if available else VOR#21; branch B = raw#21; n_cpu = authentic picks_until_next."
+  }
+}

@@ -5,6 +5,7 @@ from draftopt.strategies.base import DraftStrategy
 from draftopt.strategies.greedy import GreedyProjectionStrategy
 from draftopt.strategies.marginal import MarginalValueStrategy
 from draftopt.strategies.marginal_no_qb_r1 import MarginalNoQBR1Strategy
+from draftopt.strategies.marginal_v2 import MarginalV2Strategy
 from draftopt.strategies.marginal_vor import MarginalVorStrategy
 
 
@@ -20,6 +21,8 @@ def get_strategy(name: str = "marginal") -> DraftStrategy:
         return MarginalNoQBR1Strategy()
     if key in {"marginal_vor", "vor", "vor_lite", "marginal_value_vor"}:
         return MarginalVorStrategy()
+    if key in {"marginal_v2", "v2", "v2_alpha", "lookahead_adp"}:
+        return MarginalV2Strategy()
     raise ValueError(f"unknown strategy: {name}")
 
 
@@ -29,6 +32,7 @@ __all__ = [
     "GreedyProjectionStrategy",
     "MarginalNoQBR1Strategy",
     "MarginalValueStrategy",
+    "MarginalV2Strategy",
     "MarginalVorStrategy",
     "get_strategy",
 ]

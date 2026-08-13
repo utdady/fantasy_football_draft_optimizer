@@ -13,27 +13,17 @@ from pathlib import Path
 from draftopt import db
 from draftopt.backtest import pick_rng
 from draftopt.draft.cpu import cpu_pick
+from draftopt.draft.snake import next_user_overall
 from draftopt.draft.state import (
     create_draft,
     is_user_turn,
     record_user_pick,
     round_for_pick,
     snapshot,
-    team_for_pick,
 )
 from draftopt.strategies.marginal import MarginalValueStrategy
 from draftopt.strategies.marginal_vor import MarginalVorStrategy
 from draftopt.vor import replacement_baselines, vor_points
-
-
-def next_user_overall(overall: int, user_slot: int, n_teams: int) -> int | None:
-    """Next overall pick belonging to user_slot after `overall` (exclusive)."""
-    # 16 rounds is more than enough for early-pick traces.
-    limit = n_teams * 16 + 1
-    for o in range(overall + 1, limit + 1):
-        if team_for_pick(o, n_teams) == user_slot:
-            return o
-    return None
 
 
 def _choice_fields(conn, draft_id: str, rec: dict) -> dict:

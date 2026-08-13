@@ -336,6 +336,18 @@ def run_backtest(
             comparisons["marginal_vor_vs_marginal"] = _pairwise(
                 by_strategy, "marginal_vor", "marginal"
             )
+        if "adp" in by_strategy and "marginal_v2" in by_strategy:
+            comparisons["marginal_v2_vs_adp"] = _pairwise(
+                by_strategy, "marginal_v2", "adp"
+            )
+        if "marginal" in by_strategy and "marginal_v2" in by_strategy:
+            comparisons["marginal_v2_vs_marginal"] = _pairwise(
+                by_strategy, "marginal_v2", "marginal"
+            )
+        if "marginal_vor" in by_strategy and "marginal_v2" in by_strategy:
+            comparisons["marginal_v2_vs_marginal_vor"] = _pairwise(
+                by_strategy, "marginal_v2", "marginal_vor"
+            )
 
         m_vs_a = comparisons.get("marginal_vs_adp") or {}
         return {
@@ -476,6 +488,10 @@ def _print_matrix(matrix: dict) -> None:
         header += f" {'m-adp':>8} {'win%':>7}"
     if "marginal" in strats and "greedy" in strats:
         header += f" {'m-greed':>8} {'win%':>7}"
+    if "marginal_v2" in strats and "marginal" in strats:
+        header += f" {'v2-raw':>8} {'v2>raw':>7}"
+    if "marginal_v2" in strats and "marginal_vor" in strats:
+        header += f" {'v2-vor':>8} {'v2>vor':>7}"
     print(header)
     for report in matrix["rows"]:
         line = f"{report['slot']:4d}"
@@ -493,6 +509,12 @@ def _print_matrix(matrix: dict) -> None:
             line += f" {c['mean_delta']:+8.1f} {c['win_rate']:7.1%}"
         if "marginal_vs_greedy" in comps:
             c = comps["marginal_vs_greedy"]
+            line += f" {c['mean_delta']:+8.1f} {c['win_rate']:7.1%}"
+        if "marginal_v2_vs_marginal" in comps:
+            c = comps["marginal_v2_vs_marginal"]
+            line += f" {c['mean_delta']:+8.1f} {c['win_rate']:7.1%}"
+        if "marginal_v2_vs_marginal_vor" in comps:
+            c = comps["marginal_v2_vs_marginal_vor"]
             line += f" {c['mean_delta']:+8.1f} {c['win_rate']:7.1%}"
         print(line)
     print("\nNote: win% = paired starter-points win rate (not wide-receiver rate).")
@@ -540,6 +562,10 @@ def matrix_to_markdown(matrix: dict, *, title: str, notes: list[str] | None = No
         header += ["marginal−adp", "win_rate"]
     if "marginal" in strats and "greedy" in strats:
         header += ["marginal−greedy", "win_vs_greedy"]
+    if "marginal_v2" in strats and "marginal" in strats:
+        header += ["v2−raw", "v2>raw"]
+    if "marginal_v2" in strats and "marginal_vor" in strats:
+        header += ["v2−vor", "v2>vor"]
     lines.append("| " + " | ".join(header) + " |")
     lines.append("| " + " | ".join(["---"] * len(header)) + " |")
     for report in matrix["rows"]:
@@ -563,11 +589,19 @@ def matrix_to_markdown(matrix: dict, *, title: str, notes: list[str] | None = No
             c = comps["marginal_vs_greedy"]
             cells.append(f"{c['mean_delta']:+.1f}")
             cells.append(f"{c['win_rate']:.1%}")
+        if "marginal_v2_vs_marginal" in comps:
+            c = comps["marginal_v2_vs_marginal"]
+            cells.append(f"{c['mean_delta']:+.1f}")
+            cells.append(f"{c['win_rate']:.1%}")
+        if "marginal_v2_vs_marginal_vor" in comps:
+            c = comps["marginal_v2_vs_marginal_vor"]
+            cells.append(f"{c['mean_delta']:+.1f}")
+            cells.append(f"{c['win_rate']:.1%}")
         lines.append("| " + " | ".join(cells) + " |")
     lines.append("")
     lines.append(
-        "`win%` / `vor>adp` / `vor>raw` = paired starter-points win rate "
-        "(not wide-receiver share)."
+        "`win%` / `vor>adp` / `vor>raw` / `v2>raw` / `v2>vor` = paired "
+        "starter-points win rate (not wide-receiver share)."
     )
     lines.append("")
     lines.append("## Position mix (user picks)")

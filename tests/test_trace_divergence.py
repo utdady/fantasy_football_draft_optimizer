@@ -1,5 +1,6 @@
+from draftopt.draft.snake import next_user_overall
 from draftopt.draft.state import create_draft
-from draftopt.trace_divergence import compare_at_turn, next_user_overall, run_trace
+from draftopt.trace_divergence import compare_at_turn, run_trace
 
 
 def test_next_user_overall_snake_gaps():
