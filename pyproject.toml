@@ -22,6 +22,7 @@ draftopt-serve = "draftopt.serve:main"
 draftopt-backtest = "draftopt.backtest:main"
 draftopt-diagnose-vor = "draftopt.diagnose_vor:main"
 draftopt-audit-curves = "draftopt.audit_proj_curves:main"
+draftopt-trace-divergence = "draftopt.trace_divergence:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
