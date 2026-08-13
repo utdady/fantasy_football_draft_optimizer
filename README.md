@@ -41,18 +41,23 @@ Baseline ADP strategy remains available for experiments (`strategy=adp` on API /
 # Single slot: ADP vs greedy-projection vs marginal
 python -m draftopt.backtest --n 50 --slot 1 --preset league_default --seed 0
 
-# Slot matrix (lean first pass; ~40+ min on real DB)
-python -m draftopt.backtest --n 50 --slots 1,5,10 --seed 0
-
-# Full slot coverage (writes reviewable results under results/)
+# Slot matrix
 python -m draftopt.backtest --n 50 --slots 1-10 --seed 0 `
-  --out results/ablation_espn_2026_slots_1-10.md `
-  --title "Ablation backtest — slots 1-10 (real ESPN ingest)"
+  --out results/ablation_espn_2026_slots_1-10.md
+
+# Value-function ablation (raw marginal vs no-QB R1 vs VOR-lite)
+python -m draftopt.backtest --n 50 --slot 1 --seed 0 `
+  --strategies adp,marginal,marginal_no_qb_r1,marginal_vor `
+  --out results/ablation_vor_slot1_n50.md
 ```
 
-Paired snakes: shared sim seed + CPU RNG keyed by overall pick # (same opponent *policy*; boards may still diverge after different user picks). Decisions and scoring use ESPN projections only — ECR is not converted into fake points. Ablation: if marginal beats greedy, lineup construction is adding value beyond “take highest proj.”
+Paired snakes: shared sim seed + CPU RNG keyed by overall pick #. Scoring uses ESPN projections only.
 
-Checked-in experiment reports live under [`results/`](results/). `win_rate` means paired starter-points wins, not wide-receiver share.
+- `marginal` — raw starter-point lift (FLEX-aware; scarcity-blind)
+- `marginal_no_qb_r1` — raw marginal with QB banned in round 1 (diagnostic)
+- `marginal_vor` — VOR-lite (`lineup_ev` uses projection minus positional replacement)
+
+Checked-in reports: [`results/`](results/). `win_rate` = paired starter-points wins (not WR share).
 
 ## Tests
 

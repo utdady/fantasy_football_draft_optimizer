@@ -16,6 +16,7 @@ from draftopt.lineup import starter_points
 from draftopt.strategies import get_strategy
 
 DEFAULT_STRATEGIES = ("adp", "greedy", "marginal")
+ABLATION_VOR_STRATEGIES = ("adp", "marginal", "marginal_no_qb_r1", "marginal_vor")
 POS_ORDER = ("QB", "RB", "WR", "TE", "DST", "K")
 
 
@@ -325,6 +326,16 @@ def run_backtest(
             comparisons["marginal_vs_greedy"] = _pairwise(by_strategy, "marginal", "greedy")
         if "adp" in by_strategy and "greedy" in by_strategy:
             comparisons["greedy_vs_adp"] = _pairwise(by_strategy, "greedy", "adp")
+        if "adp" in by_strategy and "marginal_vor" in by_strategy:
+            comparisons["marginal_vor_vs_adp"] = _pairwise(by_strategy, "marginal_vor", "adp")
+        if "adp" in by_strategy and "marginal_no_qb_r1" in by_strategy:
+            comparisons["marginal_no_qb_r1_vs_adp"] = _pairwise(
+                by_strategy, "marginal_no_qb_r1", "adp"
+            )
+        if "marginal" in by_strategy and "marginal_vor" in by_strategy:
+            comparisons["marginal_vor_vs_marginal"] = _pairwise(
+                by_strategy, "marginal_vor", "marginal"
+            )
 
         m_vs_a = comparisons.get("marginal_vs_adp") or {}
         return {
@@ -442,7 +453,7 @@ def _print_report(report: dict) -> None:
         )
     for key, cmp_ in (report.get("comparisons") or {}).items():
         print(
-            f"{key}: mean Δ={cmp_['mean_delta']:+.1f} median Δ={cmp_['median_delta']:+.1f} "
+            f"{key}: mean d={cmp_['mean_delta']:+.1f} median d={cmp_['median_delta']:+.1f} "
             f"win={cmp_['win_rate']:.1%} ties={cmp_['tie_rate']:.1%}"
         )
     _print_position_mix(report)
@@ -645,7 +656,6 @@ def main() -> None:
         n_teams=args.teams,
         strategies=strategies,
     )
-    _print_report(report)
     if out_path is not None:
         matrix = {
             "n": report["n"],
@@ -659,7 +669,7 @@ def main() -> None:
         }
         write_results(matrix, out_path, title=args.title, notes=notes)
         print(f"Wrote {out_path} and {out_path.with_suffix('.json')}")
-
+    _print_report(report)
 
 if __name__ == "__main__":
     main()
