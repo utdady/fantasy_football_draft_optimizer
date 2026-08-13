@@ -1,5 +1,6 @@
 from draftopt.draft.state import create_draft, record_user_pick
 from draftopt.strategies.adp import ADPStrategy
+from draftopt.strategies.greedy import GreedyProjectionStrategy
 from draftopt.strategies.marginal import MarginalValueStrategy
 
 
@@ -9,6 +10,14 @@ def test_adp_strategy_orders_by_espn_adp(catalog, conn):
     assert recs[0]["name"] == "Bijan Robinson"
     assert recs[1]["name"] == "Ja'Marr Chase"
     assert recs[0]["strategy"] == "adp"
+
+
+def test_greedy_picks_highest_projection(catalog, conn):
+    draft_id = create_draft(conn, user_slot=1)
+    recs = GreedyProjectionStrategy().recommend(conn, draft_id, n=1)
+    assert recs[0]["name"] == "Josh Allen"
+    assert recs[0]["strategy"] == "greedy"
+    assert recs[0]["projection_source"] == "espn"
 
 
 def test_marginal_on_empty_roster_prefers_high_projection(catalog, conn):

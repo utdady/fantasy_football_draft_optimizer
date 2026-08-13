@@ -34,13 +34,20 @@ Open **http://127.0.0.1:8001**
 
 Baseline ADP strategy remains available for experiments (`strategy=adp` on API / backtest).
 
-## Backtest (ADP vs marginal)
+## Backtest (ablation + slot matrix)
 
 ```powershell
+# Single slot: ADP vs greedy-projection vs marginal
 python -m draftopt.backtest --n 50 --slot 1 --preset league_default --seed 0
+
+# Slot matrix (lean first pass; ~40+ min on real DB)
+python -m draftopt.backtest --n 50 --slots 1,5,10 --seed 0
+
+# Fuller run when you have time
+python -m draftopt.backtest --n 200 --slots 1-10 --seed 0
 ```
 
-Paired snakes: each sim seed is shared across strategies; CPU RNG is keyed by overall pick # so opponents only diverge when the remaining board differs. Scores starter EV on ESPN projections (not ECR proxies). Reports starter pts, starter rank, roster-sum rank, and win rate.
+Paired snakes: shared sim seed + CPU RNG keyed by overall pick # (same opponent *policy*; boards may still diverge after different user picks). Decisions and scoring use ESPN projections only — ECR is not converted into fake points. Ablation: if marginal beats greedy, lineup construction is adding value beyond “take highest proj.”
 
 ## Tests
 

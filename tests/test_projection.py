@@ -1,6 +1,6 @@
+from draftopt.draft.state import create_draft
 from draftopt.projection import resolve_projection
 from draftopt.strategies.marginal import MarginalValueStrategy
-from draftopt.draft.state import create_draft
 
 
 def test_resolve_espn_from_proj_espn():
@@ -16,11 +16,14 @@ def test_resolve_espn_from_season_points():
     assert p.quality == "high"
 
 
-def test_resolve_ecr_proxy_is_low_quality():
-    p = resolve_projection({"ecr_fp_ppr": 50})
-    assert p.value == 300.0
-    assert p.source == "ecr_proxy"
-    assert p.quality == "low"
+def test_resolve_ecr_proxy_opt_in_only():
+    blocked = resolve_projection({"ecr_fp_ppr": 50}, allow_proxy=False)
+    assert blocked.value == 0.0
+    assert blocked.source == "none"
+    allowed = resolve_projection({"ecr_fp_ppr": 50}, allow_proxy=True)
+    assert allowed.value == 300.0
+    assert allowed.source == "ecr_proxy"
+    assert allowed.quality == "low"
 
 
 def test_resolve_none():

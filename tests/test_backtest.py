@@ -1,4 +1,4 @@
-from draftopt.backtest import pick_rng, run_backtest, run_one
+from draftopt.backtest import parse_slots, pick_rng, run_backtest, run_matrix, run_one
 from draftopt.draft.cpu import cpu_pick
 from draftopt.draft.state import create_draft, is_user_turn, record_user_pick, snapshot
 from draftopt.pool import remaining_ranked
@@ -81,15 +81,47 @@ def test_paired_cpu_identical_when_user_picks_match(catalog, conn):
     assert len(cpu_seqs[0]) > 0
 
 
+def test_parse_slots():
+    assert parse_slots("1,5,10") == [1, 5, 10]
+    assert parse_slots("1-3") == [1, 2, 3]
+    assert parse_slots("2-4,1") == [2, 3, 4, 1]
+
+
 def test_backtest_smoke(catalog, conn):
     _seed_pool(conn, 40)
-    report = run_backtest(n=1, slot=1, preset="league_default", seed=1, conn=conn, n_rounds=2)
+    report = run_backtest(
+        n=1,
+        slot=1,
+        preset="league_default",
+        seed=1,
+        conn=conn,
+        n_rounds=2,
+        strategies=("adp", "greedy", "marginal"),
+    )
     assert report["n"] == 1
     assert report["paired"] is True
     assert report["summaries"]["adp"]["n"] == 1
+    assert report["summaries"]["greedy"]["n"] == 1
     assert report["summaries"]["marginal"]["n"] == 1
+    assert "marginal_vs_adp" in report["comparisons"]
+    assert "marginal_vs_greedy" in report["comparisons"]
     assert "mean_starter_rank" in report["summaries"]["adp"]
-    assert "mean_roster_rank" in report["summaries"]["adp"]
+    assert "median_starter_pts" in report["summaries"]["adp"]
+
+
+def test_matrix_smoke(catalog, conn):
+    _seed_pool(conn, 40)
+    matrix = run_matrix(
+        n=1,
+        slots=[1, 2],
+        preset="league_default",
+        seed=2,
+        conn=conn,
+        n_rounds=2,
+        strategies=("adp", "marginal"),
+    )
+    assert matrix["slots"] == [1, 2]
+    assert len(matrix["rows"]) == 2
 
 
 def test_run_one_reports_starter_rank(catalog, conn):

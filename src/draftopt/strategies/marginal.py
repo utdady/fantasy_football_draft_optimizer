@@ -2,10 +2,8 @@ from __future__ import annotations
 
 from draftopt.draft.state import _draft_row, draft_roster
 from draftopt.lineup import lineup_ev
-from draftopt.pool import remaining_ranked
+from draftopt.pool import candidate_pool
 from draftopt.projection import resolve_projection
-
-CANDIDATE_POOL = 40
 
 
 def _user_roster_players(conn, draft_id: str) -> list[dict]:
@@ -31,7 +29,8 @@ def _user_roster_players(conn, draft_id: str) -> list[dict]:
 
 
 def _as_lineup_player(player: dict) -> dict:
-    proj = resolve_projection(player)
+    # Official path: ESPN projections only (no ECR→points).
+    proj = resolve_projection(player, allow_proxy=False)
     return {
         "player_id": player.get("player_id"),
         "name": player.get("name"),
@@ -69,11 +68,10 @@ class MarginalValueStrategy:
         base_total = base.total
 
         scored: list[dict] = []
-        for cand in remaining_ranked(conn, draft_id)[:CANDIDATE_POOL]:
+        for cand in candidate_pool(conn, draft_id):
             lined = _as_lineup_player(cand)
-            # Skip skill players with no signal except DST (often low/missing proj early).
-            pos = (lined.get("position") or "").upper()
-            if pos != "DST" and lined["season_points"] <= 0:
+            # Skip anyone without a real ESPN projection (DST included).
+            if lined["projection_quality"] != "high" or lined["season_points"] <= 0:
                 continue
             after = lineup_ev(roster + [lined], slots)
             marginal = after.total - base_total
