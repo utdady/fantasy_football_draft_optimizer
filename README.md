@@ -2,6 +2,11 @@
 
 10-team PPR snake redraft practice room + V1 marginal lineup-value recommendations.
 
+> **V2-alpha is not yet validated as a real-world drafting advantage.** It currently
+> demonstrates an advantage over V1 baselines under an ADP-greedy simulated
+> lookahead (see [`results/V2_ALPHA_BASELINE.md`](results/V2_ALPHA_BASELINE.md)).
+> The UI still uses raw **V1 `marginal`**.
+
 ## Setup
 
 ```powershell
@@ -63,6 +68,13 @@ Paired snakes: shared sim seed + CPU RNG keyed by overall pick #. Scoring uses E
 - `marginal` — raw starter-point lift (FLEX-aware; scarcity-blind)
 - `marginal_no_qb_r1` — raw marginal with QB banned in round 1 (diagnostic)
 - `marginal_vor` — VOR-lite (`lineup_ev` uses projection minus positional replacement)
+- `marginal_v2` — experimental V2-alpha (two-pick EV under ADP-greedy future); frozen baseline in [`results/V2_ALPHA_BASELINE.md`](results/V2_ALPHA_BASELINE.md)
+
+```powershell
+# Three-way early-pick divergence (RAW / VOR / V2)
+python -m draftopt.trace_v2_divergence --n 3 --slots 1,5,10 --picks 5 --seed 0 `
+  --out results/divergence_raw_vor_v2_slots_1_5_10.md
+```
 
 Checked-in reports: [`results/`](results/). `win_rate` = paired starter-points wins (not WR share).
 
