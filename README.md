@@ -49,6 +49,10 @@ python -m draftopt.backtest --n 50 --slots 1-10 --seed 0 `
 python -m draftopt.backtest --n 50 --slot 1 --seed 0 `
   --strategies adp,marginal,marginal_no_qb_r1,marginal_vor `
   --out results/ablation_vor_slot1_n50.md
+
+# VOR decision traces (baselines + top candidates for R1-R3)
+python -m draftopt.diagnose_vor --n 10 --slot 1 --rounds 3 --seed 0 `
+  --out results/diagnose_vor_slot1.md
 ```
 
 Paired snakes: shared sim seed + CPU RNG keyed by overall pick #. Scoring uses ESPN projections only.

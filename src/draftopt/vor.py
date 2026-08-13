@@ -21,21 +21,20 @@ def league_starter_demand(n_teams: int, slots: dict[str, int]) -> dict[str, int]
     return {k: max(1, v) if v > 0 else 0 for k, v in demand.items()}
 
 
-def replacement_baselines(
+def replacement_snapshot(
     conn,
     draft_id: str,
     *,
     n_teams: int,
     slots: dict[str, int],
-) -> dict[str, float]:
+) -> dict:
     """
-    VOR-lite: Nth-best remaining ESPN projection at each position.
+    VOR-lite replacement detail for diagnostics.
 
-    N ≈ league starter demand (fixed slots + FLEX share). If fewer than N
-    projected players remain, baseline is 0 (no reliable replacement).
+    Returns demand N, baseline pts, and the Nth player (when available) per position.
     """
     demand = league_starter_demand(n_teams, slots)
-    by_pos: dict[str, list[float]] = {p: [] for p in demand}
+    by_pos: dict[str, list[tuple[float, str]]] = {p: [] for p in demand}
     for p in remaining_ranked(conn, draft_id):
         proj = resolve_projection(p, allow_proxy=False)
         if proj.quality != "high":
@@ -43,19 +42,47 @@ def replacement_baselines(
         pos = (p.get("position") or "").upper()
         if pos not in by_pos:
             continue
-        by_pos[pos].append(proj.value)
-    baselines: dict[str, float] = {}
-    for pos, vals in by_pos.items():
-        n = demand.get(pos) or 0
+        by_pos[pos].append((proj.value, p.get("name") or p["player_id"]))
+    out: dict[str, dict] = {}
+    for pos, rows in by_pos.items():
+        n = int(demand.get(pos) or 0)
+        rows.sort(key=lambda t: t[0], reverse=True)
         if n <= 0:
-            baselines[pos] = 0.0
+            out[pos] = {
+                "replacement_n": 0,
+                "replacement_pts": 0.0,
+                "replacement_name": None,
+                "pool_size": len(rows),
+            }
             continue
-        vals.sort(reverse=True)
-        if len(vals) < n:
-            baselines[pos] = 0.0
+        if len(rows) < n:
+            out[pos] = {
+                "replacement_n": n,
+                "replacement_pts": 0.0,
+                "replacement_name": None,
+                "pool_size": len(rows),
+            }
         else:
-            baselines[pos] = float(vals[n - 1])
-    return baselines
+            pts, name = rows[n - 1]
+            out[pos] = {
+                "replacement_n": n,
+                "replacement_pts": float(pts),
+                "replacement_name": name,
+                "pool_size": len(rows),
+            }
+    return out
+
+
+def replacement_baselines(
+    conn,
+    draft_id: str,
+    *,
+    n_teams: int,
+    slots: dict[str, int],
+) -> dict[str, float]:
+    """Nth-best remaining ESPN projection at each position (league starter demand)."""
+    snap = replacement_snapshot(conn, draft_id, n_teams=n_teams, slots=slots)
+    return {pos: float(info["replacement_pts"]) for pos, info in snap.items()}
 
 
 def vor_points(proj: float, position: str | None, baselines: dict[str, float]) -> float:

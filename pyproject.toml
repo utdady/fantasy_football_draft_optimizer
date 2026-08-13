@@ -20,6 +20,7 @@ dev = ["pytest>=8"]
 draftopt-ingest = "draftopt.ingest:main"
 draftopt-serve = "draftopt.serve:main"
 draftopt-backtest = "draftopt.backtest:main"
+draftopt-diagnose-vor = "draftopt.diagnose_vor:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
