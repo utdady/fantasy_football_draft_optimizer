@@ -421,7 +421,7 @@ def _print_position_mix(report: dict) -> None:
                 if sh:
                     bits.append(f"R{rnd}: {_fmt_share(sh)}")
             if bits:
-                print(f"             early → {' | '.join(bits)}")
+                print(f"             early -> {' | '.join(bits)}")
 
 
 def _print_report(report: dict) -> None:
