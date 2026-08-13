@@ -1,4 +1,7 @@
-from draftopt.backtest import run_backtest
+from draftopt.backtest import pick_rng, run_backtest, run_one
+from draftopt.draft.cpu import cpu_pick
+from draftopt.draft.state import create_draft, is_user_turn, record_user_pick, snapshot
+from draftopt.pool import remaining_ranked
 
 
 def _seed_pool(conn, n: int = 40) -> None:
@@ -29,9 +32,75 @@ def _seed_pool(conn, n: int = 40) -> None:
     conn.commit()
 
 
+def test_pick_rng_deterministic_per_overall():
+    a = pick_rng(7, 12)
+    b = pick_rng(7, 12)
+    assert [a.random() for _ in range(5)] == [b.random() for _ in range(5)]
+    assert pick_rng(7, 12).random() != pick_rng(7, 13).random()
+
+
+def test_paired_cpu_identical_when_user_picks_match(catalog, conn):
+    """Same seed + same user picks ⇒ identical CPU boards (paired environment)."""
+    _seed_pool(conn, 60)
+    seed = 99
+    cpu_seqs = []
+    for _ in range(2):
+        draft_id = create_draft(
+            conn, user_slot=1, user_name="Pair", roster_preset="league_default", n_rounds=3
+        )
+        cpu_picks = []
+        while True:
+            state = snapshot(conn, draft_id)
+            if state["complete"]:
+                break
+            draft_row = conn.execute(
+                "SELECT * FROM drafts WHERE draft_id = ?", (draft_id,)
+            ).fetchone()
+            if is_user_turn(draft_row):
+                # Fixed policy: always take best remaining ADP.
+                pid = remaining_ranked(conn, draft_id)[0]["player_id"]
+                record_user_pick(conn, draft_id, pid, made_by="test")
+            else:
+                overall = int(draft_row["current_pick"])
+                before = {
+                    r["player_id"]
+                    for r in conn.execute(
+                        "SELECT player_id FROM picks WHERE draft_id = ?", (draft_id,)
+                    )
+                }
+                cpu_pick(conn, draft_id, rng=pick_rng(seed, overall))
+                after = conn.execute(
+                    "SELECT player_id FROM picks WHERE draft_id = ? AND overall = ?",
+                    (draft_id, overall),
+                ).fetchone()
+                assert after is not None
+                assert after["player_id"] not in before
+                cpu_picks.append((overall, after["player_id"]))
+        cpu_seqs.append(cpu_picks)
+    assert cpu_seqs[0] == cpu_seqs[1]
+    assert len(cpu_seqs[0]) > 0
+
+
 def test_backtest_smoke(catalog, conn):
     _seed_pool(conn, 40)
     report = run_backtest(n=1, slot=1, preset="league_default", seed=1, conn=conn, n_rounds=2)
     assert report["n"] == 1
+    assert report["paired"] is True
     assert report["summaries"]["adp"]["n"] == 1
     assert report["summaries"]["marginal"]["n"] == 1
+    assert "mean_starter_rank" in report["summaries"]["adp"]
+    assert "mean_roster_rank" in report["summaries"]["adp"]
+
+
+def test_run_one_reports_starter_rank(catalog, conn):
+    _seed_pool(conn, 40)
+    result = run_one(
+        conn,
+        strategy_name="adp",
+        user_slot=1,
+        roster_preset="league_default",
+        seed=3,
+        n_rounds=2,
+    )
+    assert 1 <= result.starter_rank <= 10
+    assert 1 <= result.roster_rank <= 10

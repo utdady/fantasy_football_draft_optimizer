@@ -40,7 +40,7 @@ Baseline ADP strategy remains available for experiments (`strategy=adp` on API /
 python -m draftopt.backtest --n 50 --slot 1 --preset league_default --seed 0
 ```
 
-Runs synthetic snakes: user seat follows each strategy; CPUs stay ADP-noisy. Reports mean starter projected points and win rate.
+Paired snakes: each sim seed is shared across strategies; CPU RNG is keyed by overall pick # so opponents only diverge when the remaining board differs. Scores starter EV on ESPN projections (not ECR proxies). Reports starter pts, starter rank, roster-sum rank, and win rate.
 
 ## Tests
 

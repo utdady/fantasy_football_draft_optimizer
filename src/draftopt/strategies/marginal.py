@@ -3,6 +3,7 @@ from __future__ import annotations
 from draftopt.draft.state import _draft_row, draft_roster
 from draftopt.lineup import lineup_ev
 from draftopt.pool import remaining_ranked
+from draftopt.projection import resolve_projection
 
 CANDIDATE_POOL = 40
 
@@ -29,26 +30,16 @@ def _user_roster_players(conn, draft_id: str) -> list[dict]:
     return [dict(r) for r in rows]
 
 
-def _proj(player: dict) -> float:
-    val = player.get("proj_espn")
-    if val is None:
-        val = player.get("season_points")
-    if val is not None:
-        return float(val)
-    # Weak ECR proxy so unprojected players aren't all zeros.
-    ecr = player.get("ecr_fp_ppr")
-    if ecr is not None:
-        return max(0.0, 350.0 - float(ecr))
-    return 0.0
-
-
 def _as_lineup_player(player: dict) -> dict:
+    proj = resolve_projection(player)
     return {
         "player_id": player.get("player_id"),
         "name": player.get("name"),
         "position": player.get("position"),
         "team": player.get("team"),
-        "season_points": _proj(player),
+        "season_points": proj.value,
+        "projection_source": proj.source,
+        "projection_quality": proj.quality,
         "adp_espn": player.get("adp_espn"),
         "ecr_fp_ppr": player.get("ecr_fp_ppr"),
     }
@@ -89,6 +80,8 @@ class MarginalValueStrategy:
             item = dict(cand)
             item["proj_espn"] = lined["season_points"]
             item["season_points"] = lined["season_points"]
+            item["projection_source"] = lined["projection_source"]
+            item["projection_quality"] = lined["projection_quality"]
             item["marginal"] = round(marginal, 2)
             item["lineup_before"] = round(base_total, 2)
             item["lineup_after"] = round(after.total, 2)
