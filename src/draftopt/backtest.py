@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import argparse
+import json
 import random
 import statistics
-from dataclasses import dataclass
+from collections import Counter, defaultdict
+from dataclasses import dataclass, field
+from pathlib import Path
 
 from draftopt import db
 from draftopt.draft.cpu import cpu_pick
@@ -13,6 +16,7 @@ from draftopt.lineup import starter_points
 from draftopt.strategies import get_strategy
 
 DEFAULT_STRATEGIES = ("adp", "greedy", "marginal")
+POS_ORDER = ("QB", "RB", "WR", "TE", "DST", "K")
 
 
 @dataclass
@@ -23,6 +27,7 @@ class SimResult:
     starter_rank: int
     roster_rank: int
     adp_value: float
+    picks: list[dict] = field(default_factory=list)
 
 
 def pick_rng(base_seed: int, overall: int) -> random.Random:
@@ -53,7 +58,6 @@ def parse_slots(spec: str) -> list[int]:
             out.extend(range(lo, hi + 1))
         else:
             out.append(int(part))
-    # unique, stable order
     seen: set[int] = set()
     ordered: list[int] = []
     for s in out:
@@ -85,7 +89,6 @@ def _team_rosters(conn, draft_id: str) -> dict[int, list[dict]]:
                 "player_id": row["player_id"],
                 "name": row["name"],
                 "position": row["position"],
-                # Evaluation uses ESPN projections only (not ECR proxy).
                 "season_points": float(row["season_points"] or 0.0),
             }
         )
@@ -93,7 +96,6 @@ def _team_rosters(conn, draft_id: str) -> dict[int, list[dict]]:
 
 
 def _starter_ranks(conn, draft_id: str) -> dict[int, tuple[float, int]]:
-    """team_slot -> (starter_pts, rank by starter pts)."""
     draft = conn.execute("SELECT * FROM drafts WHERE draft_id = ?", (draft_id,)).fetchone()
     slots = (draft_roster(draft).get("slots") or {})
     scored = [
@@ -104,6 +106,37 @@ def _starter_ranks(conn, draft_id: str) -> dict[int, tuple[float, int]]:
     out: dict[int, tuple[float, int]] = {}
     for rank, (team_slot, pts) in enumerate(scored, start=1):
         out[team_slot] = (pts, rank)
+    return out
+
+
+def _user_pick_log(conn, draft_id: str, user_slot: int) -> list[dict]:
+    rows = conn.execute(
+        """
+        SELECT pk.round, pk.overall, p.player_id, p.name, p.position,
+               pr.season_points AS proj_espn, a.adp AS adp_espn
+        FROM picks pk
+        JOIN players p ON p.player_id = pk.player_id
+        LEFT JOIN projections_snapshots pr
+            ON pr.player_id = p.player_id AND pr.source = 'espn'
+        LEFT JOIN adp_snapshots a ON a.player_id = p.player_id AND a.source = 'espn'
+        WHERE pk.draft_id = ? AND pk.team_slot = ?
+        ORDER BY pk.overall
+        """,
+        (draft_id, user_slot),
+    ).fetchall()
+    out = []
+    for row in rows:
+        out.append(
+            {
+                "round": int(row["round"]),
+                "overall": int(row["overall"]),
+                "player_id": row["player_id"],
+                "name": row["name"],
+                "position": (row["position"] or "?").upper(),
+                "proj_espn": float(row["proj_espn"]) if row["proj_espn"] is not None else None,
+                "adp_espn": float(row["adp_espn"]) if row["adp_espn"] is not None else None,
+            }
+        )
     return out
 
 
@@ -156,7 +189,45 @@ def run_one(
         starter_rank=starter_rank,
         roster_rank=int(user["rank"]),
         adp_value=float(user["adp_value"]),
+        picks=_user_pick_log(conn, draft_id, user_slot),
     )
+
+
+def _position_stats(results: list[SimResult]) -> dict:
+    pos_counts: Counter[str] = Counter()
+    by_round: dict[int, Counter[str]] = defaultdict(Counter)
+    proj_by_pos: dict[str, list[float]] = defaultdict(list)
+    adp_by_pos: dict[str, list[float]] = defaultdict(list)
+    for r in results:
+        for p in r.picks:
+            pos = p["position"]
+            pos_counts[pos] += 1
+            by_round[int(p["round"])][pos] += 1
+            if p.get("proj_espn") is not None:
+                proj_by_pos[pos].append(float(p["proj_espn"]))
+            if p.get("adp_espn") is not None:
+                adp_by_pos[pos].append(float(p["adp_espn"]))
+    total = sum(pos_counts.values()) or 1
+    share = {pos: pos_counts.get(pos, 0) / total for pos in POS_ORDER if pos_counts.get(pos, 0)}
+    # include any unexpected positions
+    for pos, n in pos_counts.items():
+        if pos not in share:
+            share[pos] = n / total
+    round_share: dict[str, dict[str, float]] = {}
+    for rnd, counts in sorted(by_round.items()):
+        t = sum(counts.values()) or 1
+        round_share[str(rnd)] = {pos: counts[pos] / t for pos in sorted(counts)}
+    mean_proj = {
+        pos: statistics.mean(vals) for pos, vals in proj_by_pos.items() if vals
+    }
+    mean_adp = {pos: statistics.mean(vals) for pos, vals in adp_by_pos.items() if vals}
+    return {
+        "position_share": share,
+        "position_counts": dict(pos_counts),
+        "by_round_share": round_share,
+        "mean_proj_by_pos": mean_proj,
+        "mean_adp_by_pos": mean_adp,
+    }
 
 
 def summarize(name: str, results: list[SimResult]) -> dict:
@@ -164,7 +235,7 @@ def summarize(name: str, results: list[SimResult]) -> dict:
     projs = [r.roster_proj for r in results]
     starter_ranks = [r.starter_rank for r in results]
     roster_ranks = [r.roster_rank for r in results]
-    return {
+    out = {
         "strategy": name,
         "n": len(results),
         "mean_starter_pts": statistics.mean(starters) if starters else 0.0,
@@ -175,6 +246,8 @@ def summarize(name: str, results: list[SimResult]) -> dict:
         "mean_roster_rank": statistics.mean(roster_ranks) if roster_ranks else 0.0,
         "mean_rank": statistics.mean(starter_ranks) if starter_ranks else 0.0,
     }
+    out.update(_position_stats(results))
+    return out
 
 
 def _pairwise(by_strategy: dict[str, list[SimResult]], challenger: str, baseline: str) -> dict:
@@ -253,7 +326,6 @@ def run_backtest(
         if "adp" in by_strategy and "greedy" in by_strategy:
             comparisons["greedy_vs_adp"] = _pairwise(by_strategy, "greedy", "adp")
 
-        # Back-compat keys when both adp and marginal present.
         m_vs_a = comparisons.get("marginal_vs_adp") or {}
         return {
             "n": n,
@@ -285,6 +357,7 @@ def run_matrix(
     n_rounds: int | None = None,
     n_teams: int = 10,
     strategies: tuple[str, ...] | list[str] = DEFAULT_STRATEGIES,
+    on_slot=None,
 ) -> dict:
     own = conn is None
     if conn is None:
@@ -306,6 +379,8 @@ def run_matrix(
                 strategies=strategies,
             )
             rows.append(report)
+            if on_slot is not None:
+                on_slot(report, rows)
         return {
             "n": n,
             "slots": slot_list,
@@ -319,6 +394,34 @@ def run_matrix(
     finally:
         if own:
             conn.close()
+
+
+def _fmt_share(share: dict[str, float]) -> str:
+    parts = []
+    for pos in POS_ORDER:
+        if pos in share:
+            parts.append(f"{pos} {share[pos]:.0%}")
+    for pos, v in share.items():
+        if pos not in POS_ORDER:
+            parts.append(f"{pos} {v:.0%}")
+    return ", ".join(parts) if parts else "(none)"
+
+
+def _print_position_mix(report: dict) -> None:
+    print("Position mix (user picks, all sims):")
+    for name in report.get("strategies") or report["summaries"].keys():
+        s = report["summaries"][name]
+        print(f"  {name:<12} {_fmt_share(s.get('position_share') or {})}")
+        early = {}
+        for rnd in ("1", "2", "3"):
+            early[rnd] = (s.get("by_round_share") or {}).get(rnd) or {}
+        if any(early.values()):
+            bits = []
+            for rnd, sh in early.items():
+                if sh:
+                    bits.append(f"R{rnd}: {_fmt_share(sh)}")
+            if bits:
+                print(f"             early → {' | '.join(bits)}")
 
 
 def _print_report(report: dict) -> None:
@@ -342,6 +445,7 @@ def _print_report(report: dict) -> None:
             f"{key}: mean Δ={cmp_['mean_delta']:+.1f} median Δ={cmp_['median_delta']:+.1f} "
             f"win={cmp_['win_rate']:.1%} ties={cmp_['tie_rate']:.1%}"
         )
+    _print_position_mix(report)
 
 
 def _print_matrix(matrix: dict) -> None:
@@ -354,9 +458,9 @@ def _print_matrix(matrix: dict) -> None:
     for name in strats:
         header += f" {name:>10}"
     if "marginal" in strats and "adp" in strats:
-        header += f" {'m-adp':>8} {'m>adp':>7}"
+        header += f" {'m-adp':>8} {'win%':>7}"
     if "marginal" in strats and "greedy" in strats:
-        header += f" {'m-greed':>8} {'m>greed':>8}"
+        header += f" {'m-greed':>8} {'win%':>7}"
     print(header)
     for report in matrix["rows"]:
         line = f"{report['slot']:4d}"
@@ -368,8 +472,95 @@ def _print_matrix(matrix: dict) -> None:
             line += f" {c['mean_delta']:+8.1f} {c['win_rate']:7.1%}"
         if "marginal_vs_greedy" in comps:
             c = comps["marginal_vs_greedy"]
-            line += f" {c['mean_delta']:+8.1f} {c['win_rate']:8.1%}"
+            line += f" {c['mean_delta']:+8.1f} {c['win_rate']:7.1%}"
         print(line)
+    print("\nNote: win% = paired starter-points win rate (not wide-receiver rate).")
+    if matrix["rows"]:
+        print("\nAggregate position mix across slots (marginal):")
+        # merge marginal position counts across rows
+        totals: Counter[str] = Counter()
+        for report in matrix["rows"]:
+            s = report["summaries"].get("marginal") or {}
+            totals.update(s.get("position_counts") or {})
+        t = sum(totals.values()) or 1
+        share = {pos: totals[pos] / t for pos in totals}
+        print(f"  {_fmt_share(share)}")
+
+
+def matrix_to_markdown(matrix: dict, *, title: str, notes: list[str] | None = None) -> str:
+    lines = [f"# {title}", ""]
+    lines.append("## Setup")
+    lines.append("")
+    lines.append(f"- n_sims per slot: **{matrix['n']}**")
+    lines.append(f"- teams: **{matrix['n_teams']}**")
+    lines.append(f"- preset: `{matrix['preset']}`")
+    lines.append(f"- seed: `{matrix['seed']}`")
+    lines.append(f"- slots: `{matrix['slots']}`")
+    lines.append(f"- strategies: `{', '.join(matrix['strategies'])}`")
+    lines.append("- pairing: shared sim seed + CPU RNG keyed by overall pick #")
+    lines.append("- scoring: ESPN season projections only (starter EV)")
+    lines.append("- CPU: noisy ADP (not human ESPN managers)")
+    lines.append("")
+    if notes:
+        lines.append("## Notes")
+        lines.append("")
+        for note in notes:
+            lines.append(f"- {note}")
+        lines.append("")
+    lines.append("## Slot matrix")
+    lines.append("")
+    strats = matrix["strategies"]
+    header = ["slot", *strats]
+    if "marginal" in strats and "adp" in strats:
+        header += ["marginal−adp", "win_rate"]
+    if "marginal" in strats and "greedy" in strats:
+        header += ["marginal−greedy", "win_vs_greedy"]
+    lines.append("| " + " | ".join(header) + " |")
+    lines.append("| " + " | ".join(["---"] * len(header)) + " |")
+    for report in matrix["rows"]:
+        cells = [str(report["slot"])]
+        for name in strats:
+            cells.append(f"{report['summaries'][name]['mean_starter_pts']:.1f}")
+        comps = report.get("comparisons") or {}
+        if "marginal_vs_adp" in comps:
+            c = comps["marginal_vs_adp"]
+            cells.append(f"{c['mean_delta']:+.1f}")
+            cells.append(f"{c['win_rate']:.1%}")
+        if "marginal_vs_greedy" in comps:
+            c = comps["marginal_vs_greedy"]
+            cells.append(f"{c['mean_delta']:+.1f}")
+            cells.append(f"{c['win_rate']:.1%}")
+        lines.append("| " + " | ".join(cells) + " |")
+    lines.append("")
+    lines.append("`win_rate` = paired starter-points win rate (not wide-receiver share).")
+    lines.append("")
+    lines.append("## Position mix (user picks)")
+    lines.append("")
+    for report in matrix["rows"]:
+        lines.append(f"### Slot {report['slot']}")
+        lines.append("")
+        lines.append("| strategy | position share | early rounds (1–3) |")
+        lines.append("| --- | --- | --- |")
+        for name in strats:
+            s = report["summaries"][name]
+            early_bits = []
+            for rnd in ("1", "2", "3"):
+                sh = (s.get("by_round_share") or {}).get(rnd) or {}
+                if sh:
+                    early_bits.append(f"R{rnd}: {_fmt_share(sh)}")
+            lines.append(
+                f"| {name} | {_fmt_share(s.get('position_share') or {})} | "
+                f"{' · '.join(early_bits) if early_bits else '—'} |"
+            )
+        lines.append("")
+    return "\n".join(lines) + "\n"
+
+
+def write_results(matrix: dict, path: Path, *, title: str, notes: list[str] | None = None) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(matrix_to_markdown(matrix, title=title, notes=notes), encoding="utf-8")
+    json_path = path.with_suffix(".json")
+    json_path.write_text(json.dumps(matrix, indent=2), encoding="utf-8")
 
 
 def main() -> None:
@@ -393,19 +584,58 @@ def main() -> None:
         default="adp,greedy,marginal",
         help="Comma-separated: adp,greedy,marginal",
     )
+    parser.add_argument(
+        "--out",
+        type=str,
+        default=None,
+        help="Write markdown+json results to this path (updated after each slot in matrix mode)",
+    )
+    parser.add_argument("--title", type=str, default="Ablation backtest results")
     args = parser.parse_args()
     strategies = tuple(s.strip() for s in args.strategies.split(",") if s.strip())
+    out_path = Path(args.out) if args.out else None
+    notes = [
+        "Scored on ESPN preseason projections (not actual season outcomes).",
+        "Opponents use noisy-ADP CPU policy — not human ESPN managers.",
+    ]
+
     if args.slots is not None:
+        slot_list = parse_slots(args.slots)
+
+        def _persist(report, rows):
+            if out_path is None:
+                return
+            partial = {
+                "n": args.n,
+                "slots": [r["slot"] for r in rows],
+                "preset": args.preset,
+                "seed": args.seed,
+                "n_teams": args.teams,
+                "strategies": list(strategies),
+                "paired": True,
+                "rows": rows,
+            }
+            write_results(partial, out_path, title=args.title, notes=notes)
+            print(f"    wrote {out_path}", flush=True)
+
         matrix = run_matrix(
             n=args.n,
-            slots=parse_slots(args.slots),
+            slots=slot_list,
             preset=args.preset,
             seed=args.seed,
             n_teams=args.teams,
             strategies=strategies,
+            on_slot=_persist if out_path else None,
         )
         _print_matrix(matrix)
+        for report in matrix["rows"]:
+            print(f"\n--- slot {report['slot']} detail ---")
+            _print_position_mix(report)
+        if out_path is not None:
+            write_results(matrix, out_path, title=args.title, notes=notes)
+            print(f"Wrote {out_path} and {out_path.with_suffix('.json')}")
         return
+
     slot = args.slot if args.slot is not None else 1
     report = run_backtest(
         n=args.n,
@@ -416,6 +646,19 @@ def main() -> None:
         strategies=strategies,
     )
     _print_report(report)
+    if out_path is not None:
+        matrix = {
+            "n": report["n"],
+            "slots": [report["slot"]],
+            "preset": report["preset"],
+            "seed": report["seed"],
+            "n_teams": report["n_teams"],
+            "strategies": report["strategies"],
+            "paired": True,
+            "rows": [report],
+        }
+        write_results(matrix, out_path, title=args.title, notes=notes)
+        print(f"Wrote {out_path} and {out_path.with_suffix('.json')}")
 
 
 if __name__ == "__main__":

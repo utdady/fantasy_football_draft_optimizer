@@ -44,11 +44,15 @@ python -m draftopt.backtest --n 50 --slot 1 --preset league_default --seed 0
 # Slot matrix (lean first pass; ~40+ min on real DB)
 python -m draftopt.backtest --n 50 --slots 1,5,10 --seed 0
 
-# Fuller run when you have time
-python -m draftopt.backtest --n 200 --slots 1-10 --seed 0
+# Full slot coverage (writes reviewable results under results/)
+python -m draftopt.backtest --n 50 --slots 1-10 --seed 0 `
+  --out results/ablation_espn_2026_slots_1-10.md `
+  --title "Ablation backtest — slots 1-10 (real ESPN ingest)"
 ```
 
 Paired snakes: shared sim seed + CPU RNG keyed by overall pick # (same opponent *policy*; boards may still diverge after different user picks). Decisions and scoring use ESPN projections only — ECR is not converted into fake points. Ablation: if marginal beats greedy, lineup construction is adding value beyond “take highest proj.”
+
+Checked-in experiment reports live under [`results/`](results/). `win_rate` means paired starter-points wins, not wide-receiver share.
 
 ## Tests
 

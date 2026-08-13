@@ -107,6 +107,8 @@ def test_backtest_smoke(catalog, conn):
     assert "marginal_vs_greedy" in report["comparisons"]
     assert "mean_starter_rank" in report["summaries"]["adp"]
     assert "median_starter_pts" in report["summaries"]["adp"]
+    assert "position_share" in report["summaries"]["marginal"]
+    assert "by_round_share" in report["summaries"]["marginal"]
 
 
 def test_matrix_smoke(catalog, conn):
