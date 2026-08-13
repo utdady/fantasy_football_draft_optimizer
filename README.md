@@ -53,6 +53,9 @@ python -m draftopt.backtest --n 50 --slot 1 --seed 0 `
 # VOR decision traces (baselines + top candidates for R1-R3)
 python -m draftopt.diagnose_vor --n 10 --slot 1 --rounds 3 --seed 0 `
   --out results/diagnose_vor_slot1.md
+
+# Frozen ESPN projection curves around replacement ranks (no draft)
+python -m draftopt.audit_proj_curves --out results/audit_proj_curves_frozen.md
 ```
 
 Paired snakes: shared sim seed + CPU RNG keyed by overall pick #. Scoring uses ESPN projections only.

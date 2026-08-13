@@ -21,6 +21,7 @@ draftopt-ingest = "draftopt.ingest:main"
 draftopt-serve = "draftopt.serve:main"
 draftopt-backtest = "draftopt.backtest:main"
 draftopt-diagnose-vor = "draftopt.diagnose_vor:main"
+draftopt-audit-curves = "draftopt.audit_proj_curves:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
