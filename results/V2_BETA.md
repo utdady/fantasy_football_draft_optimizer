@@ -1,53 +1,41 @@
-# V2-beta (policy mixture) — REJECTED
+# V2-beta research record
+
+## Equal-weight policy mixture — REJECTED
 
 **Status:** rejected (negative result — keep artifacts).
 
-## Formulation
+Formulation: \(EV_\beta=\frac13(EV_{ADP}+EV_{proj}+EV_{VOR})\).
 
-Equal-weight average of complete two-pick futures:
+Pilot: [`stress_v2beta_pilot_slot1.md`](stress_v2beta_pilot_slot1.md).
 
-\[
-EV_\beta(p)=\tfrac13\bigl(EV_{ADP}(p)+EV_{proj}(p)+EV_{VOR}(p)\bigr)
-\]
+Averaging finished futures dilutes the dangerous scenario without encoding
+player-specific survival risk. **Do not** tune mixture weights.
 
-Strategy: `marginal_v2_beta` (aliases: `v2_beta`, `v2b`). UI default stayed `marginal`.
+## Survival diagnostic — Outcome A
 
-## Pilot (slot 1, n=10)
+[`case_study_survival_chase_daniels.md`](case_study_survival_chase_daniels.md):
+under proj death, Daniels-now beats Chase+replacement QB (~+33.6).
 
-See [`stress_v2beta_pilot_slot1.md`](stress_v2beta_pilot_slot1.md).
+## β2 robust-min — REJECTED as final strategy
 
-| opponent | α−raw | β−raw | β−α |
+Diagnostic pass: [`case_study_robust_min.md`](case_study_robust_min.md)  
+Lean: [`stress_robust_min_slot1.md`](stress_robust_min_slot1.md)
+
+| opponent | α−raw | rob−raw | rob−α |
 | --- | ---: | ---: | ---: |
-| noisy_adp | +83.7 | +57.1 | **−26.6** |
-| adp_greedy | +76.3 | +50.9 | **−25.4** |
-| proj_greedy | −17.0 | **−28.8** | **−11.8** |
-| vor | +41.4 | +66.2 | +24.8 |
+| noisy_adp | +71.3 | −0.9 | **−72.3** |
+| adp_greedy | +76.3 | +0.0 | **−76.3** |
+| proj_greedy | −17.0 | **0.0** | **+17.0** |
+| vor | +41.4 | +24.8 | −16.6 |
 
-## Rejection reason
-
-Equal-weight averaging of finished future policies sacrifices ~25–27 points of
-α’s ADP-like advantage and does **not** eliminate the projection-greedy failure
-(Chase → deferred QB sniped). Averaging worlds is the wrong representation of
-survival uncertainty — not a weight-tuning problem.
-
-**Do not** hand-tune mixture weights against this stress grid. **Do not** run a
-full β matrix.
+Fixes projection-greedy failure but over-insures (always Daniels at R1).
+**Do not** tweak `min_f` weights. UI stays `marginal`.
 
 ## Next
 
-Exact failure-state survival diagnostic: [`case_study_survival_chase_daniels.md`](case_study_survival_chase_daniels.md).
+Risk/EV surface + Pareto frontier (no new overnight sims):
+[`case_study_risk_ev_surface.md`](case_study_risk_ev_surface.md) via
+`python -m draftopt.case_study_risk_surface`.
 
-**Verdict: Outcome A** — under the proj death branch, taking Daniels now beats
-Chase + replacement QB (~+33.6). Explicit survival risk would flip the R1
-decision; policy-mixture failed because it diluted that branch instead of
-representing it.
-
-## β2-robust diagnostic (not a strategy)
-
-[`case_study_robust_min.md`](case_study_robust_min.md) — `min_f` over scenario
-two-pick EVs (ADP/proj/VOR).
-
-**Result:** R1 flips Chase→Daniels without hardcoding; **agrees with α on all
-three neighbor boards** (wait-0 / healthy paths). Do not promote minimax to
-UI yet — still a diagnostic — but it clears the tiny pass bar for a slot-1 ×
-4-policy lean test if desired.
+Decide A (objective) / B (scenario set) / C (both) before designing the next
+strategy.
