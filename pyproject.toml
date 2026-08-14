@@ -26,6 +26,8 @@ draftopt-trace-divergence = "draftopt.trace_divergence:main"
 draftopt-case-study-pick20 = "draftopt.case_study_pick20:main"
 draftopt-case-study-v2alpha = "draftopt.case_study_v2alpha_long_wait:main"
 draftopt-trace-v2 = "draftopt.trace_v2_divergence:main"
+draftopt-stress-opponent = "draftopt.stress_opponent:main"
+draftopt-latency = "draftopt.latency_bench:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -12,10 +12,18 @@ from draftopt.draft.state import (
     team_for_pick,
 )
 from draftopt.pool import remaining_ranked
+from draftopt.vor import replacement_baselines, vor_points
 
-# 70% ADP-weighted, 20% positional need, 10% deeper random.
+# Default noisy ADP: 70% ADP-weighted, 20% positional need, 10% deeper random.
 ADP_WEIGHT = 0.70
 NEED_WEIGHT = 0.20
+
+CPU_POLICIES = (
+    "noisy_adp",
+    "adp_greedy",
+    "proj_greedy",
+    "vor",
+)
 
 
 def _roster_counts(conn, draft_id: str, team_slot: int) -> dict[str, int]:
@@ -35,7 +43,9 @@ def _roster_counts(conn, draft_id: str, team_slot: int) -> dict[str, int]:
     return counts
 
 
-def _needed_positions(counts: dict[str, int], slots: dict[str, int], round_num: int, n_rounds: int) -> list[str]:
+def _needed_positions(
+    counts: dict[str, int], slots: dict[str, int], round_num: int, n_rounds: int
+) -> list[str]:
     needed: list[str] = []
     rb_need = int(slots.get("RB") or 0)
     wr_need = int(slots.get("WR") or 0)
@@ -60,12 +70,79 @@ def _needed_positions(counts: dict[str, int], slots: dict[str, int], round_num: 
     return needed or ["RB", "WR", "TE"]
 
 
-def choose_cpu_player(conn, draft_id: str, rng: random.Random | None = None) -> str:
+def _proj(player: dict) -> float:
+    val = player.get("proj_espn")
+    if val is None:
+        return -1.0
+    return float(val)
+
+
+def choose_cpu_player(
+    conn,
+    draft_id: str,
+    rng: random.Random | None = None,
+    *,
+    policy: str = "noisy_adp",
+) -> str:
+    """
+    Select a CPU pick under an opponent policy.
+
+    Policies:
+      noisy_adp   — legacy mixed ADP/need/random (default backtest CPU)
+      adp_greedy  — always best remaining ADP
+      proj_greedy — always highest ESPN projection
+      vor         — highest positional VOR among remaining with ESPN proj
+    """
+    key = (policy or "noisy_adp").strip().lower()
+    if key not in CPU_POLICIES:
+        raise ValueError(f"unknown CPU policy: {policy}")
+
     rng = rng or random.Random()
     draft = _draft_row(conn, draft_id)
     remaining = remaining_ranked(conn, draft_id)
     if not remaining:
         raise DraftError("no players remaining")
+
+    if key == "adp_greedy":
+        return remaining[0]["player_id"]
+
+    if key == "proj_greedy":
+        best = max(
+            remaining,
+            key=lambda p: (
+                _proj(p),
+                -(p.get("adp_espn") if p.get("adp_espn") is not None else 9999),
+                p.get("name") or "",
+            ),
+        )
+        return best["player_id"]
+
+    if key == "vor":
+        slots = (draft_roster(draft).get("slots") or {})
+        baselines = replacement_baselines(
+            conn, draft_id, n_teams=int(draft["n_teams"]), slots=slots
+        )
+        scored = []
+        for p in remaining:
+            proj = _proj(p)
+            if proj <= 0:
+                continue
+            pos = (p.get("position") or "").upper()
+            scored.append(
+                (
+                    vor_points(proj, pos, baselines),
+                    proj,
+                    -(p.get("adp_espn") if p.get("adp_espn") is not None else 9999),
+                    p.get("name") or "",
+                    p["player_id"],
+                )
+            )
+        if not scored:
+            return remaining[0]["player_id"]
+        scored.sort(reverse=True)
+        return scored[0][-1]
+
+    # noisy_adp
     overall = draft["current_pick"]
     team_slot = team_for_pick(overall, draft["n_teams"])
     round_num = round_for_pick(overall, draft["n_teams"])
@@ -87,9 +164,15 @@ def choose_cpu_player(conn, draft_id: str, rng: random.Random | None = None) -> 
     return rng.choice(top20)["player_id"]
 
 
-def cpu_pick(conn, draft_id: str, rng: random.Random | None = None) -> dict:
+def cpu_pick(
+    conn,
+    draft_id: str,
+    rng: random.Random | None = None,
+    *,
+    policy: str = "noisy_adp",
+) -> dict:
     draft = _draft_row(conn, draft_id)
     if is_user_turn(draft):
         raise DraftError("not a CPU pick")
-    player_id = choose_cpu_player(conn, draft_id, rng=rng)
+    player_id = choose_cpu_player(conn, draft_id, rng=rng, policy=policy)
     return record_pick(conn, draft_id, player_id, made_by="cpu")

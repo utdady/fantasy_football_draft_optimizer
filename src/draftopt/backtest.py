@@ -150,6 +150,7 @@ def run_one(
     seed: int,
     n_rounds: int | None = None,
     n_teams: int = 10,
+    opponent_policy: str = "noisy_adp",
 ) -> SimResult:
     strategy = get_strategy(strategy_name)
     draft_id = create_draft(
@@ -172,7 +173,12 @@ def run_one(
             record_user_pick(conn, draft_id, recs[0]["player_id"], made_by="strategy")
         else:
             overall = int(draft_row["current_pick"])
-            cpu_pick(conn, draft_id, rng=pick_rng(seed, overall))
+            cpu_pick(
+                conn,
+                draft_id,
+                rng=pick_rng(seed, overall),
+                policy=opponent_policy,
+            )
 
     grade = grade_draft(conn, draft_id)
     user = grade["user"]
@@ -289,6 +295,7 @@ def run_backtest(
     n_rounds: int | None = None,
     n_teams: int = 10,
     strategies: tuple[str, ...] | list[str] = DEFAULT_STRATEGIES,
+    opponent_policy: str = "noisy_adp",
 ) -> dict:
     own = conn is None
     if conn is None:
@@ -316,6 +323,7 @@ def run_backtest(
                     seed=sim_seed,
                     n_rounds=n_rounds,
                     n_teams=n_teams,
+                    opponent_policy=opponent_policy,
                 )
                 by_strategy[name].append(result)
 
@@ -357,6 +365,7 @@ def run_backtest(
             "preset": preset,
             "seed": seed,
             "n_teams": n_teams,
+            "opponent_policy": opponent_policy,
             "strategies": list(names),
             "paired": True,
             "summaries": summaries,
@@ -381,6 +390,7 @@ def run_matrix(
     n_rounds: int | None = None,
     n_teams: int = 10,
     strategies: tuple[str, ...] | list[str] = DEFAULT_STRATEGIES,
+    opponent_policy: str = "noisy_adp",
     on_slot=None,
 ) -> dict:
     own = conn is None
@@ -391,7 +401,11 @@ def run_matrix(
     try:
         rows = []
         for slot in slot_list:
-            print(f"... slot {slot} ({n} sims × {len(strategies)} strategies)", flush=True)
+            print(
+                f"... slot {slot} ({n} sims × {len(strategies)} strategies; "
+                f"cpu={opponent_policy})",
+                flush=True,
+            )
             report = run_backtest(
                 n=n,
                 slot=slot,
@@ -401,6 +415,7 @@ def run_matrix(
                 n_rounds=n_rounds,
                 n_teams=n_teams,
                 strategies=strategies,
+                opponent_policy=opponent_policy,
             )
             rows.append(report)
             if on_slot is not None:
@@ -411,6 +426,7 @@ def run_matrix(
             "preset": preset,
             "seed": seed,
             "n_teams": n_teams,
+            "opponent_policy": opponent_policy,
             "strategies": list(strategies),
             "paired": True,
             "rows": rows,

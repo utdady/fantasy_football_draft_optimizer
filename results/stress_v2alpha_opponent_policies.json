@@ -1,0 +1,4115 @@
+{
+  "n": 20,
+  "slots": [
+    1,
+    5,
+    10
+  ],
+  "seed": 0,
+  "preset": "league_default",
+  "policies": [
+    "noisy_adp",
+    "adp_greedy",
+    "proj_greedy",
+    "vor"
+  ],
+  "v2_lookahead": "adp_greedy (frozen)",
+  "cells": [
+    {
+      "slot": 1,
+      "n": 20,
+      "seed": 0,
+      "opponent_policy": "noisy_adp",
+      "summaries": {
+        "marginal": {
+          "strategy": "marginal",
+          "n": 20,
+          "mean_starter_pts": 2428.9070164275004,
+          "median_starter_pts": 2426.7241091000005,
+          "std_starter_pts": 35.42351784529679,
+          "mean_roster_proj": 3664.24,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 1.4,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.13125,
+            "RB": 0.3125,
+            "WR": 0.35,
+            "TE": 0.115625,
+            "DST": 0.090625
+          },
+          "position_counts": {
+            "QB": 42,
+            "WR": 112,
+            "RB": 100,
+            "TE": 37,
+            "DST": 29
+          },
+          "by_round_share": {
+            "1": {
+              "QB": 1.0
+            },
+            "2": {
+              "RB": 0.45,
+              "WR": 0.55
+            },
+            "3": {
+              "RB": 0.2,
+              "WR": 0.8
+            },
+            "4": {
+              "RB": 1.0
+            },
+            "5": {
+              "RB": 0.5,
+              "WR": 0.5
+            },
+            "6": {
+              "RB": 0.45,
+              "WR": 0.55
+            },
+            "7": {
+              "RB": 0.5,
+              "WR": 0.5
+            },
+            "8": {
+              "TE": 1.0
+            },
+            "9": {
+              "DST": 1.0
+            },
+            "10": {
+              "DST": 0.1,
+              "QB": 0.15,
+              "RB": 0.15,
+              "TE": 0.2,
+              "WR": 0.4
+            },
+            "11": {
+              "DST": 0.15,
+              "QB": 0.3,
+              "WR": 0.55
+            },
+            "12": {
+              "RB": 0.65,
+              "TE": 0.1,
+              "WR": 0.25
+            },
+            "13": {
+              "RB": 0.5,
+              "TE": 0.2,
+              "WR": 0.3
+            },
+            "14": {
+              "QB": 0.2,
+              "RB": 0.1,
+              "TE": 0.25,
+              "WR": 0.45
+            },
+            "15": {
+              "DST": 0.1,
+              "QB": 0.25,
+              "RB": 0.3,
+              "WR": 0.35
+            },
+            "16": {
+              "DST": 0.1,
+              "QB": 0.2,
+              "RB": 0.2,
+              "TE": 0.1,
+              "WR": 0.4
+            }
+          },
+          "mean_proj_by_pos": {
+            "QB": 330.9256978980952,
+            "WR": 225.64877893964285,
+            "RB": 238.1577611113,
+            "TE": 181.5077755508108,
+            "DST": 123.51015675482759
+          },
+          "mean_adp_by_pos": {
+            "QB": 93.375,
+            "WR": 101.15696428571428,
+            "RB": 95.6538,
+            "TE": 116.19486486486487,
+            "DST": 118.8396551724138
+          }
+        },
+        "marginal_v2": {
+          "strategy": "marginal_v2",
+          "n": 20,
+          "mean_starter_pts": 2500.2349953695,
+          "median_starter_pts": 2494.12395361,
+          "std_starter_pts": 20.382966680338228,
+          "mean_roster_proj": 3732.5299999999997,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 1.3,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.121875,
+            "RB": 0.296875,
+            "WR": 0.3625,
+            "TE": 0.09375,
+            "DST": 0.125
+          },
+          "position_counts": {
+            "WR": 116,
+            "RB": 95,
+            "QB": 39,
+            "TE": 30,
+            "DST": 40
+          },
+          "by_round_share": {
+            "1": {
+              "WR": 1.0
+            },
+            "2": {
+              "RB": 0.45,
+              "WR": 0.55
+            },
+            "3": {
+              "RB": 0.35,
+              "WR": 0.65
+            },
+            "4": {
+              "QB": 0.5,
+              "RB": 0.4,
+              "WR": 0.1
+            },
+            "5": {
+              "QB": 0.5,
+              "RB": 0.5
+            },
+            "6": {
+              "RB": 0.05,
+              "WR": 0.95
+            },
+            "7": {
+              "TE": 1.0
+            },
+            "8": {
+              "DST": 0.95,
+              "WR": 0.05
+            },
+            "9": {
+              "DST": 0.1,
+              "RB": 0.55,
+              "WR": 0.35
+            },
+            "10": {
+              "DST": 0.3,
+              "QB": 0.3,
+              "RB": 0.1,
+              "TE": 0.05,
+              "WR": 0.25
+            },
+            "11": {
+              "DST": 0.15,
+              "QB": 0.3,
+              "RB": 0.1,
+              "WR": 0.45
+            },
+            "12": {
+              "RB": 0.5,
+              "TE": 0.1,
+              "WR": 0.4
+            },
+            "13": {
+              "DST": 0.25,
+              "RB": 0.55,
+              "TE": 0.15,
+              "WR": 0.05
+            },
+            "14": {
+              "QB": 0.15,
+              "RB": 0.15,
+              "TE": 0.1,
+              "WR": 0.6
+            },
+            "15": {
+              "QB": 0.1,
+              "RB": 0.9
+            },
+            "16": {
+              "DST": 0.25,
+              "QB": 0.1,
+              "RB": 0.15,
+              "TE": 0.1,
+              "WR": 0.4
+            }
+          },
+          "mean_proj_by_pos": {
+            "WR": 252.69737123267242,
+            "RB": 228.28959307221052,
+            "QB": 334.56611200153844,
+            "TE": 193.87346128366667,
+            "DST": 119.646908826
+          },
+          "mean_adp_by_pos": {
+            "WR": 78.53206896551724,
+            "RB": 93.56505263157895,
+            "QB": 85.76333333333334,
+            "TE": 110.53933333333333,
+            "DST": 119.17775
+          }
+        }
+      },
+      "v2_vs_raw": {
+        "baseline": "marginal",
+        "challenger": "marginal_v2",
+        "mean_delta": 71.32797894199982,
+        "median_delta": 69.25734601999943,
+        "std_delta": 24.721793081596932,
+        "win_rate": 1.0,
+        "tie_rate": 0.0
+      },
+      "n_losses": 0,
+      "loss_diagnostics": [],
+      "note": "V2 lookahead frozen (ADP-greedy). Opponent policy applies to actual CPU picks only."
+    },
+    {
+      "slot": 5,
+      "n": 20,
+      "seed": 0,
+      "opponent_policy": "noisy_adp",
+      "summaries": {
+        "marginal": {
+          "strategy": "marginal",
+          "n": 20,
+          "mean_starter_pts": 2443.4510719020004,
+          "median_starter_pts": 2448.3568512150005,
+          "std_starter_pts": 20.71741363273693,
+          "mean_roster_proj": 3694.115,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 1.2,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.128125,
+            "RB": 0.321875,
+            "WR": 0.321875,
+            "TE": 0.115625,
+            "DST": 0.1125
+          },
+          "position_counts": {
+            "QB": 41,
+            "WR": 103,
+            "RB": 103,
+            "TE": 37,
+            "DST": 36
+          },
+          "by_round_share": {
+            "1": {
+              "QB": 1.0
+            },
+            "2": {
+              "RB": 0.75,
+              "WR": 0.25
+            },
+            "3": {
+              "RB": 0.05,
+              "WR": 0.95
+            },
+            "4": {
+              "RB": 0.85,
+              "WR": 0.15
+            },
+            "5": {
+              "RB": 0.7,
+              "WR": 0.3
+            },
+            "6": {
+              "RB": 0.3,
+              "WR": 0.7
+            },
+            "7": {
+              "RB": 0.7,
+              "WR": 0.3
+            },
+            "8": {
+              "TE": 1.0
+            },
+            "9": {
+              "DST": 1.0
+            },
+            "10": {
+              "DST": 0.1,
+              "RB": 0.1,
+              "TE": 0.4,
+              "WR": 0.4
+            },
+            "11": {
+              "DST": 0.25,
+              "QB": 0.1,
+              "RB": 0.2,
+              "TE": 0.05,
+              "WR": 0.4
+            },
+            "12": {
+              "QB": 0.1,
+              "RB": 0.5,
+              "TE": 0.1,
+              "WR": 0.3
+            },
+            "13": {
+              "DST": 0.15,
+              "RB": 0.55,
+              "TE": 0.15,
+              "WR": 0.15
+            },
+            "14": {
+              "QB": 0.05,
+              "RB": 0.15,
+              "TE": 0.1,
+              "WR": 0.7
+            },
+            "15": {
+              "DST": 0.15,
+              "QB": 0.45,
+              "RB": 0.1,
+              "TE": 0.05,
+              "WR": 0.25
+            },
+            "16": {
+              "DST": 0.15,
+              "QB": 0.35,
+              "RB": 0.2,
+              "WR": 0.3
+            }
+          },
+          "mean_proj_by_pos": {
+            "QB": 325.262076397561,
+            "WR": 229.66084551019418,
+            "RB": 246.66350387815532,
+            "TE": 192.93136722945945,
+            "DST": 120.7402141213889
+          },
+          "mean_adp_by_pos": {
+            "QB": 98.57268292682927,
+            "WR": 100.28844660194174,
+            "RB": 91.44582524271844,
+            "TE": 112.10054054054055,
+            "DST": 120.93083333333334
+          }
+        },
+        "marginal_v2": {
+          "strategy": "marginal_v2",
+          "n": 20,
+          "mean_starter_pts": 2506.3722150715002,
+          "median_starter_pts": 2505.83431097,
+          "std_starter_pts": 21.941041283064383,
+          "mean_roster_proj": 3825.985,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 1.05,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.134375,
+            "RB": 0.284375,
+            "WR": 0.3625,
+            "TE": 0.109375,
+            "DST": 0.109375
+          },
+          "position_counts": {
+            "RB": 91,
+            "WR": 116,
+            "QB": 43,
+            "TE": 35,
+            "DST": 35
+          },
+          "by_round_share": {
+            "1": {
+              "RB": 0.45,
+              "WR": 0.55
+            },
+            "2": {
+              "RB": 0.75,
+              "WR": 0.25
+            },
+            "3": {
+              "RB": 0.1,
+              "WR": 0.9
+            },
+            "4": {
+              "QB": 0.15,
+              "RB": 0.8,
+              "WR": 0.05
+            },
+            "5": {
+              "QB": 0.75,
+              "RB": 0.25
+            },
+            "6": {
+              "RB": 0.2,
+              "WR": 0.8
+            },
+            "7": {
+              "TE": 1.0
+            },
+            "8": {
+              "DST": 0.7,
+              "QB": 0.1,
+              "WR": 0.2
+            },
+            "9": {
+              "DST": 0.25,
+              "QB": 0.35,
+              "RB": 0.15,
+              "WR": 0.25
+            },
+            "10": {
+              "DST": 0.2,
+              "QB": 0.1,
+              "RB": 0.05,
+              "TE": 0.1,
+              "WR": 0.55
+            },
+            "11": {
+              "DST": 0.1,
+              "QB": 0.3,
+              "RB": 0.2,
+              "WR": 0.4
+            },
+            "12": {
+              "DST": 0.1,
+              "QB": 0.05,
+              "RB": 0.45,
+              "TE": 0.05,
+              "WR": 0.35
+            },
+            "13": {
+              "DST": 0.1,
+              "RB": 0.3,
+              "TE": 0.45,
+              "WR": 0.15
+            },
+            "14": {
+              "RB": 0.15,
+              "TE": 0.15,
+              "WR": 0.7
+            },
+            "15": {
+              "DST": 0.15,
+              "QB": 0.15,
+              "RB": 0.5,
+              "WR": 0.2
+            },
+            "16": {
+              "DST": 0.15,
+              "QB": 0.2,
+              "RB": 0.2,
+              "WR": 0.45
+            }
+          },
+          "mean_proj_by_pos": {
+            "RB": 259.8442482179121,
+            "WR": 238.8173440687931,
+            "QB": 323.3342095867442,
+            "TE": 195.732945552,
+            "DST": 126.20099537
+          },
+          "mean_adp_by_pos": {
+            "RB": 73.65538461538462,
+            "WR": 91.27241379310345,
+            "QB": 88.10813953488372,
+            "TE": 111.33371428571428,
+            "DST": 119.27942857142857
+          }
+        }
+      },
+      "v2_vs_raw": {
+        "baseline": "marginal",
+        "challenger": "marginal_v2",
+        "mean_delta": 62.92114316949985,
+        "median_delta": 61.64135546499983,
+        "std_delta": 35.2950235910329,
+        "win_rate": 0.95,
+        "tie_rate": 0.0
+      },
+      "n_losses": 1,
+      "loss_diagnostics": [
+        {
+          "sim": 11,
+          "seed": 11099,
+          "raw_pts": 2463.59,
+          "v2_pts": 2453.43,
+          "delta": -10.16,
+          "raw_r1": {
+            "round": 1,
+            "overall": 5,
+            "player_id": "11566",
+            "name": "Jayden Daniels",
+            "position": "QB",
+            "proj_espn": 371.59177126,
+            "adp_espn": 51.05
+          },
+          "v2_r1": {
+            "round": 1,
+            "overall": 5,
+            "player_id": "9509",
+            "name": "Bijan Robinson",
+            "position": "RB",
+            "proj_espn": 339.37441775,
+            "adp_espn": 2.62
+          },
+          "q_failures": [
+            {
+              "overall": 36,
+              "round": 4,
+              "took": "Kyren Williams",
+              "took_pos": "RB",
+              "took_id": "8150",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 8,
+              "ev_two_pick": 1586.19,
+              "q_survived": false,
+              "resolved_at_overall": 45
+            }
+          ],
+          "q_events_early": [
+            {
+              "overall": 5,
+              "round": 1,
+              "took": "Bijan Robinson",
+              "took_pos": "RB",
+              "took_id": "9509",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 10,
+              "ev_two_pick": 710.97,
+              "q_survived": true,
+              "resolved_at_overall": 16
+            },
+            {
+              "overall": 16,
+              "round": 2,
+              "took": "Ashton Jeanty",
+              "took_pos": "RB",
+              "took_id": "12527",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 8,
+              "ev_two_pick": 1013.02,
+              "q_survived": true,
+              "resolved_at_overall": 25
+            },
+            {
+              "overall": 25,
+              "round": 3,
+              "took": "Nico Collins",
+              "took_pos": "WR",
+              "took_id": "7569",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 10,
+              "ev_two_pick": 1302.14,
+              "q_survived": true,
+              "resolved_at_overall": 36
+            },
+            {
+              "overall": 36,
+              "round": 4,
+              "took": "Kyren Williams",
+              "took_pos": "RB",
+              "took_id": "8150",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 8,
+              "ev_two_pick": 1586.19,
+              "q_survived": false,
+              "resolved_at_overall": 45
+            }
+          ]
+        }
+      ],
+      "note": "V2 lookahead frozen (ADP-greedy). Opponent policy applies to actual CPU picks only."
+    },
+    {
+      "slot": 10,
+      "n": 20,
+      "seed": 0,
+      "opponent_policy": "noisy_adp",
+      "summaries": {
+        "marginal": {
+          "strategy": "marginal",
+          "n": 20,
+          "mean_starter_pts": 2447.8716532455,
+          "median_starter_pts": 2443.83188146,
+          "std_starter_pts": 18.034625453017558,
+          "mean_roster_proj": 3665.665,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 1.45,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.1375,
+            "RB": 0.325,
+            "WR": 0.321875,
+            "TE": 0.115625,
+            "DST": 0.1
+          },
+          "position_counts": {
+            "QB": 44,
+            "RB": 104,
+            "WR": 103,
+            "TE": 37,
+            "DST": 32
+          },
+          "by_round_share": {
+            "1": {
+              "QB": 1.0
+            },
+            "2": {
+              "RB": 0.7,
+              "WR": 0.3
+            },
+            "3": {
+              "RB": 0.15,
+              "WR": 0.85
+            },
+            "4": {
+              "RB": 1.0
+            },
+            "5": {
+              "RB": 0.5,
+              "WR": 0.5
+            },
+            "6": {
+              "RB": 0.5,
+              "WR": 0.5
+            },
+            "7": {
+              "RB": 0.5,
+              "WR": 0.5
+            },
+            "8": {
+              "TE": 1.0
+            },
+            "9": {
+              "DST": 1.0
+            },
+            "10": {
+              "DST": 0.25,
+              "QB": 0.3,
+              "RB": 0.1,
+              "TE": 0.1,
+              "WR": 0.25
+            },
+            "11": {
+              "QB": 0.1,
+              "RB": 0.45,
+              "TE": 0.05,
+              "WR": 0.4
+            },
+            "12": {
+              "DST": 0.05,
+              "RB": 0.25,
+              "TE": 0.25,
+              "WR": 0.45
+            },
+            "13": {
+              "DST": 0.2,
+              "QB": 0.05,
+              "RB": 0.2,
+              "TE": 0.15,
+              "WR": 0.4
+            },
+            "14": {
+              "QB": 0.15,
+              "RB": 0.1,
+              "TE": 0.25,
+              "WR": 0.5
+            },
+            "15": {
+              "QB": 0.2,
+              "RB": 0.4,
+              "TE": 0.05,
+              "WR": 0.35
+            },
+            "16": {
+              "DST": 0.1,
+              "QB": 0.4,
+              "RB": 0.35,
+              "WR": 0.15
+            }
+          },
+          "mean_proj_by_pos": {
+            "QB": 300.4714420168182,
+            "RB": 238.04526750990385,
+            "WR": 234.64076803708738,
+            "TE": 196.69647709135134,
+            "DST": 121.5636072175
+          },
+          "mean_adp_by_pos": {
+            "QB": 95.73795454545454,
+            "RB": 94.05096153846154,
+            "WR": 105.17291262135923,
+            "TE": 112.7072972972973,
+            "DST": 116.485
+          }
+        },
+        "marginal_v2": {
+          "strategy": "marginal_v2",
+          "n": 20,
+          "mean_starter_pts": 2484.2130712085,
+          "median_starter_pts": 2485.95566239,
+          "std_starter_pts": 27.64079220635504,
+          "mean_roster_proj": 3760.36,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 1.25,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.14375,
+            "RB": 0.296875,
+            "WR": 0.353125,
+            "TE": 0.1125,
+            "DST": 0.09375
+          },
+          "position_counts": {
+            "RB": 95,
+            "WR": 113,
+            "QB": 46,
+            "TE": 36,
+            "DST": 30
+          },
+          "by_round_share": {
+            "1": {
+              "RB": 0.7,
+              "WR": 0.3
+            },
+            "2": {
+              "RB": 0.6,
+              "WR": 0.4
+            },
+            "3": {
+              "RB": 0.35,
+              "WR": 0.65
+            },
+            "4": {
+              "QB": 1.0
+            },
+            "5": {
+              "RB": 0.6,
+              "WR": 0.4
+            },
+            "6": {
+              "RB": 0.4,
+              "WR": 0.6
+            },
+            "7": {
+              "RB": 0.15,
+              "TE": 0.85
+            },
+            "8": {
+              "DST": 0.85,
+              "WR": 0.15
+            },
+            "9": {
+              "DST": 0.2,
+              "QB": 0.3,
+              "RB": 0.1,
+              "WR": 0.4
+            },
+            "10": {
+              "DST": 0.2,
+              "QB": 0.15,
+              "RB": 0.05,
+              "TE": 0.1,
+              "WR": 0.5
+            },
+            "11": {
+              "DST": 0.05,
+              "QB": 0.15,
+              "RB": 0.2,
+              "TE": 0.3,
+              "WR": 0.3
+            },
+            "12": {
+              "QB": 0.05,
+              "RB": 0.2,
+              "TE": 0.2,
+              "WR": 0.55
+            },
+            "13": {
+              "DST": 0.05,
+              "QB": 0.1,
+              "RB": 0.25,
+              "TE": 0.2,
+              "WR": 0.4
+            },
+            "14": {
+              "DST": 0.05,
+              "QB": 0.1,
+              "RB": 0.4,
+              "TE": 0.15,
+              "WR": 0.3
+            },
+            "15": {
+              "DST": 0.1,
+              "QB": 0.3,
+              "RB": 0.3,
+              "WR": 0.3
+            },
+            "16": {
+              "QB": 0.15,
+              "RB": 0.45,
+              "WR": 0.4
+            }
+          },
+          "mean_proj_by_pos": {
+            "RB": 252.70303975221051,
+            "WR": 233.50672523876108,
+            "QB": 306.008096495,
+            "TE": 195.6126980161111,
+            "DST": 123.19463764433334
+          },
+          "mean_adp_by_pos": {
+            "RB": 85.67231578947369,
+            "WR": 95.29486725663718,
+            "QB": 92.06173913043477,
+            "TE": 111.54972222222223,
+            "DST": 115.253
+          }
+        }
+      },
+      "v2_vs_raw": {
+        "baseline": "marginal",
+        "challenger": "marginal_v2",
+        "mean_delta": 36.34141796299991,
+        "median_delta": 34.3622529700001,
+        "std_delta": 29.942294014293072,
+        "win_rate": 0.85,
+        "tie_rate": 0.0
+      },
+      "n_losses": 3,
+      "loss_diagnostics": [
+        {
+          "sim": 1,
+          "seed": 1009,
+          "raw_pts": 2442.9,
+          "v2_pts": 2426.46,
+          "delta": -16.45,
+          "raw_r1": {
+            "round": 1,
+            "overall": 10,
+            "player_id": "11566",
+            "name": "Jayden Daniels",
+            "position": "QB",
+            "proj_espn": 371.59177126,
+            "adp_espn": 51.05
+          },
+          "v2_r1": {
+            "round": 1,
+            "overall": 10,
+            "player_id": "6786",
+            "name": "CeeDee Lamb",
+            "position": "WR",
+            "proj_espn": 317.53011303,
+            "adp_espn": 10.58
+          },
+          "q_failures": [],
+          "q_events_early": [
+            {
+              "overall": 10,
+              "round": 1,
+              "took": "CeeDee Lamb",
+              "took_pos": "WR",
+              "took_id": "6786",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 0,
+              "ev_two_pick": 689.12,
+              "q_survived": true,
+              "resolved_at_overall": 11
+            },
+            {
+              "overall": 11,
+              "round": 2,
+              "took": "Justin Jefferson",
+              "took_pos": "WR",
+              "took_id": "6794",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 18,
+              "ev_two_pick": 1004.99,
+              "q_survived": true,
+              "resolved_at_overall": 30
+            },
+            {
+              "overall": 30,
+              "round": 3,
+              "took": "Kyren Williams",
+              "took_pos": "RB",
+              "took_id": "8150",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 0,
+              "ev_two_pick": 1289.04,
+              "q_survived": true,
+              "resolved_at_overall": 31
+            },
+            {
+              "overall": 31,
+              "round": 4,
+              "took": "Jayden Daniels",
+              "took_pos": "QB",
+              "took_id": "11566",
+              "expected_q": "Bucky Irving",
+              "expected_q_pos": "RB",
+              "q_player_id": "11584",
+              "picks_until_next": 18,
+              "ev_two_pick": 1572.5,
+              "q_survived": true,
+              "resolved_at_overall": 50
+            }
+          ]
+        },
+        {
+          "sim": 5,
+          "seed": 5045,
+          "raw_pts": 2443.25,
+          "v2_pts": 2436.58,
+          "delta": -6.67,
+          "raw_r1": {
+            "round": 1,
+            "overall": 10,
+            "player_id": "11566",
+            "name": "Jayden Daniels",
+            "position": "QB",
+            "proj_espn": 371.59177126,
+            "adp_espn": 51.05
+          },
+          "v2_r1": {
+            "round": 1,
+            "overall": 10,
+            "player_id": "4866",
+            "name": "Saquon Barkley",
+            "position": "RB",
+            "proj_espn": 325.99262676,
+            "adp_espn": 17.0
+          },
+          "q_failures": [],
+          "q_events_early": [
+            {
+              "overall": 10,
+              "round": 1,
+              "took": "Saquon Barkley",
+              "took_pos": "RB",
+              "took_id": "4866",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 0,
+              "ev_two_pick": 697.58,
+              "q_survived": true,
+              "resolved_at_overall": 11
+            },
+            {
+              "overall": 11,
+              "round": 2,
+              "took": "CeeDee Lamb",
+              "took_pos": "WR",
+              "took_id": "6786",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 18,
+              "ev_two_pick": 1015.11,
+              "q_survived": true,
+              "resolved_at_overall": 30
+            },
+            {
+              "overall": 30,
+              "round": 3,
+              "took": "Kyren Williams",
+              "took_pos": "RB",
+              "took_id": "8150",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 0,
+              "ev_two_pick": 1299.16,
+              "q_survived": true,
+              "resolved_at_overall": 31
+            },
+            {
+              "overall": 31,
+              "round": 4,
+              "took": "Jayden Daniels",
+              "took_pos": "QB",
+              "took_id": "11566",
+              "expected_q": "Bucky Irving",
+              "expected_q_pos": "RB",
+              "q_player_id": "11584",
+              "picks_until_next": 18,
+              "ev_two_pick": 1582.63,
+              "q_survived": true,
+              "resolved_at_overall": 50
+            }
+          ]
+        },
+        {
+          "sim": 6,
+          "seed": 6054,
+          "raw_pts": 2463.59,
+          "v2_pts": 2452.22,
+          "delta": -11.37,
+          "raw_r1": {
+            "round": 1,
+            "overall": 10,
+            "player_id": "11566",
+            "name": "Jayden Daniels",
+            "position": "QB",
+            "proj_espn": 371.59177126,
+            "adp_espn": 51.05
+          },
+          "v2_r1": {
+            "round": 1,
+            "overall": 10,
+            "player_id": "4866",
+            "name": "Saquon Barkley",
+            "position": "RB",
+            "proj_espn": 325.99262676,
+            "adp_espn": 17.0
+          },
+          "q_failures": [],
+          "q_events_early": [
+            {
+              "overall": 10,
+              "round": 1,
+              "took": "Saquon Barkley",
+              "took_pos": "RB",
+              "took_id": "4866",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 0,
+              "ev_two_pick": 697.58,
+              "q_survived": true,
+              "resolved_at_overall": 11
+            },
+            {
+              "overall": 11,
+              "round": 2,
+              "took": "Justin Jefferson",
+              "took_pos": "WR",
+              "took_id": "6794",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 18,
+              "ev_two_pick": 1013.45,
+              "q_survived": true,
+              "resolved_at_overall": 30
+            },
+            {
+              "overall": 30,
+              "round": 3,
+              "took": "Malik Nabers",
+              "took_pos": "WR",
+              "took_id": "11632",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 0,
+              "ev_two_pick": 1314.8,
+              "q_survived": true,
+              "resolved_at_overall": 31
+            },
+            {
+              "overall": 31,
+              "round": 4,
+              "took": "Jayden Daniels",
+              "took_pos": "QB",
+              "took_id": "11566",
+              "expected_q": "Bucky Irving",
+              "expected_q_pos": "RB",
+              "q_player_id": "11584",
+              "picks_until_next": 18,
+              "ev_two_pick": 1598.27,
+              "q_survived": true,
+              "resolved_at_overall": 50
+            }
+          ]
+        }
+      ],
+      "note": "V2 lookahead frozen (ADP-greedy). Opponent policy applies to actual CPU picks only."
+    },
+    {
+      "slot": 1,
+      "n": 20,
+      "seed": 0,
+      "opponent_policy": "adp_greedy",
+      "summaries": {
+        "marginal": {
+          "strategy": "marginal",
+          "n": 20,
+          "mean_starter_pts": 2406.38087489,
+          "median_starter_pts": 2406.38087489,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3736.0,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 1,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.25,
+            "RB": 0.25,
+            "WR": 0.3125,
+            "TE": 0.0625,
+            "DST": 0.125
+          },
+          "position_counts": {
+            "QB": 80,
+            "WR": 100,
+            "RB": 80,
+            "TE": 20,
+            "DST": 40
+          },
+          "by_round_share": {
+            "1": {
+              "QB": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "WR": 1.0
+            },
+            "4": {
+              "RB": 1.0
+            },
+            "5": {
+              "WR": 1.0
+            },
+            "6": {
+              "RB": 1.0
+            },
+            "7": {
+              "WR": 1.0
+            },
+            "8": {
+              "TE": 1.0
+            },
+            "9": {
+              "DST": 1.0
+            },
+            "10": {
+              "QB": 1.0
+            },
+            "11": {
+              "QB": 1.0
+            },
+            "12": {
+              "DST": 1.0
+            },
+            "13": {
+              "RB": 1.0
+            },
+            "14": {
+              "WR": 1.0
+            },
+            "15": {
+              "QB": 1.0
+            },
+            "16": {
+              "RB": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "QB": 321.982136555,
+            "WR": 257.328612508,
+            "RB": 169.51801054249998,
+            "TE": 227.72348018,
+            "DST": 127.81207898
+          },
+          "mean_adp_by_pos": {
+            "QB": 105.01,
+            "WR": 98.44200000000001,
+            "RB": 128.1525,
+            "TE": 97.97,
+            "DST": 123.735
+          }
+        },
+        "marginal_v2": {
+          "strategy": "marginal_v2",
+          "n": 20,
+          "mean_starter_pts": 2482.69622354,
+          "median_starter_pts": 2482.69622354,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3493.5,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 3,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.0625,
+            "RB": 0.1875,
+            "WR": 0.375,
+            "TE": 0.1875,
+            "DST": 0.1875
+          },
+          "position_counts": {
+            "WR": 120,
+            "QB": 20,
+            "RB": 60,
+            "TE": 60,
+            "DST": 60
+          },
+          "by_round_share": {
+            "1": {
+              "WR": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "WR": 1.0
+            },
+            "4": {
+              "QB": 1.0
+            },
+            "5": {
+              "RB": 1.0
+            },
+            "6": {
+              "WR": 1.0
+            },
+            "7": {
+              "TE": 1.0
+            },
+            "8": {
+              "DST": 1.0
+            },
+            "9": {
+              "WR": 1.0
+            },
+            "10": {
+              "RB": 1.0
+            },
+            "11": {
+              "TE": 1.0
+            },
+            "12": {
+              "TE": 1.0
+            },
+            "13": {
+              "DST": 1.0
+            },
+            "14": {
+              "DST": 1.0
+            },
+            "15": {
+              "RB": 1.0
+            },
+            "16": {
+              "WR": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "WR": 262.03998822333335,
+            "QB": 371.59177126,
+            "RB": 211.37406767,
+            "TE": 187.54665279333332,
+            "DST": 117.65110438666667
+          },
+          "mean_adp_by_pos": {
+            "WR": 72.53166666666667,
+            "QB": 51.05,
+            "RB": 107.79666666666667,
+            "TE": 114.69333333333334,
+            "DST": 133.72666666666666
+          }
+        }
+      },
+      "v2_vs_raw": {
+        "baseline": "marginal",
+        "challenger": "marginal_v2",
+        "mean_delta": 76.31534865000003,
+        "median_delta": 76.31534865000003,
+        "std_delta": 0.0,
+        "win_rate": 1.0,
+        "tie_rate": 0.0
+      },
+      "n_losses": 0,
+      "loss_diagnostics": [],
+      "note": "V2 lookahead frozen (ADP-greedy). Opponent policy applies to actual CPU picks only."
+    },
+    {
+      "slot": 5,
+      "n": 20,
+      "seed": 0,
+      "opponent_policy": "adp_greedy",
+      "summaries": {
+        "marginal": {
+          "strategy": "marginal",
+          "n": 20,
+          "mean_starter_pts": 2426.7241091000005,
+          "median_starter_pts": 2426.7241091000005,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3601.8,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 1,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.1875,
+            "RB": 0.25,
+            "WR": 0.375,
+            "TE": 0.0625,
+            "DST": 0.125
+          },
+          "position_counts": {
+            "QB": 60,
+            "WR": 120,
+            "RB": 80,
+            "TE": 20,
+            "DST": 40
+          },
+          "by_round_share": {
+            "1": {
+              "QB": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "WR": 1.0
+            },
+            "4": {
+              "RB": 1.0
+            },
+            "5": {
+              "RB": 1.0
+            },
+            "6": {
+              "WR": 1.0
+            },
+            "7": {
+              "RB": 1.0
+            },
+            "8": {
+              "TE": 1.0
+            },
+            "9": {
+              "DST": 1.0
+            },
+            "10": {
+              "WR": 1.0
+            },
+            "11": {
+              "WR": 1.0
+            },
+            "12": {
+              "RB": 1.0
+            },
+            "13": {
+              "WR": 1.0
+            },
+            "14": {
+              "DST": 1.0
+            },
+            "15": {
+              "QB": 1.0
+            },
+            "16": {
+              "QB": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "QB": 237.74337752333332,
+            "WR": 230.87105628666666,
+            "RB": 260.3700718225,
+            "TE": 227.72348018,
+            "DST": 117.054419065
+          },
+          "mean_adp_by_pos": {
+            "QB": 123.11666666666666,
+            "WR": 88.63333333333333,
+            "RB": 96.1575,
+            "TE": 97.97,
+            "DST": 131.92000000000002
+          }
+        },
+        "marginal_v2": {
+          "strategy": "marginal_v2",
+          "n": 20,
+          "mean_starter_pts": 2469.2496984,
+          "median_starter_pts": 2469.2496984,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3926.1,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 1,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.1875,
+            "RB": 0.1875,
+            "WR": 0.375,
+            "TE": 0.1875,
+            "DST": 0.0625
+          },
+          "position_counts": {
+            "RB": 60,
+            "WR": 120,
+            "QB": 60,
+            "TE": 60,
+            "DST": 20
+          },
+          "by_round_share": {
+            "1": {
+              "RB": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "WR": 1.0
+            },
+            "4": {
+              "RB": 1.0
+            },
+            "5": {
+              "QB": 1.0
+            },
+            "6": {
+              "WR": 1.0
+            },
+            "7": {
+              "TE": 1.0
+            },
+            "8": {
+              "DST": 1.0
+            },
+            "9": {
+              "WR": 1.0
+            },
+            "10": {
+              "WR": 1.0
+            },
+            "11": {
+              "WR": 1.0
+            },
+            "12": {
+              "TE": 1.0
+            },
+            "13": {
+              "TE": 1.0
+            },
+            "14": {
+              "QB": 1.0
+            },
+            "15": {
+              "RB": 1.0
+            },
+            "16": {
+              "QB": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "RB": 292.2479483033333,
+            "WR": 253.09102329833334,
+            "QB": 308.08234633,
+            "TE": 157.96808592333332,
+            "DST": 132.67337907
+          },
+          "mean_adp_by_pos": {
+            "RB": 72.05,
+            "WR": 82.24666666666667,
+            "QB": 121.11999999999999,
+            "TE": 121.58333333333333,
+            "DST": 115.78
+          }
+        }
+      },
+      "v2_vs_raw": {
+        "baseline": "marginal",
+        "challenger": "marginal_v2",
+        "mean_delta": 42.52558929999941,
+        "median_delta": 42.52558929999941,
+        "std_delta": 0.0,
+        "win_rate": 1.0,
+        "tie_rate": 0.0
+      },
+      "n_losses": 0,
+      "loss_diagnostics": [],
+      "note": "V2 lookahead frozen (ADP-greedy). Opponent policy applies to actual CPU picks only."
+    },
+    {
+      "slot": 10,
+      "n": 20,
+      "seed": 0,
+      "opponent_policy": "adp_greedy",
+      "summaries": {
+        "marginal": {
+          "strategy": "marginal",
+          "n": 20,
+          "mean_starter_pts": 2463.5928428800003,
+          "median_starter_pts": 2463.5928428800003,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3870.2,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 1,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.1875,
+            "RB": 0.375,
+            "WR": 0.25,
+            "TE": 0.125,
+            "DST": 0.0625
+          },
+          "position_counts": {
+            "QB": 60,
+            "RB": 120,
+            "WR": 80,
+            "TE": 40,
+            "DST": 20
+          },
+          "by_round_share": {
+            "1": {
+              "QB": 1.0
+            },
+            "2": {
+              "RB": 1.0
+            },
+            "3": {
+              "WR": 1.0
+            },
+            "4": {
+              "RB": 1.0
+            },
+            "5": {
+              "RB": 1.0
+            },
+            "6": {
+              "WR": 1.0
+            },
+            "7": {
+              "RB": 1.0
+            },
+            "8": {
+              "TE": 1.0
+            },
+            "9": {
+              "DST": 1.0
+            },
+            "10": {
+              "TE": 1.0
+            },
+            "11": {
+              "RB": 1.0
+            },
+            "12": {
+              "RB": 1.0
+            },
+            "13": {
+              "WR": 1.0
+            },
+            "14": {
+              "WR": 1.0
+            },
+            "15": {
+              "QB": 1.0
+            },
+            "16": {
+              "QB": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "QB": 283.03886651666664,
+            "RB": 261.6170556166667,
+            "WR": 227.4824410025,
+            "TE": 204.40253855999998,
+            "DST": 132.67337907
+          },
+          "mean_adp_by_pos": {
+            "QB": 123.48666666666666,
+            "RB": 86.47,
+            "WR": 106.63499999999999,
+            "TE": 99.92,
+            "DST": 115.78
+          }
+        },
+        "marginal_v2": {
+          "strategy": "marginal_v2",
+          "n": 20,
+          "mean_starter_pts": 2495.40741027,
+          "median_starter_pts": 2495.40741027,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3760.2,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 1,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.1875,
+            "RB": 0.25,
+            "WR": 0.375,
+            "TE": 0.125,
+            "DST": 0.0625
+          },
+          "position_counts": {
+            "RB": 80,
+            "WR": 120,
+            "QB": 60,
+            "TE": 40,
+            "DST": 20
+          },
+          "by_round_share": {
+            "1": {
+              "RB": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "WR": 1.0
+            },
+            "4": {
+              "QB": 1.0
+            },
+            "5": {
+              "RB": 1.0
+            },
+            "6": {
+              "WR": 1.0
+            },
+            "7": {
+              "TE": 1.0
+            },
+            "8": {
+              "DST": 1.0
+            },
+            "9": {
+              "TE": 1.0
+            },
+            "10": {
+              "WR": 1.0
+            },
+            "11": {
+              "RB": 1.0
+            },
+            "12": {
+              "WR": 1.0
+            },
+            "13": {
+              "WR": 1.0
+            },
+            "14": {
+              "RB": 1.0
+            },
+            "15": {
+              "QB": 1.0
+            },
+            "16": {
+              "QB": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "RB": 273.119556435,
+            "WR": 212.853598805,
+            "QB": 283.03886651666664,
+            "TE": 204.40253855999998,
+            "DST": 132.67337907
+          },
+          "mean_adp_by_pos": {
+            "RB": 88.27250000000001,
+            "WR": 87.23,
+            "QB": 123.48666666666666,
+            "TE": 99.92,
+            "DST": 115.78
+          }
+        }
+      },
+      "v2_vs_raw": {
+        "baseline": "marginal",
+        "challenger": "marginal_v2",
+        "mean_delta": 31.814567389999866,
+        "median_delta": 31.814567389999866,
+        "std_delta": 0.0,
+        "win_rate": 1.0,
+        "tie_rate": 0.0
+      },
+      "n_losses": 0,
+      "loss_diagnostics": [],
+      "note": "V2 lookahead frozen (ADP-greedy). Opponent policy applies to actual CPU picks only."
+    },
+    {
+      "slot": 1,
+      "n": 20,
+      "seed": 0,
+      "opponent_policy": "proj_greedy",
+      "summaries": {
+        "marginal": {
+          "strategy": "marginal",
+          "n": 20,
+          "mean_starter_pts": 2330.65028144,
+          "median_starter_pts": 2330.65028144,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3276.2,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 10,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.125,
+            "RB": 0.25,
+            "WR": 0.375,
+            "TE": 0.125,
+            "DST": 0.125
+          },
+          "position_counts": {
+            "QB": 40,
+            "WR": 120,
+            "RB": 80,
+            "TE": 40,
+            "DST": 40
+          },
+          "by_round_share": {
+            "1": {
+              "QB": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "WR": 1.0
+            },
+            "4": {
+              "WR": 1.0
+            },
+            "5": {
+              "WR": 1.0
+            },
+            "6": {
+              "RB": 1.0
+            },
+            "7": {
+              "RB": 1.0
+            },
+            "8": {
+              "TE": 1.0
+            },
+            "9": {
+              "DST": 1.0
+            },
+            "10": {
+              "DST": 1.0
+            },
+            "11": {
+              "WR": 1.0
+            },
+            "12": {
+              "RB": 1.0
+            },
+            "13": {
+              "WR": 1.0
+            },
+            "14": {
+              "TE": 1.0
+            },
+            "15": {
+              "RB": 1.0
+            },
+            "16": {
+              "QB": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "QB": 251.879732175,
+            "WR": 247.45448253,
+            "RB": 169.47610582250002,
+            "TE": 173.483836975,
+            "DST": 131.40331036
+          },
+          "mean_adp_by_pos": {
+            "QB": 63.35,
+            "WR": 40.388333333333335,
+            "RB": 73.235,
+            "TE": 55.865,
+            "DST": 102.595
+          }
+        },
+        "marginal_v2": {
+          "strategy": "marginal_v2",
+          "n": 20,
+          "mean_starter_pts": 2313.6666386,
+          "median_starter_pts": 2313.6666386,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3295.1,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 10,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.125,
+            "RB": 0.25,
+            "WR": 0.375,
+            "TE": 0.1875,
+            "DST": 0.0625
+          },
+          "position_counts": {
+            "WR": 120,
+            "RB": 80,
+            "QB": 40,
+            "TE": 60,
+            "DST": 20
+          },
+          "by_round_share": {
+            "1": {
+              "WR": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "WR": 1.0
+            },
+            "4": {
+              "WR": 1.0
+            },
+            "5": {
+              "RB": 1.0
+            },
+            "6": {
+              "QB": 1.0
+            },
+            "7": {
+              "TE": 1.0
+            },
+            "8": {
+              "RB": 1.0
+            },
+            "9": {
+              "WR": 1.0
+            },
+            "10": {
+              "RB": 1.0
+            },
+            "11": {
+              "WR": 1.0
+            },
+            "12": {
+              "TE": 1.0
+            },
+            "13": {
+              "TE": 1.0
+            },
+            "14": {
+              "RB": 1.0
+            },
+            "15": {
+              "DST": 1.0
+            },
+            "16": {
+              "QB": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "WR": 259.11756692666665,
+            "RB": 171.2224466575,
+            "QB": 186.93079155499998,
+            "TE": 182.99446549,
+            "DST": 132.67337907
+          },
+          "mean_adp_by_pos": {
+            "WR": 23.49,
+            "RB": 37.3,
+            "QB": 119.395,
+            "TE": 63.47666666666667,
+            "DST": 115.78
+          }
+        }
+      },
+      "v2_vs_raw": {
+        "baseline": "marginal",
+        "challenger": "marginal_v2",
+        "mean_delta": -16.983642839999902,
+        "median_delta": -16.983642839999902,
+        "std_delta": 0.0,
+        "win_rate": 0.0,
+        "tie_rate": 0.0
+      },
+      "n_losses": 20,
+      "loss_diagnostics": [
+        {
+          "sim": 0,
+          "seed": 0,
+          "raw_pts": 2330.65,
+          "v2_pts": 2313.67,
+          "delta": -16.98,
+          "raw_r1": {
+            "round": 1,
+            "overall": 1,
+            "player_id": "11566",
+            "name": "Jayden Daniels",
+            "position": "QB",
+            "proj_espn": 371.59177126,
+            "adp_espn": 51.05
+          },
+          "v2_r1": {
+            "round": 1,
+            "overall": 1,
+            "player_id": "7564",
+            "name": "Ja'Marr Chase",
+            "position": "WR",
+            "proj_espn": 340.02142469,
+            "adp_espn": 4.7
+          },
+          "q_failures": [
+            {
+              "overall": 1,
+              "round": 1,
+              "took": "Ja'Marr Chase",
+              "took_pos": "WR",
+              "took_id": "7564",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 18,
+              "ev_two_pick": 711.61,
+              "q_survived": false,
+              "resolved_at_overall": 20
+            },
+            {
+              "overall": 21,
+              "round": 3,
+              "took": "Puka Nacua",
+              "took_pos": "WR",
+              "took_id": "9493",
+              "expected_q": "Justin Fields",
+              "expected_q_pos": "QB",
+              "q_player_id": "7591",
+              "picks_until_next": 18,
+              "ev_two_pick": 1239.32,
+              "q_survived": false,
+              "resolved_at_overall": 40
+            },
+            {
+              "overall": 41,
+              "round": 5,
+              "took": "James Cook",
+              "took_pos": "RB",
+              "took_id": "8138",
+              "expected_q": "Matthew Stafford",
+              "expected_q_pos": "QB",
+              "q_player_id": "421",
+              "picks_until_next": 18,
+              "ev_two_pick": 1759.61,
+              "q_survived": false,
+              "resolved_at_overall": 60
+            }
+          ],
+          "q_events_early": [
+            {
+              "overall": 1,
+              "round": 1,
+              "took": "Ja'Marr Chase",
+              "took_pos": "WR",
+              "took_id": "7564",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 18,
+              "ev_two_pick": 711.61,
+              "q_survived": false,
+              "resolved_at_overall": 20
+            },
+            {
+              "overall": 20,
+              "round": 2,
+              "took": "Malik Nabers",
+              "took_pos": "WR",
+              "took_id": "11632",
+              "expected_q": "Justin Fields",
+              "expected_q_pos": "QB",
+              "q_player_id": "7591",
+              "picks_until_next": 0,
+              "ev_two_pick": 940.69,
+              "q_survived": true,
+              "resolved_at_overall": 21
+            },
+            {
+              "overall": 21,
+              "round": 3,
+              "took": "Puka Nacua",
+              "took_pos": "WR",
+              "took_id": "9493",
+              "expected_q": "Justin Fields",
+              "expected_q_pos": "QB",
+              "q_player_id": "7591",
+              "picks_until_next": 18,
+              "ev_two_pick": 1239.32,
+              "q_survived": false,
+              "resolved_at_overall": 40
+            },
+            {
+              "overall": 40,
+              "round": 4,
+              "took": "A.J. Brown",
+              "took_pos": "WR",
+              "took_id": "5859",
+              "expected_q": "Matthew Stafford",
+              "expected_q_pos": "QB",
+              "q_player_id": "421",
+              "picks_until_next": 0,
+              "ev_two_pick": 1489.72,
+              "q_survived": true,
+              "resolved_at_overall": 41
+            }
+          ]
+        },
+        {
+          "sim": 1,
+          "seed": 1009,
+          "raw_pts": 2330.65,
+          "v2_pts": 2313.67,
+          "delta": -16.98,
+          "raw_r1": {
+            "round": 1,
+            "overall": 1,
+            "player_id": "11566",
+            "name": "Jayden Daniels",
+            "position": "QB",
+            "proj_espn": 371.59177126,
+            "adp_espn": 51.05
+          },
+          "v2_r1": {
+            "round": 1,
+            "overall": 1,
+            "player_id": "7564",
+            "name": "Ja'Marr Chase",
+            "position": "WR",
+            "proj_espn": 340.02142469,
+            "adp_espn": 4.7
+          },
+          "q_failures": [
+            {
+              "overall": 1,
+              "round": 1,
+              "took": "Ja'Marr Chase",
+              "took_pos": "WR",
+              "took_id": "7564",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 18,
+              "ev_two_pick": 711.61,
+              "q_survived": false,
+              "resolved_at_overall": 20
+            },
+            {
+              "overall": 21,
+              "round": 3,
+              "took": "Puka Nacua",
+              "took_pos": "WR",
+              "took_id": "9493",
+              "expected_q": "Justin Fields",
+              "expected_q_pos": "QB",
+              "q_player_id": "7591",
+              "picks_until_next": 18,
+              "ev_two_pick": 1239.32,
+              "q_survived": false,
+              "resolved_at_overall": 40
+            },
+            {
+              "overall": 41,
+              "round": 5,
+              "took": "James Cook",
+              "took_pos": "RB",
+              "took_id": "8138",
+              "expected_q": "Matthew Stafford",
+              "expected_q_pos": "QB",
+              "q_player_id": "421",
+              "picks_until_next": 18,
+              "ev_two_pick": 1759.61,
+              "q_survived": false,
+              "resolved_at_overall": 60
+            }
+          ],
+          "q_events_early": [
+            {
+              "overall": 1,
+              "round": 1,
+              "took": "Ja'Marr Chase",
+              "took_pos": "WR",
+              "took_id": "7564",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 18,
+              "ev_two_pick": 711.61,
+              "q_survived": false,
+              "resolved_at_overall": 20
+            },
+            {
+              "overall": 20,
+              "round": 2,
+              "took": "Malik Nabers",
+              "took_pos": "WR",
+              "took_id": "11632",
+              "expected_q": "Justin Fields",
+              "expected_q_pos": "QB",
+              "q_player_id": "7591",
+              "picks_until_next": 0,
+              "ev_two_pick": 940.69,
+              "q_survived": true,
+              "resolved_at_overall": 21
+            },
+            {
+              "overall": 21,
+              "round": 3,
+              "took": "Puka Nacua",
+              "took_pos": "WR",
+              "took_id": "9493",
+              "expected_q": "Justin Fields",
+              "expected_q_pos": "QB",
+              "q_player_id": "7591",
+              "picks_until_next": 18,
+              "ev_two_pick": 1239.32,
+              "q_survived": false,
+              "resolved_at_overall": 40
+            },
+            {
+              "overall": 40,
+              "round": 4,
+              "took": "A.J. Brown",
+              "took_pos": "WR",
+              "took_id": "5859",
+              "expected_q": "Matthew Stafford",
+              "expected_q_pos": "QB",
+              "q_player_id": "421",
+              "picks_until_next": 0,
+              "ev_two_pick": 1489.72,
+              "q_survived": true,
+              "resolved_at_overall": 41
+            }
+          ]
+        },
+        {
+          "sim": 2,
+          "seed": 2018,
+          "raw_pts": 2330.65,
+          "v2_pts": 2313.67,
+          "delta": -16.98,
+          "raw_r1": {
+            "round": 1,
+            "overall": 1,
+            "player_id": "11566",
+            "name": "Jayden Daniels",
+            "position": "QB",
+            "proj_espn": 371.59177126,
+            "adp_espn": 51.05
+          },
+          "v2_r1": {
+            "round": 1,
+            "overall": 1,
+            "player_id": "7564",
+            "name": "Ja'Marr Chase",
+            "position": "WR",
+            "proj_espn": 340.02142469,
+            "adp_espn": 4.7
+          },
+          "q_failures": [
+            {
+              "overall": 1,
+              "round": 1,
+              "took": "Ja'Marr Chase",
+              "took_pos": "WR",
+              "took_id": "7564",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 18,
+              "ev_two_pick": 711.61,
+              "q_survived": false,
+              "resolved_at_overall": 20
+            },
+            {
+              "overall": 21,
+              "round": 3,
+              "took": "Puka Nacua",
+              "took_pos": "WR",
+              "took_id": "9493",
+              "expected_q": "Justin Fields",
+              "expected_q_pos": "QB",
+              "q_player_id": "7591",
+              "picks_until_next": 18,
+              "ev_two_pick": 1239.32,
+              "q_survived": false,
+              "resolved_at_overall": 40
+            },
+            {
+              "overall": 41,
+              "round": 5,
+              "took": "James Cook",
+              "took_pos": "RB",
+              "took_id": "8138",
+              "expected_q": "Matthew Stafford",
+              "expected_q_pos": "QB",
+              "q_player_id": "421",
+              "picks_until_next": 18,
+              "ev_two_pick": 1759.61,
+              "q_survived": false,
+              "resolved_at_overall": 60
+            }
+          ],
+          "q_events_early": [
+            {
+              "overall": 1,
+              "round": 1,
+              "took": "Ja'Marr Chase",
+              "took_pos": "WR",
+              "took_id": "7564",
+              "expected_q": "Jayden Daniels",
+              "expected_q_pos": "QB",
+              "q_player_id": "11566",
+              "picks_until_next": 18,
+              "ev_two_pick": 711.61,
+              "q_survived": false,
+              "resolved_at_overall": 20
+            },
+            {
+              "overall": 20,
+              "round": 2,
+              "took": "Malik Nabers",
+              "took_pos": "WR",
+              "took_id": "11632",
+              "expected_q": "Justin Fields",
+              "expected_q_pos": "QB",
+              "q_player_id": "7591",
+              "picks_until_next": 0,
+              "ev_two_pick": 940.69,
+              "q_survived": true,
+              "resolved_at_overall": 21
+            },
+            {
+              "overall": 21,
+              "round": 3,
+              "took": "Puka Nacua",
+              "took_pos": "WR",
+              "took_id": "9493",
+              "expected_q": "Justin Fields",
+              "expected_q_pos": "QB",
+              "q_player_id": "7591",
+              "picks_until_next": 18,
+              "ev_two_pick": 1239.32,
+              "q_survived": false,
+              "resolved_at_overall": 40
+            },
+            {
+              "overall": 40,
+              "round": 4,
+              "took": "A.J. Brown",
+              "took_pos": "WR",
+              "took_id": "5859",
+              "expected_q": "Matthew Stafford",
+              "expected_q_pos": "QB",
+              "q_player_id": "421",
+              "picks_until_next": 0,
+              "ev_two_pick": 1489.72,
+              "q_survived": true,
+              "resolved_at_overall": 41
+            }
+          ]
+        }
+      ],
+      "note": "V2 lookahead frozen (ADP-greedy). Opponent policy applies to actual CPU picks only."
+    },
+    {
+      "slot": 5,
+      "n": 20,
+      "seed": 0,
+      "opponent_policy": "proj_greedy",
+      "summaries": {
+        "marginal": {
+          "strategy": "marginal",
+          "n": 20,
+          "mean_starter_pts": 2340.33608322,
+          "median_starter_pts": 2340.33608322,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3298.8,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 10,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.125,
+            "RB": 0.25,
+            "WR": 0.375,
+            "TE": 0.1875,
+            "DST": 0.0625
+          },
+          "position_counts": {
+            "WR": 120,
+            "QB": 40,
+            "RB": 80,
+            "TE": 60,
+            "DST": 20
+          },
+          "by_round_share": {
+            "1": {
+              "WR": 1.0
+            },
+            "2": {
+              "QB": 1.0
+            },
+            "3": {
+              "RB": 1.0
+            },
+            "4": {
+              "RB": 1.0
+            },
+            "5": {
+              "WR": 1.0
+            },
+            "6": {
+              "WR": 1.0
+            },
+            "7": {
+              "WR": 1.0
+            },
+            "8": {
+              "TE": 1.0
+            },
+            "9": {
+              "DST": 1.0
+            },
+            "10": {
+              "WR": 1.0
+            },
+            "11": {
+              "RB": 1.0
+            },
+            "12": {
+              "WR": 1.0
+            },
+            "13": {
+              "TE": 1.0
+            },
+            "14": {
+              "RB": 1.0
+            },
+            "15": {
+              "TE": 1.0
+            },
+            "16": {
+              "QB": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "WR": 240.74229834666667,
+            "QB": 219.5520817,
+            "RB": 189.14206561,
+            "TE": 175.32648828333333,
+            "DST": 132.67337907
+          },
+          "mean_adp_by_pos": {
+            "WR": 24.006666666666668,
+            "QB": 113.22500000000001,
+            "RB": 31.2975,
+            "TE": 69.76666666666667,
+            "DST": 115.78
+          }
+        },
+        "marginal_v2": {
+          "strategy": "marginal_v2",
+          "n": 20,
+          "mean_starter_pts": 2307.5102145700002,
+          "median_starter_pts": 2307.5102145700002,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3343.6,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 10,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.0625,
+            "RB": 0.3125,
+            "WR": 0.375,
+            "TE": 0.1875,
+            "DST": 0.0625
+          },
+          "position_counts": {
+            "WR": 120,
+            "RB": 100,
+            "TE": 60,
+            "QB": 20,
+            "DST": 20
+          },
+          "by_round_share": {
+            "1": {
+              "WR": 1.0
+            },
+            "2": {
+              "RB": 1.0
+            },
+            "3": {
+              "RB": 1.0
+            },
+            "4": {
+              "RB": 1.0
+            },
+            "5": {
+              "WR": 1.0
+            },
+            "6": {
+              "WR": 1.0
+            },
+            "7": {
+              "TE": 1.0
+            },
+            "8": {
+              "QB": 1.0
+            },
+            "9": {
+              "WR": 1.0
+            },
+            "10": {
+              "WR": 1.0
+            },
+            "11": {
+              "RB": 1.0
+            },
+            "12": {
+              "WR": 1.0
+            },
+            "13": {
+              "TE": 1.0
+            },
+            "14": {
+              "RB": 1.0
+            },
+            "15": {
+              "TE": 1.0
+            },
+            "16": {
+              "DST": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "WR": 235.56092908333335,
+            "RB": 211.723560284,
+            "TE": 175.32648828333333,
+            "QB": 212.97256029,
+            "DST": 132.67337907
+          },
+          "mean_adp_by_pos": {
+            "WR": 28.94,
+            "RB": 28.608,
+            "TE": 69.76666666666667,
+            "QB": 159.97,
+            "DST": 115.78
+          }
+        }
+      },
+      "v2_vs_raw": {
+        "baseline": "marginal",
+        "challenger": "marginal_v2",
+        "mean_delta": -32.82586864999985,
+        "median_delta": -32.82586864999985,
+        "std_delta": 0.0,
+        "win_rate": 0.0,
+        "tie_rate": 0.0
+      },
+      "n_losses": 20,
+      "loss_diagnostics": [
+        {
+          "sim": 0,
+          "seed": 0,
+          "raw_pts": 2340.34,
+          "v2_pts": 2307.51,
+          "delta": -32.83,
+          "raw_r1": {
+            "round": 1,
+            "overall": 5,
+            "player_id": "7564",
+            "name": "Ja'Marr Chase",
+            "position": "WR",
+            "proj_espn": 340.02142469,
+            "adp_espn": 4.7
+          },
+          "v2_r1": {
+            "round": 1,
+            "overall": 5,
+            "player_id": "7564",
+            "name": "Ja'Marr Chase",
+            "position": "WR",
+            "proj_espn": 340.02142469,
+            "adp_espn": 4.7
+          },
+          "q_failures": [
+            {
+              "overall": 5,
+              "round": 1,
+              "took": "Ja'Marr Chase",
+              "took_pos": "WR",
+              "took_id": "7564",
+              "expected_q": "Joe Burrow",
+              "expected_q_pos": "QB",
+              "q_player_id": "6770",
+              "picks_until_next": 10,
+              "ev_two_pick": 670.48,
+              "q_survived": false,
+              "resolved_at_overall": 16
+            },
+            {
+              "overall": 16,
+              "round": 2,
+              "took": "Ashton Jeanty",
+              "took_pos": "RB",
+              "took_id": "12527",
+              "expected_q": "Kyler Murray",
+              "expected_q_pos": "QB",
+              "q_player_id": "5849",
+              "picks_until_next": 8,
+              "ev_two_pick": 949.01,
+              "q_survived": false,
+              "resolved_at_overall": 25
+            },
+            {
+              "overall": 25,
+              "round": 3,
+              "took": "Jonathan Taylor",
+              "took_pos": "RB",
+              "took_id": "6813",
+              "expected_q": "Dak Prescott",
+              "expected_q_pos": "QB",
+              "q_player_id": "3294",
+              "picks_until_next": 10,
+              "ev_two_pick": 1216.64,
+              "q_survived": false,
+              "resolved_at_overall": 36
+            },
+            {
+              "overall": 36,
+              "round": 4,
+              "took": "Jeremiyah Love",
+              "took_pos": "RB",
+              "took_id": "13287",
+              "expected_q": "Caleb Williams",
+              "expected_q_pos": "QB",
+              "q_player_id": "11560",
+              "picks_until_next": 8,
+              "ev_two_pick": 1489.48,
+              "q_survived": false,
+              "resolved_at_overall": 45
+            }
+          ],
+          "q_events_early": [
+            {
+              "overall": 5,
+              "round": 1,
+              "took": "Ja'Marr Chase",
+              "took_pos": "WR",
+              "took_id": "7564",
+              "expected_q": "Joe Burrow",
+              "expected_q_pos": "QB",
+              "q_player_id": "6770",
+              "picks_until_next": 10,
+              "ev_two_pick": 670.48,
+              "q_survived": false,
+              "resolved_at_overall": 16
+            },
+            {
+              "overall": 16,
+              "round": 2,
+              "took": "Ashton Jeanty",
+              "took_pos": "RB",
+              "took_id": "12527",
+              "expected_q": "Kyler Murray",
+              "expected_q_pos": "QB",
+              "q_player_id": "5849",
+              "picks_until_next": 8,
+              "ev_two_pick": 949.01,
+              "q_survived": false,
+              "resolved_at_overall": 25
+            },
+            {
+              "overall": 25,
+              "round": 3,
+              "took": "Jonathan Taylor",
+              "took_pos": "RB",
+              "took_id": "6813",
+              "expected_q": "Dak Prescott",
+              "expected_q_pos": "QB",
+              "q_player_id": "3294",
+              "picks_until_next": 10,
+              "ev_two_pick": 1216.64,
+              "q_survived": false,
+              "resolved_at_overall": 36
+            },
+            {
+              "overall": 36,
+              "round": 4,
+              "took": "Jeremiyah Love",
+              "took_pos": "RB",
+              "took_id": "13287",
+              "expected_q": "Caleb Williams",
+              "expected_q_pos": "QB",
+              "q_player_id": "11560",
+              "picks_until_next": 8,
+              "ev_two_pick": 1489.48,
+              "q_survived": false,
+              "resolved_at_overall": 45
+            }
+          ]
+        },
+        {
+          "sim": 1,
+          "seed": 1009,
+          "raw_pts": 2340.34,
+          "v2_pts": 2307.51,
+          "delta": -32.83,
+          "raw_r1": {
+            "round": 1,
+            "overall": 5,
+            "player_id": "7564",
+            "name": "Ja'Marr Chase",
+            "position": "WR",
+            "proj_espn": 340.02142469,
+            "adp_espn": 4.7
+          },
+          "v2_r1": {
+            "round": 1,
+            "overall": 5,
+            "player_id": "7564",
+            "name": "Ja'Marr Chase",
+            "position": "WR",
+            "proj_espn": 340.02142469,
+            "adp_espn": 4.7
+          },
+          "q_failures": [
+            {
+              "overall": 5,
+              "round": 1,
+              "took": "Ja'Marr Chase",
+              "took_pos": "WR",
+              "took_id": "7564",
+              "expected_q": "Joe Burrow",
+              "expected_q_pos": "QB",
+              "q_player_id": "6770",
+              "picks_until_next": 10,
+              "ev_two_pick": 670.48,
+              "q_survived": false,
+              "resolved_at_overall": 16
+            },
+            {
+              "overall": 16,
+              "round": 2,
+              "took": "Ashton Jeanty",
+              "took_pos": "RB",
+              "took_id": "12527",
+              "expected_q": "Kyler Murray",
+              "expected_q_pos": "QB",
+              "q_player_id": "5849",
+              "picks_until_next": 8,
+              "ev_two_pick": 949.01,
+              "q_survived": false,
+              "resolved_at_overall": 25
+            },
+            {
+              "overall": 25,
+              "round": 3,
+              "took": "Jonathan Taylor",
+              "took_pos": "RB",
+              "took_id": "6813",
+              "expected_q": "Dak Prescott",
+              "expected_q_pos": "QB",
+              "q_player_id": "3294",
+              "picks_until_next": 10,
+              "ev_two_pick": 1216.64,
+              "q_survived": false,
+              "resolved_at_overall": 36
+            },
+            {
+              "overall": 36,
+              "round": 4,
+              "took": "Jeremiyah Love",
+              "took_pos": "RB",
+              "took_id": "13287",
+              "expected_q": "Caleb Williams",
+              "expected_q_pos": "QB",
+              "q_player_id": "11560",
+              "picks_until_next": 8,
+              "ev_two_pick": 1489.48,
+              "q_survived": false,
+              "resolved_at_overall": 45
+            }
+          ],
+          "q_events_early": [
+            {
+              "overall": 5,
+              "round": 1,
+              "took": "Ja'Marr Chase",
+              "took_pos": "WR",
+              "took_id": "7564",
+              "expected_q": "Joe Burrow",
+              "expected_q_pos": "QB",
+              "q_player_id": "6770",
+              "picks_until_next": 10,
+              "ev_two_pick": 670.48,
+              "q_survived": false,
+              "resolved_at_overall": 16
+            },
+            {
+              "overall": 16,
+              "round": 2,
+              "took": "Ashton Jeanty",
+              "took_pos": "RB",
+              "took_id": "12527",
+              "expected_q": "Kyler Murray",
+              "expected_q_pos": "QB",
+              "q_player_id": "5849",
+              "picks_until_next": 8,
+              "ev_two_pick": 949.01,
+              "q_survived": false,
+              "resolved_at_overall": 25
+            },
+            {
+              "overall": 25,
+              "round": 3,
+              "took": "Jonathan Taylor",
+              "took_pos": "RB",
+              "took_id": "6813",
+              "expected_q": "Dak Prescott",
+              "expected_q_pos": "QB",
+              "q_player_id": "3294",
+              "picks_until_next": 10,
+              "ev_two_pick": 1216.64,
+              "q_survived": false,
+              "resolved_at_overall": 36
+            },
+            {
+              "overall": 36,
+              "round": 4,
+              "took": "Jeremiyah Love",
+              "took_pos": "RB",
+              "took_id": "13287",
+              "expected_q": "Caleb Williams",
+              "expected_q_pos": "QB",
+              "q_player_id": "11560",
+              "picks_until_next": 8,
+              "ev_two_pick": 1489.48,
+              "q_survived": false,
+              "resolved_at_overall": 45
+            }
+          ]
+        },
+        {
+          "sim": 2,
+          "seed": 2018,
+          "raw_pts": 2340.34,
+          "v2_pts": 2307.51,
+          "delta": -32.83,
+          "raw_r1": {
+            "round": 1,
+            "overall": 5,
+            "player_id": "7564",
+            "name": "Ja'Marr Chase",
+            "position": "WR",
+            "proj_espn": 340.02142469,
+            "adp_espn": 4.7
+          },
+          "v2_r1": {
+            "round": 1,
+            "overall": 5,
+            "player_id": "7564",
+            "name": "Ja'Marr Chase",
+            "position": "WR",
+            "proj_espn": 340.02142469,
+            "adp_espn": 4.7
+          },
+          "q_failures": [
+            {
+              "overall": 5,
+              "round": 1,
+              "took": "Ja'Marr Chase",
+              "took_pos": "WR",
+              "took_id": "7564",
+              "expected_q": "Joe Burrow",
+              "expected_q_pos": "QB",
+              "q_player_id": "6770",
+              "picks_until_next": 10,
+              "ev_two_pick": 670.48,
+              "q_survived": false,
+              "resolved_at_overall": 16
+            },
+            {
+              "overall": 16,
+              "round": 2,
+              "took": "Ashton Jeanty",
+              "took_pos": "RB",
+              "took_id": "12527",
+              "expected_q": "Kyler Murray",
+              "expected_q_pos": "QB",
+              "q_player_id": "5849",
+              "picks_until_next": 8,
+              "ev_two_pick": 949.01,
+              "q_survived": false,
+              "resolved_at_overall": 25
+            },
+            {
+              "overall": 25,
+              "round": 3,
+              "took": "Jonathan Taylor",
+              "took_pos": "RB",
+              "took_id": "6813",
+              "expected_q": "Dak Prescott",
+              "expected_q_pos": "QB",
+              "q_player_id": "3294",
+              "picks_until_next": 10,
+              "ev_two_pick": 1216.64,
+              "q_survived": false,
+              "resolved_at_overall": 36
+            },
+            {
+              "overall": 36,
+              "round": 4,
+              "took": "Jeremiyah Love",
+              "took_pos": "RB",
+              "took_id": "13287",
+              "expected_q": "Caleb Williams",
+              "expected_q_pos": "QB",
+              "q_player_id": "11560",
+              "picks_until_next": 8,
+              "ev_two_pick": 1489.48,
+              "q_survived": false,
+              "resolved_at_overall": 45
+            }
+          ],
+          "q_events_early": [
+            {
+              "overall": 5,
+              "round": 1,
+              "took": "Ja'Marr Chase",
+              "took_pos": "WR",
+              "took_id": "7564",
+              "expected_q": "Joe Burrow",
+              "expected_q_pos": "QB",
+              "q_player_id": "6770",
+              "picks_until_next": 10,
+              "ev_two_pick": 670.48,
+              "q_survived": false,
+              "resolved_at_overall": 16
+            },
+            {
+              "overall": 16,
+              "round": 2,
+              "took": "Ashton Jeanty",
+              "took_pos": "RB",
+              "took_id": "12527",
+              "expected_q": "Kyler Murray",
+              "expected_q_pos": "QB",
+              "q_player_id": "5849",
+              "picks_until_next": 8,
+              "ev_two_pick": 949.01,
+              "q_survived": false,
+              "resolved_at_overall": 25
+            },
+            {
+              "overall": 25,
+              "round": 3,
+              "took": "Jonathan Taylor",
+              "took_pos": "RB",
+              "took_id": "6813",
+              "expected_q": "Dak Prescott",
+              "expected_q_pos": "QB",
+              "q_player_id": "3294",
+              "picks_until_next": 10,
+              "ev_two_pick": 1216.64,
+              "q_survived": false,
+              "resolved_at_overall": 36
+            },
+            {
+              "overall": 36,
+              "round": 4,
+              "took": "Jeremiyah Love",
+              "took_pos": "RB",
+              "took_id": "13287",
+              "expected_q": "Caleb Williams",
+              "expected_q_pos": "QB",
+              "q_player_id": "11560",
+              "picks_until_next": 8,
+              "ev_two_pick": 1489.48,
+              "q_survived": false,
+              "resolved_at_overall": 45
+            }
+          ]
+        }
+      ],
+      "note": "V2 lookahead frozen (ADP-greedy). Opponent policy applies to actual CPU picks only."
+    },
+    {
+      "slot": 10,
+      "n": 20,
+      "seed": 0,
+      "opponent_policy": "proj_greedy",
+      "summaries": {
+        "marginal": {
+          "strategy": "marginal",
+          "n": 20,
+          "mean_starter_pts": 2328.67586239,
+          "median_starter_pts": 2328.67586239,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3321.0,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 10,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.0625,
+            "RB": 0.3125,
+            "WR": 0.3125,
+            "TE": 0.25,
+            "DST": 0.0625
+          },
+          "position_counts": {
+            "RB": 100,
+            "WR": 100,
+            "TE": 80,
+            "QB": 20,
+            "DST": 20
+          },
+          "by_round_share": {
+            "1": {
+              "RB": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "RB": 1.0
+            },
+            "4": {
+              "RB": 1.0
+            },
+            "5": {
+              "TE": 1.0
+            },
+            "6": {
+              "QB": 1.0
+            },
+            "7": {
+              "WR": 1.0
+            },
+            "8": {
+              "WR": 1.0
+            },
+            "9": {
+              "DST": 1.0
+            },
+            "10": {
+              "WR": 1.0
+            },
+            "11": {
+              "RB": 1.0
+            },
+            "12": {
+              "WR": 1.0
+            },
+            "13": {
+              "TE": 1.0
+            },
+            "14": {
+              "TE": 1.0
+            },
+            "15": {
+              "RB": 1.0
+            },
+            "16": {
+              "TE": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "RB": 214.740351728,
+            "WR": 225.385723234,
+            "TE": 181.628436045,
+            "QB": 261.1990017,
+            "DST": 132.67337907
+          },
+          "mean_adp_by_pos": {
+            "RB": 37.78,
+            "WR": 43.238,
+            "TE": 45.53,
+            "QB": 170.31,
+            "DST": 115.78
+          }
+        },
+        "marginal_v2": {
+          "strategy": "marginal_v2",
+          "n": 20,
+          "mean_starter_pts": 2324.44076082,
+          "median_starter_pts": 2324.44076082,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3383.5,
+          "mean_starter_rank": 1,
+          "mean_roster_rank": 10,
+          "mean_rank": 1,
+          "position_share": {
+            "QB": 0.0625,
+            "RB": 0.375,
+            "WR": 0.3125,
+            "TE": 0.1875,
+            "DST": 0.0625
+          },
+          "position_counts": {
+            "RB": 120,
+            "WR": 100,
+            "TE": 60,
+            "QB": 20,
+            "DST": 20
+          },
+          "by_round_share": {
+            "1": {
+              "RB": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "RB": 1.0
+            },
+            "4": {
+              "RB": 1.0
+            },
+            "5": {
+              "TE": 1.0
+            },
+            "6": {
+              "RB": 1.0
+            },
+            "7": {
+              "WR": 1.0
+            },
+            "8": {
+              "QB": 1.0
+            },
+            "9": {
+              "WR": 1.0
+            },
+            "10": {
+              "WR": 1.0
+            },
+            "11": {
+              "RB": 1.0
+            },
+            "12": {
+              "WR": 1.0
+            },
+            "13": {
+              "TE": 1.0
+            },
+            "14": {
+              "TE": 1.0
+            },
+            "15": {
+              "RB": 1.0
+            },
+            "16": {
+              "DST": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "RB": 222.18741885833333,
+            "WR": 220.33664242,
+            "TE": 194.48410732000002,
+            "QB": 232.60983172,
+            "DST": 132.67337907
+          },
+          "mean_adp_by_pos": {
+            "RB": 35.156666666666666,
+            "WR": 30.9,
+            "TE": 38.72666666666667,
+            "QB": 169.04,
+            "DST": 115.78
+          }
+        }
+      },
+      "v2_vs_raw": {
+        "baseline": "marginal",
+        "challenger": "marginal_v2",
+        "mean_delta": -4.235101570000097,
+        "median_delta": -4.235101570000097,
+        "std_delta": 0.0,
+        "win_rate": 0.0,
+        "tie_rate": 0.0
+      },
+      "n_losses": 20,
+      "loss_diagnostics": [
+        {
+          "sim": 0,
+          "seed": 0,
+          "raw_pts": 2328.68,
+          "v2_pts": 2324.44,
+          "delta": -4.24,
+          "raw_r1": {
+            "round": 1,
+            "overall": 10,
+            "player_id": "4034",
+            "name": "Christian McCaffrey",
+            "position": "RB",
+            "proj_espn": 318.41156322,
+            "adp_espn": 6.63
+          },
+          "v2_r1": {
+            "round": 1,
+            "overall": 10,
+            "player_id": "4034",
+            "name": "Christian McCaffrey",
+            "position": "RB",
+            "proj_espn": 318.41156322,
+            "adp_espn": 6.63
+          },
+          "q_failures": [
+            {
+              "overall": 11,
+              "round": 2,
+              "took": "CeeDee Lamb",
+              "took_pos": "WR",
+              "took_id": "6786",
+              "expected_q": "Baker Mayfield",
+              "expected_q_pos": "QB",
+              "q_player_id": "4892",
+              "picks_until_next": 18,
+              "ev_two_pick": 946.9,
+              "q_survived": false,
+              "resolved_at_overall": 30
+            },
+            {
+              "overall": 31,
+              "round": 4,
+              "took": "Bucky Irving",
+              "took_pos": "RB",
+              "took_id": "11584",
+              "expected_q": "J.J. McCarthy",
+              "expected_q_pos": "QB",
+              "q_player_id": "11565",
+              "picks_until_next": 18,
+              "ev_two_pick": 1484.85,
+              "q_survived": false,
+              "resolved_at_overall": 50
+            },
+            {
+              "overall": 51,
+              "round": 6,
+              "took": "Omarion Hampton",
+              "took_pos": "RB",
+              "took_id": "12507",
+              "expected_q": "Geno Smith",
+              "expected_q_pos": "QB",
+              "q_player_id": "1373",
+              "picks_until_next": 18,
+              "ev_two_pick": 1985.09,
+              "q_survived": false,
+              "resolved_at_overall": 70
+            }
+          ],
+          "q_events_early": [
+            {
+              "overall": 10,
+              "round": 1,
+              "took": "Christian McCaffrey",
+              "took_pos": "RB",
+              "took_id": "4034",
+              "expected_q": "CeeDee Lamb",
+              "expected_q_pos": "WR",
+              "q_player_id": "6786",
+              "picks_until_next": 0,
+              "ev_two_pick": 635.94,
+              "q_survived": true,
+              "resolved_at_overall": 11
+            },
+            {
+              "overall": 11,
+              "round": 2,
+              "took": "CeeDee Lamb",
+              "took_pos": "WR",
+              "took_id": "6786",
+              "expected_q": "Baker Mayfield",
+              "expected_q_pos": "QB",
+              "q_player_id": "4892",
+              "picks_until_next": 18,
+              "ev_two_pick": 946.9,
+              "q_survived": false,
+              "resolved_at_overall": 30
+            },
+            {
+              "overall": 30,
+              "round": 3,
+              "took": "Josh Jacobs",
+              "took_pos": "RB",
+              "took_id": "5850",
+              "expected_q": "Bucky Irving",
+              "expected_q_pos": "RB",
+              "q_player_id": "11584",
+              "picks_until_next": 0,
+              "ev_two_pick": 1202.28,
+              "q_survived": true,
+              "resolved_at_overall": 31
+            },
+            {
+              "overall": 31,
+              "round": 4,
+              "took": "Bucky Irving",
+              "took_pos": "RB",
+              "took_id": "11584",
+              "expected_q": "J.J. McCarthy",
+              "expected_q_pos": "QB",
+              "q_player_id": "11565",
+              "picks_until_next": 18,
+              "ev_two_pick": 1484.85,
+              "q_survived": false,
+              "resolved_at_overall": 50
+            }
+          ]
+        },
+        {
+          "sim": 1,
+          "seed": 1009,
+          "raw_pts": 2328.68,
+          "v2_pts": 2324.44,
+          "delta": -4.24,
+          "raw_r1": {
+            "round": 1,
+            "overall": 10,
+            "player_id": "4034",
+            "name": "Christian McCaffrey",
+            "position": "RB",
+            "proj_espn": 318.41156322,
+            "adp_espn": 6.63
+          },
+          "v2_r1": {
+            "round": 1,
+            "overall": 10,
+            "player_id": "4034",
+            "name": "Christian McCaffrey",
+            "position": "RB",
+            "proj_espn": 318.41156322,
+            "adp_espn": 6.63
+          },
+          "q_failures": [
+            {
+              "overall": 11,
+              "round": 2,
+              "took": "CeeDee Lamb",
+              "took_pos": "WR",
+              "took_id": "6786",
+              "expected_q": "Baker Mayfield",
+              "expected_q_pos": "QB",
+              "q_player_id": "4892",
+              "picks_until_next": 18,
+              "ev_two_pick": 946.9,
+              "q_survived": false,
+              "resolved_at_overall": 30
+            },
+            {
+              "overall": 31,
+              "round": 4,
+              "took": "Bucky Irving",
+              "took_pos": "RB",
+              "took_id": "11584",
+              "expected_q": "J.J. McCarthy",
+              "expected_q_pos": "QB",
+              "q_player_id": "11565",
+              "picks_until_next": 18,
+              "ev_two_pick": 1484.85,
+              "q_survived": false,
+              "resolved_at_overall": 50
+            },
+            {
+              "overall": 51,
+              "round": 6,
+              "took": "Omarion Hampton",
+              "took_pos": "RB",
+              "took_id": "12507",
+              "expected_q": "Geno Smith",
+              "expected_q_pos": "QB",
+              "q_player_id": "1373",
+              "picks_until_next": 18,
+              "ev_two_pick": 1985.09,
+              "q_survived": false,
+              "resolved_at_overall": 70
+            }
+          ],
+          "q_events_early": [
+            {
+              "overall": 10,
+              "round": 1,
+              "took": "Christian McCaffrey",
+              "took_pos": "RB",
+              "took_id": "4034",
+              "expected_q": "CeeDee Lamb",
+              "expected_q_pos": "WR",
+              "q_player_id": "6786",
+              "picks_until_next": 0,
+              "ev_two_pick": 635.94,
+              "q_survived": true,
+              "resolved_at_overall": 11
+            },
+            {
+              "overall": 11,
+              "round": 2,
+              "took": "CeeDee Lamb",
+              "took_pos": "WR",
+              "took_id": "6786",
+              "expected_q": "Baker Mayfield",
+              "expected_q_pos": "QB",
+              "q_player_id": "4892",
+              "picks_until_next": 18,
+              "ev_two_pick": 946.9,
+              "q_survived": false,
+              "resolved_at_overall": 30
+            },
+            {
+              "overall": 30,
+              "round": 3,
+              "took": "Josh Jacobs",
+              "took_pos": "RB",
+              "took_id": "5850",
+              "expected_q": "Bucky Irving",
+              "expected_q_pos": "RB",
+              "q_player_id": "11584",
+              "picks_until_next": 0,
+              "ev_two_pick": 1202.28,
+              "q_survived": true,
+              "resolved_at_overall": 31
+            },
+            {
+              "overall": 31,
+              "round": 4,
+              "took": "Bucky Irving",
+              "took_pos": "RB",
+              "took_id": "11584",
+              "expected_q": "J.J. McCarthy",
+              "expected_q_pos": "QB",
+              "q_player_id": "11565",
+              "picks_until_next": 18,
+              "ev_two_pick": 1484.85,
+              "q_survived": false,
+              "resolved_at_overall": 50
+            }
+          ]
+        },
+        {
+          "sim": 2,
+          "seed": 2018,
+          "raw_pts": 2328.68,
+          "v2_pts": 2324.44,
+          "delta": -4.24,
+          "raw_r1": {
+            "round": 1,
+            "overall": 10,
+            "player_id": "4034",
+            "name": "Christian McCaffrey",
+            "position": "RB",
+            "proj_espn": 318.41156322,
+            "adp_espn": 6.63
+          },
+          "v2_r1": {
+            "round": 1,
+            "overall": 10,
+            "player_id": "4034",
+            "name": "Christian McCaffrey",
+            "position": "RB",
+            "proj_espn": 318.41156322,
+            "adp_espn": 6.63
+          },
+          "q_failures": [
+            {
+              "overall": 11,
+              "round": 2,
+              "took": "CeeDee Lamb",
+              "took_pos": "WR",
+              "took_id": "6786",
+              "expected_q": "Baker Mayfield",
+              "expected_q_pos": "QB",
+              "q_player_id": "4892",
+              "picks_until_next": 18,
+              "ev_two_pick": 946.9,
+              "q_survived": false,
+              "resolved_at_overall": 30
+            },
+            {
+              "overall": 31,
+              "round": 4,
+              "took": "Bucky Irving",
+              "took_pos": "RB",
+              "took_id": "11584",
+              "expected_q": "J.J. McCarthy",
+              "expected_q_pos": "QB",
+              "q_player_id": "11565",
+              "picks_until_next": 18,
+              "ev_two_pick": 1484.85,
+              "q_survived": false,
+              "resolved_at_overall": 50
+            },
+            {
+              "overall": 51,
+              "round": 6,
+              "took": "Omarion Hampton",
+              "took_pos": "RB",
+              "took_id": "12507",
+              "expected_q": "Geno Smith",
+              "expected_q_pos": "QB",
+              "q_player_id": "1373",
+              "picks_until_next": 18,
+              "ev_two_pick": 1985.09,
+              "q_survived": false,
+              "resolved_at_overall": 70
+            }
+          ],
+          "q_events_early": [
+            {
+              "overall": 10,
+              "round": 1,
+              "took": "Christian McCaffrey",
+              "took_pos": "RB",
+              "took_id": "4034",
+              "expected_q": "CeeDee Lamb",
+              "expected_q_pos": "WR",
+              "q_player_id": "6786",
+              "picks_until_next": 0,
+              "ev_two_pick": 635.94,
+              "q_survived": true,
+              "resolved_at_overall": 11
+            },
+            {
+              "overall": 11,
+              "round": 2,
+              "took": "CeeDee Lamb",
+              "took_pos": "WR",
+              "took_id": "6786",
+              "expected_q": "Baker Mayfield",
+              "expected_q_pos": "QB",
+              "q_player_id": "4892",
+              "picks_until_next": 18,
+              "ev_two_pick": 946.9,
+              "q_survived": false,
+              "resolved_at_overall": 30
+            },
+            {
+              "overall": 30,
+              "round": 3,
+              "took": "Josh Jacobs",
+              "took_pos": "RB",
+              "took_id": "5850",
+              "expected_q": "Bucky Irving",
+              "expected_q_pos": "RB",
+              "q_player_id": "11584",
+              "picks_until_next": 0,
+              "ev_two_pick": 1202.28,
+              "q_survived": true,
+              "resolved_at_overall": 31
+            },
+            {
+              "overall": 31,
+              "round": 4,
+              "took": "Bucky Irving",
+              "took_pos": "RB",
+              "took_id": "11584",
+              "expected_q": "J.J. McCarthy",
+              "expected_q_pos": "QB",
+              "q_player_id": "11565",
+              "picks_until_next": 18,
+              "ev_two_pick": 1484.85,
+              "q_survived": false,
+              "resolved_at_overall": 50
+            }
+          ]
+        }
+      ],
+      "note": "V2 lookahead frozen (ADP-greedy). Opponent policy applies to actual CPU picks only."
+    },
+    {
+      "slot": 1,
+      "n": 20,
+      "seed": 0,
+      "opponent_policy": "vor",
+      "summaries": {
+        "marginal": {
+          "strategy": "marginal",
+          "n": 20,
+          "mean_starter_pts": 2030.5725266900001,
+          "median_starter_pts": 2030.5725266900001,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3111.0,
+          "mean_starter_rank": 2,
+          "mean_roster_rank": 6,
+          "mean_rank": 2,
+          "position_share": {
+            "QB": 0.125,
+            "RB": 0.1875,
+            "WR": 0.375,
+            "TE": 0.1875,
+            "DST": 0.125
+          },
+          "position_counts": {
+            "QB": 40,
+            "WR": 120,
+            "TE": 60,
+            "DST": 40,
+            "RB": 60
+          },
+          "by_round_share": {
+            "1": {
+              "QB": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "WR": 1.0
+            },
+            "4": {
+              "WR": 1.0
+            },
+            "5": {
+              "WR": 1.0
+            },
+            "6": {
+              "TE": 1.0
+            },
+            "7": {
+              "DST": 1.0
+            },
+            "8": {
+              "RB": 1.0
+            },
+            "9": {
+              "RB": 1.0
+            },
+            "10": {
+              "WR": 1.0
+            },
+            "11": {
+              "DST": 1.0
+            },
+            "12": {
+              "RB": 1.0
+            },
+            "13": {
+              "WR": 1.0
+            },
+            "14": {
+              "TE": 1.0
+            },
+            "15": {
+              "TE": 1.0
+            },
+            "16": {
+              "QB": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "QB": 328.42506456,
+            "WR": 262.0740826933333,
+            "TE": 171.01100926333334,
+            "DST": 131.40331036,
+            "RB": 35.2901895
+          },
+          "mean_adp_by_pos": {
+            "QB": 49.485,
+            "WR": 21.955,
+            "TE": 52.93333333333334,
+            "DST": 102.595,
+            "RB": 89.27333333333333
+          }
+        },
+        "marginal_v2": {
+          "strategy": "marginal_v2",
+          "n": 20,
+          "mean_starter_pts": 2071.96148549,
+          "median_starter_pts": 2071.96148549,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3388.6,
+          "mean_starter_rank": 2,
+          "mean_roster_rank": 1,
+          "mean_rank": 2,
+          "position_share": {
+            "QB": 0.125,
+            "RB": 0.125,
+            "WR": 0.4375,
+            "TE": 0.1875,
+            "DST": 0.125
+          },
+          "position_counts": {
+            "WR": 140,
+            "QB": 40,
+            "TE": 60,
+            "DST": 40,
+            "RB": 40
+          },
+          "by_round_share": {
+            "1": {
+              "WR": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "WR": 1.0
+            },
+            "4": {
+              "WR": 1.0
+            },
+            "5": {
+              "QB": 1.0
+            },
+            "6": {
+              "TE": 1.0
+            },
+            "7": {
+              "DST": 1.0
+            },
+            "8": {
+              "RB": 1.0
+            },
+            "9": {
+              "WR": 1.0
+            },
+            "10": {
+              "DST": 1.0
+            },
+            "11": {
+              "WR": 1.0
+            },
+            "12": {
+              "RB": 1.0
+            },
+            "13": {
+              "WR": 1.0
+            },
+            "14": {
+              "TE": 1.0
+            },
+            "15": {
+              "TE": 1.0
+            },
+            "16": {
+              "QB": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "WR": 264.96356465285714,
+            "QB": 328.42506456,
+            "TE": 171.01100926333334,
+            "DST": 131.40331036,
+            "RB": 50.578698305
+          },
+          "mean_adp_by_pos": {
+            "WR": 19.782857142857143,
+            "QB": 49.485,
+            "TE": 52.93333333333334,
+            "DST": 102.595,
+            "RB": 94.05499999999999
+          }
+        }
+      },
+      "v2_vs_raw": {
+        "baseline": "marginal",
+        "challenger": "marginal_v2",
+        "mean_delta": 41.388958799999955,
+        "median_delta": 41.388958799999955,
+        "std_delta": 0.0,
+        "win_rate": 1.0,
+        "tie_rate": 0.0
+      },
+      "n_losses": 0,
+      "loss_diagnostics": [],
+      "note": "V2 lookahead frozen (ADP-greedy). Opponent policy applies to actual CPU picks only."
+    },
+    {
+      "slot": 5,
+      "n": 20,
+      "seed": 0,
+      "opponent_policy": "vor",
+      "summaries": {
+        "marginal": {
+          "strategy": "marginal",
+          "n": 20,
+          "mean_starter_pts": 2030.5725266900001,
+          "median_starter_pts": 2030.5725266900001,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3111.0,
+          "mean_starter_rank": 2,
+          "mean_roster_rank": 5,
+          "mean_rank": 2,
+          "position_share": {
+            "QB": 0.125,
+            "RB": 0.1875,
+            "WR": 0.375,
+            "TE": 0.1875,
+            "DST": 0.125
+          },
+          "position_counts": {
+            "QB": 40,
+            "WR": 120,
+            "TE": 60,
+            "DST": 40,
+            "RB": 60
+          },
+          "by_round_share": {
+            "1": {
+              "QB": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "WR": 1.0
+            },
+            "4": {
+              "WR": 1.0
+            },
+            "5": {
+              "WR": 1.0
+            },
+            "6": {
+              "TE": 1.0
+            },
+            "7": {
+              "DST": 1.0
+            },
+            "8": {
+              "RB": 1.0
+            },
+            "9": {
+              "RB": 1.0
+            },
+            "10": {
+              "WR": 1.0
+            },
+            "11": {
+              "DST": 1.0
+            },
+            "12": {
+              "RB": 1.0
+            },
+            "13": {
+              "WR": 1.0
+            },
+            "14": {
+              "TE": 1.0
+            },
+            "15": {
+              "TE": 1.0
+            },
+            "16": {
+              "QB": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "QB": 328.42506456,
+            "WR": 262.0740826933333,
+            "TE": 171.01100926333334,
+            "DST": 131.40331036,
+            "RB": 35.2901895
+          },
+          "mean_adp_by_pos": {
+            "QB": 49.485,
+            "WR": 21.955,
+            "TE": 52.93333333333334,
+            "DST": 102.595,
+            "RB": 89.27333333333333
+          }
+        },
+        "marginal_v2": {
+          "strategy": "marginal_v2",
+          "n": 20,
+          "mean_starter_pts": 2055.38054119,
+          "median_starter_pts": 2055.38054119,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3245.6,
+          "mean_starter_rank": 2,
+          "mean_roster_rank": 3,
+          "mean_rank": 2,
+          "position_share": {
+            "QB": 0.125,
+            "RB": 0.1875,
+            "WR": 0.375,
+            "TE": 0.1875,
+            "DST": 0.125
+          },
+          "position_counts": {
+            "WR": 120,
+            "QB": 40,
+            "TE": 60,
+            "DST": 40,
+            "RB": 60
+          },
+          "by_round_share": {
+            "1": {
+              "WR": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "WR": 1.0
+            },
+            "4": {
+              "WR": 1.0
+            },
+            "5": {
+              "QB": 1.0
+            },
+            "6": {
+              "TE": 1.0
+            },
+            "7": {
+              "DST": 1.0
+            },
+            "8": {
+              "RB": 1.0
+            },
+            "9": {
+              "WR": 1.0
+            },
+            "10": {
+              "WR": 1.0
+            },
+            "11": {
+              "DST": 1.0
+            },
+            "12": {
+              "RB": 1.0
+            },
+            "13": {
+              "TE": 1.0
+            },
+            "14": {
+              "RB": 1.0
+            },
+            "15": {
+              "TE": 1.0
+            },
+            "16": {
+              "QB": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "WR": 272.89176718666664,
+            "QB": 328.42506456,
+            "TE": 171.01100926333334,
+            "DST": 131.40331036,
+            "RB": 58.52315052
+          },
+          "mean_adp_by_pos": {
+            "WR": 15.488333333333333,
+            "QB": 49.485,
+            "TE": 52.93333333333334,
+            "DST": 102.595,
+            "RB": 109.53
+          }
+        }
+      },
+      "v2_vs_raw": {
+        "baseline": "marginal",
+        "challenger": "marginal_v2",
+        "mean_delta": 24.808014499999672,
+        "median_delta": 24.808014499999672,
+        "std_delta": 0.0,
+        "win_rate": 1.0,
+        "tie_rate": 0.0
+      },
+      "n_losses": 0,
+      "loss_diagnostics": [],
+      "note": "V2 lookahead frozen (ADP-greedy). Opponent policy applies to actual CPU picks only."
+    },
+    {
+      "slot": 10,
+      "n": 20,
+      "seed": 0,
+      "opponent_policy": "vor",
+      "summaries": {
+        "marginal": {
+          "strategy": "marginal",
+          "n": 20,
+          "mean_starter_pts": 2022.55544748,
+          "median_starter_pts": 2022.55544748,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3167.9,
+          "mean_starter_rank": 2,
+          "mean_roster_rank": 5,
+          "mean_rank": 2,
+          "position_share": {
+            "QB": 0.125,
+            "RB": 0.1875,
+            "WR": 0.375,
+            "TE": 0.1875,
+            "DST": 0.125
+          },
+          "position_counts": {
+            "QB": 40,
+            "WR": 120,
+            "TE": 60,
+            "DST": 40,
+            "RB": 60
+          },
+          "by_round_share": {
+            "1": {
+              "QB": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "WR": 1.0
+            },
+            "4": {
+              "WR": 1.0
+            },
+            "5": {
+              "WR": 1.0
+            },
+            "6": {
+              "TE": 1.0
+            },
+            "7": {
+              "DST": 1.0
+            },
+            "8": {
+              "RB": 1.0
+            },
+            "9": {
+              "RB": 1.0
+            },
+            "10": {
+              "WR": 1.0
+            },
+            "11": {
+              "DST": 1.0
+            },
+            "12": {
+              "WR": 1.0
+            },
+            "13": {
+              "RB": 1.0
+            },
+            "14": {
+              "TE": 1.0
+            },
+            "15": {
+              "TE": 1.0
+            },
+            "16": {
+              "QB": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "QB": 328.42506456,
+            "WR": 271.5555873183333,
+            "TE": 171.01100926333334,
+            "DST": 131.40331036,
+            "RB": 35.2901895
+          },
+          "mean_adp_by_pos": {
+            "QB": 49.485,
+            "WR": 16.248333333333335,
+            "TE": 52.93333333333334,
+            "DST": 102.595,
+            "RB": 89.27333333333333
+          }
+        },
+        "marginal_v2": {
+          "strategy": "marginal_v2",
+          "n": 20,
+          "mean_starter_pts": 2030.5725266900001,
+          "median_starter_pts": 2030.5725266900001,
+          "std_starter_pts": 0.0,
+          "mean_roster_proj": 3381.0,
+          "mean_starter_rank": 3,
+          "mean_roster_rank": 2,
+          "mean_rank": 3,
+          "position_share": {
+            "QB": 0.125,
+            "RB": 0.125,
+            "WR": 0.4375,
+            "TE": 0.1875,
+            "DST": 0.125
+          },
+          "position_counts": {
+            "WR": 140,
+            "QB": 40,
+            "TE": 60,
+            "DST": 40,
+            "RB": 40
+          },
+          "by_round_share": {
+            "1": {
+              "WR": 1.0
+            },
+            "2": {
+              "WR": 1.0
+            },
+            "3": {
+              "WR": 1.0
+            },
+            "4": {
+              "WR": 1.0
+            },
+            "5": {
+              "QB": 1.0
+            },
+            "6": {
+              "TE": 1.0
+            },
+            "7": {
+              "DST": 1.0
+            },
+            "8": {
+              "RB": 1.0
+            },
+            "9": {
+              "WR": 1.0
+            },
+            "10": {
+              "WR": 1.0
+            },
+            "11": {
+              "DST": 1.0
+            },
+            "12": {
+              "WR": 1.0
+            },
+            "13": {
+              "RB": 1.0
+            },
+            "14": {
+              "TE": 1.0
+            },
+            "15": {
+              "TE": 1.0
+            },
+            "16": {
+              "QB": 1.0
+            }
+          },
+          "mean_proj_by_pos": {
+            "WR": 263.8819835928571,
+            "QB": 328.42506456,
+            "TE": 171.01100926333334,
+            "DST": 131.40331036,
+            "RB": 50.578698305
+          },
+          "mean_adp_by_pos": {
+            "WR": 18.335714285714285,
+            "QB": 49.485,
+            "TE": 52.93333333333334,
+            "DST": 102.595,
+            "RB": 94.05499999999999
+          }
+        }
+      },
+      "v2_vs_raw": {
+        "baseline": "marginal",
+        "challenger": "marginal_v2",
+        "mean_delta": 8.01707921000002,
+        "median_delta": 8.01707921000002,
+        "std_delta": 0.0,
+        "win_rate": 1.0,
+        "tie_rate": 0.0
+      },
+      "n_losses": 0,
+      "loss_diagnostics": [],
+      "note": "V2 lookahead frozen (ADP-greedy). Opponent policy applies to actual CPU picks only."
+    }
+  ]
+}
