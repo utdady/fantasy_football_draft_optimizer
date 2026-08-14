@@ -115,6 +115,9 @@ Sim CPU policies are **models of the draft**, not the ultimate target.
 
 using **preseason information only**.
 
+**Anti-pattern:** do not let “beats our ADP CPU” become the definition of success.
+The CPU is a measurement instrument, not the objective.
+
 Eventual research loop:
 
 ```text
@@ -130,6 +133,10 @@ Evaluate roster
 ```
 
 Do not overfit the current three deterministic scenario policies.
+
+**Phase 2 (next):** leakage-safe historical snapshots + outcome scoring —
+see [`PHASE2_HISTORICAL_EVAL.md`](PHASE2_HISTORICAL_EVAL.md). Phase 1 algorithms
+stay frozen; no V3/β3 until Phase 2 P2.1–P2.6 are green.
 
 ---
 

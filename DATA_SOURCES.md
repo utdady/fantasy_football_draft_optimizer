@@ -105,7 +105,8 @@ Treat every external pull as a **versioned snapshot**, not a mutable “current 
 | **V0** data + draft-state + keyboard UI | Sleeper + DynastyProcess IDs/ECR + ESPN ADP/proj |
 | **V1** marginal lineup value | Same (+ bye / injury in lineup EV) |
 | **V1.5** backtesting | + FFC historical ADP and/or our own ADP snapshots; nflverse stats for outcomes |
-| **V2–V3** draft-aware / survival | Same + richer market (FP multi-ADP if available) |
+| **Phase 2 historical eval** | Decision-time snapshots vs outcome DB; leakage validator; actual PPR scoring — see [`results/PHASE2_HISTORICAL_EVAL.md`](results/PHASE2_HISTORICAL_EVAL.md) |
+| **V2–V3** draft-aware / survival | Same + richer market (FP multi-ADP if available); **frozen pending Phase 2** |
 | **V4** Monte Carlo | + projection uncertainty (ECR `sd` first; distributions later) |
 | **V5** live ESPN | ESPN draft observation (separate from valuation sources) |
 

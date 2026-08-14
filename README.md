@@ -8,6 +8,10 @@
 > The UI still uses raw **V1 `marginal`**. Objective / scenario semantics for
 > further V2 work are frozen in [`results/V2_OBJECTIVE_DESIGN.md`](results/V2_OBJECTIVE_DESIGN.md)
 > — no new V2 strategy until that note is revised.
+>
+> **Phase 2 (next research track):** historical snapshot + actual-points evaluation
+> ([`results/PHASE2_HISTORICAL_EVAL.md`](results/PHASE2_HISTORICAL_EVAL.md)). Algorithms
+> stay frozen; first promotion-worthy evidence must be leakage-safe **actual** PPR.
 
 ## Setup
 
