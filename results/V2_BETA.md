@@ -1,29 +1,43 @@
-# V2-beta design (pilot)
+# V2-beta (policy mixture) — REJECTED
 
-Equal-weight mixture of deterministic futures — no Monte Carlo, no learned weights.
+**Status:** rejected (negative result — keep artifacts).
+
+## Formulation
+
+Equal-weight average of complete two-pick futures:
 
 \[
 EV_\beta(p)=\tfrac13\bigl(EV_{ADP}(p)+EV_{proj}(p)+EV_{VOR}(p)\bigr)
 \]
 
-Each \(EV_f\) uses the same two-pick raw starter objective as V2-alpha
-(`L(R∪{p,q})` with `q` = best raw marginal among survivors), but advances the
-board under future policy \(f\) instead of only ADP-greedy.
+Strategy: `marginal_v2_beta` (aliases: `v2_beta`, `v2b`). UI default stayed `marginal`.
 
-| | Alpha | Beta |
-| --- | --- | --- |
-| Strategy | `marginal_v2` | `marginal_v2_beta` |
-| Futures | ADP-greedy only (frozen) | ADP + proj + VOR, equal weight |
-| UI default | still `marginal` | still `marginal` |
+## Pilot (slot 1, n=10)
 
-## Success (pilot)
+See [`stress_v2beta_pilot_slot1.md`](stress_v2beta_pilot_slot1.md).
 
-Shrink proj-greedy catastrophe relative to α while keeping **most** of α’s
-noisy-ADP edge. Not required to fully eliminate losses.
+| opponent | α−raw | β−raw | β−α |
+| --- | ---: | ---: | ---: |
+| noisy_adp | +83.7 | +57.1 | **−26.6** |
+| adp_greedy | +76.3 | +50.9 | **−25.4** |
+| proj_greedy | −17.0 | **−28.8** | **−11.8** |
+| vor | +41.4 | +66.2 | +24.8 |
 
-## Eval command (slot-1 lean pilot)
+## Rejection reason
 
-```powershell
-python -m draftopt.stress_opponent --n 10 --slots 1 --seed 0 `
-  --out results/stress_v2beta_pilot_slot1.md
-```
+Equal-weight averaging of finished future policies sacrifices ~25–27 points of
+α’s ADP-like advantage and does **not** eliminate the projection-greedy failure
+(Chase → deferred QB sniped). Averaging worlds is the wrong representation of
+survival uncertainty — not a weight-tuning problem.
+
+**Do not** hand-tune mixture weights against this stress grid. **Do not** run a
+full β matrix.
+
+## Next
+
+Exact failure-state survival diagnostic: [`case_study_survival_chase_daniels.md`](case_study_survival_chase_daniels.md).
+
+**Verdict: Outcome A** — under the proj death branch, taking Daniels now beats
+Chase + replacement QB (~+33.6). Explicit survival risk would flip the R1
+decision; policy-mixture failed because it diluted that branch instead of
+representing it.

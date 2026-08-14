@@ -69,7 +69,7 @@ Paired snakes: shared sim seed + CPU RNG keyed by overall pick #. Scoring uses E
 - `marginal_no_qb_r1` — raw marginal with QB banned in round 1 (diagnostic)
 - `marginal_vor` — VOR-lite (`lineup_ev` uses projection minus positional replacement)
 - `marginal_v2` — experimental V2-alpha (two-pick EV under ADP-greedy future); frozen baseline in [`results/V2_ALPHA_BASELINE.md`](results/V2_ALPHA_BASELINE.md)
-- `marginal_v2_beta` — experimental V2-beta (equal-weight ADP/proj/VOR futures); stress via `python -m draftopt.stress_opponent`
+- `marginal_v2_beta` — **rejected** equal-weight policy mixture; see [`results/V2_BETA.md`](results/V2_BETA.md)
 
 ```powershell
 # Three-way early-pick divergence (RAW / VOR / V2)

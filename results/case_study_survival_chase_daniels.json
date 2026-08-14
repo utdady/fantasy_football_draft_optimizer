@@ -1,0 +1,688 @@
+{
+  "state": {
+    "slot": 1,
+    "overall": 1,
+    "next_user_pick": 20,
+    "picks_until_next": 18,
+    "roster": [],
+    "failure_source": "proj_greedy V2 stress / \u03b2 pilot R1"
+  },
+  "strategy_picks_r1": {
+    "marginal_v2": {
+      "name": "Ja'Marr Chase",
+      "position": "WR",
+      "q_player": "Jayden Daniels",
+      "ev_two_pick": 711.61,
+      "why": "two-pick EV 711.6 (take now \u2192 ADP\u00d718 \u2192 Jayden Daniels QB at #20)"
+    },
+    "marginal_v2_beta": {
+      "name": "Ja'Marr Chase",
+      "position": "WR",
+      "q_player": "Jayden Daniels",
+      "ev_two_pick": 688.2,
+      "ev_by_future": {
+        "adp_greedy": 711.61,
+        "proj_greedy": 641.37,
+        "vor": 711.61
+      },
+      "why": "\u03b2 mix EV 688.2 [adp_greedy=712, proj_greedy=641, vor=712] (ADP-q Jayden Daniels QB at #20)"
+    }
+  },
+  "player_ranks": {
+    "7564": {
+      "name": "Ja'Marr Chase",
+      "position": "WR",
+      "proj": 340.02,
+      "adp_espn": 4.7,
+      "adp_rank": 4,
+      "proj_rank": 5,
+      "vor_rank": 2,
+      "vor": 118.66
+    },
+    "11566": {
+      "name": "Jayden Daniels",
+      "position": "QB",
+      "proj": 371.59,
+      "adp_espn": 51.05,
+      "adp_rank": 46,
+      "proj_rank": 1,
+      "vor_rank": 21,
+      "vor": 69.7
+    },
+    "7591": {
+      "name": "Justin Fields",
+      "position": "QB",
+      "proj": 299.32,
+      "adp_espn": 169.94,
+      "adp_rank": 258,
+      "proj_rank": 21,
+      "vor_rank": 87,
+      "vor": 0.0
+    },
+    "421": {
+      "name": "Matthew Stafford",
+      "position": "QB",
+      "proj": 274.08,
+      "adp_espn": 78.81,
+      "adp_rank": 67,
+      "proj_rank": 41,
+      "vor_rank": 96,
+      "vor": 0.0
+    }
+  },
+  "primary_chase_daniels": {
+    "take_now": {
+      "player_id": "7564",
+      "name": "Ja'Marr Chase",
+      "position": "WR",
+      "projection": 340.02,
+      "adp_espn": 4.7
+    },
+    "deferred_q": {
+      "player_id": "11566",
+      "name": "Jayden Daniels",
+      "position": "QB",
+      "projection": 371.59,
+      "adp_espn": 51.05
+    },
+    "n_cpu_picks": 18,
+    "one_pick_take_now": 340.02,
+    "one_pick_deferred": 371.59,
+    "delta_one_pick_deferred_minus_take": 31.57,
+    "policy_disagreement": {
+      "adp_greedy": "survives",
+      "proj_greedy": "dies",
+      "vor": "survives"
+    },
+    "by_future": {
+      "adp_greedy": {
+        "q_survives": true,
+        "best_second_after_take": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "best_qb_after_take": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "ev_take_now_plus_best": 711.61,
+        "ev_take_now_plus_best_qb": 711.61,
+        "ev_take_now_plus_deferred_if_alive": 711.61,
+        "ev_take_deferred_now_two_pick": 672.94,
+        "q_after_taking_deferred": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "ev_take_now_two_pick": 711.61,
+        "q_after_taking_now": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "delta_deferred_now_minus_take_now": -38.67,
+        "delta_deferred_now_minus_take_now_plus_qb": -38.67
+      },
+      "proj_greedy": {
+        "q_survives": false,
+        "best_second_after_take": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "best_qb_after_take": {
+          "player_id": "7591",
+          "name": "Justin Fields",
+          "position": "QB",
+          "projection": 299.32,
+          "adp_espn": 169.94
+        },
+        "ev_take_now_plus_best": 641.37,
+        "ev_take_now_plus_best_qb": 639.34,
+        "ev_take_now_plus_deferred_if_alive": null,
+        "ev_take_deferred_now_two_pick": 672.94,
+        "q_after_taking_deferred": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "ev_take_now_two_pick": 641.37,
+        "q_after_taking_now": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "delta_deferred_now_minus_take_now": 31.57,
+        "delta_deferred_now_minus_take_now_plus_qb": 33.6
+      },
+      "vor": {
+        "q_survives": true,
+        "best_second_after_take": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "best_qb_after_take": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "ev_take_now_plus_best": 711.61,
+        "ev_take_now_plus_best_qb": 711.61,
+        "ev_take_now_plus_deferred_if_alive": 711.61,
+        "ev_take_deferred_now_two_pick": 689.12,
+        "q_after_taking_deferred": {
+          "player_id": "6786",
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "projection": 317.53,
+          "adp_espn": 10.58
+        },
+        "ev_take_now_two_pick": 711.61,
+        "q_after_taking_now": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "delta_deferred_now_minus_take_now": -22.49,
+        "delta_deferred_now_minus_take_now_plus_qb": -22.49
+      }
+    },
+    "outcome_hint": {
+      "proj_q_dies": true,
+      "under_proj_death_take_deferred_beats_take_plus_qb": true,
+      "reading": "Outcome A (survival explains it): under proj death, taking deferred q now beats take-now + replacement QB"
+    }
+  },
+  "secondary_r1_board_fields": {
+    "take_now": {
+      "player_id": "7564",
+      "name": "Ja'Marr Chase",
+      "position": "WR",
+      "projection": 340.02,
+      "adp_espn": 4.7
+    },
+    "deferred_q": {
+      "player_id": "7591",
+      "name": "Justin Fields",
+      "position": "QB",
+      "projection": 299.32,
+      "adp_espn": 169.94
+    },
+    "n_cpu_picks": 18,
+    "one_pick_take_now": 340.02,
+    "one_pick_deferred": 299.32,
+    "delta_one_pick_deferred_minus_take": -40.7,
+    "policy_disagreement": {
+      "adp_greedy": "survives",
+      "proj_greedy": "survives",
+      "vor": "survives"
+    },
+    "by_future": {
+      "adp_greedy": {
+        "q_survives": true,
+        "best_second_after_take": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "best_qb_after_take": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "ev_take_now_plus_best": 711.61,
+        "ev_take_now_plus_best_qb": 711.61,
+        "ev_take_now_plus_deferred_if_alive": 639.34,
+        "ev_take_deferred_now_two_pick": 600.67,
+        "q_after_taking_deferred": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "ev_take_now_two_pick": 711.61,
+        "q_after_taking_now": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "delta_deferred_now_minus_take_now": -110.95,
+        "delta_deferred_now_minus_take_now_plus_qb": -110.95
+      },
+      "proj_greedy": {
+        "q_survives": true,
+        "best_second_after_take": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "best_qb_after_take": {
+          "player_id": "7591",
+          "name": "Justin Fields",
+          "position": "QB",
+          "projection": 299.32,
+          "adp_espn": 169.94
+        },
+        "ev_take_now_plus_best": 641.37,
+        "ev_take_now_plus_best_qb": 639.34,
+        "ev_take_now_plus_deferred_if_alive": 639.34,
+        "ev_take_deferred_now_two_pick": 600.67,
+        "q_after_taking_deferred": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "ev_take_now_two_pick": 641.37,
+        "q_after_taking_now": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "delta_deferred_now_minus_take_now": -40.7,
+        "delta_deferred_now_minus_take_now_plus_qb": -38.67
+      },
+      "vor": {
+        "q_survives": true,
+        "best_second_after_take": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "best_qb_after_take": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "ev_take_now_plus_best": 711.61,
+        "ev_take_now_plus_best_qb": 711.61,
+        "ev_take_now_plus_deferred_if_alive": 639.34,
+        "ev_take_deferred_now_two_pick": 616.85,
+        "q_after_taking_deferred": {
+          "player_id": "6786",
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "projection": 317.53,
+          "adp_espn": 10.58
+        },
+        "ev_take_now_two_pick": 711.61,
+        "q_after_taking_now": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "delta_deferred_now_minus_take_now": -94.77,
+        "delta_deferred_now_minus_take_now_plus_qb": -94.77
+      }
+    },
+    "outcome_hint": {
+      "proj_q_dies": false,
+      "under_proj_death_take_deferred_beats_take_plus_qb": null,
+      "reading": "inconclusive (proj does not kill q)"
+    }
+  },
+  "secondary_r1_board_stafford": {
+    "take_now": {
+      "player_id": "7564",
+      "name": "Ja'Marr Chase",
+      "position": "WR",
+      "projection": 340.02,
+      "adp_espn": 4.7
+    },
+    "deferred_q": {
+      "player_id": "421",
+      "name": "Matthew Stafford",
+      "position": "QB",
+      "projection": 274.08,
+      "adp_espn": 78.81
+    },
+    "n_cpu_picks": 18,
+    "one_pick_take_now": 340.02,
+    "one_pick_deferred": 274.08,
+    "delta_one_pick_deferred_minus_take": -65.94,
+    "policy_disagreement": {
+      "adp_greedy": "survives",
+      "proj_greedy": "survives",
+      "vor": "survives"
+    },
+    "by_future": {
+      "adp_greedy": {
+        "q_survives": true,
+        "best_second_after_take": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "best_qb_after_take": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "ev_take_now_plus_best": 711.61,
+        "ev_take_now_plus_best_qb": 711.61,
+        "ev_take_now_plus_deferred_if_alive": 614.1,
+        "ev_take_deferred_now_two_pick": 575.43,
+        "q_after_taking_deferred": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "ev_take_now_two_pick": 711.61,
+        "q_after_taking_now": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "delta_deferred_now_minus_take_now": -136.18,
+        "delta_deferred_now_minus_take_now_plus_qb": -136.18
+      },
+      "proj_greedy": {
+        "q_survives": true,
+        "best_second_after_take": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "best_qb_after_take": {
+          "player_id": "7591",
+          "name": "Justin Fields",
+          "position": "QB",
+          "projection": 299.32,
+          "adp_espn": 169.94
+        },
+        "ev_take_now_plus_best": 641.37,
+        "ev_take_now_plus_best_qb": 639.34,
+        "ev_take_now_plus_deferred_if_alive": 614.1,
+        "ev_take_deferred_now_two_pick": 575.43,
+        "q_after_taking_deferred": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "ev_take_now_two_pick": 641.37,
+        "q_after_taking_now": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "projection": 301.35,
+          "adp_espn": 37.97
+        },
+        "delta_deferred_now_minus_take_now": -65.94,
+        "delta_deferred_now_minus_take_now_plus_qb": -63.91
+      },
+      "vor": {
+        "q_survives": true,
+        "best_second_after_take": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "best_qb_after_take": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "ev_take_now_plus_best": 711.61,
+        "ev_take_now_plus_best_qb": 711.61,
+        "ev_take_now_plus_deferred_if_alive": 614.1,
+        "ev_take_deferred_now_two_pick": 591.61,
+        "q_after_taking_deferred": {
+          "player_id": "6786",
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "projection": 317.53,
+          "adp_espn": 10.58
+        },
+        "ev_take_now_two_pick": 711.61,
+        "q_after_taking_now": {
+          "player_id": "11566",
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "projection": 371.59,
+          "adp_espn": 51.05
+        },
+        "delta_deferred_now_minus_take_now": -120.0,
+        "delta_deferred_now_minus_take_now_plus_qb": -120.0
+      }
+    },
+    "outcome_hint": {
+      "proj_q_dies": false,
+      "under_proj_death_take_deferred_beats_take_plus_qb": null,
+      "reading": "inconclusive (proj does not kill q)"
+    }
+  },
+  "after_chase_proj18": {
+    "overall": 20,
+    "daniels_still_available": false,
+    "fields_still_available": true,
+    "stafford_still_available": true,
+    "v2_top3": [
+      {
+        "name": "Malik Nabers",
+        "position": "WR",
+        "q_player": "Justin Fields",
+        "ev_two_pick": 940.69
+      },
+      {
+        "name": "Justin Fields",
+        "position": "QB",
+        "q_player": "Malik Nabers",
+        "ev_two_pick": 940.69
+      },
+      {
+        "name": "Puka Nacua",
+        "position": "WR",
+        "q_player": "Malik Nabers",
+        "ev_two_pick": 940.0
+      }
+    ],
+    "diagnostic": {
+      "take_now": {
+        "player_id": "11632",
+        "name": "Malik Nabers",
+        "position": "WR",
+        "projection": 301.35,
+        "adp_espn": 37.97
+      },
+      "deferred_q": {
+        "player_id": "7591",
+        "name": "Justin Fields",
+        "position": "QB",
+        "projection": 299.32,
+        "adp_espn": 169.94
+      },
+      "n_cpu_picks": 0,
+      "one_pick_take_now": 641.37,
+      "one_pick_deferred": 639.34,
+      "delta_one_pick_deferred_minus_take": -2.03,
+      "policy_disagreement": {
+        "adp_greedy": "survives",
+        "proj_greedy": "survives",
+        "vor": "survives"
+      },
+      "by_future": {
+        "adp_greedy": {
+          "q_survives": true,
+          "best_second_after_take": {
+            "player_id": "7591",
+            "name": "Justin Fields",
+            "position": "QB",
+            "projection": 299.32,
+            "adp_espn": 169.94
+          },
+          "best_qb_after_take": {
+            "player_id": "7591",
+            "name": "Justin Fields",
+            "position": "QB",
+            "projection": 299.32,
+            "adp_espn": 169.94
+          },
+          "ev_take_now_plus_best": 940.69,
+          "ev_take_now_plus_best_qb": 940.69,
+          "ev_take_now_plus_deferred_if_alive": 940.69,
+          "ev_take_deferred_now_two_pick": 940.69,
+          "q_after_taking_deferred": {
+            "player_id": "11632",
+            "name": "Malik Nabers",
+            "position": "WR",
+            "projection": 301.35,
+            "adp_espn": 37.97
+          },
+          "ev_take_now_two_pick": 940.69,
+          "q_after_taking_now": {
+            "player_id": "7591",
+            "name": "Justin Fields",
+            "position": "QB",
+            "projection": 299.32,
+            "adp_espn": 169.94
+          },
+          "delta_deferred_now_minus_take_now": 0.0,
+          "delta_deferred_now_minus_take_now_plus_qb": 0.0
+        },
+        "proj_greedy": {
+          "q_survives": true,
+          "best_second_after_take": {
+            "player_id": "7591",
+            "name": "Justin Fields",
+            "position": "QB",
+            "projection": 299.32,
+            "adp_espn": 169.94
+          },
+          "best_qb_after_take": {
+            "player_id": "7591",
+            "name": "Justin Fields",
+            "position": "QB",
+            "projection": 299.32,
+            "adp_espn": 169.94
+          },
+          "ev_take_now_plus_best": 940.69,
+          "ev_take_now_plus_best_qb": 940.69,
+          "ev_take_now_plus_deferred_if_alive": 940.69,
+          "ev_take_deferred_now_two_pick": 940.69,
+          "q_after_taking_deferred": {
+            "player_id": "11632",
+            "name": "Malik Nabers",
+            "position": "WR",
+            "projection": 301.35,
+            "adp_espn": 37.97
+          },
+          "ev_take_now_two_pick": 940.69,
+          "q_after_taking_now": {
+            "player_id": "7591",
+            "name": "Justin Fields",
+            "position": "QB",
+            "projection": 299.32,
+            "adp_espn": 169.94
+          },
+          "delta_deferred_now_minus_take_now": 0.0,
+          "delta_deferred_now_minus_take_now_plus_qb": 0.0
+        },
+        "vor": {
+          "q_survives": true,
+          "best_second_after_take": {
+            "player_id": "7591",
+            "name": "Justin Fields",
+            "position": "QB",
+            "projection": 299.32,
+            "adp_espn": 169.94
+          },
+          "best_qb_after_take": {
+            "player_id": "7591",
+            "name": "Justin Fields",
+            "position": "QB",
+            "projection": 299.32,
+            "adp_espn": 169.94
+          },
+          "ev_take_now_plus_best": 940.69,
+          "ev_take_now_plus_best_qb": 940.69,
+          "ev_take_now_plus_deferred_if_alive": 940.69,
+          "ev_take_deferred_now_two_pick": 940.69,
+          "q_after_taking_deferred": {
+            "player_id": "11632",
+            "name": "Malik Nabers",
+            "position": "WR",
+            "projection": 301.35,
+            "adp_espn": 37.97
+          },
+          "ev_take_now_two_pick": 940.69,
+          "q_after_taking_now": {
+            "player_id": "7591",
+            "name": "Justin Fields",
+            "position": "QB",
+            "projection": 299.32,
+            "adp_espn": 169.94
+          },
+          "delta_deferred_now_minus_take_now": 0.0,
+          "delta_deferred_now_minus_take_now_plus_qb": 0.0
+        }
+      },
+      "outcome_hint": {
+        "proj_q_dies": false,
+        "under_proj_death_take_deferred_beats_take_plus_qb": null,
+        "reading": "inconclusive (proj does not kill q)"
+      }
+    }
+  },
+  "verdict": {
+    "proj_q_dies": true,
+    "under_proj_death_take_deferred_beats_take_plus_qb": true,
+    "reading": "Outcome A (survival explains it): under proj death, taking deferred q now beats take-now + replacement QB"
+  }
+}
