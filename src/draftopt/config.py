@@ -84,6 +84,7 @@ ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = ROOT / "data"
 RAW_DIR = DATA_DIR / "raw"
 DB_PATH = DATA_DIR / "draftopt.db"
+EVAL_DB_PATH = DATA_DIR / "draftopt_eval.db"
 
 SLEEPER_PLAYERS_URL = "https://api.sleeper.app/v1/players/nfl"
 DP_IDS_URL = "https://raw.githubusercontent.com/dynastyprocess/data/master/files/db_playerids.csv"

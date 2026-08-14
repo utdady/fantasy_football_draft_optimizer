@@ -58,9 +58,9 @@ Question Phase 2 answers:
 
 | ID | Milestone | Done when |
 | --- | --- | --- |
-| **P2.1** | Historical snapshot ingestion | ≥1 preseason snapshot in decision tables |
+| **P2.1** | Historical snapshot ingestion | ✅ `2026-preseason-2026-08-12` frozen + validate PASS |
 | **P2.2** | Outcome ingestion | Actual season PPR in outcome tables (separate) |
-| **P2.3** | Leakage validator | Automated assert; invalid snapshot rejected |
+| **P2.3** | Leakage validator | ✅ module + snapshot gate (`validate_snapshot`) |
 | **P2.4** | Historical draft replay | Existing strategies draft from a snapshot |
 | **P2.5** | Outcome scoring | Rosters → actual starter PPR |
 | **P2.6** | Baseline comparison | ADP vs `marginal` on actual points |
@@ -70,7 +70,18 @@ Question Phase 2 answers:
 
 ### First MVP cut
 
-One frozen late-August snapshot of a past season is enough to prove the pipeline. Multi-year coverage comes after leakage safety.
+One frozen preseason snapshot is enough to prove the pipeline. Prefer a past
+season once historical ADP/proj sources are wired; until then, freezing the
+current live ingest (with `pulled_at` as `as_of`) is a valid **P2.1 pipeline
+proof** — outcomes (P2.2) wait until actual season points exist.
+
+```powershell
+# Freeze live ESPN ADP/proj into data/draftopt_eval.db
+python -m draftopt.phase2.freeze_snapshot
+
+# Validate (must PASS before P2.2)
+python -m draftopt.phase2.validate_snapshot 2026-preseason-2026-08-12
+```
 
 ---
 

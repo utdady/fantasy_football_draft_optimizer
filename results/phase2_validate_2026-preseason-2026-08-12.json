@@ -1,0 +1,65 @@
+{
+  "snapshot_id": "2026-preseason-2026-08-12",
+  "season": 2026,
+  "snapshot_date": "2026-08-12",
+  "label": "2026-preseason-2026-08-12",
+  "n_players": 800,
+  "ok": true,
+  "checks": [
+    {
+      "check": "snapshot_date_valid",
+      "ok": true,
+      "detail": "snapshot_date=2026-08-12 season=2026"
+    },
+    {
+      "check": "player_count",
+      "ok": true,
+      "detail": "n=800 (min 200)"
+    },
+    {
+      "check": "player_ids_unique",
+      "ok": true,
+      "detail": "n=800 unique=800"
+    },
+    {
+      "check": "positions_valid",
+      "ok": true,
+      "detail": "invalid=0"
+    },
+    {
+      "check": "required_positions_present",
+      "ok": true,
+      "detail": "counts={'RB': 187, 'WR': 274, 'TE': 140, 'QB': 110, 'K': 57, 'DST': 32} missing=[]"
+    },
+    {
+      "check": "adp_coverage",
+      "ok": true,
+      "detail": "100.0% (800/800; min 70%)"
+    },
+    {
+      "check": "projection_coverage",
+      "ok": true,
+      "detail": "96.8% (774/800; min 70%)"
+    },
+    {
+      "check": "adp_and_proj_coverage",
+      "ok": true,
+      "detail": "96.8% (774/800; min 60%)"
+    },
+    {
+      "check": "no_post_snapshot_records",
+      "ok": true,
+      "detail": "leakage_findings=0"
+    },
+    {
+      "check": "provenance_as_of_present",
+      "ok": true,
+      "detail": "missing_as_of_rows=0"
+    },
+    {
+      "check": "snapshot_reproducible_meta",
+      "ok": true,
+      "detail": "label='2026-preseason-2026-08-12' created_at=2026-08-14T19:34:52Z"
+    }
+  ]
+}

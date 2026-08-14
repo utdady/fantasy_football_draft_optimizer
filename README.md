@@ -12,6 +12,9 @@
 > **Phase 2 (next research track):** historical snapshot + actual-points evaluation
 > ([`results/PHASE2_HISTORICAL_EVAL.md`](results/PHASE2_HISTORICAL_EVAL.md)). Algorithms
 > stay frozen; first promotion-worthy evidence must be leakage-safe **actual** PPR.
+>
+> **P2.1 done:** frozen snapshot `2026-preseason-2026-08-12` in `data/draftopt_eval.db`
+> (validate PASS — see [`results/phase2_validate_2026-preseason-2026-08-12.md`](results/phase2_validate_2026-preseason-2026-08-12.md)). Next: **P2.2 outcomes**.
 
 ## Setup
 

@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS eval_snapshots (
 CREATE TABLE IF NOT EXISTS eval_snapshot_players (
     snapshot_id TEXT NOT NULL,
     player_id TEXT NOT NULL,
+    name TEXT,
     position TEXT,
     team TEXT,
     adp REAL,
