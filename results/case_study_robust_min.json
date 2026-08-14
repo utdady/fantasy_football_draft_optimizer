@@ -1,0 +1,879 @@
+{
+  "futures": [
+    "adp_greedy",
+    "proj_greedy",
+    "vor"
+  ],
+  "note": "\u03b22-robust diagnostic only \u2014 not an expected-value strategy. min_f over ADP/proj/VOR scenario two-pick EVs; no hardcoded player/position rules; no P(f) weights.",
+  "boards": [
+    {
+      "label": "R1_slot1_empty",
+      "why": "Frozen proj-greedy failure: long wait, empty roster",
+      "overall": 1,
+      "n_cpu_picks": 18,
+      "n_candidates_scored": 58,
+      "alpha_pick": {
+        "name": "Ja'Marr Chase",
+        "position": "WR",
+        "ev_adp": 711.61,
+        "ev_min": 641.37,
+        "worst_future": "proj_greedy",
+        "q_adp": "Jayden Daniels"
+      },
+      "robust_pick": {
+        "name": "Jayden Daniels",
+        "position": "QB",
+        "ev_adp": 672.94,
+        "ev_min": 672.94,
+        "worst_future": "adp_greedy",
+        "q_adp": "Malik Nabers"
+      },
+      "agree": false,
+      "regret_alpha": {
+        "adp_greedy": 0.0,
+        "proj_greedy": 31.57,
+        "vor": 0.0
+      },
+      "regret_robust": {
+        "adp_greedy": 38.67,
+        "proj_greedy": 0.0,
+        "vor": 22.49
+      },
+      "top_by_alpha": [
+        {
+          "name": "Ja'Marr Chase",
+          "position": "WR",
+          "ev_adp": 711.61,
+          "ev_proj": 641.37,
+          "ev_vor": 711.61,
+          "ev_min": 641.37,
+          "worst_future": "proj_greedy"
+        },
+        {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "ev_adp": 710.97,
+          "ev_proj": 640.72,
+          "ev_vor": 710.97,
+          "ev_min": 640.72,
+          "worst_future": "proj_greedy"
+        },
+        {
+          "name": "Saquon Barkley",
+          "position": "RB",
+          "ev_adp": 697.58,
+          "ev_proj": 627.34,
+          "ev_vor": 697.58,
+          "ev_min": 627.34,
+          "worst_future": "proj_greedy"
+        },
+        {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "ev_adp": 690.0,
+          "ev_proj": 619.76,
+          "ev_vor": 690.0,
+          "ev_min": 619.76,
+          "worst_future": "proj_greedy"
+        },
+        {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "ev_adp": 689.12,
+          "ev_proj": 618.88,
+          "ev_vor": 689.12,
+          "ev_min": 618.88,
+          "worst_future": "proj_greedy"
+        },
+        {
+          "name": "Jahmyr Gibbs",
+          "position": "RB",
+          "ev_adp": 688.87,
+          "ev_proj": 618.63,
+          "ev_vor": 688.87,
+          "ev_min": 618.63,
+          "worst_future": "proj_greedy"
+        },
+        {
+          "name": "Justin Jefferson",
+          "position": "WR",
+          "ev_adp": 687.46,
+          "ev_proj": 617.21,
+          "ev_vor": 687.46,
+          "ev_min": 617.21,
+          "worst_future": "proj_greedy"
+        },
+        {
+          "name": "De'Von Achane",
+          "position": "RB",
+          "ev_adp": 679.12,
+          "ev_proj": 608.88,
+          "ev_vor": 679.12,
+          "ev_min": 608.88,
+          "worst_future": "proj_greedy"
+        }
+      ],
+      "top_by_min": [
+        {
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "ev_adp": 672.94,
+          "ev_proj": 672.94,
+          "ev_vor": 689.12,
+          "ev_min": 672.94,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Josh Allen",
+          "position": "QB",
+          "ev_adp": 669.22,
+          "ev_proj": 669.22,
+          "ev_vor": 685.4,
+          "ev_min": 669.22,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Jalen Hurts",
+          "position": "QB",
+          "ev_adp": 666.84,
+          "ev_proj": 666.84,
+          "ev_vor": 683.02,
+          "ev_min": 666.84,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Lamar Jackson",
+          "position": "QB",
+          "ev_adp": 665.15,
+          "ev_proj": 665.15,
+          "ev_vor": 681.33,
+          "ev_min": 665.15,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Ja'Marr Chase",
+          "position": "WR",
+          "ev_adp": 711.61,
+          "ev_proj": 641.37,
+          "ev_vor": 711.61,
+          "ev_min": 641.37,
+          "worst_future": "proj_greedy"
+        },
+        {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "ev_adp": 710.97,
+          "ev_proj": 640.72,
+          "ev_vor": 710.97,
+          "ev_min": 640.72,
+          "worst_future": "proj_greedy"
+        },
+        {
+          "name": "Joe Burrow",
+          "position": "QB",
+          "ev_adp": 631.81,
+          "ev_proj": 631.81,
+          "ev_vor": 647.99,
+          "ev_min": 631.81,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Saquon Barkley",
+          "position": "RB",
+          "ev_adp": 697.58,
+          "ev_proj": 627.34,
+          "ev_vor": 697.58,
+          "ev_min": 627.34,
+          "worst_future": "proj_greedy"
+        }
+      ],
+      "spotlight": {
+        "Jahmyr Gibbs": {
+          "position": "RB",
+          "ev_adp": 688.87,
+          "ev_proj": 618.63,
+          "ev_vor": 688.87,
+          "ev_min": 618.63,
+          "worst_future": "proj_greedy"
+        },
+        "Bijan Robinson": {
+          "position": "RB",
+          "ev_adp": 710.97,
+          "ev_proj": 640.72,
+          "ev_vor": 710.97,
+          "ev_min": 640.72,
+          "worst_future": "proj_greedy"
+        },
+        "Ja'Marr Chase": {
+          "position": "WR",
+          "ev_adp": 711.61,
+          "ev_proj": 641.37,
+          "ev_vor": 711.61,
+          "ev_min": 641.37,
+          "worst_future": "proj_greedy"
+        },
+        "CeeDee Lamb": {
+          "position": "WR",
+          "ev_adp": 689.12,
+          "ev_proj": 618.88,
+          "ev_vor": 689.12,
+          "ev_min": 618.88,
+          "worst_future": "proj_greedy"
+        },
+        "Saquon Barkley": {
+          "position": "RB",
+          "ev_adp": 697.58,
+          "ev_proj": 627.34,
+          "ev_vor": 697.58,
+          "ev_min": 627.34,
+          "worst_future": "proj_greedy"
+        },
+        "Malik Nabers": {
+          "position": "WR",
+          "ev_adp": 672.94,
+          "ev_proj": 603.24,
+          "ev_vor": 672.94,
+          "ev_min": 603.24,
+          "worst_future": "proj_greedy"
+        },
+        "Jayden Daniels": {
+          "position": "QB",
+          "ev_adp": 672.94,
+          "ev_proj": 672.94,
+          "ev_vor": 689.12,
+          "ev_min": 672.94,
+          "worst_future": "adp_greedy"
+        },
+        "Justin Fields": {
+          "position": "QB",
+          "ev_adp": 600.67,
+          "ev_proj": 600.67,
+          "ev_vor": 616.85,
+          "ev_min": 600.67,
+          "worst_future": "adp_greedy"
+        }
+      }
+    },
+    {
+      "label": "O20_after_Chase_proj18",
+      "why": "Neighbor: after fragile R1 deferral realized; Fields still up",
+      "overall": 20,
+      "n_cpu_picks": 0,
+      "n_candidates_scored": 60,
+      "alpha_pick": {
+        "name": "Malik Nabers",
+        "position": "WR",
+        "ev_adp": 940.69,
+        "ev_min": 940.69,
+        "worst_future": "adp_greedy",
+        "q_adp": "Justin Fields"
+      },
+      "robust_pick": {
+        "name": "Malik Nabers",
+        "position": "WR",
+        "ev_adp": 940.69,
+        "ev_min": 940.69,
+        "worst_future": "adp_greedy",
+        "q_adp": "Justin Fields"
+      },
+      "agree": true,
+      "regret_alpha": {
+        "adp_greedy": 0.0,
+        "proj_greedy": 0.0,
+        "vor": 0.0
+      },
+      "regret_robust": {
+        "adp_greedy": 0.0,
+        "proj_greedy": 0.0,
+        "vor": 0.0
+      },
+      "top_by_alpha": [
+        {
+          "name": "Justin Fields",
+          "position": "QB",
+          "ev_adp": 940.69,
+          "ev_proj": 940.69,
+          "ev_vor": 940.69,
+          "ev_min": 940.69,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Malik Nabers",
+          "position": "WR",
+          "ev_adp": 940.69,
+          "ev_proj": 940.69,
+          "ev_vor": 940.69,
+          "ev_min": 940.69,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Puka Nacua",
+          "position": "WR",
+          "ev_adp": 940.0,
+          "ev_proj": 940.0,
+          "ev_vor": 940.0,
+          "ev_min": 940.0,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Amon-Ra St. Brown",
+          "position": "WR",
+          "ev_adp": 931.99,
+          "ev_proj": 931.99,
+          "ev_vor": 931.99,
+          "ev_min": 931.99,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Nico Collins",
+          "position": "WR",
+          "ev_adp": 930.5,
+          "ev_proj": 930.5,
+          "ev_vor": 930.5,
+          "ev_min": 930.5,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "ev_adp": 930.14,
+          "ev_proj": 930.14,
+          "ev_vor": 930.14,
+          "ev_min": 930.14,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Dak Prescott",
+          "position": "QB",
+          "ev_adp": 927.17,
+          "ev_proj": 927.17,
+          "ev_vor": 927.17,
+          "ev_min": 927.17,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Drake Maye",
+          "position": "QB",
+          "ev_adp": 926.63,
+          "ev_proj": 926.63,
+          "ev_vor": 926.63,
+          "ev_min": 926.63,
+          "worst_future": "adp_greedy"
+        }
+      ],
+      "top_by_min": [
+        {
+          "name": "Justin Fields",
+          "position": "QB",
+          "ev_adp": 940.69,
+          "ev_proj": 940.69,
+          "ev_vor": 940.69,
+          "ev_min": 940.69,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Malik Nabers",
+          "position": "WR",
+          "ev_adp": 940.69,
+          "ev_proj": 940.69,
+          "ev_vor": 940.69,
+          "ev_min": 940.69,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Puka Nacua",
+          "position": "WR",
+          "ev_adp": 940.0,
+          "ev_proj": 940.0,
+          "ev_vor": 940.0,
+          "ev_min": 940.0,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Amon-Ra St. Brown",
+          "position": "WR",
+          "ev_adp": 931.99,
+          "ev_proj": 931.99,
+          "ev_vor": 931.99,
+          "ev_min": 931.99,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Nico Collins",
+          "position": "WR",
+          "ev_adp": 930.5,
+          "ev_proj": 930.5,
+          "ev_vor": 930.5,
+          "ev_min": 930.5,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "ev_adp": 930.14,
+          "ev_proj": 930.14,
+          "ev_vor": 930.14,
+          "ev_min": 930.14,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Dak Prescott",
+          "position": "QB",
+          "ev_adp": 927.17,
+          "ev_proj": 927.17,
+          "ev_vor": 927.17,
+          "ev_min": 927.17,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Drake Maye",
+          "position": "QB",
+          "ev_adp": 926.63,
+          "ev_proj": 926.63,
+          "ev_vor": 926.63,
+          "ev_min": 926.63,
+          "worst_future": "adp_greedy"
+        }
+      ],
+      "spotlight": {
+        "Malik Nabers": {
+          "position": "WR",
+          "ev_adp": 940.69,
+          "ev_proj": 940.69,
+          "ev_vor": 940.69,
+          "ev_min": 940.69,
+          "worst_future": "adp_greedy"
+        },
+        "Justin Fields": {
+          "position": "QB",
+          "ev_adp": 940.69,
+          "ev_proj": 940.69,
+          "ev_vor": 940.69,
+          "ev_min": 940.69,
+          "worst_future": "adp_greedy"
+        }
+      }
+    },
+    {
+      "label": "O20_after_Daniels_adp18",
+      "why": "Neighbor: secure-QB path under ADP-like CPUs (healthy deferrals?)",
+      "overall": 20,
+      "n_cpu_picks": 0,
+      "n_candidates_scored": 64,
+      "alpha_pick": {
+        "name": "Nico Collins",
+        "position": "WR",
+        "ev_adp": 962.07,
+        "ev_min": 962.07,
+        "worst_future": "adp_greedy",
+        "q_adp": "Malik Nabers"
+      },
+      "robust_pick": {
+        "name": "Nico Collins",
+        "position": "WR",
+        "ev_adp": 962.07,
+        "ev_min": 962.07,
+        "worst_future": "adp_greedy",
+        "q_adp": "Malik Nabers"
+      },
+      "agree": true,
+      "regret_alpha": {
+        "adp_greedy": 0.0,
+        "proj_greedy": 0.0,
+        "vor": 0.0
+      },
+      "regret_robust": {
+        "adp_greedy": 0.0,
+        "proj_greedy": 0.0,
+        "vor": 0.0
+      },
+      "top_by_alpha": [
+        {
+          "name": "Malik Nabers",
+          "position": "WR",
+          "ev_adp": 962.07,
+          "ev_proj": 962.07,
+          "ev_vor": 962.07,
+          "ev_min": 962.07,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Nico Collins",
+          "position": "WR",
+          "ev_adp": 962.07,
+          "ev_proj": 962.07,
+          "ev_vor": 962.07,
+          "ev_min": 962.07,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Kyren Williams",
+          "position": "RB",
+          "ev_adp": 956.99,
+          "ev_proj": 956.99,
+          "ev_vor": 956.99,
+          "ev_min": 956.99,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Bucky Irving",
+          "position": "RB",
+          "ev_adp": 956.41,
+          "ev_proj": 956.41,
+          "ev_vor": 956.41,
+          "ev_min": 956.41,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Josh Jacobs",
+          "position": "RB",
+          "ev_adp": 955.81,
+          "ev_proj": 955.81,
+          "ev_vor": 955.81,
+          "ev_min": 955.81,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Chase Brown",
+          "position": "RB",
+          "ev_adp": 954.16,
+          "ev_proj": 954.16,
+          "ev_vor": 954.16,
+          "ev_min": 954.16,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "A.J. Brown",
+          "position": "WR",
+          "ev_adp": 948.58,
+          "ev_proj": 948.58,
+          "ev_vor": 948.58,
+          "ev_min": 948.58,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Brian Thomas",
+          "position": "WR",
+          "ev_adp": 942.99,
+          "ev_proj": 942.99,
+          "ev_vor": 942.99,
+          "ev_min": 942.99,
+          "worst_future": "adp_greedy"
+        }
+      ],
+      "top_by_min": [
+        {
+          "name": "Malik Nabers",
+          "position": "WR",
+          "ev_adp": 962.07,
+          "ev_proj": 962.07,
+          "ev_vor": 962.07,
+          "ev_min": 962.07,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Nico Collins",
+          "position": "WR",
+          "ev_adp": 962.07,
+          "ev_proj": 962.07,
+          "ev_vor": 962.07,
+          "ev_min": 962.07,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Kyren Williams",
+          "position": "RB",
+          "ev_adp": 956.99,
+          "ev_proj": 956.99,
+          "ev_vor": 956.99,
+          "ev_min": 956.99,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Bucky Irving",
+          "position": "RB",
+          "ev_adp": 956.41,
+          "ev_proj": 956.41,
+          "ev_vor": 956.41,
+          "ev_min": 956.41,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Josh Jacobs",
+          "position": "RB",
+          "ev_adp": 955.81,
+          "ev_proj": 955.81,
+          "ev_vor": 955.81,
+          "ev_min": 955.81,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Chase Brown",
+          "position": "RB",
+          "ev_adp": 954.16,
+          "ev_proj": 954.16,
+          "ev_vor": 954.16,
+          "ev_min": 954.16,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "A.J. Brown",
+          "position": "WR",
+          "ev_adp": 948.58,
+          "ev_proj": 948.58,
+          "ev_vor": 948.58,
+          "ev_min": 948.58,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Brian Thomas",
+          "position": "WR",
+          "ev_adp": 942.99,
+          "ev_proj": 942.99,
+          "ev_vor": 942.99,
+          "ev_min": 942.99,
+          "worst_future": "adp_greedy"
+        }
+      ],
+      "spotlight": {
+        "Malik Nabers": {
+          "position": "WR",
+          "ev_adp": 962.07,
+          "ev_proj": 962.07,
+          "ev_vor": 962.07,
+          "ev_min": 962.07,
+          "worst_future": "adp_greedy"
+        },
+        "Justin Fields": {
+          "position": "QB",
+          "ev_adp": 672.94,
+          "ev_proj": 672.94,
+          "ev_vor": 672.94,
+          "ev_min": 672.94,
+          "worst_future": "adp_greedy"
+        }
+      }
+    },
+    {
+      "label": "O20_alpha_noisy_path",
+      "why": "Neighbor: \u03b1-driven board at R2 with wait 0 (back-to-back picks)",
+      "overall": 20,
+      "n_cpu_picks": 0,
+      "n_candidates_scored": 63,
+      "alpha_pick": {
+        "name": "Malik Nabers",
+        "position": "WR",
+        "ev_adp": 1012.96,
+        "ev_min": 1012.96,
+        "worst_future": "adp_greedy",
+        "q_adp": "Jayden Daniels"
+      },
+      "robust_pick": {
+        "name": "Malik Nabers",
+        "position": "WR",
+        "ev_adp": 1012.96,
+        "ev_min": 1012.96,
+        "worst_future": "adp_greedy",
+        "q_adp": "Jayden Daniels"
+      },
+      "agree": true,
+      "regret_alpha": {
+        "adp_greedy": 0.0,
+        "proj_greedy": 0.0,
+        "vor": 0.0
+      },
+      "regret_robust": {
+        "adp_greedy": 0.0,
+        "proj_greedy": 0.0,
+        "vor": 0.0
+      },
+      "top_by_alpha": [
+        {
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "ev_adp": 1012.96,
+          "ev_proj": 1012.96,
+          "ev_vor": 1012.96,
+          "ev_min": 1012.96,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Malik Nabers",
+          "position": "WR",
+          "ev_adp": 1012.96,
+          "ev_proj": 1012.96,
+          "ev_vor": 1012.96,
+          "ev_min": 1012.96,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Josh Allen",
+          "position": "QB",
+          "ev_adp": 1009.25,
+          "ev_proj": 1009.25,
+          "ev_vor": 1009.25,
+          "ev_min": 1009.25,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Jalen Hurts",
+          "position": "QB",
+          "ev_adp": 1006.86,
+          "ev_proj": 1006.86,
+          "ev_vor": 1006.86,
+          "ev_min": 1006.86,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Lamar Jackson",
+          "position": "QB",
+          "ev_adp": 1005.17,
+          "ev_proj": 1005.17,
+          "ev_vor": 1005.17,
+          "ev_min": 1005.17,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Nico Collins",
+          "position": "WR",
+          "ev_adp": 1000.74,
+          "ev_proj": 1000.74,
+          "ev_vor": 1000.74,
+          "ev_min": 1000.74,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Kyren Williams",
+          "position": "RB",
+          "ev_adp": 995.66,
+          "ev_proj": 995.66,
+          "ev_vor": 995.66,
+          "ev_min": 995.66,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Bucky Irving",
+          "position": "RB",
+          "ev_adp": 995.08,
+          "ev_proj": 995.08,
+          "ev_vor": 995.08,
+          "ev_min": 995.08,
+          "worst_future": "adp_greedy"
+        }
+      ],
+      "top_by_min": [
+        {
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "ev_adp": 1012.96,
+          "ev_proj": 1012.96,
+          "ev_vor": 1012.96,
+          "ev_min": 1012.96,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Malik Nabers",
+          "position": "WR",
+          "ev_adp": 1012.96,
+          "ev_proj": 1012.96,
+          "ev_vor": 1012.96,
+          "ev_min": 1012.96,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Josh Allen",
+          "position": "QB",
+          "ev_adp": 1009.25,
+          "ev_proj": 1009.25,
+          "ev_vor": 1009.25,
+          "ev_min": 1009.25,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Jalen Hurts",
+          "position": "QB",
+          "ev_adp": 1006.86,
+          "ev_proj": 1006.86,
+          "ev_vor": 1006.86,
+          "ev_min": 1006.86,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Lamar Jackson",
+          "position": "QB",
+          "ev_adp": 1005.17,
+          "ev_proj": 1005.17,
+          "ev_vor": 1005.17,
+          "ev_min": 1005.17,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Nico Collins",
+          "position": "WR",
+          "ev_adp": 1000.74,
+          "ev_proj": 1000.74,
+          "ev_vor": 1000.74,
+          "ev_min": 1000.74,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Kyren Williams",
+          "position": "RB",
+          "ev_adp": 995.66,
+          "ev_proj": 995.66,
+          "ev_vor": 995.66,
+          "ev_min": 995.66,
+          "worst_future": "adp_greedy"
+        },
+        {
+          "name": "Bucky Irving",
+          "position": "RB",
+          "ev_adp": 995.08,
+          "ev_proj": 995.08,
+          "ev_vor": 995.08,
+          "ev_min": 995.08,
+          "worst_future": "adp_greedy"
+        }
+      ],
+      "spotlight": {
+        "Malik Nabers": {
+          "position": "WR",
+          "ev_adp": 1012.96,
+          "ev_proj": 1012.96,
+          "ev_vor": 1012.96,
+          "ev_min": 1012.96,
+          "worst_future": "adp_greedy"
+        },
+        "Jayden Daniels": {
+          "position": "QB",
+          "ev_adp": 1012.96,
+          "ev_proj": 1012.96,
+          "ev_vor": 1012.96,
+          "ev_min": 1012.96,
+          "worst_future": "adp_greedy"
+        },
+        "Justin Fields": {
+          "position": "QB",
+          "ev_adp": 940.69,
+          "ev_proj": 940.69,
+          "ev_vor": 940.69,
+          "ev_min": 940.69,
+          "worst_future": "adp_greedy"
+        }
+      }
+    }
+  ],
+  "verdict": {
+    "r1_alpha_is_chase": true,
+    "r1_robust_is_daniels": true,
+    "r1_flip_pass": true,
+    "neighbor_agree_labels": [
+      "O20_after_Chase_proj18",
+      "O20_after_Daniels_adp18",
+      "O20_alpha_noisy_path"
+    ],
+    "neighbor_disagree": [],
+    "paranoia_flag": false,
+    "reading": "PASS: robust flips Chase\u2192Daniels at R1 and agrees with \u03b1 on all neighbor boards"
+  }
+}

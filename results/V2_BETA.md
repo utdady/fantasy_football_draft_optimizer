@@ -41,3 +41,13 @@ Exact failure-state survival diagnostic: [`case_study_survival_chase_daniels.md`
 Chase + replacement QB (~+33.6). Explicit survival risk would flip the R1
 decision; policy-mixture failed because it diluted that branch instead of
 representing it.
+
+## β2-robust diagnostic (not a strategy)
+
+[`case_study_robust_min.md`](case_study_robust_min.md) — `min_f` over scenario
+two-pick EVs (ADP/proj/VOR).
+
+**Result:** R1 flips Chase→Daniels without hardcoding; **agrees with α on all
+three neighbor boards** (wait-0 / healthy paths). Do not promote minimax to
+UI yet — still a diagnostic — but it clears the tiny pass bar for a slot-1 ×
+4-policy lean test if desired.
