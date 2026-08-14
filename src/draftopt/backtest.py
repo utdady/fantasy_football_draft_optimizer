@@ -272,6 +272,7 @@ def _pairwise(by_strategy: dict[str, list[SimResult]], challenger: str, baseline
         "challenger": challenger,
         "mean_delta": statistics.mean(deltas),
         "median_delta": statistics.median(deltas),
+        "std_delta": statistics.pstdev(deltas) if len(deltas) > 1 else 0.0,
         "win_rate": wins / n,
         "tie_rate": ties / n,
     }
@@ -604,6 +605,40 @@ def matrix_to_markdown(matrix: dict, *, title: str, notes: list[str] | None = No
         "starter-points win rate (not wide-receiver share)."
     )
     lines.append("")
+    lines.append("## Starter-EV dispersion (population stdev)")
+    lines.append("")
+    lines.append("| slot | " + " | ".join(f"{s} std" for s in strats) + " |")
+    lines.append("| --- | " + " | ".join(["---:"] * len(strats)) + " |")
+    for report in matrix["rows"]:
+        cells = [str(report["slot"])]
+        for name in strats:
+            cells.append(f"{report['summaries'][name].get('std_starter_pts', 0.0):.1f}")
+        lines.append("| " + " | ".join(cells) + " |")
+    lines.append("")
+    if any(
+        "marginal_v2_vs_marginal" in (r.get("comparisons") or {})
+        or "marginal_v2_vs_adp" in (r.get("comparisons") or {})
+        for r in matrix["rows"]
+    ):
+        lines.append("### Paired Δ dispersion (V2)")
+        lines.append("")
+        lines.append("| slot | v2−raw mean | v2−raw std | v2−vor mean | v2−vor std | v2−adp mean | v2−adp std |")
+        lines.append("| --- | ---: | ---: | ---: | ---: | ---: | ---: |")
+        for report in matrix["rows"]:
+            comps = report.get("comparisons") or {}
+            cr = comps.get("marginal_v2_vs_marginal") or {}
+            cv = comps.get("marginal_v2_vs_marginal_vor") or {}
+            ca = comps.get("marginal_v2_vs_adp") or {}
+
+            def _m(c, k, fmt="{:+.1f}"):
+                return fmt.format(c[k]) if k in c and c.get(k) is not None else "—"
+
+            lines.append(
+                f"| {report['slot']} | {_m(cr, 'mean_delta')} | {_m(cr, 'std_delta', '{:.1f}')} | "
+                f"{_m(cv, 'mean_delta')} | {_m(cv, 'std_delta', '{:.1f}')} | "
+                f"{_m(ca, 'mean_delta')} | {_m(ca, 'std_delta', '{:.1f}')} |"
+            )
+        lines.append("")
     lines.append("## Position mix (user picks)")
     lines.append("")
     for report in matrix["rows"]:
