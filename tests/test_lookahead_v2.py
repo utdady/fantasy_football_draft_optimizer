@@ -139,6 +139,8 @@ def test_get_strategy_marginal_v2():
     assert get_strategy("marginal_v2_beta").name == "marginal_v2_beta"
     assert get_strategy("v2_beta").name == "marginal_v2_beta"
     assert get_strategy("v2b").name == "marginal_v2_beta"
+    assert get_strategy("robust_min").name == "robust_min"
+    assert get_strategy("v2_robust").name == "robust_min"
 
 
 def test_recommend_does_not_mutate_draft(catalog, conn):
