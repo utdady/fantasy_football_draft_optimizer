@@ -33,9 +33,11 @@ Fixes projection-greedy failure but over-insures (always Daniels at R1).
 
 ## Next
 
-Risk/EV surface + Pareto frontier (no new overnight sims):
-[`case_study_risk_ev_surface.md`](case_study_risk_ev_surface.md) via
-`python -m draftopt.case_study_risk_surface`.
+Risk/EV surface done: [`case_study_risk_ev_surface.md`](case_study_risk_ev_surface.md)
+(Pareto = Chase ↔ Daniels; floor ≠ max-regret).
 
-Decide A (objective) / B (scenario set) / C (both) before designing the next
-strategy.
+**Objective / scenario semantics frozen:**
+[`V2_OBJECTIVE_DESIGN.md`](V2_OBJECTIVE_DESIGN.md).
+
+No new V2 strategy, λ-tuning, or overnight matrix until that design note is
+revised. UI stays `marginal`.

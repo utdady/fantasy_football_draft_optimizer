@@ -5,7 +5,9 @@
 > **V2-alpha is not yet validated as a real-world drafting advantage.** It currently
 > demonstrates an advantage over V1 baselines under an ADP-greedy simulated
 > lookahead (see [`results/V2_ALPHA_BASELINE.md`](results/V2_ALPHA_BASELINE.md)).
-> The UI still uses raw **V1 `marginal`**.
+> The UI still uses raw **V1 `marginal`**. Objective / scenario semantics for
+> further V2 work are frozen in [`results/V2_OBJECTIVE_DESIGN.md`](results/V2_OBJECTIVE_DESIGN.md)
+> — no new V2 strategy until that note is revised.
 
 ## Setup
 
@@ -70,7 +72,8 @@ Paired snakes: shared sim seed + CPU RNG keyed by overall pick #. Scoring uses E
 - `marginal_vor` — VOR-lite (`lineup_ev` uses projection minus positional replacement)
 - `marginal_v2` — experimental V2-alpha (two-pick EV under ADP-greedy future); frozen baseline in [`results/V2_ALPHA_BASELINE.md`](results/V2_ALPHA_BASELINE.md)
 - `marginal_v2_beta` — **rejected** equal-weight policy mixture; see [`results/V2_BETA.md`](results/V2_BETA.md)
-- `robust_min` — experimental β2-robust diagnostic (`min_f` over ADP/proj/VOR futures); not UI
+- `robust_min` — experimental β2-robust diagnostic (`min_f`); **rejected as final**; see [`results/V2_BETA.md`](results/V2_BETA.md)
+- Further V2 work: read [`results/V2_OBJECTIVE_DESIGN.md`](results/V2_OBJECTIVE_DESIGN.md) first (primary EV vs diagnostics; planner vs stress scenarios)
 
 ```powershell
 # Three-way early-pick divergence (RAW / VOR / V2)
