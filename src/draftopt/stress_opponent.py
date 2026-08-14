@@ -1,7 +1,9 @@
 """
-Opponent-policy stress: V2-alpha vs raw under different CPU behaviors.
+Opponent-policy stress: V2-alpha / V2-beta vs raw (and VOR) under different CPUs.
 
-V2 lookahead stays frozen (ADP-greedy). Only the *actual* draft opponents change.
+V2-alpha lookahead stays frozen (ADP-greedy only).
+V2-beta averages ADP / proj / VOR futures equally (no Monte Carlo).
+Only the *actual* draft opponents change via --policies.
 """
 
 from __future__ import annotations
@@ -23,6 +25,16 @@ from draftopt.draft.state import (
 from draftopt.pool import remaining_ranked
 from draftopt.strategies import get_strategy
 
+DEFAULT_USER_STRATEGIES = (
+    "marginal",
+    "marginal_vor",
+    "marginal_v2",
+    "marginal_v2_beta",
+)
+
+# Policies where CPU picks are fully deterministic given remaining pool.
+DETERMINISTIC_POLICIES = frozenset({"adp_greedy", "proj_greedy", "vor"})
+
 
 def run_one_v2_tracked(
     conn,
@@ -31,17 +43,18 @@ def run_one_v2_tracked(
     roster_preset: str,
     seed: int,
     opponent_policy: str,
+    strategy_name: str = "marginal_v2",
     n_teams: int = 10,
     max_track_rounds: int = 6,
 ) -> dict:
     """
-    Single V2 draft that records whether expected future q survived until next pick.
+    Single draft that records whether expected future q survived until next pick.
     """
-    strategy = get_strategy("marginal_v2")
+    strategy = get_strategy(strategy_name)
     draft_id = create_draft(
         conn,
         user_slot=user_slot,
-        user_name="Bot-v2-track",
+        user_name=f"Bot-{strategy_name}-track",
         roster_preset=roster_preset,
         n_teams=n_teams,
     )
@@ -71,7 +84,6 @@ def run_one_v2_tracked(
             rec = recs[0]
             rnd = int((overall - 1) // n_teams) + 1
             if rnd <= max_track_rounds:
-                # Resolve q player_id from name among remaining (best-effort).
                 q_name = rec.get("q_player")
                 q_id = None
                 if q_name:
@@ -90,6 +102,7 @@ def run_one_v2_tracked(
                     "q_player_id": q_id,
                     "picks_until_next": rec.get("picks_until_next"),
                     "ev_two_pick": rec.get("ev_two_pick"),
+                    "ev_by_future": rec.get("ev_by_future"),
                 }
             record_user_pick(conn, draft_id, rec["player_id"], made_by="strategy")
         else:
@@ -121,6 +134,7 @@ def run_stress_grid(
     n: int = 20,
     seed: int = 0,
     policies: list[str] | None = None,
+    strategies: list[str] | None = None,
     preset: str = "league_default",
     conn=None,
     db_path=None,
@@ -128,6 +142,7 @@ def run_stress_grid(
 ) -> dict:
     slots = slots or [1, 5, 10]
     policies = policies or list(CPU_POLICIES)
+    strategies = list(strategies or DEFAULT_USER_STRATEGIES)
     own = conn is None
     if conn is None:
         conn = db.connect(db_path) if db_path else db.connect()
@@ -142,10 +157,10 @@ def run_stress_grid(
         for policy in policies:
             for slot in slots:
                 print(
-                    f"... stress cpu={policy} slot={slot} n={n}",
+                    f"... stress cpu={policy} slot={slot} n={n} "
+                    f"strats={','.join(strategies)}",
                     flush=True,
                 )
-                # Single paired pass (no triple re-run) — collect results ourselves.
                 cell = _run_stress_cell_efficient(
                     conn,
                     slot=slot,
@@ -153,12 +168,16 @@ def run_stress_grid(
                     seed=seed,
                     opponent_policy=policy,
                     preset=preset,
+                    strategies=strategies,
                     max_loss_diagnostics=max_loss_diagnostics,
                 )
                 cells.append(cell)
+                alpha = cell.get("v2_vs_raw") or {}
+                beta = cell.get("beta_vs_raw") or {}
                 print(
-                    f"    v2-raw={cell['v2_vs_raw'].get('mean_delta', 0):+.1f} "
-                    f"win={cell['v2_vs_raw'].get('win_rate', 0):.0%}",
+                    f"    α−raw={alpha.get('mean_delta', 0):+.1f} "
+                    f"β−raw={beta.get('mean_delta', 0):+.1f} "
+                    f"β−α={(cell.get('beta_vs_v2') or {}).get('mean_delta', 0):+.1f}",
                     flush=True,
                 )
         return {
@@ -167,8 +186,16 @@ def run_stress_grid(
             "seed": seed,
             "preset": preset,
             "policies": policies,
-            "v2_lookahead": "adp_greedy (frozen)",
+            "strategies": strategies,
+            "v2_alpha_lookahead": "adp_greedy (frozen)",
+            "v2_beta_lookahead": "equal mix adp_greedy+proj_greedy+vor",
             "cells": cells,
+            "notes": [
+                "For deterministic opponent policies (adp_greedy, proj_greedy, vor), "
+                "repeated sims with different seeds reprint the same trajectory; "
+                "win rates are not independent-trial estimates.",
+                "noisy_adp has real sample variance across seeds.",
+            ],
         }
     finally:
         if own:
@@ -183,44 +210,64 @@ def _run_stress_cell_efficient(
     seed: int,
     opponent_policy: str,
     preset: str,
+    strategies: list[str],
     max_loss_diagnostics: int,
 ) -> dict:
-    by = {"marginal": [], "marginal_v2": []}
-    loss_seeds: list[tuple[int, int, SimResult, SimResult]] = []
+    by: dict[str, list] = {s: [] for s in strategies}
+    # Prefer beta losses for diagnostics when beta is present; else alpha.
+    loss_focus = (
+        "marginal_v2_beta"
+        if "marginal_v2_beta" in strategies
+        else ("marginal_v2" if "marginal_v2" in strategies else strategies[-1])
+    )
+    baseline = "marginal" if "marginal" in strategies else strategies[0]
+    loss_seeds: list[tuple[int, int, object, object]] = []
+
     for i in range(n):
         if n >= 10 and (i == 0 or (i + 1) % max(1, n // 5) == 0 or i + 1 == n):
             print(f"    sim {i + 1}/{n}", flush=True)
         sim_seed = seed + i * 1009
-        raw = run_one(
-            conn,
-            strategy_name="marginal",
-            user_slot=slot,
-            roster_preset=preset,
-            seed=sim_seed,
-            opponent_policy=opponent_policy,
-        )
-        v2 = run_one(
-            conn,
-            strategy_name="marginal_v2",
-            user_slot=slot,
-            roster_preset=preset,
-            seed=sim_seed,
-            opponent_policy=opponent_policy,
-        )
-        by["marginal"].append(raw)
-        by["marginal_v2"].append(v2)
-        if v2.starter_pts + 1e-6 < raw.starter_pts:
-            loss_seeds.append((i, sim_seed, raw, v2))
+        results = {}
+        for name in strategies:
+            results[name] = run_one(
+                conn,
+                strategy_name=name,
+                user_slot=slot,
+                roster_preset=preset,
+                seed=sim_seed,
+                opponent_policy=opponent_policy,
+            )
+            by[name].append(results[name])
+        if baseline in results and loss_focus in results:
+            focus = results[loss_focus]
+            raw = results[baseline]
+            if focus.starter_pts + 1e-6 < raw.starter_pts:
+                loss_seeds.append((i, sim_seed, raw, focus))
 
-    pair = _pairwise(by, "marginal_v2", "marginal")
+    comparisons: dict[str, dict] = {}
+    if "marginal" in by and "marginal_v2" in by:
+        comparisons["v2_vs_raw"] = _pairwise(by, "marginal_v2", "marginal")
+    if "marginal" in by and "marginal_v2_beta" in by:
+        comparisons["beta_vs_raw"] = _pairwise(by, "marginal_v2_beta", "marginal")
+    if "marginal_v2" in by and "marginal_v2_beta" in by:
+        comparisons["beta_vs_v2"] = _pairwise(by, "marginal_v2_beta", "marginal_v2")
+    if "marginal" in by and "marginal_vor" in by:
+        comparisons["vor_vs_raw"] = _pairwise(by, "marginal_vor", "marginal")
+
     losses = []
-    for i, sim_seed, raw, v2 in loss_seeds[:max_loss_diagnostics]:
+    track_name = (
+        "marginal_v2_beta"
+        if loss_focus == "marginal_v2_beta"
+        else "marginal_v2"
+    )
+    for i, sim_seed, raw, focus in loss_seeds[:max_loss_diagnostics]:
         tracked = run_one_v2_tracked(
             conn,
             user_slot=slot,
             roster_preset=preset,
             seed=sim_seed,
             opponent_policy=opponent_policy,
+            strategy_name=track_name,
         )
         failed_q = [
             e for e in tracked.get("q_events") or [] if e.get("q_survived") is False
@@ -229,83 +276,119 @@ def _run_stress_cell_efficient(
             {
                 "sim": i,
                 "seed": sim_seed,
+                "focus_strategy": loss_focus,
                 "raw_pts": round(raw.starter_pts, 2),
-                "v2_pts": round(v2.starter_pts, 2),
-                "delta": round(v2.starter_pts - raw.starter_pts, 2),
+                "focus_pts": round(focus.starter_pts, 2),
+                "delta": round(focus.starter_pts - raw.starter_pts, 2),
                 "raw_r1": raw.picks[0] if raw.picks else None,
-                "v2_r1": v2.picks[0] if v2.picks else None,
+                "focus_r1": focus.picks[0] if focus.picks else None,
                 "q_failures": failed_q[:4],
                 "q_events_early": (tracked.get("q_events") or [])[:4],
             }
         )
 
+    det = opponent_policy in DETERMINISTIC_POLICIES
     return {
         "slot": slot,
         "n": n,
         "seed": seed,
         "opponent_policy": opponent_policy,
-        "summaries": {
-            "marginal": summarize("marginal", by["marginal"]),
-            "marginal_v2": summarize("marginal_v2", by["marginal_v2"]),
-        },
-        "v2_vs_raw": pair,
+        "deterministic_opponent": det,
+        "summaries": {name: summarize(name, rows) for name, rows in by.items()},
+        "v2_vs_raw": comparisons.get("v2_vs_raw"),
+        "beta_vs_raw": comparisons.get("beta_vs_raw"),
+        "beta_vs_v2": comparisons.get("beta_vs_v2"),
+        "vor_vs_raw": comparisons.get("vor_vs_raw"),
+        "comparisons": comparisons,
         "n_losses": len(loss_seeds),
         "loss_diagnostics": losses,
         "note": (
-            "V2 lookahead frozen (ADP-greedy). Opponent policy applies to actual "
-            "CPU picks only."
+            "Alpha lookahead frozen (ADP-greedy). Beta = equal mix of "
+            "ADP/proj/VOR futures. Opponent policy applies to actual CPU picks."
+            + (
+                " Opponent is deterministic: n>1 reprints one trajectory."
+                if det
+                else ""
+            )
         ),
     }
 
 
 def to_markdown(report: dict) -> str:
+    has_beta = "marginal_v2_beta" in (report.get("strategies") or [])
+    title = "V2-beta opponent-policy stress" if has_beta else "V2-alpha opponent-policy stress"
     lines = [
-        "# V2-alpha opponent-policy stress",
+        f"# {title}",
         "",
         "## Setup",
         "",
         f"- n_sims per cell: **{report['n']}**",
         f"- slots: `{report['slots']}`",
         f"- seed: `{report['seed']}`",
-        f"- strategies: `marginal` vs `marginal_v2` (paired)",
-        f"- V2 lookahead: **{report['v2_lookahead']}** (frozen)",
+        f"- strategies: `{', '.join(report.get('strategies') or [])}` (paired seeds)",
+        f"- V2-alpha lookahead: **{report.get('v2_alpha_lookahead', 'adp_greedy')}**",
+        f"- V2-beta lookahead: **{report.get('v2_beta_lookahead', 'n/a')}**",
         f"- opponent policies: `{', '.join(report['policies'])}`",
         "",
-        "## Matrix (V2 − raw)",
-        "",
-        "| opponent | slot | raw mean | v2 mean | v2−raw | v2>raw | n_losses |",
-        "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
+    for note in report.get("notes") or []:
+        lines.append(f"- note: {note}")
+    lines.extend(
+        [
+            "",
+            "## Matrix (headline deltas)",
+            "",
+            "| opponent | slot | det? | raw | vor | α | β | α−raw | β−raw | β−α |",
+            "| --- | ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        ]
+    )
     for cell in report["cells"]:
-        c = cell["v2_vs_raw"]
         s = cell["summaries"]
+        raw_m = (s.get("marginal") or {}).get("mean_starter_pts")
+        vor_m = (s.get("marginal_vor") or {}).get("mean_starter_pts")
+        a_m = (s.get("marginal_v2") or {}).get("mean_starter_pts")
+        b_m = (s.get("marginal_v2_beta") or {}).get("mean_starter_pts")
+        ar = cell.get("v2_vs_raw") or {}
+        br = cell.get("beta_vs_raw") or {}
+        ba = cell.get("beta_vs_v2") or {}
+
+        def fmt(x):
+            return f"{x:.1f}" if x is not None else "—"
+
+        def fmt_d(c):
+            if not c:
+                return "—"
+            return f"{c.get('mean_delta', 0):+.1f}"
+
         lines.append(
             f"| {cell['opponent_policy']} | {cell['slot']} | "
-            f"{s['marginal']['mean_starter_pts']:.1f} | "
-            f"{s['marginal_v2']['mean_starter_pts']:.1f} | "
-            f"{c.get('mean_delta', 0):+.1f} | {c.get('win_rate', 0):.0%} | "
-            f"{cell.get('n_losses', 0)} |"
+            f"{'yes' if cell.get('deterministic_opponent') else 'no'} | "
+            f"{fmt(raw_m)} | {fmt(vor_m)} | {fmt(a_m)} | {fmt(b_m)} | "
+            f"{fmt_d(ar)} | {fmt_d(br)} | {fmt_d(ba)} |"
         )
-    lines.extend(["", "## Loss diagnostics (sample)", ""])
+
+    lines.extend(["", "## Loss diagnostics (sample vs raw)", ""])
     for cell in report["cells"]:
         if not cell.get("loss_diagnostics"):
             continue
         lines.append(
             f"### {cell['opponent_policy']} · slot {cell['slot']} "
-            f"({cell.get('n_losses', 0)} losses)"
+            f"({cell.get('n_losses', 0)} losses; "
+            f"{'deterministic' if cell.get('deterministic_opponent') else 'stochastic'})"
         )
         lines.append("")
         for loss in cell["loss_diagnostics"]:
             lines.append(
                 f"- sim {loss['sim']} seed={loss['seed']}: "
                 f"Δ={loss['delta']:+.1f} "
-                f"(raw {loss['raw_pts']:.1f} vs v2 {loss['v2_pts']:.1f})"
+                f"(raw {loss['raw_pts']:.1f} vs {loss['focus_strategy']} "
+                f"{loss['focus_pts']:.1f})"
             )
             r1r = loss.get("raw_r1") or {}
-            r1v = loss.get("v2_r1") or {}
+            r1f = loss.get("focus_r1") or {}
             lines.append(
                 f"  - R1 raw={r1r.get('name')} ({r1r.get('position')}); "
-                f"v2={r1v.get('name')} ({r1v.get('position')})"
+                f"focus={r1f.get('name')} ({r1f.get('position')})"
             )
             fails = loss.get("q_failures") or []
             if fails:
@@ -318,14 +401,17 @@ def to_markdown(report: dict) -> str:
             else:
                 lines.append("  - no early q-survival failures recorded")
         lines.append("")
+
     lines.extend(
         [
             "## Reading",
             "",
-            "- If V2 stays ahead under proj_greedy / vor opponents, the opportunity "
-            "idea generalizes beyond ADP-like CPUs.",
-            "- If the edge collapses only for some policies, V2-β should mix futures "
-            "rather than only sample more ADP paths.",
+            "- Success for β: shrink proj_greedy catastrophe vs α while keeping "
+            "most of α’s noisy_adp edge (β−raw close to α−raw).",
+            "- If β becomes too QB-afraid, inspect `ev_by_future` on recommend / "
+            "loss traces before tuning weights.",
+            "- Deterministic CPUs: treat mean Δ as a single-trajectory gap, not a "
+            "win-rate claim.",
             "",
         ]
     )
@@ -333,7 +419,9 @@ def to_markdown(report: dict) -> str:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="V2-alpha opponent-policy stress")
+    parser = argparse.ArgumentParser(
+        description="V2-alpha/beta opponent-policy stress"
+    )
     parser.add_argument("--n", type=int, default=20)
     parser.add_argument("--slots", type=str, default="1,5,10")
     parser.add_argument("--seed", type=int, default=0)
@@ -342,20 +430,27 @@ def main() -> None:
         type=str,
         default="noisy_adp,adp_greedy,proj_greedy,vor",
     )
+    parser.add_argument(
+        "--strategies",
+        type=str,
+        default=",".join(DEFAULT_USER_STRATEGIES),
+    )
     parser.add_argument("--preset", default="league_default")
     parser.add_argument(
         "--out",
         type=str,
-        default="results/stress_v2alpha_opponent_policies.md",
+        default="results/stress_v2beta_opponent_policies.md",
     )
     args = parser.parse_args()
     slots = [int(x.strip()) for x in args.slots.split(",") if x.strip()]
     policies = [p.strip() for p in args.policies.split(",") if p.strip()]
+    strategies = [s.strip() for s in args.strategies.split(",") if s.strip()]
     report = run_stress_grid(
         slots=slots,
         n=args.n,
         seed=args.seed,
         policies=policies,
+        strategies=strategies,
         preset=args.preset,
     )
     out = Path(args.out)

@@ -85,6 +85,34 @@ def replacement_baselines(
     return {pos: float(info["replacement_pts"]) for pos, info in snap.items()}
 
 
+def replacement_baselines_from_remaining(
+    remaining: list[dict],
+    *,
+    n_teams: int,
+    slots: dict[str, int],
+) -> dict[str, float]:
+    """In-memory VOR baselines from a remaining pool (no DB)."""
+    demand = league_starter_demand(n_teams, slots)
+    by_pos: dict[str, list[float]] = {p: [] for p in demand}
+    for p in remaining:
+        proj = resolve_projection(p, allow_proxy=False)
+        if proj.quality != "high":
+            continue
+        pos = (p.get("position") or "").upper()
+        if pos not in by_pos:
+            continue
+        by_pos[pos].append(float(proj.value))
+    out: dict[str, float] = {}
+    for pos, vals in by_pos.items():
+        n = int(demand.get(pos) or 0)
+        vals.sort(reverse=True)
+        if n <= 0 or len(vals) < n:
+            out[pos] = 0.0
+        else:
+            out[pos] = float(vals[n - 1])
+    return out
+
+
 def vor_points(proj: float, position: str | None, baselines: dict[str, float]) -> float:
     pos = (position or "").upper()
     base = float(baselines.get(pos) or 0.0)

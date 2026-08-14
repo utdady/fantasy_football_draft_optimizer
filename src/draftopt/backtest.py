@@ -357,6 +357,14 @@ def run_backtest(
             comparisons["marginal_v2_vs_marginal_vor"] = _pairwise(
                 by_strategy, "marginal_v2", "marginal_vor"
             )
+        if "marginal" in by_strategy and "marginal_v2_beta" in by_strategy:
+            comparisons["marginal_v2_beta_vs_marginal"] = _pairwise(
+                by_strategy, "marginal_v2_beta", "marginal"
+            )
+        if "marginal_v2" in by_strategy and "marginal_v2_beta" in by_strategy:
+            comparisons["marginal_v2_beta_vs_marginal_v2"] = _pairwise(
+                by_strategy, "marginal_v2_beta", "marginal_v2"
+            )
 
         m_vs_a = comparisons.get("marginal_vs_adp") or {}
         return {
