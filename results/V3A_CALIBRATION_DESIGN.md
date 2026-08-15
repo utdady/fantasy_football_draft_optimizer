@@ -190,15 +190,23 @@ independently. V3-A is not judged solely by “wins 2024.”
 
 Do not start coding until:
 
-1. [ ] Train years frozen (default 2021–2023) and documented
-2. [ ] Pre-2024 ADP provenance + as-of dates recorded (or blocked if missing)
-3. [ ] Fit method frozen (binned means + isotonic); `curve_id` assigned
-4. [ ] Materialize D into draft DB without touching C’s curve constants
-5. [ ] Register `adp_v3a` (construction identical to structural)
-6. [ ] Same-board ladder: A/B/C/D; report D−B and D−C
-7. [ ] Results artifact + falsification checklist filled
+1. [x] Train years frozen (default 2021–2023) and documented
+2. [x] Pre-2024 ADP provenance + as-of dates recorded
+   ([`phase2_v3a_gate1_adp_provenance.md`](phase2_v3a_gate1_adp_provenance.md))
+3. [x] Fit method frozen (binned means + isotonic); `curve_id` assigned
+   ([`phase2_v3a_gate3_calibration_freeze.md`](phase2_v3a_gate3_calibration_freeze.md))
+4. [x] Train outcomes coverage green
+   ([`phase2_v3a_gate2_train_outcomes.md`](phase2_v3a_gate2_train_outcomes.md))
+5. [x] Leakage constraints audited (design)
+   ([`phase2_v3a_gate4_leakage_audit.md`](phase2_v3a_gate4_leakage_audit.md))
+6. [ ] Materialize D into draft DB without touching C’s curve constants
+7. [ ] Register `adp_v3a` (construction identical to structural)
+8. [ ] Same-board ladder: A/B/C/D; report D−B and D−C
+9. [ ] Results artifact + falsification checklist filled
 
-Sequence: **this design freeze → review → smallest V3-A.0 implementation →
+Gates **1–4 (design) are green.** Remaining items are the implementation PR.
+
+Sequence: **design freeze → Gates 1–4 → smallest V3-A.0 implementation →
 same-board actual-PPR evaluation.**
 
 ---

@@ -1,10 +1,12 @@
 # P2.2C — ADP-structural evaluation (labeled ablation)
 
-**Status:** Phase-2 closeout complete
-([`phase2_p22c_closeout.md`](phase2_p22c_closeout.md)).
-**Next gate:** V3-A design frozen —
-[`V3A_CALIBRATION_DESIGN.md`](V3A_CALIBRATION_DESIGN.md)
-(calibration-adjusted valuation only; no implementation until that note’s gate).
+**Status:** Phase-2 closeout complete. **V3-A Gates 1–4 green**
+([`V3A_CALIBRATION_DESIGN.md`](V3A_CALIBRATION_DESIGN.md);
+[`gate1`](phase2_v3a_gate1_adp_provenance.md) ·
+[`gate2`](phase2_v3a_gate2_train_outcomes.md) ·
+[`gate3`](phase2_v3a_gate3_calibration_freeze.md) ·
+[`gate4`](phase2_v3a_gate4_leakage_audit.md)).
+Next: V3-A.0 **implementation** (fit + materialize + D−B/D−C) — still no UI change.
 **Not** production `marginal`. `evaluable` still 0.
 
 **Parents:** [`PHASE2_P22_SOURCES.md`](PHASE2_P22_SOURCES.md) · P2.2A

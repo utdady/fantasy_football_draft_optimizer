@@ -1,0 +1,56 @@
+{
+  "stage": "V3A_gate2_train_outcomes",
+  "created_at": "2026-08-15T12:03:17Z",
+  "contract_rules": "ppr_train_v1_rules_match_ppr_eval_v1",
+  "note": "Scoring rules match ppr_eval_v1_2024 (week_ppr_points + DST tiers). Not the 2024 eval contract row. No calibration fit. No 2024 train use.",
+  "source": "nflverse_computed",
+  "verdict": "pass",
+  "years": [
+    {
+      "year": 2021,
+      "season_type": "REG",
+      "n_ffc": 211,
+      "n_mapped": 209,
+      "n_unresolved": 2,
+      "outcome_counts": {
+        "observed_points": 204,
+        "observed_zero": 5
+      },
+      "n_observed": 209,
+      "observed_coverage_of_mapped": 1.0,
+      "n_train_pairs_adp_and_observed": 209,
+      "missing_never_coalesced_to_zero": true
+    },
+    {
+      "year": 2022,
+      "season_type": "REG",
+      "n_ffc": 157,
+      "n_mapped": 155,
+      "n_unresolved": 2,
+      "outcome_counts": {
+        "observed_points": 155,
+        "observed_zero": 0
+      },
+      "n_observed": 155,
+      "observed_coverage_of_mapped": 1.0,
+      "n_train_pairs_adp_and_observed": 155,
+      "missing_never_coalesced_to_zero": true
+    },
+    {
+      "year": 2023,
+      "season_type": "REG",
+      "n_ffc": 202,
+      "n_mapped": 198,
+      "n_unresolved": 4,
+      "outcome_counts": {
+        "observed_points": 197,
+        "observed_zero": 1
+      },
+      "n_observed": 198,
+      "observed_coverage_of_mapped": 1.0,
+      "n_train_pairs_adp_and_observed": 198,
+      "missing_never_coalesced_to_zero": true
+    }
+  ],
+  "next": "Gate 3 \u2014 freeze calibration definition (bins, mins, rookies) before any 2024 calibration peek"
+}

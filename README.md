@@ -3,16 +3,19 @@
 10-team PPR snake redraft practice room + V1 marginal lineup-value recommendations.
 
 > **Core thesis: 🟡 preliminary support (C−B > 0 after feasibility + DST controls).
-> External validity 🔴. V3-A: 🟢 hypothesis earned / 🔴 implementation pending
-> (design frozen). UI: `marginal`.**
+> External validity 🔴. V3-A: 🟢 Gates 1–4 green / 🔴 implementation pending.
+> UI: `marginal`.**
 >
 > Evidence: ADP → ADP-feasible → structural ladder under 2024 FFC actual PPR
 > ([`results/phase2_p22c_adp_feasible_ladder.md`](results/phase2_p22c_adp_feasible_ladder.md);
 > track [`results/PHASE2_P22C_ADP_STRUCTURAL.md`](results/PHASE2_P22C_ADP_STRUCTURAL.md);
 > closeout [`results/phase2_p22c_closeout.md`](results/phase2_p22c_closeout.md)).
-> V3-A contract: [`results/V3A_CALIBRATION_DESIGN.md`](results/V3A_CALIBRATION_DESIGN.md)
-> — calibration-adjusted valuation only; construction unchanged; no code until
-> the implementation gate. `evaluable=0`.
+> V3-A contract: [`results/V3A_CALIBRATION_DESIGN.md`](results/V3A_CALIBRATION_DESIGN.md).
+> Gates: [`gate1`](results/phase2_v3a_gate1_adp_provenance.md) ·
+> [`gate2`](results/phase2_v3a_gate2_train_outcomes.md) ·
+> [`gate3`](results/phase2_v3a_gate3_calibration_freeze.md) ·
+> [`gate4`](results/phase2_v3a_gate4_leakage_audit.md).
+> `evaluable=0`. No UI / V2 / CVaR.
 >
 > Phase 1 synthetic decision research is frozen. UI still uses raw **V1 `marginal`**.
 > V2 notes: [`results/V2_ALPHA_BASELINE.md`](results/V2_ALPHA_BASELINE.md),

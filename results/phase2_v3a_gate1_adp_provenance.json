@@ -1,0 +1,165 @@
+{
+  "stage": "V3A_gate1_adp_provenance",
+  "created_at": "2026-08-15T12:00:25Z",
+  "train_years": [
+    2021,
+    2022,
+    2023
+  ],
+  "requested_teams": 12,
+  "scoring": "ppr",
+  "source": "FFC",
+  "verdict": "pass",
+  "dating_gate": "pass",
+  "mapping_gate": "pass",
+  "years": [
+    {
+      "gate": "pass",
+      "reason": null,
+      "requested_year": 2021,
+      "requested_teams": 12,
+      "meta_type": "PPR",
+      "meta_teams": 12,
+      "meta_rounds": 15,
+      "total_drafts": 1709,
+      "start_date": "2021-08-31",
+      "end_date": "2021-09-01",
+      "as_of": "2021-09-01",
+      "as_of_interpretation": "FFC meta.end_date (upper bound of draft window in meta); ADP is an aggregate over [start_date, end_date], not a single pick clock.",
+      "n_players": 211,
+      "fetch": "stable_cache",
+      "stable_raw_path": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\raw\\ffc_adp_ppr_12tm_2021.json",
+      "n_parsed": 211,
+      "mapping": {
+        "n_ffc": 211,
+        "n_mapped": 209,
+        "n_unresolved": 2,
+        "coverage": 0.990521327014218,
+        "unresolved": [
+          {
+            "name": "Rondale Moore",
+            "position": "WR",
+            "team": "ARI",
+            "ffc_player_id": "5179"
+          },
+          {
+            "name": "Kenny Gainwell",
+            "position": "RB",
+            "team": "PHI",
+            "ffc_player_id": "5196"
+          }
+        ]
+      },
+      "source": "fantasyfootballcalculator.com",
+      "scoring": "ppr",
+      "market": "FFC 12-team PPR",
+      "url": "https://fantasyfootballcalculator.com/api/v1/adp/ppr?teams=12&year=2021&position=all",
+      "attribution": "https://fantasyfootballcalculator.com/"
+    },
+    {
+      "gate": "pass",
+      "reason": null,
+      "requested_year": 2022,
+      "requested_teams": 12,
+      "meta_type": "PPR",
+      "meta_teams": 12,
+      "meta_rounds": 15,
+      "total_drafts": 1633,
+      "start_date": "2022-09-03",
+      "end_date": "2022-09-04",
+      "as_of": "2022-09-04",
+      "as_of_interpretation": "FFC meta.end_date (upper bound of draft window in meta); ADP is an aggregate over [start_date, end_date], not a single pick clock.",
+      "n_players": 157,
+      "fetch": "stable_cache",
+      "stable_raw_path": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\raw\\ffc_adp_ppr_12tm_2022.json",
+      "n_parsed": 157,
+      "mapping": {
+        "n_ffc": 157,
+        "n_mapped": 155,
+        "n_unresolved": 2,
+        "coverage": 0.9872611464968153,
+        "unresolved": [
+          {
+            "name": "Kenny Gainwell",
+            "position": "RB",
+            "team": "PHI",
+            "ffc_player_id": "5196"
+          },
+          {
+            "name": "Rondale Moore",
+            "position": "WR",
+            "team": "ARI",
+            "ffc_player_id": "5179"
+          }
+        ]
+      },
+      "source": "fantasyfootballcalculator.com",
+      "scoring": "ppr",
+      "market": "FFC 12-team PPR",
+      "url": "https://fantasyfootballcalculator.com/api/v1/adp/ppr?teams=12&year=2022&position=all",
+      "attribution": "https://fantasyfootballcalculator.com/"
+    },
+    {
+      "gate": "pass",
+      "reason": null,
+      "requested_year": 2023,
+      "requested_teams": 12,
+      "meta_type": "PPR",
+      "meta_teams": 12,
+      "meta_rounds": 15,
+      "total_drafts": 3146,
+      "start_date": "2023-08-30",
+      "end_date": "2023-09-01",
+      "as_of": "2023-09-01",
+      "as_of_interpretation": "FFC meta.end_date (upper bound of draft window in meta); ADP is an aggregate over [start_date, end_date], not a single pick clock.",
+      "n_players": 202,
+      "fetch": "stable_cache",
+      "stable_raw_path": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\raw\\ffc_adp_ppr_12tm_2023.json",
+      "n_parsed": 202,
+      "mapping": {
+        "n_ffc": 202,
+        "n_mapped": 198,
+        "n_unresolved": 4,
+        "coverage": 0.9801980198019802,
+        "unresolved": [
+          {
+            "name": "Rondale Moore",
+            "position": "WR",
+            "team": "ARI",
+            "ffc_player_id": "5179"
+          },
+          {
+            "name": "Kenny Gainwell",
+            "position": "RB",
+            "team": "PHI",
+            "ffc_player_id": "5196"
+          },
+          {
+            "name": "Jeff Wilson Jr.",
+            "position": "RB",
+            "team": "MIA",
+            "ffc_player_id": "3043"
+          },
+          {
+            "name": "Chig Okonkwo",
+            "position": "TE",
+            "team": "TEN",
+            "ffc_player_id": "5453"
+          }
+        ]
+      },
+      "source": "fantasyfootballcalculator.com",
+      "scoring": "ppr",
+      "market": "FFC 12-team PPR",
+      "url": "https://fantasyfootballcalculator.com/api/v1/adp/ppr?teams=12&year=2023&position=all",
+      "attribution": "https://fantasyfootballcalculator.com/"
+    }
+  ],
+  "notes": [
+    "as_of = FFC meta.end_date (draft-window upper bound), same rule as P2.2C.",
+    "Direct httpx may 403 (Cloudflare); use stable data/raw cache from browser/WebFetch.",
+    "No 2024 outcomes used. No calibration fit.",
+    "2022 player count may be thin if FFC window is short \u2014 still dated."
+  ],
+  "next": "Gate 2 \u2014 historical outcomes for train years under same PPR rules"
+}
