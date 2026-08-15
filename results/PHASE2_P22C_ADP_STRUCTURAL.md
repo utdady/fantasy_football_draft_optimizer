@@ -1,7 +1,8 @@
 # P2.2C — ADP-structural evaluation (labeled ablation)
 
-**Status:** methodology frozen; snapshot + labeled strategies + smoke runner
-landed. **Not** production `marginal`. Actual-PPR scoring still gated.
+**Status:** ADP-feasible ladder complete
+([`phase2_p22c_adp_feasible_ladder.md`](phase2_p22c_adp_feasible_ladder.md)).
+**Not** production `marginal`. `evaluable` still 0. V3 still blocked.
 
 **Parents:** [`PHASE2_P22_SOURCES.md`](PHASE2_P22_SOURCES.md) · P2.2A
 [`phase2_p22_feasibility_2024_12tm.md`](phase2_p22_feasibility_2024_12tm.md) ·
@@ -39,7 +40,8 @@ This is **not** “does production `marginal` beat ADP.”
 
 | Name | Meaning |
 | --- | --- |
-| `adp_baseline` | Always pick best remaining ADP (lowest ADP) |
+| `adp_baseline` | Always pick best remaining ADP (lowest ADP); **no** roster-need logic |
+| `adp_feasible` | Lowest ADP among picks that preserve starter feasibility (QB/RB/WR/TE/FLEX/DST/K) |
 | `adp_structural` | Same marginal **roster-construction** machinery as V1, but `proj_ppr` replaced by an **ADP-derived** value curve |
 | `adp_structural_vor` | Optional later: VOR-lite on the same ADP-derived curve |
 
@@ -151,8 +153,24 @@ Coverage (`coverage_p22c`) is the gate before step 5.
 
 ```text
 P2.2B  ██████████ CLOSED (FP free API)
-P2.2C  ███████░░░ outcomes green; actual-PPR Δ runner (evaluable=0)
+P2.2C  █████████░ feasible ladder green; valuation C−B first evidence (evaluable=0)
 ```
+
+### ADP-feasible ladder (load-bearing)
+
+Artifact: [`phase2_p22c_adp_feasible_ladder.md`](phase2_p22c_adp_feasible_ladder.md)
+
+Same 60 pairs (slots 1–12 × 5 sims, seed0=42), `ppr_eval_v1_2024`.
+
+| Split | Feasibility (B−A) | **Valuation (C−B)** |
+| --- | ---: | ---: |
+| Full | +53.7 mean / 60% WR | **+76.5 mean / +54.1 med / 67% WR** |
+| Ex-DST | −13.8 / 20% | **+67.8 / +42.2 / 65%** |
+| Ex-DST+TE | −34.3 / 0% | **+41.3 / +28.3 / 57%** |
+
+DST fill: baseline 35% · feasible 100% · structural 100%.
+
+**Read:** C−A (+130) was contaminated by feasibility. After controlling with `adp_feasible`, structural still beats feasible on full and ex-DST — first evidence of a valuation/construction edge beyond “fill required slots.” Still n=1 season, modeled opponents; not V3 greenlight; UI stays `marginal`.
 
 ### Commands
 
@@ -164,8 +182,9 @@ python -m draftopt.phase2.outcome_coverage_p22c
 # Actual-PPR Δ (baseline vs structural) — modeled opponents; n=1 season
 python -m draftopt.phase2.delta_p22c --slots 1-12 --n-sims 5
 
-# Mechanism audit (same seeds): attribution ladder + DST pick audit + Δ distribution
+# Mechanism audit + ADP-feasible ladder
 python -m draftopt.phase2.diagnose_delta_p22c --slots 1-12 --n-sims 5
+python -m draftopt.phase2.feasible_ladder_p22c --slots 1-12 --n-sims 5
 ```
 
 Scoring contract: [`PHASE2_P22C_SCORING_CONTRACT_ppr_eval_v1_2024.md`](PHASE2_P22C_SCORING_CONTRACT_ppr_eval_v1_2024.md)

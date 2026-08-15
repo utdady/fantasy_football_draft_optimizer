@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from draftopt.strategies.adp import ADPStrategy
+from draftopt.strategies.adp_feasible import AdpFeasibleStrategy
 from draftopt.strategies.adp_structural import AdpBaselineStrategy, AdpStructuralStrategy
 from draftopt.strategies.base import DraftStrategy
 from draftopt.strategies.greedy import GreedyProjectionStrategy
@@ -18,6 +19,8 @@ def get_strategy(name: str = "marginal") -> DraftStrategy:
         return ADPStrategy()
     if key in {"adp_baseline"}:
         return AdpBaselineStrategy()
+    if key in {"adp_feasible"}:
+        return AdpFeasibleStrategy()
     if key in {"adp_structural"}:
         return AdpStructuralStrategy()
     if key in {"greedy", "greedy_proj", "projection"}:
@@ -40,6 +43,7 @@ def get_strategy(name: str = "marginal") -> DraftStrategy:
 __all__ = [
     "ADPStrategy",
     "AdpBaselineStrategy",
+    "AdpFeasibleStrategy",
     "AdpStructuralStrategy",
     "DraftStrategy",
     "GreedyProjectionStrategy",
