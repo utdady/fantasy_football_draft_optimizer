@@ -1,0 +1,86 @@
+{
+  "created_at": "2026-08-15T18:45:11Z",
+  "kind": "autopsy_analyze",
+  "draft_id": "eb8374278e41",
+  "board_hash": "e3b0c44298fc1c14",
+  "control": "marginal",
+  "disclaimer": "Lookahead / survival columns are diagnostic stubs only. They do not change TAKE. Do not ship without Gate 1\u20133 in AUTOPSY_GATE.md.",
+  "current_pick": 1,
+  "user_slot": 1,
+  "next_user_overall": 24,
+  "picks_until_next": 22,
+  "lineup_ev_before": 0.0,
+  "candidates": [
+    {
+      "player_id": "4984",
+      "name": "Josh Allen",
+      "position": "QB",
+      "team": "BUF",
+      "adp_espn": 22.56,
+      "proj_espn": 369.20836371,
+      "ok": true,
+      "M": 369.21,
+      "lineup_before": 0.0,
+      "lineup_after": 369.21,
+      "P_survive_crude": 0.4673,
+      "E_next_M_stub": 273.08,
+      "EV_two_pick_stub": 642.29,
+      "delta_EV_minus_M": 273.08,
+      "future": {
+        "policy": "adp_greedy_diagnostic",
+        "n_cpu_picks": 22,
+        "q_name": "Breece Hall",
+        "q_position": "RB"
+      }
+    },
+    {
+      "player_id": "9221",
+      "name": "Jahmyr Gibbs",
+      "position": "RB",
+      "team": "DET",
+      "adp_espn": 1.57,
+      "proj_espn": 365.27169647,
+      "ok": true,
+      "M": 365.27,
+      "lineup_before": 0.0,
+      "lineup_after": 365.27,
+      "P_survive_crude": 0.1152,
+      "E_next_M_stub": 322.5,
+      "EV_two_pick_stub": 687.77,
+      "delta_EV_minus_M": 322.5,
+      "future": {
+        "policy": "adp_greedy_diagnostic",
+        "n_cpu_picks": 22,
+        "q_name": "Lamar Jackson",
+        "q_position": "QB"
+      }
+    },
+    {
+      "player_id": "9493",
+      "name": "Puka Nacua",
+      "position": "WR",
+      "team": "LAR",
+      "adp_espn": 3.99,
+      "proj_espn": 356.56668936,
+      "ok": true,
+      "M": 356.57,
+      "lineup_before": 0.0,
+      "lineup_after": 356.57,
+      "P_survive_crude": 0.1395,
+      "E_next_M_stub": 322.5,
+      "EV_two_pick_stub": 679.06,
+      "delta_EV_minus_M": 322.49,
+      "future": {
+        "policy": "adp_greedy_diagnostic",
+        "n_cpu_picks": 22,
+        "q_name": "Lamar Jackson",
+        "q_position": "QB"
+      }
+    }
+  ],
+  "control_best_id": "4984",
+  "control_best_name": "Josh Allen",
+  "stub_best_id": "9221",
+  "stub_best_name": "Jahmyr Gibbs",
+  "ranking_flipped_vs_M": true
+}

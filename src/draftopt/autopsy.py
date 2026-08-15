@@ -431,7 +431,7 @@ def format_analyze_markdown(report: dict) -> str:
         "",
         report.get("disclaimer", ""),
         "",
-        "| Player | Pos | M | P(survive) | E[next M] | EV stub | Δ(EV−M) | next q |",
+        "| Player | Pos | M | P(survive) | E[next M] | EV stub | d(EV-M) | next q |",
         "| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |",
     ]
     for r in report.get("candidates") or []:
@@ -514,11 +514,29 @@ def main(argv: list[str] | None = None) -> int:
                 path.write_text(md, encoding="utf-8")
                 report_path = path.with_suffix(".json")
                 report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
-                print(md)
-                print(f"\nWrote {path} and {report_path}")
+                report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
+                print(json.dumps({
+                    "path": str(path.relative_to(ROOT)).replace("\\", "/") if path.is_relative_to(ROOT) else str(path),
+                    "json": str(report_path.relative_to(ROOT)).replace("\\", "/") if report_path.is_relative_to(ROOT) else str(report_path),
+                    "ranking_flipped_vs_M": report["ranking_flipped_vs_M"],
+                    "control_best_name": report.get("control_best_name"),
+                    "stub_best_name": report.get("stub_best_name"),
+                }, indent=2))
             else:
-                print(md)
-                print(json.dumps({"ranking_flipped_vs_M": report["ranking_flipped_vs_M"]}, indent=2))
+                print(json.dumps({
+                    "ranking_flipped_vs_M": report["ranking_flipped_vs_M"],
+                    "control_best_name": report.get("control_best_name"),
+                    "stub_best_name": report.get("stub_best_name"),
+                    "candidates": [
+                        {
+                            "name": r.get("name"),
+                            "M": r.get("M"),
+                            "P_survive_crude": r.get("P_survive_crude"),
+                            "delta_EV_minus_M": r.get("delta_EV_minus_M"),
+                        }
+                        for r in report.get("candidates") or []
+                    ],
+                }, indent=2))
             return 0
         if args.cmd == "disagree":
             rec_id = _resolve_any(conn, args.draft_id, args.recommended)
