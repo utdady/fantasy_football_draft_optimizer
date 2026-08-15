@@ -1,0 +1,15 @@
+{
+  "probed_at": "2026-08-15T06:26:37Z",
+  "season": 2024,
+  "http_status": null,
+  "gate": "fail",
+  "reason": "api_key_missing",
+  "has_players": false,
+  "n_players_sample_endpoint": null,
+  "dateish_fields": [],
+  "verdict": "blocked_no_key",
+  "notes": [
+    "Set FANTASYPROS_API_KEY (or FP_API_KEY) and re-run. Without a key the API returns 403; historical as_of cannot be verified.",
+    "Docs: GET /v2/json/nfl/{season}/projections?week=0&scoring=PPR (week=0 = preseason). No as_of query parameter is documented \u2014 provenance must come from response fields or fail closed."
+  ]
+}

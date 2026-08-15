@@ -42,7 +42,7 @@ For `marginal` vs ADP on **actual** 2024 PPR:
 | 1 | **ESPN live API** (our ingest) | Only `pulled_at` of *today* | Yes (`appliedTotal`) | High | `espn_id` | **REJECT for 2024** — no historical season endpoint in our adapter |
 | 2 | **Mike Clay / ESPN Draft Kit PDF 2024** | Yes — e.g. guide stamped **Updated: 9/4/2024** | Stat lines in PDF (manual/parse) | Positional tables | name/pos/team → DP (weak) or manual | **CONDITIONAL** — dated, but 9/4 may be **after** draft-week ADP (`FFC end_date 2024-09-01`); need a **late-Aug** PDF revision if one exists |
 | 3 | **ESPN projections SPA** historical | No public year archive | SPA / unofficial scrapers | — | — | **REJECT** as pipeline source — live page replaces past seasons |
-| 4 | **FantasyPros projections API** | Current pulls dated; **historical bulk often commercial** | Yes (stat line / season) | High if licensed | `fantasypros_id` via DP | **PROBE WITH KEY** — best non-ESPN path if historical season+date available on free/HOF tier |
+| 4 | **FantasyPros projections API** | TBD (needs key) | Yes (stat line / season) | High if licensed | `fantasypros_id` via DP | **PROBE IN PROGRESS** — CLI `fp_projection_probe`; no key in env yet → blocked |
 | 5 | **DynastyProcess / FP ECR archive** | Yes — `scrape_date` | **Rankings, not points** | High | `fantasypros_id` | **REJECT for Stage B default** — ECR≠`proj_ppr` (Stage C proxy only, labeled) |
 | 6 | **Our own `data/raw` ESPN dumps** | Only if we saved 2024 files | Yes | — | existing | **N/A** — no 2024 preseason raw archive in-repo (gitignored raw is current-era) |
 | 7 | **Wayback / third-party mirrors** | Sometimes | HTML/PDF scrape | Uneven | fragile | **LAST RESORT** — only if snapshot URL has clear crawl date ≤ decision date |
@@ -93,9 +93,9 @@ Do **not** use 12-team ADP to claim 10-team optimizer performance.
 
 ## Recommended next actions (ordered)
 
-1. **FantasyPros API probe (short):** can we pull 2024 preseason projections with an explicit as-of? (needs key — user action)
-2. **Clay/ESPN PDF hunt (short):** find a revision dated **≤ 2024-08-31** (or ≤ chosen snapshot_date); if only 9/4+ exists, document FAIL for draft-weekend cut
-3. If both fail → open labeled **ADP-only** track; do **not** invent ECR→points for default Stage B
+1. **FantasyPros API probe:** `python -m draftopt.phase2.fp_projection_probe --season 2024` with `FANTASYPROS_API_KEY` set — see [`phase2_p22b_fp_probe.md`](phase2_p22b_fp_probe.md)
+2. **Clay/ESPN PDF hunt (short):** find a revision dated **≤ 2024-08-31**; if only 9/4+ exists, FAIL for draft-weekend cut
+3. If FP fails provenance → **stop projection archaeology**; open labeled **ADP-only** track
 4. Still blocked: draft replay, `marginal` vs ADP, VOR/V2
 
 ---

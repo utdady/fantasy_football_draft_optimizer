@@ -19,7 +19,8 @@
 > historical eval snapshot + outcomes ([`results/PHASE2_P22_SOURCES.md`](results/PHASE2_P22_SOURCES.md)).
 > Stage A spike: FFC 2024 10-team request **failed** league-size check (`evaluable=0`).
 > **P2.2B:** projection source audit — [`results/PHASE2_P22B_PROJECTION_AUDIT.md`](results/PHASE2_P22B_PROJECTION_AUDIT.md)
-> (Gate 4 still open; no replay).
+> (Gate 4 still open; no replay). FP probe CLI ready — needs `FANTASYPROS_API_KEY`
+> ([`results/phase2_p22b_fp_probe.md`](results/phase2_p22b_fp_probe.md)).
 
 ## Setup
 

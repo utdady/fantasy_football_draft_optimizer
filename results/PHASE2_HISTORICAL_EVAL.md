@@ -51,6 +51,20 @@ Question Phase 2 answers:
 
 4. Outcome scoring uses the **same roster slots** as the league (PPR: QB, 2 RB, 2 WR, TE, 2 FLEX, DST, …).
 5. Phase 1 synthetic simulator is retained as a **lab**, not as the definition of success.
+6. **Optimizer vs evaluator information** (record on every experiment):
+
+| Data | Optimizer? | Evaluator? |
+| --- | ---: | ---: |
+| Preseason ADP (dated) | ✅ | — |
+| Preseason projection (dated) | ✅ | — |
+| Draft slot / league settings | ✅ | — |
+| Actual season PPR | ❌ | ✅ |
+| In-season injuries / weekly news | ❌ | ❌* |
+| End-of-season rankings | ❌ | ❌* |
+
+\*Unless the experiment is explicitly an in-season system.
+
+Label markets honestly: **FFC ADP ≠ ESPN ADP**, **12-team ≠ 10-team**, **ECR ≠ `proj_ppr`**, **ADP-as-curve ≠ ESPN `proj_ppr`**.
 
 ---
 
