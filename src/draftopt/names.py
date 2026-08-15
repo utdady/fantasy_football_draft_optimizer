@@ -4,6 +4,8 @@ import re
 import unicodedata
 
 _PUNCT = re.compile(r"[^a-z0-9]+")
+# Generational / ordinal suffixes at end of person names (not applied to DST labels).
+_GEN_SUFFIX = re.compile(r"[\s,]+(jr|sr|ii|iii|iv|v)\.?$", re.IGNORECASE)
 
 DST_NICKNAMES = {
     "ARI": ["cardinals", "arizona"],
@@ -40,11 +42,40 @@ DST_NICKNAMES = {
     "WAS": ["commanders", "washington"],
 }
 
+# FFC / market display folds → DynastyProcess-style person folds (never name-only join).
+# Applied after fold_person(); still requires position (+ team when available).
+PERSON_FOLD_ALIASES: dict[str, str] = {
+    "hollywoodbrown": "marquisebrown",
+    "gabedavis": "gabrieldavis",
+    "michaelbadgley": "mikebadgley",
+}
+
 
 def fold(text: str) -> str:
     nfkd = unicodedata.normalize("NFKD", text or "")
     ascii_only = nfkd.encode("ascii", "ignore").decode("ascii")
     return _PUNCT.sub("", ascii_only.lower())
+
+
+def strip_generational_suffix(name: str) -> str:
+    """Remove trailing Jr/Sr/II/III/IV/V (with optional period)."""
+    s = (name or "").strip()
+    while True:
+        m = _GEN_SUFFIX.search(s)
+        if not m:
+            return s.rstrip(" ,.")
+        s = s[: m.start()].rstrip(" ,.")
+
+
+def fold_person(name: str) -> str:
+    """Person-name fold: strip generational suffixes, then fold."""
+    return fold(strip_generational_suffix(name))
+
+
+def person_match_fold(name: str) -> str:
+    """fold_person plus explicit market aliases (Hollywood → Marquise, etc.)."""
+    base = fold_person(name)
+    return PERSON_FOLD_ALIASES.get(base, base)
 
 
 def display_name(first: str | None, last: str | None, fallback: str = "") -> str:
@@ -56,6 +87,7 @@ def aliases_for(name: str, position: str | None, team: str | None) -> list[str]:
     aliases: set[str] = set()
     if name:
         aliases.add(fold(name))
+        aliases.add(fold_person(name))
         aliases.add(fold(name.replace("'", "").replace(".", "")))
         bits = name.replace(",", " ").split()
         if bits:

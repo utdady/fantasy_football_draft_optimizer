@@ -6,9 +6,9 @@
   "validation_reason": "historical_projection_missing",
   "as_of": "2024-09-01",
   "n_players": 205,
-  "n_mapped": 179,
-  "n_unresolved": 26,
-  "mapping_coverage": 0.8731707317073171,
+  "n_mapped": 205,
+  "n_unresolved": 0,
+  "mapping_coverage": 1.0,
   "curve": {
     "curve_id": "adp_linear_v1_2024_ffc12",
     "formula": "v = clamp(V_FLOOR, V_MAX * (ADP_REF - adp) / (ADP_REF - 1), V_MAX)",

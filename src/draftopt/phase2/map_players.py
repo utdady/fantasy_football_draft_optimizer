@@ -1,7 +1,12 @@
-"""Map FFC source players → canonical player_id + gsis_id.
+"""Map FFC source players → canonical player_id + gsis_id (or dst:TEAM).
 
 Uses DynastyProcess / nflverse ff_playerids crosswalk. Auto-match is
 name+position+team only (never name-alone). Unresolved rows are retained.
+
+P2.2C mapping repair:
+- generational suffix strip (Jr/Sr/II/III/…) via fold_person
+- explicit person-fold aliases (e.g. Hollywood → Marquise)
+- DST → team entity `dst:{TEAM}` (not a fake GSIS player id)
 """
 
 from __future__ import annotations
@@ -9,8 +14,24 @@ from __future__ import annotations
 import sqlite3
 from typing import Any
 
-from draftopt.names import fold
+from draftopt.names import DST_NICKNAMES, fold_person, person_match_fold
 from draftopt.sources import dynastyprocess
+
+# Valid NFL team codes for DST team-entity mapping.
+_DST_TEAMS = frozenset(DST_NICKNAMES.keys())
+
+# Explicit FFC source_player_id overrides when name+pos is ambiguous in DP.
+# Still not name-only: keyed by FFC id + verified GSIS from DynastyProcess.
+MANUAL_FFC_BY_ID: dict[str, dict[str, str]] = {
+    # Three "Mike Williams" WR rows in DP (all FA); 2024 FFC PIT = 2017 Chargers WR.
+    "2436": {
+        "player_id": "4068",
+        "gsis_id": "00-0033536",
+        "sleeper_id": "4068",
+        "espn_id": "3045138",
+        "notes": "manual_ffc_id: disambiguate Mike Williams WR (gsis 00-0033536)",
+    },
+}
 
 
 def _clean(value: Any) -> str | None:
@@ -28,7 +49,7 @@ def _norm_pos(pos: str | None) -> str | None:
     if not pos:
         return None
     p = pos.upper()
-    if p in {"DEF", "D/ST"}:
+    if p in {"DEF", "D/ST", "DST"}:
         return "DST"
     if p == "PK":
         return "K"
@@ -68,7 +89,8 @@ def load_id_crosswalk(csv_text: str | None = None) -> list[dict[str, Any]]:
             {
                 "player_id": player_id,
                 "name": name,
-                "name_fold": fold(name),
+                # Person fold (suffix-stripped) for matching; DST rows unused for dst_team path.
+                "name_fold": fold_person(name),
                 "position": pos,
                 "team": team,
                 "sleeper_id": sleeper_id,
@@ -85,12 +107,33 @@ def _index_crosswalk(rows: list[dict[str, Any]]) -> dict[tuple[str, str, str], l
     for r in rows:
         if not r.get("position"):
             continue
+        if r["position"] == "DST":
+            # Offensive/K matching only in this index; DST uses team-entity path.
+            continue
         key = (r["name_fold"], r["position"], (r.get("team") or "").upper())
         idx.setdefault(key, []).append(r)
-        # Also index without team for unique name+pos fallbacks that are unique globally
         soft = (r["name_fold"], r["position"], "")
         idx.setdefault(soft, []).append(r)
     return idx
+
+
+def _map_dst(ffc_id: str, name: str, team: str | None) -> dict[str, Any] | None:
+    """Map defense to canonical team entity dst:{TEAM}. No GSIS."""
+    if not team or team not in _DST_TEAMS:
+        return None
+    return {
+        "source": "ffc",
+        "source_player_id": ffc_id,
+        "player_id": f"dst:{team}",
+        "gsis_id": None,
+        "sleeper_id": None,
+        "espn_id": None,
+        "method": "dst_team",
+        "notes": "team entity; outcomes via team-level scoring later (not GSIS)",
+        "name": name,
+        "position": "DST",
+        "team": team,
+    }
 
 
 def map_ffc_players(
@@ -104,6 +147,7 @@ def map_ffc_players(
     mapped: list[dict[str, Any]] = []
     unresolved: list[dict[str, Any]] = []
     name_only = 0
+    n_manual = 0
 
     for p in ffc_players:
         ffc_id = str(p["ffc_player_id"])
@@ -123,8 +167,50 @@ def map_ffc_players(
             )
             continue
 
-        nf = fold(name)
+        if pos == "DST":
+            dst = _map_dst(ffc_id, name, team)
+            if dst:
+                mapped.append(dst)
+            else:
+                unresolved.append(
+                    {
+                        "source": "ffc",
+                        "source_player_id": ffc_id,
+                        "name": name,
+                        "position": pos,
+                        "team": team,
+                        "reason": "dst_team_unrecognized",
+                    }
+                )
+            continue
+
+        if ffc_id in MANUAL_FFC_BY_ID:
+            ov = MANUAL_FFC_BY_ID[ffc_id]
+            mapped.append(
+                {
+                    "source": "ffc",
+                    "source_player_id": ffc_id,
+                    "player_id": ov["player_id"],
+                    "gsis_id": ov.get("gsis_id"),
+                    "sleeper_id": ov.get("sleeper_id"),
+                    "espn_id": ov.get("espn_id"),
+                    "method": "manual_ffc_id",
+                    "notes": ov.get("notes"),
+                    "name": name,
+                    "position": pos,
+                    "team": team,
+                }
+            )
+            n_manual += 1
+            continue
+
+        nf = person_match_fold(name)
         method = "name_pos_team"
+        notes = None
+        if nf != fold_person(name):
+            method = "name_pos_team_alias"
+            notes = f"alias_fold={nf}"
+            n_manual += 1
         hits: list[dict] = []
         if team:
             hits = idx.get((nf, pos, team), [])
@@ -133,9 +219,12 @@ def map_ffc_players(
             by_id = {h["player_id"]: h for h in soft}
             if len(by_id) == 1:
                 hits = list(by_id.values())
-                method = "name_pos_unique"
+                method = (
+                    "name_pos_unique_alias"
+                    if notes
+                    else "name_pos_unique"
+                )
             else:
-                # Missing/mismatched team and non-unique name+pos → unresolved later
                 hits = list(by_id.values()) if not team and len(by_id) > 1 else []
 
         if len(hits) == 1:
@@ -149,7 +238,7 @@ def map_ffc_players(
                     "sleeper_id": h.get("sleeper_id"),
                     "espn_id": h.get("espn_id"),
                     "method": method,
-                    "notes": None,
+                    "notes": notes,
                     "name": name,
                     "position": pos,
                     "team": team,
@@ -184,7 +273,7 @@ def map_ffc_players(
         "n_ffc": n,
         "n_mapped": n_map,
         "n_unresolved": len(unresolved),
-        "n_manual": 0,
+        "n_manual": n_manual,
         "coverage": (n_map / n) if n else 0.0,
         "name_only_joins": name_only,
         "mapped": mapped,

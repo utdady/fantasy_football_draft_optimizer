@@ -81,21 +81,49 @@ Chosen **before** any actual-PPR comparison. Changing these after seeing Δ is a
 
 ---
 
+## Decision-space coverage gate (before PPR)
+
+Board coverage ≠ outcome coverage. Unmapped `ffc:*` players remain draftable but
+are silent losses for actual-PPR scoring.
+
+| Check | Required for later `evaluable` claim |
+| --- | --- |
+| Overall / top-50 / 100 / 150 ADP coverage | Explicit in report |
+| Unmapped by position + ADP band | Explicit |
+| Strategy selections of unmapped / no outcome key | **Must be zero** |
+| Offense/K | mapped + **gsis** |
+| DST | mapped to **`dst:{TEAM}`** (team entity; not fake GSIS) |
+| Outcome (nflverse) coverage | After attach — not this step |
+
+**Audit trail:** failed v1
+[`phase2_p22c_decision_space_coverage.md`](phase2_p22c_decision_space_coverage.md)
+→ mapping repair → pass v2
+[`phase2_p22c_decision_space_coverage_v2.md`](phase2_p22c_decision_space_coverage_v2.md)
+(205/205 mapped; 0 strategy unmapped selections; `evaluable` still 0).
+
+```bash
+python -m draftopt.phase2.coverage_p22c --slots 1,5,10 --n-sims 3 \
+  --out results/phase2_p22c_decision_space_coverage_v2.md
+```
+
+---
+
 ## Experiment steps (order)
 
 1. Freeze decision snapshot from FFC 2024 **12-team** cut (`evaluable=0`,
    `validation_status=source_validation`, reason notes ADP-structural track).
-2. Attach mapped canonical IDs + ensure outcome coverage for draftable pool.
+2. **Decision-space coverage** → fix high-value unmapped → rematerialize until gate passes.
 3. Leakage validate (`*_as_of ≤ snapshot_date`).
 4. Replay: `adp_baseline` vs `adp_structural` (same slots/seeds; **12 teams × 15 rounds**
    matching FFC meta; `league_default` roster, K not drafted).
 5. Score rosters with **actual** starter PPR (same slots as league).
-6. Report \(\Delta = \mathrm{PPR}_{structural} - \mathrm{PPR}_{baseline}\) by slot.
+6. Report \(\Delta = \mathrm{PPR}_{structural} - \mathrm{PPR}_{baseline}\) by slot
+   (+ stratified / mapping-sensitivity).
 7. Only then consider `evaluable=1` for this **labeled** experiment (still not
    Stage B “marginal vs ADP on ESPN proj”).
 
-Smoke (`smoke_p22c`) stops after step 4 and reports ADP-**curve** starter Δ only —
-do not treat that as empirical validity.
+Smoke (`smoke_p22c`) reports ADP-**curve** starter Δ only — not empirical validity.
+Coverage (`coverage_p22c`) is the gate before step 5.
 
 ---
 
@@ -123,7 +151,7 @@ do not treat that as empirical validity.
 
 ```text
 P2.2B  ██████████ CLOSED (FP free API)
-P2.2C  ███░░░░░░░ materialize + strategies + smoke (curve pts only; evaluable=0)
+P2.2C  █████░░░░░ mapping repair + coverage v2 (evaluable=0; PPR still blocked)
 ```
 
 ### Commands
@@ -134,4 +162,9 @@ python -m draftopt.phase2.materialize_p22c
 
 # Leakage + labeled replay smoke (ADP-curve starter pts — not actual PPR)
 python -m draftopt.phase2.smoke_p22c --slots 1,5,10 --n-sims 1
+
+# Decision-space coverage gate (before nflverse PPR)
+# Keep failed v1 artifact; write v2 after mapping repair:
+python -m draftopt.phase2.coverage_p22c --slots 1,5,10 --n-sims 3 \
+  --out results/phase2_p22c_decision_space_coverage_v2.md
 ```
