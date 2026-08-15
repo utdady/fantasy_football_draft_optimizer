@@ -220,8 +220,31 @@ flip under the frozen formula), and D’s order should be preserved.
 | Outcome | Reading | Next |
 | --- | --- | --- |
 | 0/60 pick changes | Still policy-inert | Stop; reassess hypothesis (do **not** auto-lengthen horizon) |
-| Pick changes + B−D ≤ 0 | Falsified as useful construction | Freeze; no tune |
-| Pick changes + B−D positive (predeclared) | Provisional support | **Mechanism audit first**; no B.1.1 |
+| Pick changes + B−D ≤ 0 | Falsified as useful construction | Freeze; no tune; optional light pick-trace only |
+| Pick changes + B−D positive (predeclared) | **Provisional only** | **Mandatory mechanism audit** before any claim that state-dependent OC “worked”; no B.1.1; no horizon expansion |
+
+### Mandatory mechanism audit (even when B−D looks good)
+
+**Mechanism audit is not a consolation prize for a disappointing ladder.**  
+A flattering mean/WR/p10 does **not** skip this step.
+
+After any B−D with ≥1 pick-change board (and **especially** when B−D > 0), before
+interpreting the result as evidence for candidate-induced state-dependent OC,
+document at least:
+
+1. **Where** B diverges from D — round-band histogram; first-divergence round.
+2. **What** flips — position pairs at first fork (D→B); roster-count Δ if useful.
+3. **Concentration** — whether positive Δ mass is mega-concentrated in a few boards
+   (same discipline as V3-A / Branch A postmortems).
+4. **Sanity vs Gates** — divergences should be plausibly tied to different
+   continuations \(C(R')\), not unexplained noise (Gate N’s spirit on real boards).
+
+If the audit shows divergences cluster in a mechanistically uninteresting way
+(e.g. almost only R1–R2 with no state-induced story, or a single position pair
+dominating), **do not** promote B to “OC validated” — record the finding and stop.
+
+**Still forbidden after a positive B−D:** weighting \(C\), lengthening horizon,
+λ/CVaR, map retune, resurrecting V2.
 
 ---
 
@@ -234,12 +257,14 @@ flip under the frozen formula), and D’s order should be preserved.
 - [x] Forbids (A/B.1 shapes, outcomes, multi-round, V2) listed
 - [x] Gates P + N specified
 - [x] B−D metrics + stop rules frozen
+- [x] **Mandatory mechanism audit on positive B−D** (where/why; not optional)
 - [ ] Unit tests for \(T\), \(C\), formula, forbids
 - [ ] Synthetic Gate P pass
 - [ ] Synthetic Gate N pass
 - [ ] Strategy `adp_v3bb` (only if P∧N)
 - [ ] Smoke vs D
 - [ ] 60-board B−D; report; **stop**
+- [ ] Mechanism audit if any pick changes (required if B−D > 0)
 
 ---
 
@@ -260,4 +285,6 @@ flip under the frozen formula), and D’s order should be preserved.
 > **Branch B ranks by immediate \(M_D(p\mid R)\) plus the best next-pick \(M_D\)
 > in the roster state after taking \(p\) (one step only); it must pass synthetic
 > reversal and negative-control gates before any B−D ladder; forbids current-state
-> \(q^*\) subtraction and V2 machinery; judge B−D with pick-change metrics; no retune.**
+> \(q^*\) subtraction and V2 machinery; judge B−D with pick-change metrics; a
+> positive B−D still requires a mandatory where/why mechanism audit before any
+> OC claim; no retune / no horizon expansion.**
