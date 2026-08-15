@@ -6,7 +6,13 @@ from pathlib import Path
 
 import httpx
 
-from draftopt.config import ESPN_PLAYER_LIMIT, ESPN_PLAYERS_URL, HTTP_HEADERS, RAW_DIR
+from draftopt.config import (
+    ESPN_PLAYER_LIMIT,
+    ESPN_PLAYERS_URL,
+    HTTP_HEADERS,
+    RAW_DIR,
+    SEASON,
+)
 
 POSITION_BY_ID = {
     1: "QB",
@@ -90,19 +96,34 @@ def save_raw(payload: dict, pulled_at: str | None = None) -> Path:
     return path
 
 
-def _season_projection(stats: list | None) -> float | None:
+def _season_projection(
+    stats: list | None,
+    *,
+    season: int = SEASON,
+) -> float | None:
+    """Season-total projection (statSourceId=1, period 0).
+
+    Prefer ``seasonId == season`` (config SEASON). ESPN often returns prior-year
+    season totals first; taking the first match silently latches the wrong year.
+    """
+    fallback: float | None = None
     for st in stats or []:
         if (
-            st.get("statSourceId") == 1
-            and st.get("scoringPeriodId") == 0
-            and st.get("statSplitTypeId") == 0
-            and st.get("appliedTotal") is not None
+            st.get("statSourceId") != 1
+            or st.get("scoringPeriodId") != 0
+            or st.get("statSplitTypeId") != 0
+            or st.get("appliedTotal") is None
         ):
-            return float(st["appliedTotal"])
-    return None
+            continue
+        total = float(st["appliedTotal"])
+        if st.get("seasonId") == season:
+            return total
+        if fallback is None:
+            fallback = total
+    return fallback
 
 
-def parse(payload: dict) -> list[dict]:
+def parse(payload: dict, *, season: int = SEASON) -> list[dict]:
     rows = []
     for entry in payload.get("players") or []:
         pl = entry.get("player") or {}
@@ -125,7 +146,7 @@ def parse(payload: dict) -> list[dict]:
                 "adp": float(adp) if adp is not None else None,
                 "ppr_rank": int(ppr_rank) if ppr_rank is not None else None,
                 "percent_owned": ownership.get("percentOwned"),
-                "season_points": _season_projection(pl.get("stats")),
+                "season_points": _season_projection(pl.get("stats"), season=season),
             }
         )
     return rows

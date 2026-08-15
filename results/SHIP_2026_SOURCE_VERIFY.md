@@ -17,7 +17,9 @@ Phase-2 historical DBs stay frozen / untouched.
 | **FantasyPros** web ADP/ECR | ✅ site | ⚠️ not primary ingest | 2026 PPR ADP live; full table often gated |
 | **FFC** ADP API | ❌ here | known | HTTP **403** Cloudflare (unchanged) |
 
-**Ship gate implication:** Days 1–3 should re-ingest live DB **after** fixing ESPN `seasonId` selection. Do not treat a naive `python -m draftopt.ingest` as 2026-ready until that fix lands.
+**Ship gate implication:** ESPN `seasonId` latch is **fixed** (`espn._season_projection`
+prefers config `SEASON`). Live DB re-ingested **2026-08-15T16:18:27Z** — Gibbs season
+proj **365.3** (was latching ~317 from 2025). Phase-2 DB hashes unchanged.
 
 ---
 
@@ -39,8 +41,9 @@ Phase-2 historical DBs stay frozen / untouched.
 - **800** players with `ownership.averageDraftPosition` and PPR draft ranks
 - Top ADP matches market (Gibbs ~1.57, Bijan ~2.6, …)
 - Season projection blocks include **both** `seasonId=2025` and `seasonId=2026`
-- Current `_season_projection()` takes the **first** `scoringPeriodId==0` / `statSourceId==1` match → for top players that is **2025** (e.g. Gibbs **317** vs 2026 **365**)
-- **20/20** of top owned players checked: first-match year ≠ 2026
+- Current `_season_projection()` **prefers `seasonId == SEASON` (2026)**; prior-year
+  blocks are fallback only (fixed 2026-08-15).
+- Re-ingest validation: Gibbs **365.3**, Bijan **353.0**, Puka **356.6** (2026 totals).
 
 ### FantasyPros (browser)
 - [PPR ADP](https://www.fantasypros.com/nfl/adp/ppr-overall.php): title **“PPR Leagues 2026”**; season control **2026**; sources ESPN/CBS/Sleeper/…; top names Gibbs / Bijan / Chase / Puka / CMC
@@ -58,9 +61,10 @@ Phase-2 historical DBs stay frozen / untouched.
 | --- | --- |
 | Path | `data/draftopt.db` |
 | Players | 859 |
-| Last ADP/proj pull | **2026-08-12T17:13:09Z** (~3 days stale) |
-| ESPN ADP rows | 800 (mean ADP ~153) |
-| ESPN proj rows | 774 (mean season_points ~75.5 — suspiciously low for full-season PPR; consistent with mixed/prior-year latch risk + deep bench) |
+| Last ADP/proj pull | **2026-08-15T16:18:27Z** (post seasonId fix) |
+| ESPN ADP rows | 800 |
+| ESPN proj rows | 777 (Gibbs **365.3** — 2026 season total) |
+| ECR rows | 511 |
 | Top ADP | Gibbs, Bijan, Puka, Chase, JSN — market-shaped |
 
 **Do not mutate** `data/draftopt_p22c*.db` / V3-A research DBs during the refresh.
@@ -69,10 +73,10 @@ Phase-2 historical DBs stay frozen / untouched.
 
 ## Recommended Days 1–3 actions (ordered)
 
-1. **Fix** `espn._season_projection` to prefer `seasonId == 2026` (config/season arg), never silently accept prior year.
-2. Run `python -m draftopt.ingest` into **live** `draftopt.db` only; leave `data/draftopt_p22c*.db` alone.
-3. Validate V0 gate: ADP + 2026 proj coverage, ECR join rate, injury join, DST/K stubs.
-4. Optional later: FP official API / FFC if 403 clears — not required to mock-draft with ESPN+Sleeper+DP.
+1. ~~**Fix** `espn._season_projection` to prefer `seasonId == 2026`~~ **Done**
+2. ~~Run `python -m draftopt.ingest` into live `draftopt.db`~~ **Done** (`2026-08-15T16:18:27Z`)
+3. Validate V0 gate in UI mock draft (ADP + 2026 proj + ECR + injury + DST/K)
+4. Optional later: FP official API / FFC if 403 clears — not required to mock-draft
 
 ---
 
