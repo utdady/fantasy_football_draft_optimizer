@@ -15,13 +15,32 @@
         <label>Your name
           <input id="user-name" type="text" maxlength="40" required placeholder="e.g. Alex" autofocus />
         </label>
-        <label>Draft slot
-          <select id="user-slot"></select>
+        <label>Draft order
+          <select id="order-mode">
+            <option value="pick_slot">Pick my slot</option>
+            <option value="random_slot">Randomize my slot</option>
+            <option value="random_all">Name league + randomize all seats</option>
+            <option value="fixed">Set everyone's slot (practice)</option>
+          </select>
         </label>
+        <div id="slot-row">
+          <label>My draft slot
+            <select id="user-slot"></select>
+          </label>
+          <button id="shuffle-my-slot" type="button" class="secondary">Randomize my slot</button>
+        </div>
         <label>Lineup
           <select id="roster-preset"></select>
         </label>
         <p id="roster-desc" class="muted"></p>
+        <div id="league-panel" class="league-panel hidden">
+          <div class="league-head">
+            <span id="league-title">League mates</span>
+            <button id="clear-opponents" type="button" class="secondary">Clear</button>
+          </div>
+          <p id="league-hint" class="muted"></p>
+          <div id="opponent-list" class="opponent-list"></div>
+        </div>
         <button type="submit">Start draft</button>
         <button id="resume" type="button" class="hidden">Resume last draft</button>
       </form>

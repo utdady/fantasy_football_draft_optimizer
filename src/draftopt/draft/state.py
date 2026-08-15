@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import random
 from datetime import datetime, timezone
 from uuid import uuid4
 
@@ -49,6 +50,138 @@ def draft_roster(draft) -> dict:
     return get_roster_preset()
 
 
+def _clean_name(name: str | None, fallback: str = "") -> str:
+    text = (name or "").strip()[:40]
+    return text or fallback
+
+
+def _parse_team_names_json(raw: str | None, n_teams: int, user_slot: int, user_name: str) -> dict[int, str]:
+    labels = {i: f"CPU {i}" for i in range(1, n_teams + 1)}
+    labels[user_slot] = user_name
+    if not raw:
+        return labels
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError:
+        return labels
+    if not isinstance(data, dict):
+        return labels
+    for key, val in data.items():
+        try:
+            slot = int(key)
+        except (TypeError, ValueError):
+            continue
+        if 1 <= slot <= n_teams:
+            labels[slot] = _clean_name(str(val), f"CPU {slot}")
+    labels[user_slot] = user_name
+    return labels
+
+
+def resolve_draft_seating(
+    *,
+    n_teams: int = N_TEAMS,
+    user_name: str = "You",
+    order_mode: str = "pick_slot",
+    user_slot: int | None = None,
+    opponent_names: list[str] | None = None,
+    team_names: dict | None = None,
+    rng: random.Random | None = None,
+) -> tuple[int, dict[int, str]]:
+    """
+    Resolve (user_slot, slot->display name).
+
+    Modes:
+    - pick_slot: use user_slot; optional opponent_names fill other seats in order
+    - random_slot: random user_slot; optional opponent_names fill remaining seats randomly
+    - random_all: user + (n_teams-1) opponents shuffled into all seats
+    - fixed: team_names maps every slot 1..n_teams; exactly one seat is the user
+    """
+    rng = rng or random.Random()
+    me = _clean_name(user_name, "You")
+    mode = (order_mode or "pick_slot").strip().lower()
+    opponents = [_clean_name(n) for n in (opponent_names or []) if _clean_name(n)]
+
+    if mode == "fixed":
+        if not team_names:
+            raise DraftError("fixed order requires team_names for every slot")
+        seating: dict[int, str] = {}
+        for key, val in team_names.items():
+            try:
+                slot = int(key)
+            except (TypeError, ValueError) as e:
+                raise DraftError(f"invalid slot key {key!r}") from e
+            if not 1 <= slot <= n_teams:
+                raise DraftError(f"slot must be 1..{n_teams}")
+            name = _clean_name(str(val))
+            if not name:
+                raise DraftError(f"empty name for slot {slot}")
+            if slot in seating:
+                raise DraftError(f"duplicate slot {slot}")
+            seating[slot] = name
+        if len(seating) != n_teams:
+            missing = sorted(set(range(1, n_teams + 1)) - set(seating))
+            raise DraftError(f"fixed order missing slots: {missing}")
+        # User seat: prefer explicit user_slot if name matches; else unique name match
+        user_seats = [s for s, n in seating.items() if fold(n) == fold(me)]
+        if user_slot is not None:
+            if not 1 <= int(user_slot) <= n_teams:
+                raise DraftError(f"user_slot must be 1..{n_teams}")
+            if fold(seating[int(user_slot)]) != fold(me):
+                raise DraftError("user_slot name must match your name in fixed order")
+            slot = int(user_slot)
+        else:
+            if len(user_seats) != 1:
+                raise DraftError(
+                    "fixed order needs your name on exactly one slot "
+                    f"(found {len(user_seats)})"
+                )
+            slot = user_seats[0]
+        seating[slot] = me
+        return slot, seating
+
+    if mode == "random_all":
+        if len(opponents) != n_teams - 1:
+            raise DraftError(
+                f"random_all needs exactly {n_teams - 1} opponent names "
+                f"(got {len(opponents)})"
+            )
+        if any(fold(n) == fold(me) for n in opponents):
+            raise DraftError("opponent names must not match your name")
+        if len({fold(n) for n in opponents}) != len(opponents):
+            raise DraftError("opponent names must be unique")
+        names = [me, *opponents]
+        rng.shuffle(names)
+        seating = {i + 1: names[i] for i in range(n_teams)}
+        slot = next(s for s, n in seating.items() if fold(n) == fold(me))
+        seating[slot] = me
+        return slot, seating
+
+    # pick_slot / random_slot
+    if mode == "random_slot":
+        slot = rng.randint(1, n_teams)
+    else:
+        slot = int(user_slot if user_slot is not None else USER_SLOT_DEFAULT)
+        if not 1 <= slot <= n_teams:
+            raise DraftError(f"user_slot must be 1..{n_teams}")
+
+    seating = {i: f"CPU {i}" for i in range(1, n_teams + 1)}
+    other_slots = [i for i in range(1, n_teams + 1) if i != slot]
+    if opponents:
+        if len(opponents) > n_teams - 1:
+            raise DraftError(f"at most {n_teams - 1} opponent names")
+        if any(fold(n) == fold(me) for n in opponents):
+            raise DraftError("opponent names must not match your name")
+        if len({fold(n) for n in opponents}) != len(opponents):
+            raise DraftError("opponent names must be unique")
+        fill = list(other_slots)
+        if mode == "random_slot":
+            rng.shuffle(fill)
+        for i, name in enumerate(opponents):
+            seating[fill[i]] = name
+    seating[slot] = me
+    return slot, seating
+
+
 def create_draft(
     conn,
     user_slot: int = USER_SLOT_DEFAULT,
@@ -56,21 +189,43 @@ def create_draft(
     n_teams: int = N_TEAMS,
     roster_preset: str | None = None,
     n_rounds: int | None = None,
+    *,
+    order_mode: str = "pick_slot",
+    opponent_names: list[str] | None = None,
+    team_names: dict | None = None,
+    rng: random.Random | None = None,
 ) -> str:
-    if not 1 <= user_slot <= n_teams:
-        raise DraftError(f"user_slot must be 1..{n_teams}")
+    me = _clean_name(user_name, "You")
+    slot, seating = resolve_draft_seating(
+        n_teams=n_teams,
+        user_name=me,
+        order_mode=order_mode,
+        user_slot=user_slot,
+        opponent_names=opponent_names,
+        team_names=team_names,
+        rng=rng,
+    )
     roster = get_roster_preset(roster_preset)
     rounds = n_rounds or roster["n_rounds"]
-    name = (user_name or "You").strip()[:40] or "You"
     draft_id = uuid4().hex[:12]
+    names_json = json.dumps({str(k): v for k, v in sorted(seating.items())})
     conn.execute(
         """
         INSERT INTO drafts (
             draft_id, created_at, current_pick, user_slot, user_name,
-            n_teams, n_rounds, roster_json
-        ) VALUES (?, ?, 1, ?, ?, ?, ?, ?)
+            n_teams, n_rounds, roster_json, team_names_json
+        ) VALUES (?, ?, 1, ?, ?, ?, ?, ?, ?)
         """,
-        (draft_id, _utcnow(), user_slot, name, n_teams, rounds, json.dumps(roster)),
+        (
+            draft_id,
+            _utcnow(),
+            slot,
+            me,
+            n_teams,
+            rounds,
+            json.dumps(roster),
+            names_json,
+        ),
     )
     conn.commit()
     return draft_id
@@ -293,15 +448,20 @@ def snapshot(conn, draft_id: str) -> dict:
         }
     complete = overall > total
     user_name = draft["user_name"] or "You"
-    labels = []
-    for slot in range(1, n_teams + 1):
-        labels.append(user_name if slot == draft["user_slot"] else f"CPU {slot}")
+    raw_names = None
+    try:
+        raw_names = draft["team_names_json"]
+    except (KeyError, IndexError):
+        raw_names = None
+    labels_map = _parse_team_names_json(raw_names, n_teams, draft["user_slot"], user_name)
+    labels = [labels_map[i] for i in range(1, n_teams + 1)]
     current_team = None if complete else team_for_pick(overall, n_teams)
     return {
         "draft_id": draft_id,
         "user_slot": draft["user_slot"],
         "user_name": user_name,
         "team_labels": labels,
+        "team_names": {str(k): v for k, v in labels_map.items()},
         "n_teams": n_teams,
         "n_rounds": n_rounds,
         "roster": roster,

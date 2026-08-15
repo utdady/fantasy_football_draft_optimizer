@@ -4,6 +4,14 @@ const setupForm = document.getElementById("setup-form");
 const setupBanner = document.getElementById("setup-banner");
 const nameInput = document.getElementById("user-name");
 const slotSelect = document.getElementById("user-slot");
+const orderModeSelect = document.getElementById("order-mode");
+const slotRow = document.getElementById("slot-row");
+const shuffleMySlotBtn = document.getElementById("shuffle-my-slot");
+const leaguePanel = document.getElementById("league-panel");
+const leagueTitle = document.getElementById("league-title");
+const leagueHint = document.getElementById("league-hint");
+const opponentList = document.getElementById("opponent-list");
+const clearOpponentsBtn = document.getElementById("clear-opponents");
 const rosterSelect = document.getElementById("roster-preset");
 const rosterDesc = document.getElementById("roster-desc");
 const resumeBtn = document.getElementById("resume");
@@ -436,10 +444,101 @@ function updateRosterDesc() {
     : "";
 }
 
+function orderMode() {
+  return orderModeSelect.value || "pick_slot";
+}
+
+function rebuildOpponentRows() {
+  const mode = orderMode();
+  const needLeague = mode === "random_all" || mode === "fixed";
+  leaguePanel.classList.toggle("hidden", !needLeague);
+  slotRow.classList.toggle("hidden", mode === "random_all");
+  shuffleMySlotBtn.classList.toggle("hidden", mode !== "pick_slot" && mode !== "random_slot");
+  if (mode === "random_slot") {
+    shuffleMySlotBtn.textContent = "Pick another random slot";
+  } else {
+    shuffleMySlotBtn.textContent = "Randomize my slot";
+  }
+  if (!needLeague) {
+    opponentList.innerHTML = "";
+    return;
+  }
+  const withSlot = mode === "fixed";
+  leagueTitle.textContent = withSlot ? "Assign every seat" : "League mates (11 names)";
+  leagueHint.textContent = withSlot
+    ? "Set a name for each of the other 11 slots. Your seat is chosen below."
+    : `Enter exactly ${nTeams - 1} names. Seats are shuffled when the draft starts.`;
+  opponentList.innerHTML = "";
+  const saved = JSON.parse(localStorage.getItem("opponentNames") || "[]");
+  const savedFixed = JSON.parse(localStorage.getItem("fixedSeats") || "{}");
+  if (withSlot) {
+    for (let s = 1; s <= nTeams; s++) {
+      const row = document.createElement("div");
+      row.className = "opponent-row with-slot";
+      const slotLab = document.createElement("label");
+      slotLab.textContent = `Slot ${s}`;
+      const input = document.createElement("input");
+      input.type = "text";
+      input.maxLength = 40;
+      input.dataset.slot = String(s);
+      input.placeholder = s === Number(slotSelect.value) ? "You (auto)" : `Name for slot ${s}`;
+      if (s === Number(slotSelect.value)) {
+        input.value = nameInput.value.trim() || "You";
+        input.readOnly = true;
+      } else if (savedFixed[String(s)]) {
+        input.value = savedFixed[String(s)];
+      }
+      row.appendChild(slotLab);
+      row.appendChild(input);
+      opponentList.appendChild(row);
+    }
+  } else {
+    for (let i = 0; i < nTeams - 1; i++) {
+      const row = document.createElement("div");
+      row.className = "opponent-row";
+      const input = document.createElement("input");
+      input.type = "text";
+      input.maxLength = 40;
+      input.placeholder = `Opponent ${i + 1}`;
+      input.value = saved[i] || "";
+      row.appendChild(input);
+      opponentList.appendChild(row);
+    }
+  }
+}
+
+function collectOpponentNames() {
+  return [...opponentList.querySelectorAll("input")]
+    .filter((el) => !el.readOnly)
+    .map((el) => el.value.trim())
+    .filter(Boolean);
+}
+
+function collectFixedTeamNames(userName) {
+  const map = {};
+  const mySlot = Number(slotSelect.value) || 1;
+  map[String(mySlot)] = userName;
+  for (const input of opponentList.querySelectorAll("input[data-slot]")) {
+    const s = input.dataset.slot;
+    if (Number(s) === mySlot) continue;
+    const v = input.value.trim();
+    if (v) map[s] = v;
+  }
+  return map;
+}
+
+function syncFixedYouRow() {
+  if (orderMode() !== "fixed") return;
+  const partial = collectFixedTeamNames(nameInput.value.trim() || "You");
+  localStorage.setItem("fixedSeats", JSON.stringify(partial));
+  rebuildOpponentRows();
+}
+
 async function newDraftFromSetup() {
   const user_name = nameInput.value.trim();
   const user_slot = Number(slotSelect.value) || 1;
   const roster_preset = rosterSelect.value || "league_default";
+  let mode = orderMode();
   if (!user_name) {
     showBanner(setupBanner, "Enter your name.");
     return;
@@ -447,15 +546,54 @@ async function newDraftFromSetup() {
   localStorage.setItem("userName", user_name);
   localStorage.setItem("userSlot", String(user_slot));
   localStorage.setItem("rosterPreset", roster_preset);
+  localStorage.setItem("orderMode", mode);
+
+  const body = { user_name, roster_preset, order_mode: mode, user_slot };
+
+  if (mode === "random_all") {
+    const opponents = collectOpponentNames();
+    localStorage.setItem("opponentNames", JSON.stringify(opponents));
+    if (opponents.length !== nTeams - 1) {
+      showBanner(setupBanner, `Enter exactly ${nTeams - 1} opponent names.`);
+      return;
+    }
+    body.opponent_names = opponents;
+  } else if (mode === "fixed") {
+    const team_names = collectFixedTeamNames(user_name);
+    localStorage.setItem("fixedSeats", JSON.stringify(team_names));
+    if (Object.keys(team_names).length !== nTeams) {
+      showBanner(setupBanner, "Fill a name for every slot.");
+      return;
+    }
+    body.team_names = team_names;
+    body.user_slot = user_slot;
+  } else if (mode === "random_slot") {
+    body.order_mode = "random_slot";
+    // optional named opponents if panel ever shown — not in this mode
+  } else {
+    body.order_mode = "pick_slot";
+  }
+
   try {
     const payload = await api("/api/drafts", {
       method: "POST",
-      body: JSON.stringify({ user_slot, user_name, roster_preset }),
+      body: JSON.stringify(body),
     });
+    const st = payload.state || {};
+    if (st.user_slot) {
+      localStorage.setItem("userSlot", String(st.user_slot));
+      slotSelect.value = String(st.user_slot);
+    }
     showBanner(setupBanner, "");
     showBanner(banner, "");
     applyPayload(payload);
     showDraft();
+    if (mode === "random_all" || mode === "random_slot") {
+      showBanner(
+        banner,
+        `You are slot ${st.user_slot} (${st.user_slot}.01 / 2.${String(nTeams + 1 - st.user_slot).padStart(2, "0")}).`
+      );
+    }
     await afterStateChange();
   } catch (err) {
     showBanner(setupBanner, err.message);
@@ -494,6 +632,35 @@ async function undo() {
 setupForm.addEventListener("submit", (e) => {
   e.preventDefault();
   newDraftFromSetup();
+});
+orderModeSelect.addEventListener("change", () => {
+  localStorage.setItem("orderMode", orderMode());
+  rebuildOpponentRows();
+});
+slotSelect.addEventListener("change", () => {
+  localStorage.setItem("userSlot", slotSelect.value);
+  syncFixedYouRow();
+});
+nameInput.addEventListener("change", syncFixedYouRow);
+nameInput.addEventListener("blur", syncFixedYouRow);
+shuffleMySlotBtn.addEventListener("click", () => {
+  const slot = 1 + Math.floor(Math.random() * nTeams);
+  slotSelect.value = String(slot);
+  localStorage.setItem("userSlot", String(slot));
+  if (orderMode() === "random_slot") {
+    // keep mode; server will re-roll on start unless they switch to pick_slot
+  } else {
+    orderModeSelect.value = "pick_slot";
+  }
+  syncFixedYouRow();
+  showBanner(setupBanner, `Your seat set to slot ${slot}. Start draft to lock it in.`);
+});
+clearOpponentsBtn.addEventListener("click", () => {
+  for (const input of opponentList.querySelectorAll("input")) {
+    if (!input.readOnly) input.value = "";
+  }
+  localStorage.removeItem("opponentNames");
+  localStorage.removeItem("fixedSeats");
 });
 resumeBtn.addEventListener("click", resumeDraft);
 rosterSelect.addEventListener("change", updateRosterDesc);
@@ -565,6 +732,7 @@ document.addEventListener("keydown", (e) => {
     const st = await api("/api/status");
     if (st.n_teams) fillSlotOptions(Number(st.n_teams));
     slotSelect.value = localStorage.getItem("userSlot") || "1";
+    orderModeSelect.value = localStorage.getItem("orderMode") || "pick_slot";
     presets = st.roster_presets || [];
     rosterSelect.innerHTML = "";
     for (const p of presets) {
@@ -575,6 +743,7 @@ document.addEventListener("keydown", (e) => {
     }
     rosterSelect.value = localStorage.getItem("rosterPreset") || "league_default";
     updateRosterDesc();
+    rebuildOpponentRows();
     const setupSub = document.querySelector("#setup .sub");
     if (setupSub && st.n_teams && st.pick_clock_seconds) {
       setupSub.textContent = `${st.n_teams}-team PPR snake · ${st.pick_clock_seconds}-second clock on your pick`;
@@ -584,6 +753,7 @@ document.addEventListener("keydown", (e) => {
     }
   } catch {
     showBanner(setupBanner, "Cannot reach the draft server. Run: python -m draftopt.serve --port 8001");
+    rebuildOpponentRows();
   }
   resumeBtn.classList.toggle("hidden", !localStorage.getItem("draftId"));
   nameInput.focus();

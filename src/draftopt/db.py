@@ -75,7 +75,8 @@ CREATE TABLE IF NOT EXISTS drafts (
     user_name TEXT NOT NULL DEFAULT 'You',
     n_teams INTEGER NOT NULL,
     n_rounds INTEGER NOT NULL,
-    roster_json TEXT
+    roster_json TEXT,
+    team_names_json TEXT
 );
 
 CREATE TABLE IF NOT EXISTS picks (
@@ -116,5 +117,6 @@ def init(conn: sqlite3.Connection) -> None:
     conn.executescript(SCHEMA)
     _add_column(conn, "drafts", "user_name TEXT DEFAULT 'You'")
     _add_column(conn, "drafts", "roster_json TEXT")
+    _add_column(conn, "drafts", "team_names_json TEXT")
     _add_column(conn, "picks", "made_by TEXT DEFAULT 'user'")
     conn.commit()
