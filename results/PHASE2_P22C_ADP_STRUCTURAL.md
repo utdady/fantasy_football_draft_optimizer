@@ -163,6 +163,9 @@ python -m draftopt.phase2.outcome_coverage_p22c
 
 # Actual-PPR Δ (baseline vs structural) — modeled opponents; n=1 season
 python -m draftopt.phase2.delta_p22c --slots 1-12 --n-sims 5
+
+# Mechanism audit (same seeds): attribution ladder + DST pick audit + Δ distribution
+python -m draftopt.phase2.diagnose_delta_p22c --slots 1-12 --n-sims 5
 ```
 
 Scoring contract: [`PHASE2_P22C_SCORING_CONTRACT_ppr_eval_v1_2024.md`](PHASE2_P22C_SCORING_CONTRACT_ppr_eval_v1_2024.md)
