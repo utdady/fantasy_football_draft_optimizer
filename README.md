@@ -3,14 +3,16 @@
 10-team PPR snake redraft practice room + V1 marginal lineup-value recommendations.
 
 > **Core thesis: 🟡 preliminary support (C−B > 0 after feasibility + DST controls).
-> External validity 🔴. V3 conceptually justified, implementation blocked pending
-> closeout interpretation (symmetry + fork prediction-error). UI: `marginal`.**
+> External validity 🔴. V3-A: 🟢 hypothesis earned / 🔴 implementation pending
+> (design frozen). UI: `marginal`.**
 >
 > Evidence: ADP → ADP-feasible → structural ladder under 2024 FFC actual PPR
 > ([`results/phase2_p22c_adp_feasible_ladder.md`](results/phase2_p22c_adp_feasible_ladder.md);
 > track [`results/PHASE2_P22C_ADP_STRUCTURAL.md`](results/PHASE2_P22C_ADP_STRUCTURAL.md);
 > closeout [`results/phase2_p22c_closeout.md`](results/phase2_p22c_closeout.md)).
-> `evaluable=0`. No V3 / λ / CVaR until closeout is interpreted.
+> V3-A contract: [`results/V3A_CALIBRATION_DESIGN.md`](results/V3A_CALIBRATION_DESIGN.md)
+> — calibration-adjusted valuation only; construction unchanged; no code until
+> the implementation gate. `evaluable=0`.
 >
 > Phase 1 synthetic decision research is frozen. UI still uses raw **V1 `marginal`**.
 > V2 notes: [`results/V2_ALPHA_BASELINE.md`](results/V2_ALPHA_BASELINE.md),

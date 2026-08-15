@@ -1,11 +1,11 @@
 # P2.2C — ADP-structural evaluation (labeled ablation)
 
 **Status:** Phase-2 closeout complete
-([`phase2_p22c_closeout.md`](phase2_p22c_closeout.md): best-10 symmetry + fork
-prediction-error). Ladder / mechanism / loss-case remain supporting artifacts.
-**Not** production `marginal`. `evaluable` still 0. V3 still blocked pending
-closeout interpretation (symmetry says don’t “fix TE/QB”; error table points at
-projection calibration).
+([`phase2_p22c_closeout.md`](phase2_p22c_closeout.md)).
+**Next gate:** V3-A design frozen —
+[`V3A_CALIBRATION_DESIGN.md`](V3A_CALIBRATION_DESIGN.md)
+(calibration-adjusted valuation only; no implementation until that note’s gate).
+**Not** production `marginal`. `evaluable` still 0.
 
 **Parents:** [`PHASE2_P22_SOURCES.md`](PHASE2_P22_SOURCES.md) · P2.2A
 [`phase2_p22_feasibility_2024_12tm.md`](phase2_p22_feasibility_2024_12tm.md) ·
@@ -217,7 +217,9 @@ Artifact: [`phase2_p22c_closeout.md`](phase2_p22c_closeout.md) · best-10: [`pha
 | Mean pred_error (actual−curve) | C picks **−94**; B picks **−7** (B QBs often under-projected) |
 | Empty-slot fills (C) | 4/10 — marginal-construction still secondary candidate |
 
-**Provisional V3 pointer:** projection/calibration (V3-A), not a one-sided positional rule. Still no V3 code.
+**Provisional V3 pointer:** projection/calibration (V3-A), not a one-sided positional rule.
+
+**Design freeze:** [`V3A_CALIBRATION_DESIGN.md`](V3A_CALIBRATION_DESIGN.md) — no V3 code until the implementation gate in that note.
 ### Commands
 
 ```bash
