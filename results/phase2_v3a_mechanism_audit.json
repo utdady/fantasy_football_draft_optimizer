@@ -1,0 +1,7198 @@
+{
+  "stage": "V3A_MECHANISM_AUDIT",
+  "created_at": "2026-08-15T12:41:07Z",
+  "snapshot_id": "2024-preseason-2024-09-01-ffc12",
+  "v3a_snapshot_id": "2024-preseason-2024-09-01-ffc12-v3a",
+  "curve_id": "adp_emp_pos_v1_train_2021_2023",
+  "contract_id": "ppr_eval_v1_2024",
+  "evaluable": 0,
+  "source_ladder": "results\\phase2_v3a_ladder.json",
+  "claim": "Mechanism audit of D\u2212C on frozen V3-A.0 ladder pairs. No resimulation; values joined from structural + calibrated DBs. Map remains f6c5010 artifact; findings are not permission to retune.",
+  "methodological_rule": "A mechanism finding (e.g. late-QB uplift) is a finding, not a map edit.",
+  "contract": {
+    "contract_id": "ppr_eval_v1_2024",
+    "outcome_source": "nflverse_computed",
+    "outcome_season": 2024,
+    "decision_snapshot_id": "2024-preseason-2024-09-01-ffc12",
+    "n_teams": 12,
+    "n_rounds": 15,
+    "roster_preset": "league_default",
+    "season_type": "REG",
+    "missing_policy": "missing_identity / missing_weeks never score as 0; only observed_zero and observed_points enter eval_outcomes",
+    "starter_scoring": "Same greedy FLEX-aware lineup_ev as production; headline \u0394 uses starters only (bench recorded separately). IR not drafted.",
+    "frozen": true
+  },
+  "n_pairs": 60,
+  "classification": "mean_improvement_tail_tradeoff",
+  "aggregate_d_minus_c": {
+    "full": {
+      "n": 60,
+      "mean": 22.0863,
+      "median": 29.96,
+      "stdev": 203.7182,
+      "min": -465.04,
+      "p10": -268.432,
+      "p25": -107.79,
+      "p75": 197.205,
+      "p90": 259.41,
+      "max": 508.32,
+      "n_positive": 33,
+      "n_negative": 27,
+      "n_zero": 0,
+      "win_rate": 0.55
+    },
+    "ex_dst": {
+      "n": 60,
+      "mean": 21.8197,
+      "median": 29.96,
+      "stdev": 203.3467,
+      "min": -465.04,
+      "p10": -268.432,
+      "p25": -107.79,
+      "p75": 193.025,
+      "p90": 259.41,
+      "max": 508.32,
+      "n_positive": 33,
+      "n_negative": 27,
+      "n_zero": 0,
+      "win_rate": 0.55
+    },
+    "ex_dst_te": {
+      "n": 60,
+      "mean": -24.411,
+      "median": -10.7,
+      "stdev": 216.3232,
+      "min": -559.28,
+      "p10": -322.224,
+      "p25": -154.475,
+      "p75": 138.37,
+      "p90": 237.876,
+      "max": 376.9,
+      "n_positive": 29,
+      "n_negative": 31,
+      "n_zero": 0,
+      "win_rate": 0.4833
+    }
+  },
+  "concentration": {
+    "sum_d_minus_c": 1325.18,
+    "mean_d_minus_c": 22.0863,
+    "top5_by_d_minus_c": {
+      "k": 5,
+      "sum": 1779.06,
+      "share_of_sum_dc": 1.3425,
+      "rows": [
+        {
+          "slot": 8,
+          "seed": 44,
+          "d_minus_c": 508.32
+        },
+        {
+          "slot": 1,
+          "seed": 46,
+          "d_minus_c": 346.46
+        },
+        {
+          "slot": 5,
+          "seed": 44,
+          "d_minus_c": 335.48
+        },
+        {
+          "slot": 8,
+          "seed": 46,
+          "d_minus_c": 319.3
+        },
+        {
+          "slot": 8,
+          "seed": 42,
+          "d_minus_c": 269.5
+        }
+      ]
+    },
+    "top10_by_d_minus_c": {
+      "k": 10,
+      "sum": 3023.26,
+      "share_of_sum_dc": 2.2814,
+      "rows": [
+        {
+          "slot": 8,
+          "seed": 44,
+          "d_minus_c": 508.32
+        },
+        {
+          "slot": 1,
+          "seed": 46,
+          "d_minus_c": 346.46
+        },
+        {
+          "slot": 5,
+          "seed": 44,
+          "d_minus_c": 335.48
+        },
+        {
+          "slot": 8,
+          "seed": 46,
+          "d_minus_c": 319.3
+        },
+        {
+          "slot": 8,
+          "seed": 42,
+          "d_minus_c": 269.5
+        },
+        {
+          "slot": 6,
+          "seed": 42,
+          "d_minus_c": 261.48
+        },
+        {
+          "slot": 3,
+          "seed": 42,
+          "d_minus_c": 259.18
+        },
+        {
+          "slot": 3,
+          "seed": 45,
+          "d_minus_c": 257.82
+        },
+        {
+          "slot": 7,
+          "seed": 44,
+          "d_minus_c": 236.82
+        },
+        {
+          "slot": 4,
+          "seed": 42,
+          "d_minus_c": 228.9
+        }
+      ]
+    },
+    "top5_of_positive_mass": {
+      "k": 5,
+      "sum": 1779.06,
+      "share_of_positive_mass": 0.314,
+      "rows": [
+        {
+          "slot": 8,
+          "seed": 44,
+          "d_minus_c": 508.32
+        },
+        {
+          "slot": 1,
+          "seed": 46,
+          "d_minus_c": 346.46
+        },
+        {
+          "slot": 5,
+          "seed": 44,
+          "d_minus_c": 335.48
+        },
+        {
+          "slot": 8,
+          "seed": 46,
+          "d_minus_c": 319.3
+        },
+        {
+          "slot": 8,
+          "seed": 42,
+          "d_minus_c": 269.5
+        }
+      ]
+    },
+    "top10_of_positive_mass": {
+      "k": 10,
+      "sum": 3023.26,
+      "share_of_positive_mass": 0.5336,
+      "rows": [
+        {
+          "slot": 8,
+          "seed": 44,
+          "d_minus_c": 508.32
+        },
+        {
+          "slot": 1,
+          "seed": 46,
+          "d_minus_c": 346.46
+        },
+        {
+          "slot": 5,
+          "seed": 44,
+          "d_minus_c": 335.48
+        },
+        {
+          "slot": 8,
+          "seed": 46,
+          "d_minus_c": 319.3
+        },
+        {
+          "slot": 8,
+          "seed": 42,
+          "d_minus_c": 269.5
+        },
+        {
+          "slot": 6,
+          "seed": 42,
+          "d_minus_c": 261.48
+        },
+        {
+          "slot": 3,
+          "seed": 42,
+          "d_minus_c": 259.18
+        },
+        {
+          "slot": 3,
+          "seed": 45,
+          "d_minus_c": 257.82
+        },
+        {
+          "slot": 7,
+          "seed": 44,
+          "d_minus_c": 236.82
+        },
+        {
+          "slot": 4,
+          "seed": 42,
+          "d_minus_c": 228.9
+        }
+      ]
+    },
+    "worst5_by_d_minus_c": {
+      "k": 5,
+      "sum": -1709.54,
+      "share_of_sum_dc": -1.29,
+      "rows": [
+        {
+          "slot": 6,
+          "seed": 43,
+          "d_minus_c": -465.04
+        },
+        {
+          "slot": 12,
+          "seed": 42,
+          "d_minus_c": -345.58
+        },
+        {
+          "slot": 9,
+          "seed": 46,
+          "d_minus_c": -322.68
+        },
+        {
+          "slot": 9,
+          "seed": 43,
+          "d_minus_c": -293.72
+        },
+        {
+          "slot": 8,
+          "seed": 43,
+          "d_minus_c": -282.52
+        }
+      ]
+    },
+    "n_positive": 33,
+    "n_negative": 27,
+    "flag": "concentrated \u2014 top-10 positive drafts \u226550% of positive mass",
+    "top10_positive_mass_share": 0.5336
+  },
+  "by_position": {
+    "mean_delta": {
+      "QB": 68.7427,
+      "RB": -161.6663,
+      "WR": 68.5127,
+      "TE": 46.2307,
+      "DST": 0.2667,
+      "K": 0.0
+    },
+    "distributions": {
+      "QB": {
+        "n": 60,
+        "mean": 68.7427,
+        "median": 72.86,
+        "stdev": 69.3924,
+        "min": -51.34,
+        "p10": -5.134,
+        "p25": 13.24,
+        "p75": 96.02,
+        "p90": 145.18,
+        "max": 215.68,
+        "n_positive": 48,
+        "n_negative": 6,
+        "n_zero": 6,
+        "win_rate": 0.8
+      },
+      "RB": {
+        "n": 60,
+        "mean": -161.6663,
+        "median": -119.25,
+        "stdev": 218.4082,
+        "min": -661.3,
+        "p10": -492.06,
+        "p25": -311.75,
+        "p75": 0.0,
+        "p90": 76.43,
+        "max": 214.5,
+        "n_positive": 14,
+        "n_negative": 39,
+        "n_zero": 7,
+        "win_rate": 0.2333
+      },
+      "WR": {
+        "n": 60,
+        "mean": 68.5127,
+        "median": 62.35,
+        "stdev": 173.6494,
+        "min": -439.0,
+        "p10": -169.908,
+        "p25": -28.275,
+        "p75": 185.525,
+        "p90": 290.508,
+        "max": 441.1,
+        "n_positive": 43,
+        "n_negative": 16,
+        "n_zero": 1,
+        "win_rate": 0.7167
+      },
+      "TE": {
+        "n": 60,
+        "mean": 46.2307,
+        "median": 26.8,
+        "stdev": 85.3998,
+        "min": -84.4,
+        "p10": -59.0,
+        "p25": -3.6,
+        "p75": 105.4,
+        "p90": 132.28,
+        "max": 302.5,
+        "n_positive": 33,
+        "n_negative": 17,
+        "n_zero": 10,
+        "win_rate": 0.55
+      },
+      "DST": {
+        "n": 60,
+        "mean": 0.2667,
+        "median": 0.0,
+        "stdev": 3.9568,
+        "min": -20.0,
+        "p10": 0.0,
+        "p25": 0.0,
+        "p75": 0.0,
+        "p90": 0.0,
+        "max": 20.0,
+        "n_positive": 3,
+        "n_negative": 1,
+        "n_zero": 56,
+        "win_rate": 0.05
+      },
+      "K": {
+        "n": 60,
+        "mean": 0.0,
+        "median": 0.0,
+        "stdev": 0.0,
+        "min": 0.0,
+        "p10": 0.0,
+        "p25": 0.0,
+        "p75": 0.0,
+        "p90": 0.0,
+        "max": 0.0,
+        "n_positive": 0,
+        "n_negative": 0,
+        "n_zero": 60,
+        "win_rate": 0.0
+      }
+    }
+  },
+  "by_round_band": {
+    "mean_delta": {
+      "r1-5": 102.504,
+      "r6-10": -32.103,
+      "r11-15": -48.3147
+    },
+    "distributions": {
+      "r1-5": {
+        "n": 60,
+        "mean": 102.504,
+        "median": 120.79,
+        "stdev": 310.7091,
+        "min": -698.74,
+        "p10": -367.944,
+        "p25": -30.955,
+        "p75": 310.94,
+        "p90": 465.728,
+        "max": 715.24,
+        "n_positive": 40,
+        "n_negative": 20,
+        "n_zero": 0,
+        "win_rate": 0.6667
+      },
+      "r6-10": {
+        "n": 60,
+        "mean": -32.103,
+        "median": -57.0,
+        "stdev": 202.401,
+        "min": -499.7,
+        "p10": -287.594,
+        "p25": -140.41,
+        "p75": 105.98,
+        "p90": 233.99,
+        "max": 544.1,
+        "n_positive": 23,
+        "n_negative": 37,
+        "n_zero": 0,
+        "win_rate": 0.3833
+      },
+      "r11-15": {
+        "n": 60,
+        "mean": -48.3147,
+        "median": -0.35,
+        "stdev": 191.3663,
+        "min": -486.8,
+        "p10": -279.14,
+        "p25": -189.125,
+        "p75": 106.5,
+        "p90": 191.8,
+        "max": 404.3,
+        "n_positive": 19,
+        "n_negative": 30,
+        "n_zero": 11,
+        "win_rate": 0.3167
+      }
+    }
+  },
+  "by_round": {
+    "mean_delta": {
+      "1": 235.2577,
+      "2": -11.8903,
+      "3": -40.012,
+      "4": -1.0814,
+      "5": -119.7693,
+      "6": 57.9519,
+      "7": -48.7316,
+      "8": -29.3961,
+      "9": 1.4208,
+      "10": -50.4226,
+      "11": -43.9769,
+      "12": 25.6765,
+      "13": 35.2848,
+      "14": 11.476,
+      "15": -66.9437
+    }
+  },
+  "by_slot": [
+    {
+      "slot": 1,
+      "n": 5,
+      "mean_d_minus_c": 56.468,
+      "median_d_minus_c": 35.04,
+      "win_rate": 0.6,
+      "min": -109.38,
+      "max": 346.46
+    },
+    {
+      "slot": 2,
+      "n": 5,
+      "mean_d_minus_c": 55.332,
+      "median_d_minus_c": 33.72,
+      "win_rate": 0.8,
+      "min": -26.9,
+      "max": 152.98
+    },
+    {
+      "slot": 3,
+      "n": 5,
+      "mean_d_minus_c": 105.956,
+      "median_d_minus_c": 212.26,
+      "win_rate": 0.6,
+      "min": -149.34,
+      "max": 259.18
+    },
+    {
+      "slot": 4,
+      "n": 5,
+      "mean_d_minus_c": 175.436,
+      "median_d_minus_c": 197.28,
+      "win_rate": 1.0,
+      "min": 114.02,
+      "max": 228.9
+    },
+    {
+      "slot": 5,
+      "n": 5,
+      "mean_d_minus_c": 23.828,
+      "median_d_minus_c": 13.78,
+      "win_rate": 0.6,
+      "min": -189.38,
+      "max": 335.48
+    },
+    {
+      "slot": 6,
+      "n": 5,
+      "mean_d_minus_c": -34.08,
+      "median_d_minus_c": -85.1,
+      "win_rate": 0.4,
+      "min": -465.04,
+      "max": 261.48
+    },
+    {
+      "slot": 7,
+      "n": 5,
+      "mean_d_minus_c": 37.344,
+      "median_d_minus_c": -0.12,
+      "win_rate": 0.4,
+      "min": -212.2,
+      "max": 236.82
+    },
+    {
+      "slot": 8,
+      "n": 5,
+      "mean_d_minus_c": 126.92,
+      "median_d_minus_c": 269.5,
+      "win_rate": 0.6,
+      "min": -282.52,
+      "max": 508.32
+    },
+    {
+      "slot": 9,
+      "n": 5,
+      "mean_d_minus_c": -112.908,
+      "median_d_minus_c": -15.46,
+      "win_rate": 0.4,
+      "min": -322.68,
+      "max": 41.12
+    },
+    {
+      "slot": 10,
+      "n": 5,
+      "mean_d_minus_c": -129.54,
+      "median_d_minus_c": -183.48,
+      "win_rate": 0.2,
+      "min": -267.64,
+      "max": 136.28
+    },
+    {
+      "slot": 11,
+      "n": 5,
+      "mean_d_minus_c": 39.096,
+      "median_d_minus_c": 50.32,
+      "win_rate": 0.6,
+      "min": -107.26,
+      "max": 195.5
+    },
+    {
+      "slot": 12,
+      "n": 5,
+      "mean_d_minus_c": -78.816,
+      "median_d_minus_c": -8.2,
+      "win_rate": 0.4,
+      "min": -345.58,
+      "max": 197.18
+    }
+  ],
+  "value_shifts": {
+    "n_unique_players": 165,
+    "mean_delta_by_pos": {
+      "TE": -21.5616,
+      "RB": -43.6361,
+      "WR": -28.71,
+      "DST": 46.3559,
+      "QB": 69.3812
+    },
+    "biggest_upward_d_minus_c": [
+      {
+        "player_id": "9999",
+        "name": "Will Levis",
+        "position": "QB",
+        "adp": 160.0,
+        "c_value": 39.10614525139665,
+        "d_value": 172.0879,
+        "value_delta_d_minus_c": 132.9818
+      },
+      {
+        "player_id": "4892",
+        "name": "Baker Mayfield",
+        "position": "QB",
+        "adp": 156.0,
+        "c_value": 46.927374301675975,
+        "d_value": 178.7534,
+        "value_delta_d_minus_c": 131.826
+      },
+      {
+        "player_id": "4017",
+        "name": "Deshaun Watson",
+        "position": "QB",
+        "adp": 149.3,
+        "c_value": 60.027932960893835,
+        "d_value": 189.9179,
+        "value_delta_d_minus_c": 129.89
+      },
+      {
+        "player_id": "7591",
+        "name": "Justin Fields",
+        "position": "QB",
+        "adp": 134.7,
+        "c_value": 88.57541899441343,
+        "d_value": 198.7496,
+        "value_delta_d_minus_c": 110.1742
+      },
+      {
+        "player_id": "96",
+        "name": "Aaron Rodgers",
+        "position": "QB",
+        "adp": 130.4,
+        "c_value": 96.98324022346367,
+        "d_value": 198.7496,
+        "value_delta_d_minus_c": 101.7664
+      },
+      {
+        "player_id": "1166",
+        "name": "Kirk Cousins",
+        "position": "QB",
+        "adp": 130.1,
+        "c_value": 97.56983240223465,
+        "d_value": 198.7496,
+        "value_delta_d_minus_c": 101.1798
+      },
+      {
+        "player_id": "7523",
+        "name": "Trevor Lawrence",
+        "position": "QB",
+        "adp": 126.7,
+        "c_value": 104.21787709497207,
+        "d_value": 198.7496,
+        "value_delta_d_minus_c": 94.5317
+      },
+      {
+        "player_id": "421",
+        "name": "Matthew Stafford",
+        "position": "QB",
+        "adp": 123.1,
+        "c_value": 111.25698324022349,
+        "d_value": 198.7496,
+        "value_delta_d_minus_c": 87.4926
+      },
+      {
+        "player_id": "11560",
+        "name": "Caleb Williams",
+        "position": "QB",
+        "adp": 116.7,
+        "c_value": 123.77094972067039,
+        "d_value": 198.7496,
+        "value_delta_d_minus_c": 74.9787
+      },
+      {
+        "player_id": "4381",
+        "name": "Taysom Hill",
+        "position": "TE",
+        "adp": 155.9,
+        "c_value": 47.12290502793295,
+        "d_value": 119.8456,
+        "value_delta_d_minus_c": 72.7227
+      },
+      {
+        "player_id": "6797",
+        "name": "Justin Herbert",
+        "position": "QB",
+        "adp": 114.6,
+        "c_value": 127.87709497206706,
+        "d_value": 198.7496,
+        "value_delta_d_minus_c": 70.8725
+      },
+      {
+        "player_id": "dst:BUF",
+        "name": "Buffalo Defense",
+        "position": "DST",
+        "adp": 158.8,
+        "c_value": 41.452513966480424,
+        "d_value": 107.4623,
+        "value_delta_d_minus_c": 66.0098
+      },
+      {
+        "player_id": "8131",
+        "name": "Isaiah Likely",
+        "position": "TE",
+        "adp": 152.0,
+        "c_value": 54.74860335195531,
+        "d_value": 119.8456,
+        "value_delta_d_minus_c": 65.097
+      },
+      {
+        "player_id": "9481",
+        "name": "Luke Musgrave",
+        "position": "TE",
+        "adp": 151.7,
+        "c_value": 55.335195530726274,
+        "d_value": 119.8456,
+        "value_delta_d_minus_c": 64.5104
+      },
+      {
+        "player_id": "dst:PIT",
+        "name": "Pittsburgh Defense",
+        "position": "DST",
+        "adp": 157.8,
+        "c_value": 43.407821229050256,
+        "d_value": 107.7662,
+        "value_delta_d_minus_c": 64.3584
+      }
+    ],
+    "biggest_downward_d_minus_c": [
+      {
+        "player_id": "1466",
+        "name": "Travis Kelce",
+        "position": "TE",
+        "adp": 24.4,
+        "c_value": 304.24581005586595,
+        "d_value": 191.1643,
+        "value_delta_d_minus_c": -113.0815
+      },
+      {
+        "player_id": "5892",
+        "name": "David Montgomery",
+        "position": "RB",
+        "adp": 54.6,
+        "c_value": 245.19553072625698,
+        "d_value": 134.1411,
+        "value_delta_d_minus_c": -111.0544
+      },
+      {
+        "player_id": "7543",
+        "name": "Travis Etienne Jr.",
+        "position": "RB",
+        "adp": 17.6,
+        "c_value": 317.5418994413408,
+        "d_value": 210.1165,
+        "value_delta_d_minus_c": -107.4254
+      },
+      {
+        "player_id": "6790",
+        "name": "D'Andre Swift",
+        "position": "RB",
+        "adp": 56.5,
+        "c_value": 241.4804469273743,
+        "d_value": 134.1411,
+        "value_delta_d_minus_c": -107.3393
+      },
+      {
+        "player_id": "8205",
+        "name": "Isiah Pacheco",
+        "position": "RB",
+        "adp": 19.8,
+        "c_value": 313.24022346368713,
+        "d_value": 206.148,
+        "value_delta_d_minus_c": -107.0922
+      },
+      {
+        "player_id": "9226",
+        "name": "De'Von Achane",
+        "position": "RB",
+        "adp": 21.4,
+        "c_value": 310.1117318435754,
+        "d_value": 203.8032,
+        "value_delta_d_minus_c": -106.3085
+      },
+      {
+        "player_id": "4199",
+        "name": "Aaron Jones Sr.",
+        "position": "RB",
+        "adp": 46.0,
+        "c_value": 262.0111731843575,
+        "d_value": 157.8009,
+        "value_delta_d_minus_c": -104.2103
+      },
+      {
+        "player_id": "10859",
+        "name": "Sam LaPorta",
+        "position": "TE",
+        "adp": 29.4,
+        "c_value": 294.46927374301674,
+        "d_value": 190.9327,
+        "value_delta_d_minus_c": -103.5366
+      },
+      {
+        "player_id": "8136",
+        "name": "Rachaad White",
+        "position": "RB",
+        "adp": 29.0,
+        "c_value": 295.2513966480447,
+        "d_value": 192.6655,
+        "value_delta_d_minus_c": -102.5859
+      },
+      {
+        "player_id": "4034",
+        "name": "Christian McCaffrey",
+        "position": "RB",
+        "adp": 1.4,
+        "c_value": 349.21787709497204,
+        "d_value": 247.042,
+        "value_delta_d_minus_c": -102.1759
+      },
+      {
+        "player_id": "8138",
+        "name": "James Cook III",
+        "position": "RB",
+        "adp": 30.3,
+        "c_value": 292.7094972067039,
+        "d_value": 190.6608,
+        "value_delta_d_minus_c": -102.0487
+      },
+      {
+        "player_id": "4035",
+        "name": "Alvin Kamara",
+        "position": "RB",
+        "adp": 32.3,
+        "c_value": 288.7988826815642,
+        "d_value": 187.0659,
+        "value_delta_d_minus_c": -101.733
+      },
+      {
+        "player_id": "4018",
+        "name": "Joe Mixon",
+        "position": "RB",
+        "adp": 35.0,
+        "c_value": 283.5195530726257,
+        "d_value": 182.2128,
+        "value_delta_d_minus_c": -101.3068
+      },
+      {
+        "player_id": "8151",
+        "name": "Kenneth Walker",
+        "position": "RB",
+        "adp": 35.6,
+        "c_value": 282.3463687150838,
+        "d_value": 181.1344,
+        "value_delta_d_minus_c": -101.212
+      },
+      {
+        "player_id": "8155",
+        "name": "Breece Hall",
+        "position": "RB",
+        "adp": 2.2,
+        "c_value": 347.65363128491623,
+        "d_value": 247.042,
+        "value_delta_d_minus_c": -100.6116
+      }
+    ]
+  },
+  "forks": {
+    "n": 60,
+    "winner_counts": {
+      "D": 57,
+      "C": 3
+    },
+    "d_win_rate_at_fork": 0.95,
+    "regret_d_vs_c": {
+      "n": 60,
+      "mean": -212.951,
+      "median": -246.04,
+      "stdev": 126.7527,
+      "min": -331.24,
+      "p10": -331.24,
+      "p25": -331.24,
+      "p75": -115.64,
+      "p90": -37.34,
+      "max": 23.96,
+      "n_positive": 3,
+      "n_negative": 57,
+      "n_zero": 0,
+      "win_rate": 0.05
+    },
+    "rounds": {
+      "1": 60
+    },
+    "c_positions": {
+      "RB": 39,
+      "WR": 21
+    },
+    "d_positions": {
+      "QB": 60
+    },
+    "rows": [
+      {
+        "slot": 1,
+        "seed": 42,
+        "d_minus_c_full": 59.12,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 1,
+        "seed": 43,
+        "d_minus_c_full": -48.9,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 1,
+        "seed": 44,
+        "d_minus_c_full": 35.04,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 1,
+        "seed": 45,
+        "d_minus_c_full": -109.38,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 1,
+        "seed": 46,
+        "d_minus_c_full": 346.46,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 2,
+        "seed": 42,
+        "d_minus_c_full": 1.64,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 2,
+        "seed": 43,
+        "d_minus_c_full": -26.9,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 2,
+        "seed": 44,
+        "d_minus_c_full": 152.98,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 2,
+        "seed": 45,
+        "d_minus_c_full": 33.72,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 2,
+        "seed": 46,
+        "d_minus_c_full": 115.22,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Breece Hall",
+          "position": "RB",
+          "player_id": "8155",
+          "adp": 2.2,
+          "c_value": 347.65363128491623,
+          "d_value": 247.042,
+          "actual_ppr": 240.9,
+          "e_c": -106.7536,
+          "e_d": -6.142
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -138.14,
+        "actual_delta_d_minus_c_at_fork": 138.14
+      },
+      {
+        "slot": 3,
+        "seed": 42,
+        "d_minus_c_full": 259.18,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 3,
+        "seed": 43,
+        "d_minus_c_full": -149.34,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 3,
+        "seed": 44,
+        "d_minus_c_full": 212.26,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 3,
+        "seed": 45,
+        "d_minus_c_full": 257.82,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 3,
+        "seed": 46,
+        "d_minus_c_full": -50.14,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      },
+      {
+        "slot": 4,
+        "seed": 42,
+        "d_minus_c_full": 228.9,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 4,
+        "seed": 43,
+        "d_minus_c_full": 197.28,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 4,
+        "seed": 44,
+        "d_minus_c_full": 124.78,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 4,
+        "seed": 45,
+        "d_minus_c_full": 114.02,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 4,
+        "seed": 46,
+        "d_minus_c_full": 212.2,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      },
+      {
+        "slot": 5,
+        "seed": 42,
+        "d_minus_c_full": 13.78,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 5,
+        "seed": 43,
+        "d_minus_c_full": -129.24,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      },
+      {
+        "slot": 5,
+        "seed": 44,
+        "d_minus_c_full": 335.48,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 5,
+        "seed": 45,
+        "d_minus_c_full": -189.38,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 5,
+        "seed": 46,
+        "d_minus_c_full": 88.5,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      },
+      {
+        "slot": 6,
+        "seed": 42,
+        "d_minus_c_full": 261.48,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 6,
+        "seed": 43,
+        "d_minus_c_full": -465.04,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "player_id": "6786",
+          "adp": 3.7,
+          "c_value": 344.7206703910615,
+          "d_value": 285.0891,
+          "actual_ppr": 263.4,
+          "e_c": -81.3207,
+          "e_d": -21.6891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -115.64,
+        "actual_delta_d_minus_c_at_fork": 115.64
+      },
+      {
+        "slot": 6,
+        "seed": 44,
+        "d_minus_c_full": 223.24,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 6,
+        "seed": 45,
+        "d_minus_c_full": -85.1,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 6,
+        "seed": 46,
+        "d_minus_c_full": -104.98,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      },
+      {
+        "slot": 7,
+        "seed": 42,
+        "d_minus_c_full": -58.9,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 7,
+        "seed": 43,
+        "d_minus_c_full": -212.2,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "player_id": "6786",
+          "adp": 3.7,
+          "c_value": 344.7206703910615,
+          "d_value": 285.0891,
+          "actual_ppr": 263.4,
+          "e_c": -81.3207,
+          "e_d": -21.6891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -115.64,
+        "actual_delta_d_minus_c_at_fork": 115.64
+      },
+      {
+        "slot": 7,
+        "seed": 44,
+        "d_minus_c_full": 236.82,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 7,
+        "seed": 45,
+        "d_minus_c_full": 221.12,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 7,
+        "seed": 46,
+        "d_minus_c_full": -0.12,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      },
+      {
+        "slot": 8,
+        "seed": 42,
+        "d_minus_c_full": 269.5,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 8,
+        "seed": 43,
+        "d_minus_c_full": -282.52,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "player_id": "6786",
+          "adp": 3.7,
+          "c_value": 344.7206703910615,
+          "d_value": 285.0891,
+          "actual_ppr": 263.4,
+          "e_c": -81.3207,
+          "e_d": -21.6891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -115.64,
+        "actual_delta_d_minus_c_at_fork": 115.64
+      },
+      {
+        "slot": 8,
+        "seed": 44,
+        "d_minus_c_full": 508.32,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 8,
+        "seed": 45,
+        "d_minus_c_full": -180.0,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 8,
+        "seed": 46,
+        "d_minus_c_full": 319.3,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      },
+      {
+        "slot": 9,
+        "seed": 42,
+        "d_minus_c_full": 26.2,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "player_id": "9509",
+          "adp": 4.9,
+          "c_value": 342.3743016759777,
+          "d_value": 247.042,
+          "actual_ppr": 341.7,
+          "e_c": -0.6743,
+          "e_d": 94.658
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -37.34,
+        "actual_delta_d_minus_c_at_fork": 37.34
+      },
+      {
+        "slot": 9,
+        "seed": 43,
+        "d_minus_c_full": -293.72,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "player_id": "6786",
+          "adp": 3.7,
+          "c_value": 344.7206703910615,
+          "d_value": 285.0891,
+          "actual_ppr": 263.4,
+          "e_c": -81.3207,
+          "e_d": -21.6891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -115.64,
+        "actual_delta_d_minus_c_at_fork": 115.64
+      },
+      {
+        "slot": 9,
+        "seed": 44,
+        "d_minus_c_full": -15.46,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Justin Jefferson",
+          "position": "WR",
+          "player_id": "6794",
+          "adp": 8.0,
+          "c_value": 336.31284916201116,
+          "d_value": 280.8836,
+          "actual_ppr": 317.48,
+          "e_c": -18.8328,
+          "e_d": 36.5964
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -61.56,
+        "actual_delta_d_minus_c_at_fork": 61.56
+      },
+      {
+        "slot": 9,
+        "seed": 45,
+        "d_minus_c_full": 41.12,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      },
+      {
+        "slot": 9,
+        "seed": 46,
+        "d_minus_c_full": -322.68,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      },
+      {
+        "slot": 10,
+        "seed": 42,
+        "d_minus_c_full": -250.76,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "player_id": "9509",
+          "adp": 4.9,
+          "c_value": 342.3743016759777,
+          "d_value": 247.042,
+          "actual_ppr": 341.7,
+          "e_c": -0.6743,
+          "e_d": 94.658
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -37.34,
+        "actual_delta_d_minus_c_at_fork": 37.34
+      },
+      {
+        "slot": 10,
+        "seed": 43,
+        "d_minus_c_full": -267.64,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "player_id": "6786",
+          "adp": 3.7,
+          "c_value": 344.7206703910615,
+          "d_value": 285.0891,
+          "actual_ppr": 263.4,
+          "e_c": -81.3207,
+          "e_d": -21.6891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -115.64,
+        "actual_delta_d_minus_c_at_fork": 115.64
+      },
+      {
+        "slot": 10,
+        "seed": 44,
+        "d_minus_c_full": 136.28,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Justin Jefferson",
+          "position": "WR",
+          "player_id": "6794",
+          "adp": 8.0,
+          "c_value": 336.31284916201116,
+          "d_value": 280.8836,
+          "actual_ppr": 317.48,
+          "e_c": -18.8328,
+          "e_d": 36.5964
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -61.56,
+        "actual_delta_d_minus_c_at_fork": 61.56
+      },
+      {
+        "slot": 10,
+        "seed": 45,
+        "d_minus_c_full": -183.48,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "player_id": "9509",
+          "adp": 4.9,
+          "c_value": 342.3743016759777,
+          "d_value": 247.042,
+          "actual_ppr": 341.7,
+          "e_c": -0.6743,
+          "e_d": 94.658
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -37.34,
+        "actual_delta_d_minus_c_at_fork": 37.34
+      },
+      {
+        "slot": 10,
+        "seed": 46,
+        "d_minus_c_full": -82.1,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Ja'Marr Chase",
+          "position": "WR",
+          "player_id": "7564",
+          "adp": 7.2,
+          "c_value": 337.8770949720671,
+          "d_value": 283.1265,
+          "actual_ppr": 403.0,
+          "e_c": 65.1229,
+          "e_d": 119.8735
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "C",
+        "first_fork_regret_d_vs_c": 23.96,
+        "actual_delta_d_minus_c_at_fork": -23.96
+      },
+      {
+        "slot": 11,
+        "seed": 42,
+        "d_minus_c_full": -107.26,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "player_id": "9509",
+          "adp": 4.9,
+          "c_value": 342.3743016759777,
+          "d_value": 247.042,
+          "actual_ppr": 341.7,
+          "e_c": -0.6743,
+          "e_d": 94.658
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -37.34,
+        "actual_delta_d_minus_c_at_fork": 37.34
+      },
+      {
+        "slot": 11,
+        "seed": 43,
+        "d_minus_c_full": 195.5,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "player_id": "6786",
+          "adp": 3.7,
+          "c_value": 344.7206703910615,
+          "d_value": 285.0891,
+          "actual_ppr": 263.4,
+          "e_c": -81.3207,
+          "e_d": -21.6891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -115.64,
+        "actual_delta_d_minus_c_at_fork": 115.64
+      },
+      {
+        "slot": 11,
+        "seed": 44,
+        "d_minus_c_full": 50.32,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "player_id": "6813",
+          "adp": 9.8,
+          "c_value": 332.7932960893854,
+          "d_value": 236.0642,
+          "actual_ppr": 244.7,
+          "e_c": -88.0933,
+          "e_d": 8.6358
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -134.34,
+        "actual_delta_d_minus_c_at_fork": 134.34
+      },
+      {
+        "slot": 11,
+        "seed": 45,
+        "d_minus_c_full": -96.2,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "player_id": "9509",
+          "adp": 4.9,
+          "c_value": 342.3743016759777,
+          "d_value": 247.042,
+          "actual_ppr": 341.7,
+          "e_c": -0.6743,
+          "e_d": 94.658
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -37.34,
+        "actual_delta_d_minus_c_at_fork": 37.34
+      },
+      {
+        "slot": 11,
+        "seed": 46,
+        "d_minus_c_full": 153.12,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Ja'Marr Chase",
+          "position": "WR",
+          "player_id": "7564",
+          "adp": 7.2,
+          "c_value": 337.8770949720671,
+          "d_value": 283.1265,
+          "actual_ppr": 403.0,
+          "e_c": 65.1229,
+          "e_d": 119.8735
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "C",
+        "first_fork_regret_d_vs_c": 23.96,
+        "actual_delta_d_minus_c_at_fork": -23.96
+      },
+      {
+        "slot": 12,
+        "seed": 42,
+        "d_minus_c_full": -345.58,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "player_id": "9509",
+          "adp": 4.9,
+          "c_value": 342.3743016759777,
+          "d_value": 247.042,
+          "actual_ppr": 341.7,
+          "e_c": -0.6743,
+          "e_d": 94.658
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -37.34,
+        "actual_delta_d_minus_c_at_fork": 37.34
+      },
+      {
+        "slot": 12,
+        "seed": 43,
+        "d_minus_c_full": -275.56,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "player_id": "6786",
+          "adp": 3.7,
+          "c_value": 344.7206703910615,
+          "d_value": 285.0891,
+          "actual_ppr": 263.4,
+          "e_c": -81.3207,
+          "e_d": -21.6891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -115.64,
+        "actual_delta_d_minus_c_at_fork": 115.64
+      },
+      {
+        "slot": 12,
+        "seed": 44,
+        "d_minus_c_full": 38.08,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "player_id": "6813",
+          "adp": 9.8,
+          "c_value": 332.7932960893854,
+          "d_value": 236.0642,
+          "actual_ppr": 244.7,
+          "e_c": -88.0933,
+          "e_d": 8.6358
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -134.34,
+        "actual_delta_d_minus_c_at_fork": 134.34
+      },
+      {
+        "slot": 12,
+        "seed": 45,
+        "d_minus_c_full": -8.2,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Justin Jefferson",
+          "position": "WR",
+          "player_id": "6794",
+          "adp": 8.0,
+          "c_value": 336.31284916201116,
+          "d_value": 280.8836,
+          "actual_ppr": 317.48,
+          "e_c": -18.8328,
+          "e_d": 36.5964
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -61.56,
+        "actual_delta_d_minus_c_at_fork": 61.56
+      },
+      {
+        "slot": 12,
+        "seed": 46,
+        "d_minus_c_full": 197.18,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Ja'Marr Chase",
+          "position": "WR",
+          "player_id": "7564",
+          "adp": 7.2,
+          "c_value": 337.8770949720671,
+          "d_value": 283.1265,
+          "actual_ppr": 403.0,
+          "e_c": 65.1229,
+          "e_d": 119.8735
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "C",
+        "first_fork_regret_d_vs_c": 23.96,
+        "actual_delta_d_minus_c_at_fork": -23.96
+      }
+    ]
+  },
+  "prediction_errors": {
+    "all_c_picks_e_c": {
+      "n": 900,
+      "mean": -19.4688,
+      "median": -16.0218,
+      "stdev": 111.3434,
+      "min": -301.4179,
+      "p10": -151.3832,
+      "p25": -88.0933,
+      "p75": 60.0978,
+      "p90": 122.7514,
+      "max": 318.8726,
+      "n_positive": 370,
+      "n_negative": 530,
+      "n_zero": 0,
+      "win_rate": 0.4111
+    },
+    "all_d_picks_e_d": {
+      "n": 900,
+      "mean": 2.2719,
+      "median": -1.9596,
+      "stdev": 67.7701,
+      "min": -150.7566,
+      "p10": -79.8251,
+      "p25": -52.0666,
+      "p75": 56.3004,
+      "p90": 89.9807,
+      "max": 187.0466,
+      "n_positive": 411,
+      "n_negative": 489,
+      "n_zero": 0,
+      "win_rate": 0.4567
+    },
+    "all_c_picks_abs_e_c": {
+      "n": 900,
+      "mean": 87.8037,
+      "median": 78.4089,
+      "stdev": 71.1249,
+      "min": 0.6257,
+      "p10": 12.4148,
+      "p25": 25.867,
+      "p75": 127.4954,
+      "p90": 161.5603,
+      "max": 318.8726,
+      "n_positive": 900,
+      "n_negative": 0,
+      "n_zero": 0,
+      "win_rate": 1.0
+    },
+    "all_d_picks_abs_e_d": {
+      "n": 900,
+      "mean": 54.2986,
+      "median": 52.0666,
+      "stdev": 40.5749,
+      "min": 0.0656,
+      "p10": 3.104,
+      "p25": 22.3807,
+      "p75": 79.0397,
+      "p90": 107.9011,
+      "max": 187.0466,
+      "n_positive": 900,
+      "n_negative": 0,
+      "n_zero": 0,
+      "win_rate": 1.0
+    },
+    "fork_c_pick_e_c": {
+      "n": 60,
+      "mean": -179.8212,
+      "median": -215.0447,
+      "stdev": 130.507,
+      "min": -301.4179,
+      "p10": -301.4179,
+      "p25": -301.4179,
+      "p75": -81.3207,
+      "p90": -0.6743,
+      "max": 65.1229,
+      "n_positive": 3,
+      "n_negative": 57,
+      "n_zero": 0,
+      "win_rate": 0.05
+    },
+    "fork_d_pick_e_d": {
+      "n": 60,
+      "mean": 28.7452,
+      "median": 28.7452,
+      "stdev": 0.0,
+      "min": 28.7452,
+      "p10": 28.7452,
+      "p25": 28.7452,
+      "p75": 28.7452,
+      "p90": 28.7452,
+      "max": 28.7452,
+      "n_positive": 60,
+      "n_negative": 0,
+      "n_zero": 0,
+      "win_rate": 1.0
+    },
+    "fork_c_pick_abs_e_c": {
+      "n": 60,
+      "mean": 186.3334,
+      "median": 215.0447,
+      "stdev": 120.8601,
+      "min": 0.6743,
+      "p10": 17.017,
+      "p25": 81.3207,
+      "p75": 301.4179,
+      "p90": 301.4179,
+      "max": 301.4179,
+      "n_positive": 60,
+      "n_negative": 0,
+      "n_zero": 0,
+      "win_rate": 1.0
+    },
+    "fork_d_pick_abs_e_d": {
+      "n": 60,
+      "mean": 28.7452,
+      "median": 28.7452,
+      "stdev": 0.0,
+      "min": 28.7452,
+      "p10": 28.7452,
+      "p25": 28.7452,
+      "p75": 28.7452,
+      "p90": 28.7452,
+      "max": 28.7452,
+      "n_positive": 60,
+      "n_negative": 0,
+      "n_zero": 0,
+      "win_rate": 1.0
+    },
+    "d_roster_paired_abs_improve_d_minus_c": {
+      "n": 900,
+      "mean": 26.7416,
+      "median": 32.8344,
+      "stdev": 43.7528,
+      "min": -96.5058,
+      "p10": -45.5427,
+      "p25": -0.7685,
+      "p75": 60.4183,
+      "p90": 73.4996,
+      "max": 131.826,
+      "n_positive": 672,
+      "n_negative": 228,
+      "n_zero": 0,
+      "win_rate": 0.7467
+    },
+    "d_roster_paired_n": 900,
+    "d_roster_abs_better_count": 672,
+    "d_roster_abs_worse_count": 228,
+    "d_roster_abs_better_rate": 0.7467,
+    "note": "e = actual \u2212 value. Negative mean \u21d2 over-projection. Paired abs improve on D roster: |e_C| \u2212 |e_D| > 0 means D closer to actual."
+  },
+  "interpretation_gates": [
+    "HINGE: D |error| substantially closer to 0 + D draft tail worse \u2014 calibration works at player level; construction interaction implicated (V3-B becomes legitimate to design, not implement yet)",
+    "CAVEAT: D\u2212C positive mass is concentrated (Hypothesis D) \u2014 mean improvement is not evenly distributed across boards",
+    "FINDING: every first fork is R1 D=QB vs C=RB/WR \u2014 D wins the fork pick on actual (~95%) but mean RB starter \u0394 is large negative (portfolio / construction interaction). Not a map edit."
+  ],
+  "pairs": [
+    {
+      "slot": 1,
+      "seed": 42,
+      "d_minus_c_full": 59.12,
+      "d_minus_c_ex_dst": 59.12,
+      "d_minus_c_ex_dst_te": 59.12,
+      "pos_delta": {
+        "QB": 13.24,
+        "RB": -256.4,
+        "WR": 302.28,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 138.52,
+        "r6-10": 199.2,
+        "r11-15": -278.6
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 66.3,
+        "3": -19.1,
+        "4": -121.92,
+        "5": -165.8,
+        "6": 236.6,
+        "7": -154.7,
+        "9": 117.3,
+        "10": 0.0,
+        "11": 43.7,
+        "14": 43.5,
+        "15": -365.8
+      },
+      "pick_diff": {
+        "n_shared": 6,
+        "n_only_c": 9,
+        "n_only_d": 9
+      },
+      "fork": {
+        "slot": 1,
+        "seed": 42,
+        "d_minus_c_full": 59.12,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 1,
+      "seed": 43,
+      "d_minus_c_full": -48.9,
+      "d_minus_c_ex_dst": -48.9,
+      "d_minus_c_ex_dst_te": 35.5,
+      "pos_delta": {
+        "QB": 112.18,
+        "RB": 136.5,
+        "WR": -213.18,
+        "TE": -84.4,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 205.26,
+        "r6-10": -16.3,
+        "r11-15": -237.86
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 63.9,
+        "3": 69.7,
+        "4": -118.58,
+        "5": -188.8,
+        "8": -120.7,
+        "9": 104.4,
+        "10": 0.0,
+        "11": -266.86,
+        "13": 0.0,
+        "14": 212.5,
+        "15": -183.5
+      },
+      "pick_diff": {
+        "n_shared": 6,
+        "n_only_c": 9,
+        "n_only_d": 9
+      },
+      "fork": {
+        "slot": 1,
+        "seed": 43,
+        "d_minus_c_full": -48.9,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 1,
+      "seed": 44,
+      "d_minus_c_full": 35.04,
+      "d_minus_c_ex_dst": 35.04,
+      "d_minus_c_ex_dst_te": 35.04,
+      "pos_delta": {
+        "QB": 13.24,
+        "RB": -6.1,
+        "WR": 27.9,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 416.74,
+        "r6-10": -15.9,
+        "r11-15": -365.8
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 55.4,
+        "3": 25.4,
+        "5": -43.1,
+        "6": -8.8,
+        "7": -131.2,
+        "8": 124.1,
+        "10": 0.0,
+        "11": 0.0,
+        "14": 0.0,
+        "15": -365.8
+      },
+      "pick_diff": {
+        "n_shared": 8,
+        "n_only_c": 7,
+        "n_only_d": 7
+      },
+      "fork": {
+        "slot": 1,
+        "seed": 44,
+        "d_minus_c_full": 35.04,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 1,
+      "seed": 45,
+      "d_minus_c_full": -109.38,
+      "d_minus_c_ex_dst": -109.38,
+      "d_minus_c_ex_dst_te": -50.38,
+      "pos_delta": {
+        "QB": 63.92,
+        "RB": -314.9,
+        "WR": 200.6,
+        "TE": -59.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 120.82,
+        "r6-10": -192.7,
+        "r11-15": -37.5
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 0.0,
+        "4": 56.9,
+        "5": -315.12,
+        "6": 89.5,
+        "7": -133.7,
+        "8": -148.5,
+        "10": 0.0,
+        "11": -212.2,
+        "13": 0.0,
+        "14": 174.7,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 6,
+        "n_only_c": 9,
+        "n_only_d": 9
+      },
+      "fork": {
+        "slot": 1,
+        "seed": 45,
+        "d_minus_c_full": -109.38,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 1,
+      "seed": 46,
+      "d_minus_c_full": 346.46,
+      "d_minus_c_ex_dst": 346.46,
+      "d_minus_c_ex_dst_te": 346.46,
+      "pos_delta": {
+        "QB": 197.46,
+        "RB": 77.6,
+        "WR": 71.4,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 267.94,
+        "r6-10": -103.98,
+        "r11-15": 182.5
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 63.9,
+        "3": -175.0,
+        "4": 0.0,
+        "6": 60.3,
+        "7": 73.4,
+        "8": -124.08,
+        "9": -113.6,
+        "10": 0.0,
+        "12": 182.5,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 6,
+        "n_only_c": 9,
+        "n_only_d": 9
+      },
+      "fork": {
+        "slot": 1,
+        "seed": 46,
+        "d_minus_c_full": 346.46,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 2,
+      "seed": 42,
+      "d_minus_c_full": 1.64,
+      "d_minus_c_ex_dst": 1.64,
+      "d_minus_c_ex_dst_te": -116.76,
+      "pos_delta": {
+        "QB": 13.24,
+        "RB": -521.9,
+        "WR": 391.9,
+        "TE": 118.4,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 350.44,
+        "r6-10": 138.0,
+        "r11-15": -486.8
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 66.3,
+        "3": -19.1,
+        "4": 0.0,
+        "5": -75.8,
+        "6": 236.6,
+        "7": -94.0,
+        "8": -4.6,
+        "10": 0.0,
+        "11": -121.0,
+        "15": -365.8
+      },
+      "pick_diff": {
+        "n_shared": 8,
+        "n_only_c": 7,
+        "n_only_d": 7
+      },
+      "fork": {
+        "slot": 2,
+        "seed": 42,
+        "d_minus_c_full": 1.64,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 2,
+      "seed": 43,
+      "d_minus_c_full": -26.9,
+      "d_minus_c_ex_dst": -26.9,
+      "d_minus_c_ex_dst_te": 17.2,
+      "pos_delta": {
+        "QB": 112.18,
+        "RB": 0.0,
+        "WR": -94.98,
+        "TE": -44.1,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 284.06,
+        "r6-10": -44.1,
+        "r11-15": -266.86
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 63.9,
+        "3": -280.8,
+        "4": 0.0,
+        "5": 121.92,
+        "6": -110.1,
+        "7": 214.5,
+        "8": -148.5,
+        "9": 0.0,
+        "10": 0.0,
+        "11": -266.86,
+        "13": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 11,
+        "n_only_c": 4,
+        "n_only_d": 4
+      },
+      "fork": {
+        "slot": 2,
+        "seed": 43,
+        "d_minus_c_full": -26.9,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 2,
+      "seed": 44,
+      "d_minus_c_full": 152.98,
+      "d_minus_c_ex_dst": 152.98,
+      "d_minus_c_ex_dst_te": 152.98,
+      "pos_delta": {
+        "QB": 54.58,
+        "RB": 70.5,
+        "WR": 27.9,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 416.74,
+        "r6-10": -263.76,
+        "r11-15": 0.0
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 55.4,
+        "3": 25.4,
+        "5": -43.1,
+        "6": 96.6,
+        "7": -236.6,
+        "8": -123.76,
+        "10": 0.0,
+        "11": 0.0,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 2,
+        "seed": 44,
+        "d_minus_c_full": 152.98,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 2,
+      "seed": 45,
+      "d_minus_c_full": 33.72,
+      "d_minus_c_ex_dst": 33.72,
+      "d_minus_c_ex_dst_te": 92.72,
+      "pos_delta": {
+        "QB": 63.92,
+        "RB": -243.8,
+        "WR": 272.6,
+        "TE": -59.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 212.52,
+        "r6-10": 149.3,
+        "r11-15": -328.1
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": -175.0,
+        "4": 56.9,
+        "5": -48.42,
+        "6": 197.0,
+        "7": -86.4,
+        "8": -148.5,
+        "9": 187.2,
+        "10": 0.0,
+        "11": 33.5,
+        "13": -186.9,
+        "14": -174.7,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 6,
+        "n_only_c": 9,
+        "n_only_d": 9
+      },
+      "fork": {
+        "slot": 2,
+        "seed": 45,
+        "d_minus_c_full": 33.72,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 2,
+      "seed": 46,
+      "d_minus_c_full": 115.22,
+      "d_minus_c_ex_dst": 115.22,
+      "d_minus_c_ex_dst_te": 2.32,
+      "pos_delta": {
+        "QB": 63.92,
+        "RB": -144.3,
+        "WR": 82.7,
+        "TE": 112.9,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 52.72,
+        "r6-10": 333.2,
+        "r11-15": -270.7
+      },
+      "round_delta": {
+        "1": 138.14,
+        "2": 63.9,
+        "3": 0.0,
+        "4": -315.12,
+        "5": 165.8,
+        "6": 236.6,
+        "8": 96.6,
+        "10": 0.0,
+        "11": -147.0,
+        "13": 0.0,
+        "14": -123.7,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 2,
+        "seed": 46,
+        "d_minus_c_full": 115.22,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Breece Hall",
+          "position": "RB",
+          "player_id": "8155",
+          "adp": 2.2,
+          "c_value": 347.65363128491623,
+          "d_value": 247.042,
+          "actual_ppr": 240.9,
+          "e_c": -106.7536,
+          "e_d": -6.142
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -138.14,
+        "actual_delta_d_minus_c_at_fork": 138.14
+      }
+    },
+    {
+      "slot": 3,
+      "seed": 42,
+      "d_minus_c_full": 259.18,
+      "d_minus_c_ex_dst": 259.18,
+      "d_minus_c_ex_dst_te": 171.08,
+      "pos_delta": {
+        "QB": 112.18,
+        "RB": -83.7,
+        "WR": 142.6,
+        "TE": 88.1,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 464.44,
+        "r6-10": -205.26,
+        "r11-15": 0.0
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 55.4,
+        "3": 105.8,
+        "5": -75.8,
+        "6": 236.6,
+        "7": -184.4,
+        "8": 9.4,
+        "9": 0.0,
+        "10": -266.86,
+        "11": 0.0,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 3,
+        "seed": 42,
+        "d_minus_c_full": 259.18,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 3,
+      "seed": 43,
+      "d_minus_c_full": -149.34,
+      "d_minus_c_ex_dst": -149.34,
+      "d_minus_c_ex_dst_te": -104.44,
+      "pos_delta": {
+        "QB": -51.34,
+        "RB": -102.1,
+        "WR": 49.0,
+        "TE": -44.9,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -46.04,
+        "r6-10": -44.9,
+        "r11-15": -58.4
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 24.4,
+        "3": -19.1,
+        "4": 0.0,
+        "5": -430.38,
+        "6": -214.5,
+        "7": 214.5,
+        "8": -148.5,
+        "9": 0.0,
+        "10": 103.6,
+        "11": -43.7,
+        "12": 197.8,
+        "14": -212.5
+      },
+      "pick_diff": {
+        "n_shared": 5,
+        "n_only_c": 10,
+        "n_only_d": 10
+      },
+      "fork": {
+        "slot": 3,
+        "seed": 43,
+        "d_minus_c_full": -149.34,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 3,
+      "seed": 44,
+      "d_minus_c_full": 212.26,
+      "d_minus_c_ex_dst": 212.26,
+      "d_minus_c_ex_dst_te": 204.76,
+      "pos_delta": {
+        "QB": -51.34,
+        "RB": 214.5,
+        "WR": 41.6,
+        "TE": 7.5,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -8.54,
+        "r6-10": 544.1,
+        "r11-15": -323.3
+      },
+      "round_delta": {
+        "1": 331.24,
+        "2": 55.4,
+        "3": 150.6,
+        "4": -238.1,
+        "5": -307.68,
+        "6": 131.2,
+        "8": 200.7,
+        "9": 0.0,
+        "10": 212.2,
+        "11": -92.2,
+        "13": -107.4,
+        "14": -123.7
+      },
+      "pick_diff": {
+        "n_shared": 3,
+        "n_only_c": 12,
+        "n_only_d": 12
+      },
+      "fork": {
+        "slot": 3,
+        "seed": 44,
+        "d_minus_c_full": 212.26,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 3,
+      "seed": 45,
+      "d_minus_c_full": 257.82,
+      "d_minus_c_ex_dst": 257.82,
+      "d_minus_c_ex_dst_te": 275.12,
+      "pos_delta": {
+        "QB": 96.02,
+        "RB": 116.0,
+        "WR": 63.1,
+        "TE": -17.3,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 159.12,
+        "r6-10": -88.2,
+        "r11-15": 186.9
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": -175.0,
+        "4": -91.82,
+        "5": 46.9,
+        "6": -44.7,
+        "7": 105.0,
+        "8": -148.5,
+        "9": 0.0,
+        "11": 0.0,
+        "13": 186.9,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 3,
+        "seed": 45,
+        "d_minus_c_full": 257.82,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 3,
+      "seed": 46,
+      "d_minus_c_full": -50.14,
+      "d_minus_c_ex_dst": -50.14,
+      "d_minus_c_ex_dst_te": -21.28,
+      "pos_delta": {
+        "QB": 96.02,
+        "RB": -141.5,
+        "WR": 24.2,
+        "TE": -28.86,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -97.78,
+        "r6-10": -74.9,
+        "r11-15": 122.54
+      },
+      "round_delta": {
+        "1": 160.84,
+        "2": 24.4,
+        "3": 0.0,
+        "4": -9.42,
+        "5": -273.6,
+        "7": -49.3,
+        "8": -25.6,
+        "9": 0.0,
+        "12": -197.8,
+        "13": 218.0,
+        "15": 102.34
+      },
+      "pick_diff": {
+        "n_shared": 4,
+        "n_only_c": 11,
+        "n_only_d": 11
+      },
+      "fork": {
+        "slot": 3,
+        "seed": 46,
+        "d_minus_c_full": -50.14,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      }
+    },
+    {
+      "slot": 4,
+      "seed": 42,
+      "d_minus_c_full": 228.9,
+      "d_minus_c_ex_dst": 228.9,
+      "d_minus_c_ex_dst_te": 123.5,
+      "pos_delta": {
+        "QB": 81.8,
+        "RB": 11.0,
+        "WR": 30.7,
+        "TE": 105.4,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 715.24,
+        "r6-10": -246.04,
+        "r11-15": -240.3
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 55.4,
+        "3": 280.8,
+        "4": 0.0,
+        "6": 165.7,
+        "7": -131.2,
+        "8": -215.34,
+        "9": 0.0,
+        "10": -65.2,
+        "11": -240.3,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 8,
+        "n_only_c": 7,
+        "n_only_d": 7
+      },
+      "fork": {
+        "slot": 4,
+        "seed": 42,
+        "d_minus_c_full": 228.9,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 4,
+      "seed": 43,
+      "d_minus_c_full": 197.28,
+      "d_minus_c_ex_dst": 197.28,
+      "d_minus_c_ex_dst_te": 170.48,
+      "pos_delta": {
+        "QB": 215.68,
+        "RB": 0.0,
+        "WR": -45.2,
+        "TE": 26.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 333.84,
+        "r6-10": -136.56,
+        "r11-15": 0.0
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": -45.2,
+        "4": 0.0,
+        "6": -32.16,
+        "8": -104.4,
+        "9": 0.0,
+        "11": 0.0,
+        "12": 0.0,
+        "13": 0.0,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 10,
+        "n_only_c": 5,
+        "n_only_d": 5
+      },
+      "fork": {
+        "slot": 4,
+        "seed": 43,
+        "d_minus_c_full": 197.28,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 4,
+      "seed": 44,
+      "d_minus_c_full": 124.78,
+      "d_minus_c_ex_dst": 124.78,
+      "d_minus_c_ex_dst_te": 76.98,
+      "pos_delta": {
+        "QB": 215.68,
+        "RB": 111.4,
+        "WR": -250.1,
+        "TE": 47.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 198.74,
+        "r6-10": 102.64,
+        "r11-15": -176.6
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 55.4,
+        "3": 25.4,
+        "4": -23.0,
+        "5": -238.1,
+        "6": 73.24,
+        "8": 0.0,
+        "9": 0.0,
+        "10": 29.4,
+        "11": -284.0,
+        "13": 107.4
+      },
+      "pick_diff": {
+        "n_shared": 6,
+        "n_only_c": 9,
+        "n_only_d": 9
+      },
+      "fork": {
+        "slot": 4,
+        "seed": 44,
+        "d_minus_c_full": 124.78,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 4,
+      "seed": 45,
+      "d_minus_c_full": 114.02,
+      "d_minus_c_ex_dst": 114.02,
+      "d_minus_c_ex_dst_te": 173.02,
+      "pos_delta": {
+        "QB": 63.92,
+        "RB": 56.1,
+        "WR": 53.0,
+        "TE": -59.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 394.42,
+        "r6-10": 178.3,
+        "r11-15": -458.7
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 0.0,
+        "4": 92.4,
+        "5": -77.02,
+        "6": 89.5,
+        "7": 105.0,
+        "8": -16.2,
+        "9": 0.0,
+        "11": -284.0,
+        "13": 0.0,
+        "15": -174.7
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 4,
+        "seed": 45,
+        "d_minus_c_full": 114.02,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 4,
+      "seed": 46,
+      "d_minus_c_full": 212.2,
+      "d_minus_c_ex_dst": 192.2,
+      "d_minus_c_ex_dst_te": 153.1,
+      "pos_delta": {
+        "QB": 112.18,
+        "RB": -37.0,
+        "WR": 77.92,
+        "TE": 39.1,
+        "DST": 20.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 215.36,
+        "r6-10": -303.46,
+        "r11-15": 300.3
+      },
+      "round_delta": {
+        "1": 160.84,
+        "2": 85.52,
+        "3": 0.0,
+        "4": 210.6,
+        "5": -241.6,
+        "7": 73.4,
+        "8": 0.0,
+        "9": -110.0,
+        "10": -266.86,
+        "13": 0.0,
+        "14": 170.3,
+        "15": 130.0
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 4,
+        "seed": 46,
+        "d_minus_c_full": 212.2,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      }
+    },
+    {
+      "slot": 5,
+      "seed": 42,
+      "d_minus_c_full": 13.78,
+      "d_minus_c_ex_dst": 13.78,
+      "d_minus_c_ex_dst_te": 77.98,
+      "pos_delta": {
+        "QB": 112.18,
+        "RB": 0.0,
+        "WR": -34.2,
+        "TE": -64.2,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 239.04,
+        "r6-10": -332.66,
+        "r11-15": 107.4
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 55.4,
+        "3": -195.4,
+        "4": 0.0,
+        "6": 131.2,
+        "7": -197.0,
+        "8": 0.0,
+        "9": 0.0,
+        "10": -266.86,
+        "11": 0.0,
+        "13": 107.4,
+        "14": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 9,
+        "n_only_c": 6,
+        "n_only_d": 6
+      },
+      "fork": {
+        "slot": 5,
+        "seed": 42,
+        "d_minus_c_full": 13.78,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 5,
+      "seed": 43,
+      "d_minus_c_full": -129.24,
+      "d_minus_c_ex_dst": -129.24,
+      "d_minus_c_ex_dst_te": -195.54,
+      "pos_delta": {
+        "QB": -51.34,
+        "RB": -117.9,
+        "WR": -26.3,
+        "TE": 66.3,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -33.94,
+        "r6-10": 118.7,
+        "r11-15": -214.0
+      },
+      "round_delta": {
+        "1": 160.84,
+        "2": -45.2,
+        "3": 280.8,
+        "4": 0.0,
+        "5": -430.38,
+        "6": 22.1,
+        "8": 96.6,
+        "9": 0.0,
+        "11": -43.7,
+        "13": 0.0,
+        "14": -170.3
+      },
+      "pick_diff": {
+        "n_shared": 8,
+        "n_only_c": 7,
+        "n_only_d": 7
+      },
+      "fork": {
+        "slot": 5,
+        "seed": 43,
+        "d_minus_c_full": -129.24,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      }
+    },
+    {
+      "slot": 5,
+      "seed": 44,
+      "d_minus_c_full": 335.48,
+      "d_minus_c_ex_dst": 335.48,
+      "d_minus_c_ex_dst_te": 247.38,
+      "pos_delta": {
+        "QB": 215.68,
+        "RB": 76.3,
+        "WR": -44.6,
+        "TE": 88.1,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 542.24,
+        "r6-10": 48.84,
+        "r11-15": -255.6
+      },
+      "round_delta": {
+        "1": 331.24,
+        "2": 55.4,
+        "3": 155.6,
+        "4": 238.1,
+        "5": -238.1,
+        "6": 73.24,
+        "7": 0.0,
+        "8": -24.4,
+        "9": 0.0,
+        "11": -284.0,
+        "14": 28.4
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 5,
+        "seed": 44,
+        "d_minus_c_full": 335.48,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 5,
+      "seed": 45,
+      "d_minus_c_full": -189.38,
+      "d_minus_c_ex_dst": -189.38,
+      "d_minus_c_ex_dst_te": -172.08,
+      "pos_delta": {
+        "QB": 63.92,
+        "RB": -441.7,
+        "WR": 205.7,
+        "TE": -17.3,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -135.88,
+        "r6-10": 46.0,
+        "r11-15": -99.5
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": -355.3,
+        "3": -175.0,
+        "4": 92.4,
+        "5": -77.02,
+        "6": 131.2,
+        "7": 63.3,
+        "8": -148.5,
+        "9": 0.0,
+        "11": 43.7,
+        "13": 0.0,
+        "14": 31.5,
+        "15": -174.7
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 5,
+        "seed": 45,
+        "d_minus_c_full": -189.38,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 5,
+      "seed": 46,
+      "d_minus_c_full": 88.5,
+      "d_minus_c_ex_dst": 108.5,
+      "d_minus_c_ex_dst_te": -154.2,
+      "pos_delta": {
+        "QB": 96.02,
+        "RB": -8.0,
+        "WR": -242.22,
+        "TE": 262.7,
+        "DST": -20.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 71.8,
+        "r6-10": 156.7,
+        "r11-15": -140.0
+      },
+      "round_delta": {
+        "1": 160.84,
+        "2": -86.82,
+        "3": 280.8,
+        "4": -9.42,
+        "5": -273.6,
+        "6": 236.6,
+        "7": -32.0,
+        "8": -157.9,
+        "9": 110.0,
+        "11": -241.6,
+        "12": 262.7,
+        "13": -31.1,
+        "15": -130.0
+      },
+      "pick_diff": {
+        "n_shared": 4,
+        "n_only_c": 11,
+        "n_only_d": 11
+      },
+      "fork": {
+        "slot": 5,
+        "seed": 46,
+        "d_minus_c_full": 88.5,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      }
+    },
+    {
+      "slot": 6,
+      "seed": 42,
+      "d_minus_c_full": 261.48,
+      "d_minus_c_ex_dst": 261.48,
+      "d_minus_c_ex_dst_te": 325.68,
+      "pos_delta": {
+        "QB": 145.18,
+        "RB": 0.0,
+        "WR": 180.5,
+        "TE": -64.2,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 315.74,
+        "r6-10": -294.56,
+        "r11-15": 240.3
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 55.4,
+        "3": -118.7,
+        "4": 0.0,
+        "6": 60.3,
+        "8": -233.86,
+        "9": 0.0,
+        "10": -121.0,
+        "11": 240.3,
+        "14": 0.0,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 6,
+        "seed": 42,
+        "d_minus_c_full": 261.48,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 6,
+      "seed": 43,
+      "d_minus_c_full": -465.04,
+      "d_minus_c_ex_dst": -465.04,
+      "d_minus_c_ex_dst_te": -465.04,
+      "pos_delta": {
+        "QB": -51.34,
+        "RB": -520.3,
+        "WR": 106.6,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -698.74,
+        "r6-10": 233.7,
+        "r11-15": 0.0
+      },
+      "round_delta": {
+        "1": 115.64,
+        "2": -78.3,
+        "3": -280.8,
+        "4": -24.9,
+        "5": -430.38,
+        "6": -214.5,
+        "7": 204.6,
+        "8": 96.6,
+        "9": 0.0,
+        "10": 147.0,
+        "11": 0.0,
+        "12": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 8,
+        "n_only_c": 7,
+        "n_only_d": 7
+      },
+      "fork": {
+        "slot": 6,
+        "seed": 43,
+        "d_minus_c_full": -465.04,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "player_id": "6786",
+          "adp": 3.7,
+          "c_value": 344.7206703910615,
+          "d_value": 285.0891,
+          "actual_ppr": 263.4,
+          "e_c": -81.3207,
+          "e_d": -21.6891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -115.64,
+        "actual_delta_d_minus_c_at_fork": 115.64
+      }
+    },
+    {
+      "slot": 6,
+      "seed": 44,
+      "d_minus_c_full": 223.24,
+      "d_minus_c_ex_dst": 223.24,
+      "d_minus_c_ex_dst_te": 226.84,
+      "pos_delta": {
+        "QB": 13.24,
+        "RB": 128.5,
+        "WR": 85.1,
+        "TE": -3.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 464.14,
+        "r6-10": -66.9,
+        "r11-15": -174.0
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 55.4,
+        "3": -85.7,
+        "4": 238.1,
+        "5": -122.7,
+        "6": 100.8,
+        "7": -63.3,
+        "8": -104.4,
+        "9": 0.0,
+        "10": 0.0,
+        "11": 191.8,
+        "14": 0.0,
+        "15": -365.8
+      },
+      "pick_diff": {
+        "n_shared": 8,
+        "n_only_c": 7,
+        "n_only_d": 7
+      },
+      "fork": {
+        "slot": 6,
+        "seed": 44,
+        "d_minus_c_full": 223.24,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 6,
+      "seed": 45,
+      "d_minus_c_full": -85.1,
+      "d_minus_c_ex_dst": -85.1,
+      "d_minus_c_ex_dst_te": -124.2,
+      "pos_delta": {
+        "QB": 81.8,
+        "RB": -259.2,
+        "WR": 53.2,
+        "TE": 39.1,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 477.84,
+        "r6-10": -449.24,
+        "r11-15": -113.7
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 35.0,
+        "4": 6.9,
+        "5": 56.9,
+        "6": -28.3,
+        "7": -131.2,
+        "8": -289.74,
+        "9": 0.0,
+        "11": -284.0,
+        "13": 0.0,
+        "14": 170.3
+      },
+      "pick_diff": {
+        "n_shared": 6,
+        "n_only_c": 9,
+        "n_only_d": 9
+      },
+      "fork": {
+        "slot": 6,
+        "seed": 45,
+        "d_minus_c_full": -85.1,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 6,
+      "seed": 46,
+      "d_minus_c_full": -104.98,
+      "d_minus_c_ex_dst": -104.98,
+      "d_minus_c_ex_dst_te": -152.78,
+      "pos_delta": {
+        "QB": 96.02,
+        "RB": -83.7,
+        "WR": -165.1,
+        "TE": 47.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -440.38,
+        "r6-10": 394.5,
+        "r11-15": -59.1
+      },
+      "round_delta": {
+        "1": 160.84,
+        "2": -403.0,
+        "3": 0.0,
+        "4": -9.42,
+        "5": -188.8,
+        "6": 236.6,
+        "8": 157.9,
+        "9": 0.0,
+        "11": -241.6,
+        "12": 182.5,
+        "13": 0.0,
+        "14": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 6,
+        "seed": 46,
+        "d_minus_c_full": -104.98,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      }
+    },
+    {
+      "slot": 7,
+      "seed": 42,
+      "d_minus_c_full": -58.9,
+      "d_minus_c_ex_dst": -58.9,
+      "d_minus_c_ex_dst_te": -190.1,
+      "pos_delta": {
+        "QB": 0.0,
+        "RB": -269.2,
+        "WR": 79.1,
+        "TE": 131.2,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -1.8,
+        "r6-10": -57.1,
+        "r11-15": 0.0
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": -10.1,
+        "3": -379.04,
+        "4": 8.3,
+        "6": -53.2,
+        "7": -204.6,
+        "8": 200.7,
+        "9": 0.0,
+        "11": 0.0,
+        "13": 0.0,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 8,
+        "n_only_c": 7,
+        "n_only_d": 7
+      },
+      "fork": {
+        "slot": 7,
+        "seed": 42,
+        "d_minus_c_full": -58.9,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 7,
+      "seed": 43,
+      "d_minus_c_full": -212.2,
+      "d_minus_c_ex_dst": -212.2,
+      "d_minus_c_ex_dst_te": -448.8,
+      "pos_delta": {
+        "QB": 0.0,
+        "RB": -226.7,
+        "WR": -222.1,
+        "TE": 236.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -563.8,
+        "r6-10": 236.6,
+        "r11-15": 115.0
+      },
+      "round_delta": {
+        "1": 115.64,
+        "2": -78.3,
+        "3": -379.04,
+        "4": 0.0,
+        "5": -222.1,
+        "6": 236.6,
+        "7": 0.0,
+        "9": 0.0,
+        "11": 0.0,
+        "12": 0.0,
+        "15": 115.0
+      },
+      "pick_diff": {
+        "n_shared": 11,
+        "n_only_c": 4,
+        "n_only_d": 4
+      },
+      "fork": {
+        "slot": 7,
+        "seed": 43,
+        "d_minus_c_full": -212.2,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "player_id": "6786",
+          "adp": 3.7,
+          "c_value": 344.7206703910615,
+          "d_value": 285.0891,
+          "actual_ppr": 263.4,
+          "e_c": -81.3207,
+          "e_d": -21.6891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -115.64,
+        "actual_delta_d_minus_c_at_fork": 115.64
+      }
+    },
+    {
+      "slot": 7,
+      "seed": 44,
+      "d_minus_c_full": 236.82,
+      "d_minus_c_ex_dst": 236.82,
+      "d_minus_c_ex_dst_te": 236.82,
+      "pos_delta": {
+        "QB": 96.02,
+        "RB": 60.8,
+        "WR": 80.0,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 600.02,
+        "r6-10": -79.2,
+        "r11-15": -284.0
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 55.4,
+        "3": 175.0,
+        "4": -9.42,
+        "6": 96.6,
+        "7": 60.8,
+        "8": -236.6,
+        "9": 0.0,
+        "11": -284.0,
+        "14": 0.0,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 8,
+        "n_only_c": 7,
+        "n_only_d": 7
+      },
+      "fork": {
+        "slot": 7,
+        "seed": 44,
+        "d_minus_c_full": 236.82,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 7,
+      "seed": 45,
+      "d_minus_c_full": 221.12,
+      "d_minus_c_ex_dst": 221.12,
+      "d_minus_c_ex_dst_te": 221.12,
+      "pos_delta": {
+        "QB": 96.02,
+        "RB": 0.0,
+        "WR": 125.1,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 461.52,
+        "r6-10": -56.9,
+        "r11-15": -183.5
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 35.0,
+        "4": -9.42,
+        "5": 56.9,
+        "6": -56.9,
+        "7": 89.5,
+        "8": -89.5,
+        "9": 0.0,
+        "11": 0.0,
+        "13": 0.0,
+        "15": -183.5
+      },
+      "pick_diff": {
+        "n_shared": 10,
+        "n_only_c": 5,
+        "n_only_d": 5
+      },
+      "fork": {
+        "slot": 7,
+        "seed": 45,
+        "d_minus_c_full": 221.12,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 7,
+      "seed": 46,
+      "d_minus_c_full": -0.12,
+      "d_minus_c_ex_dst": -0.12,
+      "d_minus_c_ex_dst_te": -0.12,
+      "pos_delta": {
+        "QB": 215.68,
+        "RB": 0.0,
+        "WR": -215.8,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -48.96,
+        "r6-10": -163.36,
+        "r11-15": 212.2
+      },
+      "round_delta": {
+        "1": 160.84,
+        "2": -139.6,
+        "3": -280.8,
+        "4": 210.6,
+        "6": -163.36,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0,
+        "11": 212.2,
+        "12": 0.0,
+        "13": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 11,
+        "n_only_c": 4,
+        "n_only_d": 4
+      },
+      "fork": {
+        "slot": 7,
+        "seed": 46,
+        "d_minus_c_full": -0.12,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      }
+    },
+    {
+      "slot": 8,
+      "seed": 42,
+      "d_minus_c_full": 269.5,
+      "d_minus_c_ex_dst": 269.5,
+      "d_minus_c_ex_dst_te": -33.0,
+      "pos_delta": {
+        "QB": 0.0,
+        "RB": 76.0,
+        "WR": -109.0,
+        "TE": 302.5,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 55.4,
+        "r6-10": 43.8,
+        "r11-15": 170.3
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 55.4,
+        "3": -379.04,
+        "4": 0.0,
+        "6": 72.2,
+        "7": -81.9,
+        "8": 53.5,
+        "9": 0.0,
+        "11": 0.0,
+        "13": 170.3,
+        "14": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 8,
+        "n_only_c": 7,
+        "n_only_d": 7
+      },
+      "fork": {
+        "slot": 8,
+        "seed": 42,
+        "d_minus_c_full": 269.5,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 8,
+      "seed": 43,
+      "d_minus_c_full": -282.52,
+      "d_minus_c_ex_dst": -282.52,
+      "d_minus_c_ex_dst_te": -278.92,
+      "pos_delta": {
+        "QB": 0.0,
+        "RB": -644.12,
+        "WR": 365.2,
+        "TE": -3.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -438.72,
+        "r6-10": 156.2,
+        "r11-15": 0.0
+      },
+      "round_delta": {
+        "1": 115.64,
+        "2": -78.3,
+        "3": -379.04,
+        "4": -41.1,
+        "5": -55.92,
+        "6": 100.8,
+        "8": -104.4,
+        "9": 0.0,
+        "10": 159.8,
+        "11": 0.0,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 8,
+        "n_only_c": 7,
+        "n_only_d": 7
+      },
+      "fork": {
+        "slot": 8,
+        "seed": 43,
+        "d_minus_c_full": -282.52,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "player_id": "6786",
+          "adp": 3.7,
+          "c_value": 344.7206703910615,
+          "d_value": 285.0891,
+          "actual_ppr": 263.4,
+          "e_c": -81.3207,
+          "e_d": -21.6891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -115.64,
+        "actual_delta_d_minus_c_at_fork": 115.64
+      }
+    },
+    {
+      "slot": 8,
+      "seed": 44,
+      "d_minus_c_full": 508.32,
+      "d_minus_c_ex_dst": 508.32,
+      "d_minus_c_ex_dst_te": 375.32,
+      "pos_delta": {
+        "QB": 96.02,
+        "RB": 66.6,
+        "WR": 212.7,
+        "TE": 133.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 477.32,
+        "r6-10": 2.6,
+        "r11-15": 28.4
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 55.4,
+        "3": 175.0,
+        "4": -9.42,
+        "5": -122.7,
+        "6": 236.6,
+        "7": -197.0,
+        "8": 20.5,
+        "9": 0.0,
+        "10": -57.5,
+        "11": 0.0,
+        "14": 28.4
+      },
+      "pick_diff": {
+        "n_shared": 6,
+        "n_only_c": 9,
+        "n_only_d": 9
+      },
+      "fork": {
+        "slot": 8,
+        "seed": 44,
+        "d_minus_c_full": 508.32,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 8,
+      "seed": 45,
+      "d_minus_c_full": -180.0,
+      "d_minus_c_ex_dst": -180.0,
+      "d_minus_c_ex_dst_te": -121.0,
+      "pos_delta": {
+        "QB": 81.8,
+        "RB": -492.0,
+        "WR": 289.2,
+        "TE": -59.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 213.44,
+        "r6-10": -340.84,
+        "r11-15": -52.6
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": -138.4,
+        "4": 0.0,
+        "5": -27.2,
+        "6": 15.4,
+        "7": -207.74,
+        "8": -148.5,
+        "9": 0.0,
+        "11": 191.8,
+        "13": 0.0,
+        "15": -244.4
+      },
+      "pick_diff": {
+        "n_shared": 5,
+        "n_only_c": 10,
+        "n_only_d": 10
+      },
+      "fork": {
+        "slot": 8,
+        "seed": 45,
+        "d_minus_c_full": -180.0,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 8,
+      "seed": 46,
+      "d_minus_c_full": 319.3,
+      "d_minus_c_ex_dst": 319.3,
+      "d_minus_c_ex_dst_te": 376.9,
+      "pos_delta": {
+        "QB": 145.18,
+        "RB": 24.8,
+        "WR": 206.92,
+        "TE": -57.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 609.66,
+        "r6-10": -77.86,
+        "r11-15": -212.5
+      },
+      "round_delta": {
+        "1": 160.84,
+        "2": 85.52,
+        "3": 280.8,
+        "4": 33.2,
+        "5": 49.3,
+        "6": -44.7,
+        "7": -233.86,
+        "8": 200.7,
+        "11": 0.0,
+        "13": -212.5,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 6,
+        "n_only_c": 9,
+        "n_only_d": 9
+      },
+      "fork": {
+        "slot": 8,
+        "seed": 46,
+        "d_minus_c_full": 319.3,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      }
+    },
+    {
+      "slot": 9,
+      "seed": 42,
+      "d_minus_c_full": 26.2,
+      "d_minus_c_ex_dst": 26.2,
+      "d_minus_c_ex_dst_te": -79.2,
+      "pos_delta": {
+        "QB": 0.0,
+        "RB": -287.5,
+        "WR": 208.3,
+        "TE": 105.4,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -12.7,
+        "r6-10": -4.8,
+        "r11-15": 43.7
+      },
+      "round_delta": {
+        "1": 37.34,
+        "2": 55.4,
+        "3": -168.44,
+        "4": 63.0,
+        "6": 72.2,
+        "7": -7.1,
+        "9": 0.0,
+        "10": -69.9,
+        "11": 43.7
+      },
+      "pick_diff": {
+        "n_shared": 5,
+        "n_only_c": 10,
+        "n_only_d": 10
+      },
+      "fork": {
+        "slot": 9,
+        "seed": 42,
+        "d_minus_c_full": 26.2,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "player_id": "9509",
+          "adp": 4.9,
+          "c_value": 342.3743016759777,
+          "d_value": 247.042,
+          "actual_ppr": 341.7,
+          "e_c": -0.6743,
+          "e_d": 94.658
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -37.34,
+        "actual_delta_d_minus_c_at_fork": 37.34
+      }
+    },
+    {
+      "slot": 9,
+      "seed": 43,
+      "d_minus_c_full": -293.72,
+      "d_minus_c_ex_dst": -293.72,
+      "d_minus_c_ex_dst_te": -320.52,
+      "pos_delta": {
+        "QB": 0.0,
+        "RB": -413.72,
+        "WR": 93.2,
+        "TE": 26.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -325.32,
+        "r6-10": -118.1,
+        "r11-15": 149.7
+      },
+      "round_delta": {
+        "1": 115.64,
+        "2": -78.3,
+        "3": -379.04,
+        "4": 0.0,
+        "5": 16.38,
+        "6": 131.2,
+        "8": -104.4,
+        "9": 0.0,
+        "10": -144.9,
+        "11": 0.0,
+        "12": 106.2,
+        "15": 43.5
+      },
+      "pick_diff": {
+        "n_shared": 9,
+        "n_only_c": 6,
+        "n_only_d": 6
+      },
+      "fork": {
+        "slot": 9,
+        "seed": 43,
+        "d_minus_c_full": -293.72,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "player_id": "6786",
+          "adp": 3.7,
+          "c_value": 344.7206703910615,
+          "d_value": 285.0891,
+          "actual_ppr": 263.4,
+          "e_c": -81.3207,
+          "e_d": -21.6891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -115.64,
+        "actual_delta_d_minus_c_at_fork": 115.64
+      }
+    },
+    {
+      "slot": 9,
+      "seed": 44,
+      "d_minus_c_full": -15.46,
+      "d_minus_c_ex_dst": -15.46,
+      "d_minus_c_ex_dst_te": -77.46,
+      "pos_delta": {
+        "QB": 6.22,
+        "RB": 0.0,
+        "WR": -83.68,
+        "TE": 62.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 120.76,
+        "r6-10": -136.22,
+        "r11-15": 0.0
+      },
+      "round_delta": {
+        "1": 61.56,
+        "2": -20.4,
+        "3": -19.4,
+        "4": 99.0,
+        "6": -136.22,
+        "7": 124.1,
+        "8": -124.1,
+        "9": 0.0,
+        "11": 0.0,
+        "14": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 8,
+        "n_only_c": 7,
+        "n_only_d": 7
+      },
+      "fork": {
+        "slot": 9,
+        "seed": 44,
+        "d_minus_c_full": -15.46,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Justin Jefferson",
+          "position": "WR",
+          "player_id": "6794",
+          "adp": 8.0,
+          "c_value": 336.31284916201116,
+          "d_value": 280.8836,
+          "actual_ppr": 317.48,
+          "e_c": -18.8328,
+          "e_d": 36.5964
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -61.56,
+        "actual_delta_d_minus_c_at_fork": 61.56
+      }
+    },
+    {
+      "slot": 9,
+      "seed": 45,
+      "d_minus_c_full": 41.12,
+      "d_minus_c_ex_dst": 41.12,
+      "d_minus_c_ex_dst_te": 41.12,
+      "pos_delta": {
+        "QB": 63.92,
+        "RB": -66.0,
+        "WR": 43.2,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 242.14,
+        "r6-10": -201.02,
+        "r11-15": 0.0
+      },
+      "round_delta": {
+        "1": 379.04,
+        "2": 35.0,
+        "3": 35.6,
+        "4": -26.3,
+        "5": -181.2,
+        "6": -133.92,
+        "7": -267.8,
+        "8": 200.7,
+        "9": 0.0,
+        "13": 0.0,
+        "14": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 9,
+        "seed": 45,
+        "d_minus_c_full": 41.12,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "player_id": "4034",
+          "adp": 1.4,
+          "c_value": 349.21787709497204,
+          "d_value": 247.042,
+          "actual_ppr": 47.8,
+          "e_c": -301.4179,
+          "e_d": -199.242
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -331.24,
+        "actual_delta_d_minus_c_at_fork": 331.24
+      }
+    },
+    {
+      "slot": 9,
+      "seed": 46,
+      "d_minus_c_full": -322.68,
+      "d_minus_c_ex_dst": -322.68,
+      "d_minus_c_ex_dst_te": -559.28,
+      "pos_delta": {
+        "QB": 96.02,
+        "RB": -216.3,
+        "WR": -439.0,
+        "TE": 236.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -583.88,
+        "r6-10": 261.9,
+        "r11-15": -0.7
+      },
+      "round_delta": {
+        "1": 160.84,
+        "2": -403.0,
+        "3": -280.8,
+        "4": -9.42,
+        "5": -51.5,
+        "6": 22.1,
+        "7": 81.9,
+        "8": 157.9,
+        "9": 0.0,
+        "11": -241.6,
+        "12": 0.0,
+        "13": 240.9
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 9,
+        "seed": 46,
+        "d_minus_c_full": -322.68,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "player_id": "3321",
+          "adp": 2.6,
+          "c_value": 346.87150837988827,
+          "d_value": 285.0891,
+          "actual_ppr": 218.2,
+          "e_c": -128.6715,
+          "e_d": -66.8891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -160.84,
+        "actual_delta_d_minus_c_at_fork": 160.84
+      }
+    },
+    {
+      "slot": 10,
+      "seed": 42,
+      "d_minus_c_full": -250.76,
+      "d_minus_c_ex_dst": -250.76,
+      "d_minus_c_ex_dst_te": -247.16,
+      "pos_delta": {
+        "QB": 13.24,
+        "RB": -368.2,
+        "WR": 107.8,
+        "TE": -3.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 44.24,
+        "r6-10": -89.0,
+        "r11-15": -206.0
+      },
+      "round_delta": {
+        "1": 37.34,
+        "2": 0.0,
+        "3": -56.1,
+        "4": 63.0,
+        "6": -108.7,
+        "8": 19.7,
+        "9": 0.0,
+        "11": 43.7,
+        "14": 116.1,
+        "15": -365.8
+      },
+      "pick_diff": {
+        "n_shared": 8,
+        "n_only_c": 7,
+        "n_only_d": 7
+      },
+      "fork": {
+        "slot": 10,
+        "seed": 42,
+        "d_minus_c_full": -250.76,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "player_id": "9509",
+          "adp": 4.9,
+          "c_value": 342.3743016759777,
+          "d_value": 247.042,
+          "actual_ppr": 341.7,
+          "e_c": -0.6743,
+          "e_d": 94.658
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -37.34,
+        "actual_delta_d_minus_c_at_fork": 37.34
+      }
+    },
+    {
+      "slot": 10,
+      "seed": 43,
+      "d_minus_c_full": -267.64,
+      "d_minus_c_ex_dst": -267.64,
+      "d_minus_c_ex_dst_te": -399.84,
+      "pos_delta": {
+        "QB": -51.34,
+        "RB": -410.1,
+        "WR": 61.6,
+        "TE": 132.2,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -458.94,
+        "r6-10": 76.3,
+        "r11-15": 115.0
+      },
+      "round_delta": {
+        "1": 115.64,
+        "2": -78.3,
+        "4": -65.9,
+        "5": -430.38,
+        "6": 236.6,
+        "7": -137.8,
+        "8": -22.5,
+        "9": 0.0,
+        "10": 0.0,
+        "11": 0.0,
+        "15": 115.0
+      },
+      "pick_diff": {
+        "n_shared": 9,
+        "n_only_c": 6,
+        "n_only_d": 6
+      },
+      "fork": {
+        "slot": 10,
+        "seed": 43,
+        "d_minus_c_full": -267.64,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "player_id": "6786",
+          "adp": 3.7,
+          "c_value": 344.7206703910615,
+          "d_value": 285.0891,
+          "actual_ppr": 263.4,
+          "e_c": -81.3207,
+          "e_d": -21.6891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -115.64,
+        "actual_delta_d_minus_c_at_fork": 115.64
+      }
+    },
+    {
+      "slot": 10,
+      "seed": 44,
+      "d_minus_c_full": 136.28,
+      "d_minus_c_ex_dst": 136.28,
+      "d_minus_c_ex_dst_te": 48.18,
+      "pos_delta": {
+        "QB": 54.58,
+        "RB": -181.4,
+        "WR": 175.0,
+        "TE": 88.1,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 309.34,
+        "r6-10": -35.66,
+        "r11-15": -137.4
+      },
+      "round_delta": {
+        "1": 61.56,
+        "2": 72.78,
+        "3": 175.0,
+        "4": 0.0,
+        "6": 236.6,
+        "8": 52.2,
+        "9": 0.0,
+        "10": -324.46,
+        "11": 0.0,
+        "14": 0.0,
+        "15": -137.4
+      },
+      "pick_diff": {
+        "n_shared": 9,
+        "n_only_c": 6,
+        "n_only_d": 6
+      },
+      "fork": {
+        "slot": 10,
+        "seed": 44,
+        "d_minus_c_full": 136.28,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Justin Jefferson",
+          "position": "WR",
+          "player_id": "6794",
+          "adp": 8.0,
+          "c_value": 336.31284916201116,
+          "d_value": 280.8836,
+          "actual_ppr": 317.48,
+          "e_c": -18.8328,
+          "e_d": 36.5964
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -61.56,
+        "actual_delta_d_minus_c_at_fork": 61.56
+      }
+    },
+    {
+      "slot": 10,
+      "seed": 45,
+      "d_minus_c_full": -183.48,
+      "d_minus_c_ex_dst": -183.48,
+      "d_minus_c_ex_dst_te": -225.18,
+      "pos_delta": {
+        "QB": 63.92,
+        "RB": -661.3,
+        "WR": 372.2,
+        "TE": 41.7,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -88.08,
+        "r6-10": -499.7,
+        "r11-15": 404.3
+      },
+      "round_delta": {
+        "1": 37.34,
+        "2": -27.8,
+        "4": -56.1,
+        "5": -41.52,
+        "6": -142.4,
+        "7": -267.8,
+        "8": -89.5,
+        "9": 0.0,
+        "11": 191.8,
+        "13": 212.5,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 10,
+        "seed": 45,
+        "d_minus_c_full": -183.48,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "player_id": "9509",
+          "adp": 4.9,
+          "c_value": 342.3743016759777,
+          "d_value": 247.042,
+          "actual_ppr": 341.7,
+          "e_c": -0.6743,
+          "e_d": 94.658
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -37.34,
+        "actual_delta_d_minus_c_at_fork": 37.34
+      }
+    },
+    {
+      "slot": 10,
+      "seed": 46,
+      "d_minus_c_full": -82.1,
+      "d_minus_c_ex_dst": -82.1,
+      "d_minus_c_ex_dst_te": -82.1,
+      "pos_delta": {
+        "QB": 145.18,
+        "RB": -183.4,
+        "WR": -43.88,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 69.86,
+        "r6-10": -151.96,
+        "r11-15": 0.0
+      },
+      "round_delta": {
+        "1": -23.96,
+        "2": 85.52,
+        "4": 8.3,
+        "6": 0.0,
+        "7": -151.96,
+        "8": 0.0,
+        "12": 0.0,
+        "13": 0.0,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 11,
+        "n_only_c": 4,
+        "n_only_d": 4
+      },
+      "fork": {
+        "slot": 10,
+        "seed": 46,
+        "d_minus_c_full": -82.1,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Ja'Marr Chase",
+          "position": "WR",
+          "player_id": "7564",
+          "adp": 7.2,
+          "c_value": 337.8770949720671,
+          "d_value": 283.1265,
+          "actual_ppr": 403.0,
+          "e_c": 65.1229,
+          "e_d": 119.8735
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "C",
+        "first_fork_regret_d_vs_c": 23.96,
+        "actual_delta_d_minus_c_at_fork": -23.96
+      }
+    },
+    {
+      "slot": 11,
+      "seed": 42,
+      "d_minus_c_full": -107.26,
+      "d_minus_c_ex_dst": -107.26,
+      "d_minus_c_ex_dst_te": -239.46,
+      "pos_delta": {
+        "QB": 93.64,
+        "RB": -291.6,
+        "WR": -41.5,
+        "TE": 132.2,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -29.96,
+        "r6-10": 92.0,
+        "r11-15": -169.3
+      },
+      "round_delta": {
+        "1": 37.34,
+        "2": 0.0,
+        "3": -56.1,
+        "4": -11.2,
+        "6": 236.6,
+        "8": 96.3,
+        "9": 0.0,
+        "10": -240.9,
+        "11": 0.0,
+        "12": -285.4,
+        "14": 116.1
+      },
+      "pick_diff": {
+        "n_shared": 10,
+        "n_only_c": 5,
+        "n_only_d": 5
+      },
+      "fork": {
+        "slot": 11,
+        "seed": 42,
+        "d_minus_c_full": -107.26,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "player_id": "9509",
+          "adp": 4.9,
+          "c_value": 342.3743016759777,
+          "d_value": 247.042,
+          "actual_ppr": 341.7,
+          "e_c": -0.6743,
+          "e_d": 94.658
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -37.34,
+        "actual_delta_d_minus_c_at_fork": 37.34
+      }
+    },
+    {
+      "slot": 11,
+      "seed": 43,
+      "d_minus_c_full": 195.5,
+      "d_minus_c_ex_dst": 195.5,
+      "d_minus_c_ex_dst_te": 133.5,
+      "pos_delta": {
+        "QB": 96.02,
+        "RB": -403.62,
+        "WR": 441.1,
+        "TE": 62.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 69.1,
+        "r6-10": 251.5,
+        "r11-15": -125.1
+      },
+      "round_delta": {
+        "1": 115.64,
+        "2": -78.3,
+        "3": 24.8,
+        "4": -9.42,
+        "5": 16.38,
+        "6": 236.6,
+        "9": 0.0,
+        "10": 14.9,
+        "13": 0.0,
+        "15": -125.1
+      },
+      "pick_diff": {
+        "n_shared": 8,
+        "n_only_c": 7,
+        "n_only_d": 7
+      },
+      "fork": {
+        "slot": 11,
+        "seed": 43,
+        "d_minus_c_full": 195.5,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "player_id": "6786",
+          "adp": 3.7,
+          "c_value": 344.7206703910615,
+          "d_value": 285.0891,
+          "actual_ppr": 263.4,
+          "e_c": -81.3207,
+          "e_d": -21.6891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -115.64,
+        "actual_delta_d_minus_c_at_fork": 115.64
+      }
+    },
+    {
+      "slot": 11,
+      "seed": 44,
+      "d_minus_c_full": 50.32,
+      "d_minus_c_ex_dst": 50.32,
+      "d_minus_c_ex_dst_te": -81.88,
+      "pos_delta": {
+        "QB": 6.22,
+        "RB": -120.6,
+        "WR": 32.5,
+        "TE": 132.2,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 166.84,
+        "r6-10": -116.52,
+        "r11-15": 0.0
+      },
+      "round_delta": {
+        "1": 134.34,
+        "2": 35.0,
+        "3": 24.4,
+        "4": -149.6,
+        "5": 122.7,
+        "6": -136.22,
+        "8": 19.7,
+        "9": 0.0,
+        "11": 0.0,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 9,
+        "n_only_c": 6,
+        "n_only_d": 6
+      },
+      "fork": {
+        "slot": 11,
+        "seed": 44,
+        "d_minus_c_full": 50.32,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "player_id": "6813",
+          "adp": 9.8,
+          "c_value": 332.7932960893854,
+          "d_value": 236.0642,
+          "actual_ppr": 244.7,
+          "e_c": -88.0933,
+          "e_d": 8.6358
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -134.34,
+        "actual_delta_d_minus_c_at_fork": 134.34
+      }
+    },
+    {
+      "slot": 11,
+      "seed": 45,
+      "d_minus_c_full": -96.2,
+      "d_minus_c_ex_dst": -96.2,
+      "d_minus_c_ex_dst_te": -123.0,
+      "pos_delta": {
+        "QB": 63.92,
+        "RB": -578.8,
+        "WR": 391.88,
+        "TE": 26.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -1.18,
+        "r6-10": -286.82,
+        "r11-15": 191.8
+      },
+      "round_delta": {
+        "1": 37.34,
+        "2": -45.42,
+        "4": -26.3,
+        "5": 33.2,
+        "6": -183.92,
+        "7": 1.5,
+        "8": -104.4,
+        "9": 0.0,
+        "11": 191.8,
+        "13": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 6,
+        "n_only_c": 9,
+        "n_only_d": 9
+      },
+      "fork": {
+        "slot": 11,
+        "seed": 45,
+        "d_minus_c_full": -96.2,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "player_id": "9509",
+          "adp": 4.9,
+          "c_value": 342.3743016759777,
+          "d_value": 247.042,
+          "actual_ppr": 341.7,
+          "e_c": -0.6743,
+          "e_d": 94.658
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -37.34,
+        "actual_delta_d_minus_c_at_fork": 37.34
+      }
+    },
+    {
+      "slot": 11,
+      "seed": 46,
+      "d_minus_c_full": 153.12,
+      "d_minus_c_ex_dst": 145.12,
+      "d_minus_c_ex_dst_te": 12.92,
+      "pos_delta": {
+        "QB": 96.02,
+        "RB": -108.3,
+        "WR": 25.2,
+        "TE": 132.2,
+        "DST": 8.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 40.22,
+        "r6-10": 39.9,
+        "r11-15": 73.0
+      },
+      "round_delta": {
+        "1": -23.96,
+        "2": 158.3,
+        "4": -42.62,
+        "5": -51.5,
+        "6": 14.5,
+        "7": 81.9,
+        "8": 53.5,
+        "9": -110.0,
+        "12": -182.5,
+        "13": 240.9,
+        "15": 14.6
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 11,
+        "seed": 46,
+        "d_minus_c_full": 153.12,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Ja'Marr Chase",
+          "position": "WR",
+          "player_id": "7564",
+          "adp": 7.2,
+          "c_value": 337.8770949720671,
+          "d_value": 283.1265,
+          "actual_ppr": 403.0,
+          "e_c": 65.1229,
+          "e_d": 119.8735
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "C",
+        "first_fork_regret_d_vs_c": 23.96,
+        "actual_delta_d_minus_c_at_fork": -23.96
+      }
+    },
+    {
+      "slot": 12,
+      "seed": 42,
+      "d_minus_c_full": -345.58,
+      "d_minus_c_ex_dst": -345.58,
+      "d_minus_c_ex_dst_te": -341.98,
+      "pos_delta": {
+        "QB": 96.02,
+        "RB": -492.6,
+        "WR": 54.6,
+        "TE": -3.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -360.08,
+        "r6-10": 116.0,
+        "r11-15": -101.5
+      },
+      "round_delta": {
+        "1": 37.34,
+        "2": -48.2,
+        "3": -56.1,
+        "4": -83.62,
+        "5": -209.5,
+        "6": 100.8,
+        "8": 96.3,
+        "9": 0.0,
+        "10": -81.1,
+        "11": -284.0,
+        "12": 182.5
+      },
+      "pick_diff": {
+        "n_shared": 5,
+        "n_only_c": 10,
+        "n_only_d": 10
+      },
+      "fork": {
+        "slot": 12,
+        "seed": 42,
+        "d_minus_c_full": -345.58,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "player_id": "9509",
+          "adp": 4.9,
+          "c_value": 342.3743016759777,
+          "d_value": 247.042,
+          "actual_ppr": 341.7,
+          "e_c": -0.6743,
+          "e_d": 94.658
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -37.34,
+        "actual_delta_d_minus_c_at_fork": 37.34
+      }
+    },
+    {
+      "slot": 12,
+      "seed": 43,
+      "d_minus_c_full": -275.56,
+      "d_minus_c_ex_dst": -275.56,
+      "d_minus_c_ex_dst_te": -337.56,
+      "pos_delta": {
+        "QB": -51.34,
+        "RB": -360.62,
+        "WR": 74.4,
+        "TE": 62.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": -294.04,
+        "r6-10": -87.72,
+        "r11-15": 106.2
+      },
+      "round_delta": {
+        "1": 115.64,
+        "2": -78.3,
+        "3": 65.8,
+        "4": 33.2,
+        "5": -430.38,
+        "6": 14.88,
+        "8": -102.6,
+        "9": 0.0,
+        "10": 0.0,
+        "12": 106.2
+      },
+      "pick_diff": {
+        "n_shared": 9,
+        "n_only_c": 6,
+        "n_only_d": 6
+      },
+      "fork": {
+        "slot": 12,
+        "seed": 43,
+        "d_minus_c_full": -275.56,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "player_id": "6786",
+          "adp": 3.7,
+          "c_value": 344.7206703910615,
+          "d_value": 285.0891,
+          "actual_ppr": 263.4,
+          "e_c": -81.3207,
+          "e_d": -21.6891
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -115.64,
+        "actual_delta_d_minus_c_at_fork": 115.64
+      }
+    },
+    {
+      "slot": 12,
+      "seed": 44,
+      "d_minus_c_full": 38.08,
+      "d_minus_c_ex_dst": 38.08,
+      "d_minus_c_ex_dst_te": -50.02,
+      "pos_delta": {
+        "QB": 54.58,
+        "RB": -320.2,
+        "WR": 215.6,
+        "TE": 88.1,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 150.34,
+        "r6-10": -112.26,
+        "r11-15": 0.0
+      },
+      "round_delta": {
+        "1": 134.34,
+        "2": 0.0,
+        "3": 24.4,
+        "4": -8.4,
+        "5": 0.0,
+        "6": 236.6,
+        "7": 124.1,
+        "8": -148.5,
+        "9": 0.0,
+        "10": -324.46,
+        "15": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 7,
+        "n_only_c": 8,
+        "n_only_d": 8
+      },
+      "fork": {
+        "slot": 12,
+        "seed": 44,
+        "d_minus_c_full": 38.08,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "player_id": "6813",
+          "adp": 9.8,
+          "c_value": 332.7932960893854,
+          "d_value": 236.0642,
+          "actual_ppr": 244.7,
+          "e_c": -88.0933,
+          "e_d": 8.6358
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -134.34,
+        "actual_delta_d_minus_c_at_fork": 134.34
+      }
+    },
+    {
+      "slot": 12,
+      "seed": 45,
+      "d_minus_c_full": -8.2,
+      "d_minus_c_ex_dst": -8.2,
+      "d_minus_c_ex_dst_te": -155.3,
+      "pos_delta": {
+        "QB": 81.8,
+        "RB": -237.1,
+        "WR": 0.0,
+        "TE": 147.1,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 23.04,
+        "r6-10": -223.04,
+        "r11-15": 191.8
+      },
+      "round_delta": {
+        "1": 61.56,
+        "2": -45.42,
+        "4": -26.3,
+        "5": 33.2,
+        "6": -37.0,
+        "7": -96.54,
+        "8": -89.5,
+        "9": 0.0,
+        "11": 191.8,
+        "13": 0.0
+      },
+      "pick_diff": {
+        "n_shared": 10,
+        "n_only_c": 5,
+        "n_only_d": 5
+      },
+      "fork": {
+        "slot": 12,
+        "seed": 45,
+        "d_minus_c_full": -8.2,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Justin Jefferson",
+          "position": "WR",
+          "player_id": "6794",
+          "adp": 8.0,
+          "c_value": 336.31284916201116,
+          "d_value": 280.8836,
+          "actual_ppr": 317.48,
+          "e_c": -18.8328,
+          "e_d": 36.5964
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "D",
+        "first_fork_regret_d_vs_c": -61.56,
+        "actual_delta_d_minus_c_at_fork": 61.56
+      }
+    },
+    {
+      "slot": 12,
+      "seed": 46,
+      "d_minus_c_full": 197.18,
+      "d_minus_c_ex_dst": 189.18,
+      "d_minus_c_ex_dst_te": 70.78,
+      "pos_delta": {
+        "QB": 145.18,
+        "RB": -310.7,
+        "WR": 236.3,
+        "TE": 118.4,
+        "DST": 8.0,
+        "K": 0.0
+      },
+      "band_delta": {
+        "r1-5": 108.04,
+        "r6-10": -128.66,
+        "r11-15": 217.8
+      },
+      "round_delta": {
+        "1": -23.96,
+        "2": 158.3,
+        "4": -26.3,
+        "5": 0.0,
+        "6": 14.5,
+        "7": -233.86,
+        "8": 200.7,
+        "9": -110.0,
+        "11": 0.0,
+        "12": -118.2,
+        "13": 218.0,
+        "15": 118.0
+      },
+      "pick_diff": {
+        "n_shared": 9,
+        "n_only_c": 6,
+        "n_only_d": 6
+      },
+      "fork": {
+        "slot": 12,
+        "seed": 46,
+        "d_minus_c_full": 197.18,
+        "pick_index": 0,
+        "round": 1,
+        "c": {
+          "name": "Ja'Marr Chase",
+          "position": "WR",
+          "player_id": "7564",
+          "adp": 7.2,
+          "c_value": 337.8770949720671,
+          "d_value": 283.1265,
+          "actual_ppr": 403.0,
+          "e_c": 65.1229,
+          "e_d": 119.8735
+        },
+        "d": {
+          "name": "Josh Allen",
+          "position": "QB",
+          "player_id": "4984",
+          "adp": 25.1,
+          "c_value": 302.877094972067,
+          "d_value": 350.2948,
+          "actual_ppr": 379.04,
+          "e_c": 76.1629,
+          "e_d": 28.7452
+        },
+        "first_fork_winner_actual": "C",
+        "first_fork_regret_d_vs_c": 23.96,
+        "actual_delta_d_minus_c_at_fork": -23.96
+      }
+    }
+  ]
+}
