@@ -83,5 +83,5 @@ Not licensed: “OC is false” or automatic multi-horizon V2 resurrection.
 | Structural diagnostic | 🟢 run (900 decisions) |
 | Reading | 🟢 **structurally near-inert** |
 | A.1 retune | 🔴 forbidden |
-| Branch B | 🟡 design licensed; must avoid trivial-shift shape |
+| Branch B | 🟢 design frozen — [`V3B_STATE_DEPENDENT_DESIGN.md`](V3B_STATE_DEPENDENT_DESIGN.md) (impl gated) |
 | UI | `marginal` · `evaluable=0` |

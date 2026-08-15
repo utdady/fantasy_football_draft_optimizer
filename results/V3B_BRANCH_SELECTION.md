@@ -44,7 +44,7 @@ A implementation → A−D test → **stop**.
 | B.0 | Is same-pos \(M_D - r^*\) sufficient? | −24.3 / 42% WR / p10 −204 | ❌ Falsified |
 | B.1 | Is \(M_D - v(a^*)\) sufficient? | 0 policy changes (Δ≡0) | ❌ Policy-inert |
 | **A** | Cross-pos **marginal** OC \(M_D(p)-M_D(q^*)\)? | 0/60 pick changes; 900/900 top1 match | ❌ **Structurally near-inert** (not a strong OC kill) |
-| **B** | One-step state-dependent construction? | **Not tested** | 🟡 **Design licensed** — must forbid trivial-shift shape |
+| **B** | One-step state-dependent construction? | **Not tested** | 🟢 Design frozen (`V3B_STATE_DEPENDENT_DESIGN.md`); impl gated on P∧N |
 
 ---
 
@@ -211,8 +211,8 @@ Production V3 only after a convincing construction result — not before.
 | B.0 | ❌ Falsified |
 | B.1 | ❌ Policy-inert |
 | Branch A | ❌ **Structurally near-inert** — [`V3B_A_STRUCTURAL_POSTMORTEM.md`](V3B_A_STRUCTURAL_POSTMORTEM.md) |
-| Branch B | 🟡 **Design licensed** (one-step state-dep; forbid trivial-shift shape) — no code yet |
-| A / B implementation | A done (inert); B 🔴 no active implementation |
+| Branch B | 🟢 **Design frozen** — [`V3B_STATE_DEPENDENT_DESIGN.md`](V3B_STATE_DEPENDENT_DESIGN.md); impl gated on synthetic P∧N |
+| A / B implementation | A done (structurally near-inert); B 🔴 no code until gates |
 | UI | `marginal` |
 | `evaluable` | **0** |
 
@@ -220,7 +220,6 @@ Production V3 only after a convincing construction result — not before.
 
 ## 10. One-sentence freeze
 
-> **Next construction experiment is Branch A (\(M_D(p)-M_D(q^*)\)); Branch B
-> (one-step state-dependent OC, not V2) waits until A is inert or falsified;
-> no code until A's operationalization contract; judge A−D with pick-change
-> count first-class; no retune.**
+> **Branch A is closed as structurally near-inert; Branch B design is frozen in
+> `V3B_STATE_DEPENDENT_DESIGN.md` (one-step \(M_D+C(R')\), Gates P∧N, B−D);
+> no B code until synthetic gates pass; no V2 resurrection.**
