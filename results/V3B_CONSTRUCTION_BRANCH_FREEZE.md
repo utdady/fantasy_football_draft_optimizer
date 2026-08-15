@@ -1,10 +1,11 @@
 # V3-B construction branch freeze (post B.1)
 
-**Status:** frozen **research pause** — no B.1.1, no new construction code, no
-ladder, until a *separate* design revision explicitly chooses one remaining
-hypothesis and names one operationalization.
+**Status:** superseded for *next step* by
+[`V3B_BRANCH_SELECTION.md`](V3B_BRANCH_SELECTION.md) — Branch **A selected**,
+Branch B deferred. This freeze doc still records the post-B.1 pause and the
+named remaining hypotheses; it does **not** license A code by itself.
 
-**Checkpoint:** `6355ab9` (B.1 implementation + inert 60-board result)
+**Checkpoint:** `6355ab9` (B.1) · branch selection: see `V3B_BRANCH_SELECTION.md`
 
 **Production UI:** remains raw **`marginal`**.  
 **`evaluable`:** **0**
@@ -143,8 +144,8 @@ Same treatment as B.0 and B.1. No opportunistic search.
 | V3-B.0 | ❌ simple positional replacement falsified |
 | V3-B.1 | ❌ inert; no policy change (`6355ab9`) |
 | Construction | Mechanism narrowed, **not solved** |
-| Branch A (myopic \(M_D - M_D(q^*)\)) | 🟡 named only — not opened |
-| Branch B (lookahead / state-dependent) | 🟡 newly justified for design consideration — not opened |
+| Branch A (myopic \(M_D - M_D(q^*)\)) | 🟢 **selected** — see [`V3B_BRANCH_SELECTION.md`](V3B_BRANCH_SELECTION.md) |
+| Branch B (lookahead / state-dependent) | 🟡 deferred until A switch conditions |
 | UI | `marginal` |
 | `evaluable` | **0** |
 
