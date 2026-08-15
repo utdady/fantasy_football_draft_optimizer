@@ -270,16 +270,31 @@ def inspect_cases(
     eval_db: Path | None = None,
     n_tail: int = 10,
     n_alts: int = 8,
+    tail: str = "worst",
 ) -> dict:
     mech = json.loads(mechanism_path.read_text(encoding="utf-8"))
-    # Prefer stored left_tail; else sort pairs
-    if mech.get("left_tail", {}).get("pairs"):
-        cases = mech["left_tail"]["pairs"][:n_tail]
+    pairs = list(mech.get("pairs") or [])
+    if not pairs and mech.get("left_tail", {}).get("pairs"):
+        pairs = list(mech["left_tail"]["pairs"])
+    key = lambda p: float(p.get("valuation_gain_full") or 0.0)
+    if tail == "best":
+        cases = sorted(pairs, key=key, reverse=True)[:n_tail]
+        stage = "P2.2C_gain_case_inspection"
+        claim = (
+            "Decision-point inspection of best C−B pairs (symmetry check vs "
+            "left tail). Hypotheses only — not V3."
+        )
     else:
-        cases = sorted(
-            mech["pairs"], key=lambda p: p["valuation_gain_full"]
-        )[:n_tail]
-
+        if mech.get("left_tail", {}).get("pairs") and tail == "worst":
+            cases = mech["left_tail"]["pairs"][:n_tail]
+        else:
+            cases = sorted(pairs, key=key)[:n_tail]
+        stage = "P2.2C_loss_case_inspection"
+        claim = (
+            "Decision-point inspection of worst C−B pairs: what C chose vs "
+            "alternatives available, roster need, ADP-curve value, and actual "
+            "PPR. Hypotheses only — not V3."
+        )
     eval_conn = connect_eval(eval_db or EVAL_DB_PATH)
     outcomes = _load_outcomes(
         eval_conn,
@@ -381,16 +396,13 @@ def inspect_cases(
     conn.close()
 
     return {
-        "stage": "P2.2C_loss_case_inspection",
+        "stage": stage,
+        "tail": tail,
         "created_at": _utcnow(),
         "snapshot_id": DECISION_SNAPSHOT_ID,
         "contract_id": CONTRACT_ID,
         "evaluable": 0,
-        "claim": (
-            "Decision-point inspection of worst C−B pairs: what C chose vs "
-            "alternatives available, roster need, ADP-curve value, and actual "
-            "PPR. Hypotheses only — not V3."
-        ),
+        "claim": claim,
         "note": (
             "Structural uses raw marginal on ADP-curve (no explicit replacement). "
             "First fork is on a shared board; later picks diverge. "
@@ -422,6 +434,8 @@ def inspect_cases(
                 and x["fork"].get("actual_delta_c_minus_b") is not None
                 and x["fork"]["actual_delta_c_minus_b"] < 0
             ),
+            "n_skill_over_qb_tag": tag_counter.get("structural_skill_over_rb_qb", 0),
+            "n_mid_te_tag": tag_counter.get("structural_mid_te", 0),
         },
         "cases": inspected,
     }
@@ -447,13 +461,20 @@ def _fmt_player(p: dict | None) -> str:
 
 def _md(report: dict) -> str:
     agg = report["aggregate"]
+    tail = report.get("tail") or "worst"
+    title = (
+        "P2.2C right-tail gain-case inspection (best C−B)"
+        if tail == "best"
+        else "P2.2C left-tail loss-case inspection"
+    )
+    case_label = "best C−B" if tail == "best" else "worst C−B"
     lines = [
-        "# P2.2C left-tail loss-case inspection",
+        f"# {title}",
         "",
         f"- snapshot: `{report['snapshot_id']}`",
         f"- contract: `{report['contract_id']}`",
         f"- evaluable: **{report['evaluable']}**",
-        f"- cases: {report['n_cases']} (worst C−B)",
+        f"- cases: {report['n_cases']} ({case_label})",
         f"- source: `{report['source_mechanism']}`",
         "",
         report["claim"],
@@ -472,30 +493,45 @@ def _md(report: dict) -> str:
         f"- cases with post-fork hindsight regret ≥80 among shown alts: "
         f"{agg['n_with_post_fork_large_regret']}/{report['n_cases']}",
         "",
-        "### Read (provisional)",
-        "",
-        "- First forks cluster in **R5–R8**, not late DST.",
-        "- At the fork, C often takes **TE/WR/RB** while B takes **QB/RB** "
-        "(skill-over-QB and mid-TE tags).",
-        "- The fork pick itself usually **loses** on actual PPR in this worst-10 "
-        "(C wins only rarely); large **post-fork** regrets also appear in 10/10.",
-        "- Early/mid DST-at-fork was **not** the dominant first-split pattern "
-        "in this worst-10 set (DST timing shows up later on some boards).",
-        "",
-        "### Working hypotheses (to confirm/reject from cases below)",
-        "",
-        "1. **Replacement / scarcity timing** — C fills TE (or similar) via "
-        "marginal when ADP still prefers QB/RB.",
-        "2. **Projection uncertainty** — ADP-curve/marginal ranked the fork "
-        "pick above players who crushed in 2024 (esp. QB).",
-        "3. **Roster-sequence** — mid-draft fork reshapes the later board "
-        "(always accompanied by post-fork regrets here).",
-        "4. **Irreducible late RB/TE variance** — not an optimizer bug.",
-        "",
-        "Do **not** jump to V2 survival from narrative alone.",
-        "",
     ]
-
+    if tail == "worst":
+        lines.extend(
+            [
+                "### Read (provisional)",
+                "",
+                "- First forks cluster in **R5–R8**, not late DST.",
+                "- At the fork, C often takes **TE/WR/RB** while B takes **QB/RB** "
+                "(skill-over-QB and mid-TE tags).",
+                "- The fork pick itself usually **loses** on actual PPR in this worst-10 "
+                "(C wins only rarely); large **post-fork** regrets also appear in 10/10.",
+                "- Early/mid DST-at-fork was **not** the dominant first-split pattern "
+                "in this worst-10 set (DST timing shows up later on some boards).",
+                "",
+                "### Working hypotheses (to confirm/reject from cases below)",
+                "",
+                "1. **Replacement / scarcity timing** — C fills TE (or similar) via "
+                "marginal when ADP still prefers QB/RB.",
+                "2. **Projection uncertainty** — ADP-curve/marginal ranked the fork "
+                "pick above players who crushed in 2024 (esp. QB).",
+                "3. **Roster-sequence** — mid-draft fork reshapes the later board "
+                "(always accompanied by post-fork regrets here).",
+                "4. **Irreducible late RB/TE variance** — not an optimizer bug.",
+                "",
+                "Do **not** jump to V2 survival from narrative alone.",
+                "",
+            ]
+        )
+    else:
+        lines.extend(
+            [
+                "### Symmetry note",
+                "",
+                "Compare fork tags / positions to the worst-10 artifact. "
+                "If TE/skill-over-QB is common here too, the left-tail pattern "
+                "is high-variance, not a directional bias.",
+                "",
+            ]
+        )
     for case in report["cases"]:
         lines.extend(
             [
@@ -600,17 +636,30 @@ def main() -> None:
     parser.add_argument("--n-tail", type=int, default=10)
     parser.add_argument("--n-alts", type=int, default=8)
     parser.add_argument(
+        "--tail",
+        choices=("worst", "best"),
+        default="worst",
+        help="worst=left-tail losses; best=right-tail gains (symmetry)",
+    )
+    parser.add_argument(
         "--out",
         type=Path,
-        default=Path("results/phase2_p22c_loss_case_inspection.md"),
+        default=None,
     )
     args = parser.parse_args()
+    if args.out is None:
+        args.out = Path(
+            "results/phase2_p22c_gain_case_inspection.md"
+            if args.tail == "best"
+            else "results/phase2_p22c_loss_case_inspection.md"
+        )
     report = inspect_cases(
         mechanism_path=args.mechanism,
         draft_db=args.draft_db,
         eval_db=args.eval_db,
         n_tail=args.n_tail,
         n_alts=args.n_alts,
+        tail=args.tail,
     )
     args.out.parent.mkdir(parents=True, exist_ok=True)
     md = _md(report)

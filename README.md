@@ -4,12 +4,13 @@
 
 > **Core thesis: 🟡 preliminary support (C−B > 0 after feasibility + DST controls).
 > External validity 🔴. V3 conceptually justified, implementation blocked pending
-> C−B mechanism. UI: `marginal`.**
+> closeout interpretation (symmetry + fork prediction-error). UI: `marginal`.**
 >
 > Evidence: ADP → ADP-feasible → structural ladder under 2024 FFC actual PPR
 > ([`results/phase2_p22c_adp_feasible_ladder.md`](results/phase2_p22c_adp_feasible_ladder.md);
-> track [`results/PHASE2_P22C_ADP_STRUCTURAL.md`](results/PHASE2_P22C_ADP_STRUCTURAL.md)).
-> `evaluable=0`. No V3 / λ / CVaR until the C−B mechanism report is interpreted.
+> track [`results/PHASE2_P22C_ADP_STRUCTURAL.md`](results/PHASE2_P22C_ADP_STRUCTURAL.md);
+> closeout [`results/phase2_p22c_closeout.md`](results/phase2_p22c_closeout.md)).
+> `evaluable=0`. No V3 / λ / CVaR until closeout is interpreted.
 >
 > Phase 1 synthetic decision research is frozen. UI still uses raw **V1 `marginal`**.
 > V2 notes: [`results/V2_ALPHA_BASELINE.md`](results/V2_ALPHA_BASELINE.md),

@@ -1,10 +1,11 @@
 # P2.2C — ADP-structural evaluation (labeled ablation)
 
-**Status:** ADP-feasible ladder + C−B mechanism + left-tail loss-case inspection complete
-([`phase2_p22c_adp_feasible_ladder.md`](phase2_p22c_adp_feasible_ladder.md),
-[`phase2_p22c_valuation_cb_mechanism.md`](phase2_p22c_valuation_cb_mechanism.md),
-[`phase2_p22c_loss_case_inspection.md`](phase2_p22c_loss_case_inspection.md)).
-**Not** production `marginal`. `evaluable` still 0. V3 still blocked (interpret failure mechanism before design).
+**Status:** Phase-2 closeout complete
+([`phase2_p22c_closeout.md`](phase2_p22c_closeout.md): best-10 symmetry + fork
+prediction-error). Ladder / mechanism / loss-case remain supporting artifacts.
+**Not** production `marginal`. `evaluable` still 0. V3 still blocked pending
+closeout interpretation (symmetry says don’t “fix TE/QB”; error table points at
+projection calibration).
 
 **Parents:** [`PHASE2_P22_SOURCES.md`](PHASE2_P22_SOURCES.md) · P2.2A
 [`phase2_p22_feasibility_2024_12tm.md`](phase2_p22_feasibility_2024_12tm.md) ·
@@ -204,6 +205,19 @@ Worst 10 C−B pairs replayed with decision-time alternatives:
 | DST-at-fork | **Not** the dominant first-split pattern in this set |
 
 Provisional: losses look like **mid-draft valuation forks (often TE vs QB)** plus **downstream cascade**, not “forgot DST at the split.” Still hypotheses — V3 blocked.
+
+### Phase-2 closeout (symmetry + fork prediction error)
+
+Artifact: [`phase2_p22c_closeout.md`](phase2_p22c_closeout.md) · best-10: [`phase2_p22c_gain_case_inspection.md`](phase2_p22c_gain_case_inspection.md)
+
+| Check | Result |
+| --- | --- |
+| skill-over-QB worst vs best | **6 vs 5** → symmetric / high-variance (do **not** V3 as “stop TE-over-QB”) |
+| Fork win rate | worst 1/10 C wins fork; best 6/10 |
+| Mean pred_error (actual−curve) | C picks **−94**; B picks **−7** (B QBs often under-projected) |
+| Empty-slot fills (C) | 4/10 — marginal-construction still secondary candidate |
+
+**Provisional V3 pointer:** projection/calibration (V3-A), not a one-sided positional rule. Still no V3 code.
 ### Commands
 
 ```bash
@@ -223,6 +237,9 @@ python -m draftopt.phase2.diagnose_valuation_p22c
 
 # Left-tail loss-case inspection (replays worst C−B pairs only)
 python -m draftopt.phase2.inspect_loss_cases_p22c
+
+# Best-10 + closeout (symmetry + fork prediction-error table)
+python -m draftopt.phase2.closeout_p22c
 ```
 
 Scoring contract: [`PHASE2_P22C_SCORING_CONTRACT_ppr_eval_v1_2024.md`](PHASE2_P22C_SCORING_CONTRACT_ppr_eval_v1_2024.md)

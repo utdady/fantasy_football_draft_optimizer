@@ -1,0 +1,2252 @@
+{
+  "stage": "P2.2C_phase2_closeout",
+  "created_at": "2026-08-15T11:10:47Z",
+  "snapshot_id": "2024-preseason-2024-09-01-ffc12",
+  "contract_id": "ppr_eval_v1_2024",
+  "evaluable": 0,
+  "claim": "Phase-2 closeout: best-10 fork symmetry vs worst-10, plus fork prediction-error table (curve / marginal / actual). Chooses V3 branch evidence \u2014 does not implement V3.",
+  "note": "Core thesis remains preliminary. UI stays marginal. adp_structural has no explicit replacement.",
+  "contract": {
+    "contract_id": "ppr_eval_v1_2024",
+    "outcome_source": "nflverse_computed",
+    "outcome_season": 2024,
+    "decision_snapshot_id": "2024-preseason-2024-09-01-ffc12",
+    "n_teams": 12,
+    "n_rounds": 15,
+    "roster_preset": "league_default",
+    "season_type": "REG",
+    "missing_policy": "missing_identity / missing_weeks never score as 0; only observed_zero and observed_points enter eval_outcomes",
+    "starter_scoring": "Same greedy FLEX-aware lineup_ev as production; headline \u0394 uses starters only (bench recorded separately). IR not drafted.",
+    "frozen": true
+  },
+  "symmetry": {
+    "worst": {
+      "n": 10,
+      "fork_tags": {
+        "structural_mid_te": 4,
+        "structural_skill_over_rb_qb": 6,
+        "mid_round_fork": 9,
+        "fork_pick_itself_large_actual_loss": 7,
+        "early_round_fork": 1
+      },
+      "fork_rounds": {
+        "5": 1,
+        "6": 2,
+        "7": 4,
+        "8": 3
+      },
+      "fork_c_positions": {
+        "TE": 4,
+        "WR": 2,
+        "RB": 4
+      },
+      "fork_b_positions": {
+        "RB": 3,
+        "QB": 5,
+        "WR": 2
+      },
+      "c_wins_fork_actual": 1,
+      "c_loses_fork_actual": 9,
+      "skill_over_qb": 6,
+      "mid_te": 4
+    },
+    "best": {
+      "n": 10,
+      "fork_tags": {
+        "structural_skill_over_rb_qb": 5,
+        "mid_round_fork": 8,
+        "structural_mid_te": 1,
+        "early_round_fork": 2,
+        "fork_pick_itself_large_actual_loss": 2
+      },
+      "fork_rounds": {
+        "5": 2,
+        "6": 6,
+        "7": 1,
+        "8": 1
+      },
+      "fork_c_positions": {
+        "WR": 4,
+        "RB": 3,
+        "TE": 1,
+        "QB": 2
+      },
+      "fork_b_positions": {
+        "QB": 6,
+        "RB": 1,
+        "WR": 3
+      },
+      "c_wins_fork_actual": 6,
+      "c_loses_fork_actual": 4,
+      "skill_over_qb": 5,
+      "mid_te": 1
+    },
+    "skill_over_qb_verdict": "symmetric \u2014 skill-over-QB appears in both tails (high variance)",
+    "decision_tree_branch": "do_not_fix_te_qb_specifically"
+  },
+  "fork_prediction_errors": {
+    "worst_tail": {
+      "rows": [
+        {
+          "slot": 1,
+          "seed": 46,
+          "valuation_gain_full": -282.48,
+          "round": 7,
+          "fork_tags": [
+            "structural_mid_te",
+            "structural_skill_over_rb_qb",
+            "mid_round_fork"
+          ],
+          "c": {
+            "name": "Kyle Pitts Sr.",
+            "position": "TE",
+            "adp": 72.8,
+            "curve": 209.60893854748602,
+            "marginal": 209.61,
+            "actual": 131.2,
+            "pred_error": -78.4089,
+            "fills_empty_slot": true
+          },
+          "b": {
+            "name": "Nick Chubb",
+            "position": "RB",
+            "adp": 65.0,
+            "curve": 224.86033519553072,
+            "marginal_under_c_model": null,
+            "actual": 63.3,
+            "pred_error": -161.5603,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": 67.9,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "QB",
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "7553",
+              "name": "Kyle Pitts Sr.",
+              "position": "TE",
+              "adp": 72.8,
+              "curve_value": 209.60893854748602,
+              "marginal": 209.61,
+              "why": "P2.2C ADP-structural: +209.6 starter pts (1768.8 \u2192 1978.4) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 131.2
+            },
+            {
+              "player_id": "5849",
+              "name": "Kyler Murray",
+              "position": "QB",
+              "adp": 76.1,
+              "curve_value": 203.15642458100558,
+              "marginal": 203.16,
+              "why": "P2.2C ADP-structural: +203.2 starter pts (1768.8 \u2192 1971.9) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 297.24
+            },
+            {
+              "player_id": "4066",
+              "name": "Evan Engram",
+              "position": "TE",
+              "adp": 79.5,
+              "curve_value": 196.50837988826817,
+              "marginal": 196.51,
+              "why": "P2.2C ADP-structural: +196.5 starter pts (1768.8 \u2192 1965.3) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 89.5
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "4988",
+              "name": "Nick Chubb",
+              "position": "RB",
+              "adp": 65.0,
+              "curve_value": 224.86033519553072,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 63.3
+            },
+            {
+              "player_id": "10222",
+              "name": "Jayden Reed",
+              "position": "WR",
+              "adp": 65.1,
+              "curve_value": 224.66480446927375,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 197.0
+            },
+            {
+              "player_id": "4037",
+              "name": "Chris Godwin Jr.",
+              "position": "WR",
+              "adp": 68.4,
+              "curve_value": 218.2122905027933,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 137.8
+            }
+          ]
+        },
+        {
+          "slot": 8,
+          "seed": 44,
+          "valuation_gain_full": -261.9,
+          "round": 8,
+          "fork_tags": [
+            "structural_mid_te",
+            "structural_skill_over_rb_qb",
+            "mid_round_fork",
+            "fork_pick_itself_large_actual_loss"
+          ],
+          "c": {
+            "name": "Dallas Goedert",
+            "position": "TE",
+            "adp": 105.5,
+            "curve": 145.6703910614525,
+            "marginal": 145.67,
+            "actual": 103.6,
+            "pred_error": -42.0704,
+            "fills_empty_slot": true
+          },
+          "b": {
+            "name": "Najee Harris",
+            "position": "RB",
+            "adp": 67.1,
+            "curve": 220.75418994413408,
+            "marginal_under_c_model": 0.0,
+            "actual": 204.6,
+            "pred_error": -16.1542,
+            "in_c_top_alts": true
+          },
+          "model_marginal_adv_c_minus_b": 145.67,
+          "actual_adv_c_minus_b": -101.0,
+          "model_vs_actual_adv": 246.67,
+          "c_empty_slots_at_fork": [
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "5022",
+              "name": "Dallas Goedert",
+              "position": "TE",
+              "adp": 105.5,
+              "curve_value": 145.6703910614525,
+              "marginal": 145.67,
+              "why": "P2.2C ADP-structural: +145.7 starter pts (2001.5 \u2192 2147.1) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 103.6
+            },
+            {
+              "player_id": "5001",
+              "name": "Dalton Schultz",
+              "position": "TE",
+              "adp": 117.9,
+              "curve_value": 121.42458100558657,
+              "marginal": 121.42,
+              "why": "P2.2C ADP-structural: +121.4 starter pts (2001.5 \u2192 2122.9) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 118.2
+            },
+            {
+              "player_id": "5844",
+              "name": "T.J. Hockenson",
+              "position": "TE",
+              "adp": 118.7,
+              "curve_value": 119.86033519553072,
+              "marginal": 119.86,
+              "why": "P2.2C ADP-structural: +119.9 starter pts (2001.5 \u2192 2121.3) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 86.5
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "7528",
+              "name": "Najee Harris",
+              "position": "RB",
+              "adp": 67.1,
+              "curve_value": 220.75418994413408,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 204.6
+            },
+            {
+              "player_id": "8228",
+              "name": "Jaylen Warren",
+              "position": "RB",
+              "adp": 79.6,
+              "curve_value": 196.31284916201116,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 124.1
+            },
+            {
+              "player_id": "11624",
+              "name": "Xavier Worthy",
+              "position": "WR",
+              "adp": 81.9,
+              "curve_value": 191.81564245810057,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 187.2
+            }
+          ]
+        },
+        {
+          "slot": 10,
+          "seed": 43,
+          "valuation_gain_full": -164.5,
+          "round": 6,
+          "fork_tags": [
+            "structural_skill_over_rb_qb",
+            "mid_round_fork",
+            "fork_pick_itself_large_actual_loss"
+          ],
+          "c": {
+            "name": "Christian Kirk",
+            "position": "WR",
+            "adp": 55.6,
+            "curve": 243.24022346368716,
+            "marginal": 243.24,
+            "actual": 70.9,
+            "pred_error": -172.3402,
+            "fills_empty_slot": false
+          },
+          "b": {
+            "name": "Anthony Richardson Sr.",
+            "position": "QB",
+            "adp": 55.2,
+            "curve": 244.0223463687151,
+            "marginal_under_c_model": null,
+            "actual": 163.36,
+            "pred_error": -80.6623,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": -92.46,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "4950",
+              "name": "Christian Kirk",
+              "position": "WR",
+              "adp": 55.6,
+              "curve_value": 243.24022346368716,
+              "marginal": 243.24,
+              "why": "P2.2C ADP-structural: +243.2 starter pts (1542.2 \u2192 1785.4) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 70.9
+            },
+            {
+              "player_id": "6790",
+              "name": "D'Andre Swift",
+              "position": "RB",
+              "adp": 56.5,
+              "curve_value": 241.4804469273743,
+              "marginal": 241.48,
+              "why": "P2.2C ADP-structural: +241.5 starter pts (1542.2 \u2192 1783.6) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 214.5
+            },
+            {
+              "player_id": "9997",
+              "name": "Zay Flowers",
+              "position": "WR",
+              "adp": 56.8,
+              "curve_value": 240.89385474860336,
+              "marginal": 240.89,
+              "why": "P2.2C ADP-structural: +240.9 starter pts (1542.2 \u2192 1783.0) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 209.5
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "9229",
+              "name": "Anthony Richardson Sr.",
+              "position": "QB",
+              "adp": 55.2,
+              "curve_value": 244.0223463687151,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 163.36
+            },
+            {
+              "player_id": "4950",
+              "name": "Christian Kirk",
+              "position": "WR",
+              "adp": 55.6,
+              "curve_value": 243.24022346368716,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 70.9
+            },
+            {
+              "player_id": "6790",
+              "name": "D'Andre Swift",
+              "position": "RB",
+              "adp": 56.5,
+              "curve_value": 241.4804469273743,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 214.5
+            }
+          ]
+        },
+        {
+          "slot": 6,
+          "seed": 42,
+          "valuation_gain_full": -138.3,
+          "round": 7,
+          "fork_tags": [
+            "mid_round_fork",
+            "fork_pick_itself_large_actual_loss"
+          ],
+          "c": {
+            "name": "Zamir White",
+            "position": "RB",
+            "adp": 67.8,
+            "curve": 219.3854748603352,
+            "marginal": 219.39,
+            "actual": 29.3,
+            "pred_error": -190.0855,
+            "fills_empty_slot": false
+          },
+          "b": {
+            "name": "Jayden Reed",
+            "position": "WR",
+            "adp": 65.1,
+            "curve": 224.66480446927375,
+            "marginal_under_c_model": null,
+            "actual": 197.0,
+            "pred_error": -27.6648,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": -167.7,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "QB",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "8139",
+              "name": "Zamir White",
+              "position": "RB",
+              "adp": 67.8,
+              "curve_value": 219.3854748603352,
+              "marginal": 219.39,
+              "why": "P2.2C ADP-structural: +219.4 starter pts (1767.4 \u2192 1986.8) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 29.3
+            },
+            {
+              "player_id": "6804",
+              "name": "Jordan Love",
+              "position": "QB",
+              "adp": 73.2,
+              "curve_value": 208.8268156424581,
+              "marginal": 208.83,
+              "why": "P2.2C ADP-structural: +208.8 starter pts (1767.4 \u2192 1976.2) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 233.86
+            },
+            {
+              "player_id": "6845",
+              "name": "Zack Moss",
+              "position": "RB",
+              "adp": 74.4,
+              "curve_value": 206.4804469273743,
+              "marginal": 206.48,
+              "why": "P2.2C ADP-structural: +206.5 starter pts (1767.4 \u2192 1973.9) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 81.9
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "10222",
+              "name": "Jayden Reed",
+              "position": "WR",
+              "adp": 65.1,
+              "curve_value": 224.66480446927375,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 197.0
+            },
+            {
+              "player_id": "8139",
+              "name": "Zamir White",
+              "position": "RB",
+              "adp": 67.8,
+              "curve_value": 219.3854748603352,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 29.3
+            },
+            {
+              "player_id": "4037",
+              "name": "Chris Godwin Jr.",
+              "position": "WR",
+              "adp": 68.4,
+              "curve_value": 218.2122905027933,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 137.8
+            }
+          ]
+        },
+        {
+          "slot": 2,
+          "seed": 45,
+          "valuation_gain_full": -112.14,
+          "round": 8,
+          "fork_tags": [
+            "structural_mid_te",
+            "structural_skill_over_rb_qb",
+            "mid_round_fork",
+            "fork_pick_itself_large_actual_loss"
+          ],
+          "c": {
+            "name": "David Njoku",
+            "position": "TE",
+            "adp": 101.1,
+            "curve": 154.2737430167598,
+            "marginal": 154.27,
+            "actual": 148.5,
+            "pred_error": -5.7737,
+            "fills_empty_slot": true
+          },
+          "b": {
+            "name": "Kyler Murray",
+            "position": "QB",
+            "adp": 76.1,
+            "curve": 203.15642458100558,
+            "marginal_under_c_model": 0.0,
+            "actual": 297.24,
+            "pred_error": 94.0836,
+            "in_c_top_alts": true
+          },
+          "model_marginal_adv_c_minus_b": 154.27,
+          "actual_adv_c_minus_b": -148.74,
+          "model_vs_actual_adv": 303.01,
+          "c_empty_slots_at_fork": [
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "4033",
+              "name": "David Njoku",
+              "position": "TE",
+              "adp": 101.1,
+              "curve_value": 154.2737430167598,
+              "marginal": 154.27,
+              "why": "P2.2C ADP-structural: +154.3 starter pts (2004.6 \u2192 2158.9) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 148.5
+            },
+            {
+              "player_id": "5022",
+              "name": "Dallas Goedert",
+              "position": "TE",
+              "adp": 105.5,
+              "curve_value": 145.6703910614525,
+              "marginal": 145.67,
+              "why": "P2.2C ADP-structural: +145.7 starter pts (2004.6 \u2192 2150.3) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 103.6
+            },
+            {
+              "player_id": "5001",
+              "name": "Dalton Schultz",
+              "position": "TE",
+              "adp": 117.9,
+              "curve_value": 121.42458100558657,
+              "marginal": 121.42,
+              "why": "P2.2C ADP-structural: +121.4 starter pts (2004.6 \u2192 2126.0) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 118.2
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "5849",
+              "name": "Kyler Murray",
+              "position": "QB",
+              "adp": 76.1,
+              "curve_value": 203.15642458100558,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 297.24
+            },
+            {
+              "player_id": "6130",
+              "name": "Devin Singletary",
+              "position": "RB",
+              "adp": 87.9,
+              "curve_value": 180.08379888268155,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 96.6
+            },
+            {
+              "player_id": "11637",
+              "name": "Keon Coleman",
+              "position": "WR",
+              "adp": 88.1,
+              "curve_value": 179.69273743016763,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 111.5
+            }
+          ]
+        },
+        {
+          "slot": 11,
+          "seed": 43,
+          "valuation_gain_full": -83.24,
+          "round": 5,
+          "fork_tags": [
+            "early_round_fork",
+            "fork_pick_itself_large_actual_loss"
+          ],
+          "c": {
+            "name": "David Montgomery",
+            "position": "RB",
+            "adp": 54.6,
+            "curve": 245.19553072625698,
+            "marginal": 245.2,
+            "actual": 221.72,
+            "pred_error": -23.4755,
+            "fills_empty_slot": false
+          },
+          "b": {
+            "name": "Lamar Jackson",
+            "position": "QB",
+            "adp": 44.2,
+            "curve": 265.53072625698326,
+            "marginal_under_c_model": null,
+            "actual": 430.38,
+            "pred_error": 164.8493,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": -208.66,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "5892",
+              "name": "David Montgomery",
+              "position": "RB",
+              "adp": 54.6,
+              "curve_value": 245.19553072625698,
+              "marginal": 245.2,
+              "why": "P2.2C ADP-structural: +245.2 starter pts (1273.3 \u2192 1518.5) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 221.72
+            },
+            {
+              "player_id": "4950",
+              "name": "Christian Kirk",
+              "position": "WR",
+              "adp": 55.6,
+              "curve_value": 243.24022346368716,
+              "marginal": 243.24,
+              "why": "P2.2C ADP-structural: +243.2 starter pts (1273.3 \u2192 1516.5) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 70.9
+            },
+            {
+              "player_id": "6790",
+              "name": "D'Andre Swift",
+              "position": "RB",
+              "adp": 56.5,
+              "curve_value": 241.4804469273743,
+              "marginal": 241.48,
+              "why": "P2.2C ADP-structural: +241.5 starter pts (1273.3 \u2192 1514.8) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 214.5
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "4881",
+              "name": "Lamar Jackson",
+              "position": "QB",
+              "adp": 44.2,
+              "curve_value": 265.53072625698326,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 430.38
+            },
+            {
+              "player_id": "5892",
+              "name": "David Montgomery",
+              "position": "RB",
+              "adp": 54.6,
+              "curve_value": 245.19553072625698,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 221.72
+            },
+            {
+              "player_id": "9229",
+              "name": "Anthony Richardson Sr.",
+              "position": "QB",
+              "adp": 55.2,
+              "curve_value": 244.0223463687151,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 163.36
+            }
+          ]
+        },
+        {
+          "slot": 5,
+          "seed": 44,
+          "valuation_gain_full": -80.46,
+          "round": 7,
+          "fork_tags": [
+            "mid_round_fork"
+          ],
+          "c": {
+            "name": "Nick Chubb",
+            "position": "RB",
+            "adp": 65.0,
+            "curve": 224.86033519553072,
+            "marginal": 224.86,
+            "actual": 63.3,
+            "pred_error": -161.5603,
+            "fills_empty_slot": false
+          },
+          "b": {
+            "name": "Rashee Rice",
+            "position": "WR",
+            "adp": 64.2,
+            "curve": 226.4245810055866,
+            "marginal_under_c_model": null,
+            "actual": 64.9,
+            "pred_error": -161.5246,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": -1.6,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "4988",
+              "name": "Nick Chubb",
+              "position": "RB",
+              "adp": 65.0,
+              "curve_value": 224.86033519553072,
+              "marginal": 224.86,
+              "why": "P2.2C ADP-structural: +224.9 starter pts (1768.6 \u2192 1993.4) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 63.3
+            },
+            {
+              "player_id": "8139",
+              "name": "Zamir White",
+              "position": "RB",
+              "adp": 67.8,
+              "curve_value": 219.3854748603352,
+              "marginal": 219.39,
+              "why": "P2.2C ADP-structural: +219.4 starter pts (1768.6 \u2192 1988.0) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 29.3
+            },
+            {
+              "player_id": "7588",
+              "name": "Javonte Williams",
+              "position": "RB",
+              "adp": 77.5,
+              "curve_value": 200.41899441340783,
+              "marginal": 200.42,
+              "why": "P2.2C ADP-structural: +200.4 starter pts (1768.6 \u2192 1969.0) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 157.9
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "10229",
+              "name": "Rashee Rice",
+              "position": "WR",
+              "adp": 64.2,
+              "curve_value": 226.4245810055866,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 64.9
+            },
+            {
+              "player_id": "4988",
+              "name": "Nick Chubb",
+              "position": "RB",
+              "adp": 65.0,
+              "curve_value": 224.86033519553072,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 63.3
+            },
+            {
+              "player_id": "8139",
+              "name": "Zamir White",
+              "position": "RB",
+              "adp": 67.8,
+              "curve_value": 219.3854748603352,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 29.3
+            }
+          ]
+        },
+        {
+          "slot": 2,
+          "seed": 46,
+          "valuation_gain_full": -65.6,
+          "round": 8,
+          "fork_tags": [
+            "structural_mid_te",
+            "structural_skill_over_rb_qb",
+            "mid_round_fork"
+          ],
+          "c": {
+            "name": "Jake Ferguson",
+            "position": "TE",
+            "adp": 89.2,
+            "curve": 177.54189944134077,
+            "marginal": 177.54,
+            "actual": 104.4,
+            "pred_error": -73.1419,
+            "fills_empty_slot": true
+          },
+          "b": {
+            "name": "Austin Ekeler",
+            "position": "RB",
+            "adp": 88.0,
+            "curve": 179.88826815642457,
+            "marginal_under_c_model": 0.0,
+            "actual": 132.3,
+            "pred_error": -47.5883,
+            "in_c_top_alts": true
+          },
+          "model_marginal_adv_c_minus_b": 177.54,
+          "actual_adv_c_minus_b": -27.9,
+          "model_vs_actual_adv": 205.44,
+          "c_empty_slots_at_fork": [
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "8110",
+              "name": "Jake Ferguson",
+              "position": "TE",
+              "adp": 89.2,
+              "curve_value": 177.54189944134077,
+              "marginal": 177.54,
+              "why": "P2.2C ADP-structural: +177.5 starter pts (1985.8 \u2192 2163.4) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 104.4
+            },
+            {
+              "player_id": "4033",
+              "name": "David Njoku",
+              "position": "TE",
+              "adp": 101.1,
+              "curve_value": 154.2737430167598,
+              "marginal": 154.27,
+              "why": "P2.2C ADP-structural: +154.3 starter pts (1985.8 \u2192 2140.1) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 148.5
+            },
+            {
+              "player_id": "5022",
+              "name": "Dallas Goedert",
+              "position": "TE",
+              "adp": 105.5,
+              "curve_value": 145.6703910614525,
+              "marginal": 145.67,
+              "why": "P2.2C ADP-structural: +145.7 starter pts (1985.8 \u2192 2131.5) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 103.6
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "4663",
+              "name": "Austin Ekeler",
+              "position": "RB",
+              "adp": 88.0,
+              "curve_value": 179.88826815642457,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 132.3
+            },
+            {
+              "player_id": "8110",
+              "name": "Jake Ferguson",
+              "position": "TE",
+              "adp": 89.2,
+              "curve_value": 177.54189944134077,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 104.4
+            },
+            {
+              "player_id": "9508",
+              "name": "Tyjae Spears",
+              "position": "RB",
+              "adp": 91.4,
+              "curve_value": 173.24022346368713,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 113.6
+            }
+          ]
+        },
+        {
+          "slot": 5,
+          "seed": 45,
+          "valuation_gain_full": -48.4,
+          "round": 6,
+          "fork_tags": [
+            "structural_skill_over_rb_qb",
+            "mid_round_fork",
+            "fork_pick_itself_large_actual_loss"
+          ],
+          "c": {
+            "name": "George Pickens",
+            "position": "WR",
+            "adp": 59.8,
+            "curve": 235.02793296089385,
+            "marginal": 235.03,
+            "actual": 164.4,
+            "pred_error": -70.6279,
+            "fills_empty_slot": false
+          },
+          "b": {
+            "name": "Joe Burrow",
+            "position": "QB",
+            "adp": 59.7,
+            "curve": 235.22346368715083,
+            "marginal_under_c_model": null,
+            "actual": 372.82,
+            "pred_error": 137.5965,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": -208.42,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "8137",
+              "name": "George Pickens",
+              "position": "WR",
+              "adp": 59.8,
+              "curve_value": 235.02793296089385,
+              "marginal": 235.03,
+              "why": "P2.2C ADP-structural: +235.0 starter pts (1555.4 \u2192 1790.5) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 164.4
+            },
+            {
+              "player_id": "2749",
+              "name": "Raheem Mostert",
+              "position": "RB",
+              "adp": 64.1,
+              "curve_value": 226.62011173184356,
+              "marginal": 226.62,
+              "why": "P2.2C ADP-structural: +226.6 starter pts (1555.4 \u2192 1782.1) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 70.9
+            },
+            {
+              "player_id": "4988",
+              "name": "Nick Chubb",
+              "position": "RB",
+              "adp": 65.0,
+              "curve_value": 224.86033519553072,
+              "marginal": 224.86,
+              "why": "P2.2C ADP-structural: +224.9 starter pts (1555.4 \u2192 1780.3) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 63.3
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "6770",
+              "name": "Joe Burrow",
+              "position": "QB",
+              "adp": 59.7,
+              "curve_value": 235.22346368715083,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 372.82
+            },
+            {
+              "player_id": "8137",
+              "name": "George Pickens",
+              "position": "WR",
+              "adp": 59.8,
+              "curve_value": 235.02793296089385,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 164.4
+            },
+            {
+              "player_id": "2749",
+              "name": "Raheem Mostert",
+              "position": "RB",
+              "adp": 64.1,
+              "curve_value": 226.62011173184356,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 70.9
+            }
+          ]
+        },
+        {
+          "slot": 11,
+          "seed": 46,
+          "valuation_gain_full": -47.0,
+          "round": 7,
+          "fork_tags": [
+            "mid_round_fork",
+            "fork_pick_itself_large_actual_loss"
+          ],
+          "c": {
+            "name": "Zack Moss",
+            "position": "RB",
+            "adp": 74.4,
+            "curve": 206.4804469273743,
+            "marginal": 206.48,
+            "actual": 81.9,
+            "pred_error": -124.5804,
+            "fills_empty_slot": false
+          },
+          "b": {
+            "name": "Jordan Love",
+            "position": "QB",
+            "adp": 73.2,
+            "curve": 208.8268156424581,
+            "marginal_under_c_model": null,
+            "actual": 233.86,
+            "pred_error": 25.0332,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": -151.96,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "6845",
+              "name": "Zack Moss",
+              "position": "RB",
+              "adp": 74.4,
+              "curve_value": 206.4804469273743,
+              "marginal": 206.48,
+              "why": "P2.2C ADP-structural: +206.5 starter pts (1785.2 \u2192 1991.7) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 81.9
+            },
+            {
+              "player_id": "7588",
+              "name": "Javonte Williams",
+              "position": "RB",
+              "adp": 77.5,
+              "curve_value": 200.41899441340783,
+              "marginal": 200.42,
+              "why": "P2.2C ADP-structural: +200.4 starter pts (1785.2 \u2192 1985.6) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 157.9
+            },
+            {
+              "player_id": "5967",
+              "name": "Tony Pollard",
+              "position": "RB",
+              "adp": 81.7,
+              "curve_value": 192.20670391061452,
+              "marginal": 192.21,
+              "why": "P2.2C ADP-structural: +192.2 starter pts (1785.2 \u2192 1977.4) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 200.7
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "6804",
+              "name": "Jordan Love",
+              "position": "QB",
+              "adp": 73.2,
+              "curve_value": 208.8268156424581,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 233.86
+            },
+            {
+              "player_id": "6845",
+              "name": "Zack Moss",
+              "position": "RB",
+              "adp": 74.4,
+              "curve_value": 206.4804469273743,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 81.9
+            },
+            {
+              "player_id": "5849",
+              "name": "Kyler Murray",
+              "position": "QB",
+              "adp": 76.1,
+              "curve_value": 203.15642458100558,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 297.24
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "n_forks": 10,
+        "n_model_wrong_direction": 3,
+        "n_c_fills_empty_slot": 4,
+        "mean_pred_error_c": -94.2065,
+        "mean_pred_error_b": -7.3592,
+        "pred_error_by_pos_c": {
+          "RB": {
+            "n": 4,
+            "mean_pred_error": -124.9254,
+            "median_pred_error": -143.0704
+          },
+          "WR": {
+            "n": 2,
+            "mean_pred_error": -121.484,
+            "median_pred_error": -121.484
+          },
+          "TE": {
+            "n": 4,
+            "mean_pred_error": -49.8487,
+            "median_pred_error": -57.6061
+          }
+        },
+        "pred_error_by_pos_b": {
+          "QB": {
+            "n": 5,
+            "mean_pred_error": 68.1801,
+            "median_pred_error": 94.0836
+          },
+          "RB": {
+            "n": 3,
+            "mean_pred_error": -75.1009,
+            "median_pred_error": -47.5883
+          },
+          "WR": {
+            "n": 2,
+            "mean_pred_error": -94.5947,
+            "median_pred_error": -94.5947
+          }
+        },
+        "notes": [
+          "mean pred_error C=-94.2, B=-7.4 (actual \u2212 curve)",
+          "model preferred C but actual preferred B in 3/10 forks",
+          "C pick filled an empty starter slot in 4/10 forks"
+        ],
+        "decision_tree_branch": "V3-A_candidate_projection_calibration"
+      }
+    },
+    "best_tail": {
+      "rows": [
+        {
+          "slot": 7,
+          "seed": 42,
+          "valuation_gain_full": 562.4,
+          "round": 6,
+          "fork_tags": [
+            "structural_skill_over_rb_qb",
+            "mid_round_fork"
+          ],
+          "c": {
+            "name": "Keenan Allen",
+            "position": "WR",
+            "adp": 63.5,
+            "curve": 227.79329608938548,
+            "marginal": 227.79,
+            "actual": 184.4,
+            "pred_error": -43.3933,
+            "fills_empty_slot": false
+          },
+          "b": {
+            "name": "Anthony Richardson Sr.",
+            "position": "QB",
+            "adp": 55.2,
+            "curve": 244.0223463687151,
+            "marginal_under_c_model": null,
+            "actual": 163.36,
+            "pred_error": -80.6623,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": 21.04,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "1479",
+              "name": "Keenan Allen",
+              "position": "WR",
+              "adp": 63.5,
+              "curve_value": 227.79329608938548,
+              "marginal": 227.79,
+              "why": "P2.2C ADP-structural: +227.8 starter pts (1518.9 \u2192 1746.7) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 184.4
+            },
+            {
+              "player_id": "2749",
+              "name": "Raheem Mostert",
+              "position": "RB",
+              "adp": 64.1,
+              "curve_value": 226.62011173184356,
+              "marginal": 226.62,
+              "why": "P2.2C ADP-structural: +226.6 starter pts (1518.9 \u2192 1745.5) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 70.9
+            },
+            {
+              "player_id": "4988",
+              "name": "Nick Chubb",
+              "position": "RB",
+              "adp": 65.0,
+              "curve_value": 224.86033519553072,
+              "marginal": 224.86,
+              "why": "P2.2C ADP-structural: +224.9 starter pts (1518.9 \u2192 1743.7) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 63.3
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "9229",
+              "name": "Anthony Richardson Sr.",
+              "position": "QB",
+              "adp": 55.2,
+              "curve_value": 244.0223463687151,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 163.36
+            },
+            {
+              "player_id": "1479",
+              "name": "Keenan Allen",
+              "position": "WR",
+              "adp": 63.5,
+              "curve_value": 227.79329608938548,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 184.4
+            },
+            {
+              "player_id": "2749",
+              "name": "Raheem Mostert",
+              "position": "RB",
+              "adp": 64.1,
+              "curve_value": 226.62011173184356,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 70.9
+            }
+          ]
+        },
+        {
+          "slot": 7,
+          "seed": 44,
+          "valuation_gain_full": 416.9,
+          "round": 6,
+          "fork_tags": [
+            "structural_skill_over_rb_qb",
+            "mid_round_fork"
+          ],
+          "c": {
+            "name": "Tank Dell",
+            "position": "WR",
+            "adp": 57.5,
+            "curve": 239.52513966480447,
+            "marginal": 239.53,
+            "actual": 140.0,
+            "pred_error": -99.5251,
+            "fills_empty_slot": false
+          },
+          "b": {
+            "name": "Anthony Richardson Sr.",
+            "position": "QB",
+            "adp": 55.2,
+            "curve": 244.0223463687151,
+            "marginal_under_c_model": null,
+            "actual": 163.36,
+            "pred_error": -80.6623,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": -23.36,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "9502",
+              "name": "Tank Dell",
+              "position": "WR",
+              "adp": 57.5,
+              "curve_value": 239.52513966480447,
+              "marginal": 239.53,
+              "why": "P2.2C ADP-structural: +239.5 starter pts (1533.5 \u2192 1773.1) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 140.0
+            },
+            {
+              "player_id": "1479",
+              "name": "Keenan Allen",
+              "position": "WR",
+              "adp": 63.5,
+              "curve_value": 227.79329608938548,
+              "marginal": 227.79,
+              "why": "P2.2C ADP-structural: +227.8 starter pts (1533.5 \u2192 1761.3) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 184.4
+            },
+            {
+              "player_id": "10229",
+              "name": "Rashee Rice",
+              "position": "WR",
+              "adp": 64.2,
+              "curve_value": 226.4245810055866,
+              "marginal": 226.42,
+              "why": "P2.2C ADP-structural: +226.4 starter pts (1533.5 \u2192 1760.0) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 64.9
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "9229",
+              "name": "Anthony Richardson Sr.",
+              "position": "QB",
+              "adp": 55.2,
+              "curve_value": 244.0223463687151,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 163.36
+            },
+            {
+              "player_id": "9502",
+              "name": "Tank Dell",
+              "position": "WR",
+              "adp": 57.5,
+              "curve_value": 239.52513966480447,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 140.0
+            },
+            {
+              "player_id": "6770",
+              "name": "Joe Burrow",
+              "position": "QB",
+              "adp": 59.7,
+              "curve_value": 235.22346368715083,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 372.82
+            }
+          ]
+        },
+        {
+          "slot": 3,
+          "seed": 43,
+          "valuation_gain_full": 397.46,
+          "round": 6,
+          "fork_tags": [
+            "mid_round_fork"
+          ],
+          "c": {
+            "name": "D'Andre Swift",
+            "position": "RB",
+            "adp": 56.5,
+            "curve": 241.4804469273743,
+            "marginal": 241.48,
+            "actual": 214.5,
+            "pred_error": -26.9804,
+            "fills_empty_slot": false
+          },
+          "b": {
+            "name": "Anthony Richardson Sr.",
+            "position": "QB",
+            "adp": 55.2,
+            "curve": 244.0223463687151,
+            "marginal_under_c_model": null,
+            "actual": 163.36,
+            "pred_error": -80.6623,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": 51.14,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "6790",
+              "name": "D'Andre Swift",
+              "position": "RB",
+              "adp": 56.5,
+              "curve_value": 241.4804469273743,
+              "marginal": 241.48,
+              "why": "P2.2C ADP-structural: +241.5 starter pts (1542.0 \u2192 1783.4) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 214.5
+            },
+            {
+              "player_id": "9997",
+              "name": "Zay Flowers",
+              "position": "WR",
+              "adp": 56.8,
+              "curve_value": 240.89385474860336,
+              "marginal": 240.89,
+              "why": "P2.2C ADP-structural: +240.9 starter pts (1542.0 \u2192 1782.8) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 209.5
+            },
+            {
+              "player_id": "4988",
+              "name": "Nick Chubb",
+              "position": "RB",
+              "adp": 65.0,
+              "curve_value": 224.86033519553072,
+              "marginal": 224.86,
+              "why": "P2.2C ADP-structural: +224.9 starter pts (1542.0 \u2192 1766.8) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 63.3
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "9229",
+              "name": "Anthony Richardson Sr.",
+              "position": "QB",
+              "adp": 55.2,
+              "curve_value": 244.0223463687151,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 163.36
+            },
+            {
+              "player_id": "6790",
+              "name": "D'Andre Swift",
+              "position": "RB",
+              "adp": 56.5,
+              "curve_value": 241.4804469273743,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 214.5
+            },
+            {
+              "player_id": "9997",
+              "name": "Zay Flowers",
+              "position": "WR",
+              "adp": 56.8,
+              "curve_value": 240.89385474860336,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 209.5
+            }
+          ]
+        },
+        {
+          "slot": 3,
+          "seed": 42,
+          "valuation_gain_full": 375.44,
+          "round": 8,
+          "fork_tags": [
+            "structural_mid_te",
+            "structural_skill_over_rb_qb",
+            "mid_round_fork"
+          ],
+          "c": {
+            "name": "David Njoku",
+            "position": "TE",
+            "adp": 101.1,
+            "curve": 154.2737430167598,
+            "marginal": 154.27,
+            "actual": 148.5,
+            "pred_error": -5.7737,
+            "fills_empty_slot": true
+          },
+          "b": {
+            "name": "Zack Moss",
+            "position": "RB",
+            "adp": 74.4,
+            "curve": 206.4804469273743,
+            "marginal_under_c_model": 0.0,
+            "actual": 81.9,
+            "pred_error": -124.5804,
+            "in_c_top_alts": true
+          },
+          "model_marginal_adv_c_minus_b": 154.27,
+          "actual_adv_c_minus_b": 66.6,
+          "model_vs_actual_adv": 87.67,
+          "c_empty_slots_at_fork": [
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "4033",
+              "name": "David Njoku",
+              "position": "TE",
+              "adp": 101.1,
+              "curve_value": 154.2737430167598,
+              "marginal": 154.27,
+              "why": "P2.2C ADP-structural: +154.3 starter pts (1991.9 \u2192 2146.1) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 148.5
+            },
+            {
+              "player_id": "5022",
+              "name": "Dallas Goedert",
+              "position": "TE",
+              "adp": 105.5,
+              "curve_value": 145.6703910614525,
+              "marginal": 145.67,
+              "why": "P2.2C ADP-structural: +145.7 starter pts (1991.9 \u2192 2137.5) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 103.6
+            },
+            {
+              "player_id": "5001",
+              "name": "Dalton Schultz",
+              "position": "TE",
+              "adp": 117.9,
+              "curve_value": 121.42458100558657,
+              "marginal": 121.42,
+              "why": "P2.2C ADP-structural: +121.4 starter pts (1991.9 \u2192 2113.3) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 118.2
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "6845",
+              "name": "Zack Moss",
+              "position": "RB",
+              "adp": 74.4,
+              "curve_value": 206.4804469273743,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 81.9
+            },
+            {
+              "player_id": "8228",
+              "name": "Jaylen Warren",
+              "position": "RB",
+              "adp": 79.6,
+              "curve_value": 196.31284916201116,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 124.1
+            },
+            {
+              "player_id": "11624",
+              "name": "Xavier Worthy",
+              "position": "WR",
+              "adp": 81.9,
+              "curve_value": 191.81564245810057,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 187.2
+            }
+          ]
+        },
+        {
+          "slot": 7,
+          "seed": 43,
+          "valuation_gain_full": 347.26,
+          "round": 5,
+          "fork_tags": [
+            "structural_skill_over_rb_qb",
+            "early_round_fork",
+            "fork_pick_itself_large_actual_loss"
+          ],
+          "c": {
+            "name": "Tee Higgins",
+            "position": "WR",
+            "adp": 51.8,
+            "curve": 250.67039106145248,
+            "marginal": 250.67,
+            "actual": 222.1,
+            "pred_error": -28.5704,
+            "fills_empty_slot": false
+          },
+          "b": {
+            "name": "Lamar Jackson",
+            "position": "QB",
+            "adp": 44.2,
+            "curve": 265.53072625698326,
+            "marginal_under_c_model": null,
+            "actual": 430.38,
+            "pred_error": 164.8493,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": -208.28,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "6801",
+              "name": "Tee Higgins",
+              "position": "WR",
+              "adp": 51.8,
+              "curve_value": 250.67039106145248,
+              "marginal": 250.67,
+              "why": "P2.2C ADP-structural: +250.7 starter pts (1276.4 \u2192 1527.1) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 222.1
+            },
+            {
+              "player_id": "4950",
+              "name": "Christian Kirk",
+              "position": "WR",
+              "adp": 55.6,
+              "curve_value": 243.24022346368716,
+              "marginal": 243.24,
+              "why": "P2.2C ADP-structural: +243.2 starter pts (1276.4 \u2192 1519.7) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 70.9
+            },
+            {
+              "player_id": "6790",
+              "name": "D'Andre Swift",
+              "position": "RB",
+              "adp": 56.5,
+              "curve_value": 241.4804469273743,
+              "marginal": 241.48,
+              "why": "P2.2C ADP-structural: +241.5 starter pts (1276.4 \u2192 1517.9) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 214.5
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "4881",
+              "name": "Lamar Jackson",
+              "position": "QB",
+              "adp": 44.2,
+              "curve_value": 265.53072625698326,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 430.38
+            },
+            {
+              "player_id": "6801",
+              "name": "Tee Higgins",
+              "position": "WR",
+              "adp": 51.8,
+              "curve_value": 250.67039106145248,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 222.1
+            },
+            {
+              "player_id": "9229",
+              "name": "Anthony Richardson Sr.",
+              "position": "QB",
+              "adp": 55.2,
+              "curve_value": 244.0223463687151,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 163.36
+            }
+          ]
+        },
+        {
+          "slot": 6,
+          "seed": 43,
+          "valuation_gain_full": 283.2,
+          "round": 6,
+          "fork_tags": [
+            "mid_round_fork"
+          ],
+          "c": {
+            "name": "D'Andre Swift",
+            "position": "RB",
+            "adp": 56.5,
+            "curve": 241.4804469273743,
+            "marginal": 241.48,
+            "actual": 214.5,
+            "pred_error": -26.9804,
+            "fills_empty_slot": false
+          },
+          "b": {
+            "name": "Anthony Richardson Sr.",
+            "position": "QB",
+            "adp": 55.2,
+            "curve": 244.0223463687151,
+            "marginal_under_c_model": null,
+            "actual": 163.36,
+            "pred_error": -80.6623,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": 51.14,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "6790",
+              "name": "D'Andre Swift",
+              "position": "RB",
+              "adp": 56.5,
+              "curve_value": 241.4804469273743,
+              "marginal": 241.48,
+              "why": "P2.2C ADP-structural: +241.5 starter pts (1551.3 \u2192 1792.8) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 214.5
+            },
+            {
+              "player_id": "9997",
+              "name": "Zay Flowers",
+              "position": "WR",
+              "adp": 56.8,
+              "curve_value": 240.89385474860336,
+              "marginal": 240.89,
+              "why": "P2.2C ADP-structural: +240.9 starter pts (1551.3 \u2192 1792.2) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 209.5
+            },
+            {
+              "player_id": "2749",
+              "name": "Raheem Mostert",
+              "position": "RB",
+              "adp": 64.1,
+              "curve_value": 226.62011173184356,
+              "marginal": 226.62,
+              "why": "P2.2C ADP-structural: +226.6 starter pts (1551.3 \u2192 1778.0) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 70.9
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "9229",
+              "name": "Anthony Richardson Sr.",
+              "position": "QB",
+              "adp": 55.2,
+              "curve_value": 244.0223463687151,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 163.36
+            },
+            {
+              "player_id": "6790",
+              "name": "D'Andre Swift",
+              "position": "RB",
+              "adp": 56.5,
+              "curve_value": 241.4804469273743,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 214.5
+            },
+            {
+              "player_id": "9997",
+              "name": "Zay Flowers",
+              "position": "WR",
+              "adp": 56.8,
+              "curve_value": 240.89385474860336,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 209.5
+            }
+          ]
+        },
+        {
+          "slot": 2,
+          "seed": 43,
+          "valuation_gain_full": 275.7,
+          "round": 7,
+          "fork_tags": [
+            "mid_round_fork"
+          ],
+          "c": {
+            "name": "Jordan Love",
+            "position": "QB",
+            "adp": 73.2,
+            "curve": 208.8268156424581,
+            "marginal": 208.83,
+            "actual": 233.86,
+            "pred_error": 25.0332,
+            "fills_empty_slot": true
+          },
+          "b": {
+            "name": "Tank Dell",
+            "position": "WR",
+            "adp": 57.5,
+            "curve": 239.52513966480447,
+            "marginal_under_c_model": null,
+            "actual": 140.0,
+            "pred_error": -99.5251,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": 93.86,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "QB",
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "6804",
+              "name": "Jordan Love",
+              "position": "QB",
+              "adp": 73.2,
+              "curve_value": 208.8268156424581,
+              "marginal": 208.83,
+              "why": "P2.2C ADP-structural: +208.8 starter pts (1787.9 \u2192 1996.8) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 233.86
+            },
+            {
+              "player_id": "5849",
+              "name": "Kyler Murray",
+              "position": "QB",
+              "adp": 76.1,
+              "curve_value": 203.15642458100558,
+              "marginal": 203.16,
+              "why": "P2.2C ADP-structural: +203.2 starter pts (1787.9 \u2192 1991.1) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 297.24
+            },
+            {
+              "player_id": "6768",
+              "name": "Tua Tagovailoa",
+              "position": "QB",
+              "adp": 88.6,
+              "curve_value": 178.7150837988827,
+              "marginal": 178.72,
+              "why": "P2.2C ADP-structural: +178.7 starter pts (1787.9 \u2192 1966.6) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 181.58
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "9502",
+              "name": "Tank Dell",
+              "position": "WR",
+              "adp": 57.5,
+              "curve_value": 239.52513966480447,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 140.0
+            },
+            {
+              "player_id": "4988",
+              "name": "Nick Chubb",
+              "position": "RB",
+              "adp": 65.0,
+              "curve_value": 224.86033519553072,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 63.3
+            },
+            {
+              "player_id": "7528",
+              "name": "Najee Harris",
+              "position": "RB",
+              "adp": 67.1,
+              "curve_value": 220.75418994413408,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 204.6
+            }
+          ]
+        },
+        {
+          "slot": 12,
+          "seed": 42,
+          "valuation_gain_full": 266.4,
+          "round": 5,
+          "fork_tags": [
+            "structural_skill_over_rb_qb",
+            "early_round_fork"
+          ],
+          "c": {
+            "name": "Zay Flowers",
+            "position": "WR",
+            "adp": 56.8,
+            "curve": 240.89385474860336,
+            "marginal": 240.89,
+            "actual": 209.5,
+            "pred_error": -31.3939,
+            "fills_empty_slot": true
+          },
+          "b": {
+            "name": "C.J. Stroud",
+            "position": "QB",
+            "adp": 49.9,
+            "curve": 254.3854748603352,
+            "marginal_under_c_model": null,
+            "actual": 220.38,
+            "pred_error": -34.0055,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": -10.88,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "WR",
+            "TE",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "9997",
+              "name": "Zay Flowers",
+              "position": "WR",
+              "adp": 56.8,
+              "curve_value": 240.89385474860336,
+              "marginal": 240.89,
+              "why": "P2.2C ADP-structural: +240.9 starter pts (1259.6 \u2192 1500.5) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 209.5
+            },
+            {
+              "player_id": "9502",
+              "name": "Tank Dell",
+              "position": "WR",
+              "adp": 57.5,
+              "curve_value": 239.52513966480447,
+              "marginal": 239.53,
+              "why": "P2.2C ADP-structural: +239.5 starter pts (1259.6 \u2192 1499.1) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 140.0
+            },
+            {
+              "player_id": "8137",
+              "name": "George Pickens",
+              "position": "WR",
+              "adp": 59.8,
+              "curve_value": 235.02793296089385,
+              "marginal": 235.03,
+              "why": "P2.2C ADP-structural: +235.0 starter pts (1259.6 \u2192 1494.6) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 164.4
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "9758",
+              "name": "C.J. Stroud",
+              "position": "QB",
+              "adp": 49.9,
+              "curve_value": 254.3854748603352,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 220.38
+            },
+            {
+              "player_id": "9229",
+              "name": "Anthony Richardson Sr.",
+              "position": "QB",
+              "adp": 55.2,
+              "curve_value": 244.0223463687151,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 163.36
+            },
+            {
+              "player_id": "9997",
+              "name": "Zay Flowers",
+              "position": "WR",
+              "adp": 56.8,
+              "curve_value": 240.89385474860336,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 209.5
+            }
+          ]
+        },
+        {
+          "slot": 8,
+          "seed": 46,
+          "valuation_gain_full": 262.82,
+          "round": 6,
+          "fork_tags": [
+            "mid_round_fork",
+            "fork_pick_itself_large_actual_loss"
+          ],
+          "c": {
+            "name": "Rhamondre Stevenson",
+            "position": "RB",
+            "adp": 62.0,
+            "curve": 230.72625698324023,
+            "marginal": 230.73,
+            "actual": 175.9,
+            "pred_error": -54.8263,
+            "fills_empty_slot": true
+          },
+          "b": {
+            "name": "DJ Moore",
+            "position": "WR",
+            "adp": 43.7,
+            "curve": 266.5083798882682,
+            "marginal_under_c_model": null,
+            "actual": 238.1,
+            "pred_error": -28.4084,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": -62.2,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "QB",
+            "RB",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "7611",
+              "name": "Rhamondre Stevenson",
+              "position": "RB",
+              "adp": 62.0,
+              "curve_value": 230.72625698324023,
+              "marginal": 230.73,
+              "why": "P2.2C ADP-structural: +230.7 starter pts (1548.0 \u2192 1778.7) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 175.9
+            },
+            {
+              "player_id": "2749",
+              "name": "Raheem Mostert",
+              "position": "RB",
+              "adp": 64.1,
+              "curve_value": 226.62011173184356,
+              "marginal": 226.62,
+              "why": "P2.2C ADP-structural: +226.6 starter pts (1548.0 \u2192 1774.6) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 70.9
+            },
+            {
+              "player_id": "7528",
+              "name": "Najee Harris",
+              "position": "RB",
+              "adp": 67.1,
+              "curve_value": 220.75418994413408,
+              "marginal": 220.75,
+              "why": "P2.2C ADP-structural: +220.8 starter pts (1548.0 \u2192 1768.8) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 204.6
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "4983",
+              "name": "DJ Moore",
+              "position": "WR",
+              "adp": 43.7,
+              "curve_value": 266.5083798882682,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 238.1
+            },
+            {
+              "player_id": "6801",
+              "name": "Tee Higgins",
+              "position": "WR",
+              "adp": 51.8,
+              "curve_value": 250.67039106145248,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 222.1
+            },
+            {
+              "player_id": "7611",
+              "name": "Rhamondre Stevenson",
+              "position": "RB",
+              "adp": 62.0,
+              "curve_value": 230.72625698324023,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 175.9
+            }
+          ]
+        },
+        {
+          "slot": 9,
+          "seed": 44,
+          "valuation_gain_full": 210.06,
+          "round": 6,
+          "fork_tags": [
+            "mid_round_fork"
+          ],
+          "c": {
+            "name": "Joe Burrow",
+            "position": "QB",
+            "adp": 59.7,
+            "curve": 235.22346368715083,
+            "marginal": 235.22,
+            "actual": 372.82,
+            "pred_error": 137.5965,
+            "fills_empty_slot": true
+          },
+          "b": {
+            "name": "Zay Flowers",
+            "position": "WR",
+            "adp": 56.8,
+            "curve": 240.89385474860336,
+            "marginal_under_c_model": null,
+            "actual": 209.5,
+            "pred_error": -31.3939,
+            "in_c_top_alts": false
+          },
+          "model_marginal_adv_c_minus_b": null,
+          "actual_adv_c_minus_b": 163.32,
+          "model_vs_actual_adv": null,
+          "c_empty_slots_at_fork": [
+            "QB",
+            "RB",
+            "DST",
+            "K"
+          ],
+          "c_top3_alts": [
+            {
+              "player_id": "6770",
+              "name": "Joe Burrow",
+              "position": "QB",
+              "adp": 59.7,
+              "curve_value": 235.22346368715083,
+              "marginal": 235.22,
+              "why": "P2.2C ADP-structural: +235.2 starter pts (1532.2 \u2192 1767.4) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 372.82
+            },
+            {
+              "player_id": "4988",
+              "name": "Nick Chubb",
+              "position": "RB",
+              "adp": 65.0,
+              "curve_value": 224.86033519553072,
+              "marginal": 224.86,
+              "why": "P2.2C ADP-structural: +224.9 starter pts (1532.2 \u2192 1757.0) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 63.3
+            },
+            {
+              "player_id": "7528",
+              "name": "Najee Harris",
+              "position": "RB",
+              "adp": 67.1,
+              "curve_value": 220.75418994413408,
+              "marginal": 220.75,
+              "why": "P2.2C ADP-structural: +220.8 starter pts (1532.2 \u2192 1752.9) [value=ADP-curve, not ESPN proj]",
+              "actual_ppr": 204.6
+            }
+          ],
+          "b_top3_alts": [
+            {
+              "player_id": "9997",
+              "name": "Zay Flowers",
+              "position": "WR",
+              "adp": 56.8,
+              "curve_value": 240.89385474860336,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 209.5
+            },
+            {
+              "player_id": "9502",
+              "name": "Tank Dell",
+              "position": "WR",
+              "adp": 57.5,
+              "curve_value": 239.52513966480447,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 140.0
+            },
+            {
+              "player_id": "6770",
+              "name": "Joe Burrow",
+              "position": "QB",
+              "adp": 59.7,
+              "curve_value": 235.22346368715083,
+              "marginal": null,
+              "why": "P2.2C: lowest ADP among picks that preserve starter feasibility",
+              "actual_ppr": 372.82
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "n_forks": 10,
+        "n_model_wrong_direction": 0,
+        "n_c_fills_empty_slot": 5,
+        "mean_pred_error_c": -15.4814,
+        "mean_pred_error_b": -47.5713,
+        "pred_error_by_pos_c": {
+          "QB": {
+            "n": 2,
+            "mean_pred_error": 81.3148,
+            "median_pred_error": 81.3148
+          },
+          "RB": {
+            "n": 3,
+            "mean_pred_error": -36.2624,
+            "median_pred_error": -26.9804
+          },
+          "WR": {
+            "n": 4,
+            "mean_pred_error": -50.7207,
+            "median_pred_error": -37.3936
+          },
+          "TE": {
+            "n": 1,
+            "mean_pred_error": -5.7737,
+            "median_pred_error": -5.7737
+          }
+        },
+        "pred_error_by_pos_b": {
+          "QB": {
+            "n": 6,
+            "mean_pred_error": -31.9676,
+            "median_pred_error": -80.6623
+          },
+          "RB": {
+            "n": 1,
+            "mean_pred_error": -124.5804,
+            "median_pred_error": -124.5804
+          },
+          "WR": {
+            "n": 3,
+            "mean_pred_error": -53.1091,
+            "median_pred_error": -31.3939
+          }
+        },
+        "notes": [
+          "mean pred_error C=-15.5, B=-47.6 (actual \u2212 curve)",
+          "model preferred C but actual preferred B in 0/10 forks",
+          "C pick filled an empty starter slot in 5/10 forks"
+        ],
+        "decision_tree_branch": "V3-C_candidate_uncertainty_or_cascade"
+      }
+    }
+  },
+  "status": {
+    "core_thesis": "preliminary_empirical_support",
+    "external_validity": "not_established",
+    "v3": "design_justified_implementation_pending_closeout_read",
+    "ui": "marginal",
+    "evaluable": 0
+  }
+}
