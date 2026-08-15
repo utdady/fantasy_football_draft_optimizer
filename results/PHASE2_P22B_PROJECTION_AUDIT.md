@@ -13,9 +13,10 @@
 ```text
 P2.1   ██████████ DONE   (2026 pipeline proof)
 P2.2A  ██████████ DONE   (FFC + nflverse + mapping feasibility)
-P2.2B  ██████████ AUDIT  (this doc — projections hunt)
-P2.3   ░░░░░░░░░░ ENFORCE ON HISTORICAL CUT when B lands (module exists)
-P2.4+  ░░░░░░░░░░ blocked until evaluable=1
+P2.2B  ██████████ CLOSED  (FP free API — no Stage B projections)
+P2.2C  ░░░░░░░░░░ ADP-STRUCTURAL (see PHASE2_P22C_ADP_STRUCTURAL.md)
+P2.3   ░░░░░░░░░░ ENFORCE ON HISTORICAL CUT when evaluable path lands
+P2.4+  ░░░░░░░░░░ blocked until evaluable=1 for the labeled experiment
 ```
 
 ---

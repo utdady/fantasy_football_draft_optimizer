@@ -4,6 +4,7 @@ Requires env FANTASYPROS_API_KEY. Does not ingest into eval DB.
 Hard rule: if response has no verifiable as_of / publish date → FAIL Stage B.
 
 Usage:
+  # Prefer local gitignored .env (see .env.example), or:
   set FANTASYPROS_API_KEY=...
   python -m draftopt.phase2.fp_projection_probe --season 2024
 """
@@ -19,7 +20,14 @@ from typing import Any
 
 import httpx
 
-FP_PROJECTIONS_URL = "https://api.fantasypros.com/v2/json/nfl/{season}/projections"
+from draftopt.envfile import load_dotenv
+
+FP_PROJECTIONS_URLS = (
+    # Free / public tier (current FantasyPros marketing docs)
+    "https://api.fantasypros.com/public/v2/json/nfl/{season}/projections",
+    # Legacy docs path (may require HOF/production key)
+    "https://api.fantasypros.com/v2/json/nfl/{season}/projections",
+)
 
 # Keys that might carry temporal provenance in API payloads (case-insensitive scan).
 DATEISH_KEYS = (
@@ -62,6 +70,30 @@ def _find_dateish(obj: Any, path: str = "", found: list[tuple[str, Any]] | None 
     return found
 
 
+def _headers(api_key: str) -> dict[str, str]:
+    return {
+        "x-api-key": api_key,
+        "User-Agent": "draftopt/0.1 (personal research; P2.2B projection probe)",
+        "Accept": "application/json",
+    }
+
+
+def canary_key_works(api_key: str) -> dict[str, Any]:
+    """Hit a cheap public endpoint to distinguish bad key vs projections-only deny."""
+    url = "https://api.fantasypros.com/public/v2/json/nfl/players"
+    with httpx.Client(timeout=45, follow_redirects=True) as client:
+        resp = client.get(
+            url,
+            headers=_headers(api_key),
+            params={"ecr": "included"},
+        )
+    return {
+        "url": url,
+        "http_status": resp.status_code,
+        "ok": resp.status_code == 200,
+    }
+
+
 def fetch_projections(
     *,
     season: int,
@@ -69,21 +101,26 @@ def fetch_projections(
     week: int = 0,
     scoring: str = "PPR",
     position: str = "RB",
-) -> tuple[int, dict[str, Any] | str]:
-    url = FP_PROJECTIONS_URL.format(season=season)
-    headers = {
-        "x-api-key": api_key,
-        "User-Agent": "draftopt/0.1 (personal research; P2.2B projection probe)",
-        "Accept": "application/json",
-    }
+) -> tuple[int, dict[str, Any] | str, str]:
+    headers = _headers(api_key)
     params = {"week": week, "scoring": scoring, "position": position}
+    last_status = 0
+    last_body: dict[str, Any] | str = ""
+    last_url = FP_PROJECTIONS_URLS[0]
     with httpx.Client(timeout=60, follow_redirects=True) as client:
-        resp = client.get(url, headers=headers, params=params)
-    try:
-        body: dict[str, Any] | str = resp.json()
-    except Exception:
-        body = resp.text[:2000]
-    return resp.status_code, body
+        for template in FP_PROJECTIONS_URLS:
+            url = template.format(season=season)
+            last_url = url
+            resp = client.get(url, headers=headers, params=params)
+            last_status = resp.status_code
+            try:
+                last_body = resp.json()
+            except Exception:
+                last_body = resp.text[:2000]
+            if resp.status_code == 200:
+                return resp.status_code, last_body, url
+    # Prefer a short error body for the report (no secrets).
+    return last_status, last_body, last_url
 
 
 def analyze_payload(status: int, body: dict[str, Any] | str, *, season: int) -> dict[str, Any]:
@@ -103,6 +140,10 @@ def analyze_payload(status: int, body: dict[str, Any] | str, *, season: int) -> 
         report["reason"] = "api_forbidden"
         report["verdict"] = "blocked_auth"
         report["notes"].append("Valid FANTASYPROS_API_KEY required (403 Forbidden).")
+        if isinstance(body, dict):
+            report["error_body"] = {k: body[k] for k in list(body)[:8]}
+        elif isinstance(body, str) and body:
+            report["error_body_preview"] = body[:300]
         return report
     if status == 401:
         report["reason"] = "api_unauthorized"
@@ -164,6 +205,17 @@ def to_markdown(report: dict[str, Any]) -> str:
         f"- verdict: **{report.get('verdict')}**",
         f"- reason: `{report.get('reason')}`",
         "",
+    ]
+    canary = report.get("canary_players")
+    if canary:
+        lines += [
+            "## Auth canary (`/nfl/players`)",
+            "",
+            f"- http_status: **{canary.get('http_status')}**",
+            f"- key_appears_valid: **{canary.get('ok')}**",
+            "",
+        ]
+    lines += [
         "## Notes",
         "",
     ]
@@ -205,6 +257,7 @@ def main() -> None:
         default=Path("results/phase2_p22b_fp_probe.md"),
     )
     args = parser.parse_args()
+    loaded = load_dotenv()
     key = (os.environ.get("FANTASYPROS_API_KEY") or os.environ.get("FP_API_KEY") or "").strip()
     if not key:
         report = {
@@ -218,15 +271,18 @@ def main() -> None:
             "dateish_fields": [],
             "verdict": "blocked_no_key",
             "notes": [
-                "Set FANTASYPROS_API_KEY (or FP_API_KEY) and re-run. "
+                "Set FANTASYPROS_API_KEY in gitignored `.env` (see `.env.example`) "
+                "or in the shell, then re-run.",
+                f"Checked .env path: {loaded or '(missing)'}.",
                 "Without a key the API returns 403; historical as_of cannot be verified.",
-                "Docs: GET /v2/json/nfl/{season}/projections?week=0&scoring=PPR "
+                "Docs: GET /public/v2/json/nfl/{season}/projections?week=0&scoring=PPR "
                 "(week=0 = preseason). No as_of query parameter is documented — "
                 "provenance must come from response fields or fail closed.",
             ],
         }
     else:
-        status, body = fetch_projections(
+        canary = canary_key_works(key)
+        status, body, used_url = fetch_projections(
             season=args.season,
             api_key=key,
             week=args.week,
@@ -234,11 +290,36 @@ def main() -> None:
             position=args.position,
         )
         report = analyze_payload(status, body, season=args.season)
+        report["canary_players"] = canary
         report["request"] = {
             "week": args.week,
             "scoring": args.scoring,
             "position": args.position,
+            "url": used_url,
         }
+        if status == 403:
+            if canary.get("ok"):
+                report["reason"] = "projections_forbidden"
+                report["verdict"] = "fail_stage_B"
+                report["notes"] = [
+                    "API key works on /nfl/players (canary 200), but "
+                    f"/{args.season}/projections returned 403 on public+legacy paths.",
+                    "Free-tier key cannot access the projections endpoint (or this "
+                    "season) under current auth. Stage B via FP projections is blocked.",
+                    "No historical projection source meeting provenance requirements "
+                    "was confirmed for the 2024 evaluation window via FantasyPros free API.",
+                    "Next: stop FP archaeology; open labeled ADP-only structural track.",
+                    "Do not paste the key into chat or commit it.",
+                ]
+            else:
+                report["notes"].append(
+                    f"Canary /nfl/players also failed (status={canary.get('http_status')}). "
+                    "Key may be invalid, not activated, or IP/tier blocked."
+                )
+                report["notes"].append(
+                    "Tried /public/v2/json and /v2/json for projections. "
+                    "Do not paste the key into chat or commit it."
+                )
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(to_markdown(report), encoding="utf-8")

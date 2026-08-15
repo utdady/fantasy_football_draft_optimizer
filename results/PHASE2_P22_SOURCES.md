@@ -87,8 +87,10 @@ FFC → DynastyProcess name+pos(+team) → canonical `player_id` + `gsis_id` →
 
 ---
 
-## Next: P2.2B projection audit
+## Next: P2.2B closed → P2.2C ADP-structural
 
-See [`PHASE2_P22B_PROJECTION_AUDIT.md`](PHASE2_P22B_PROJECTION_AUDIT.md).
+P2.2B FP probe: **CLOSED** — see [`phase2_p22b_fp_probe.md`](phase2_p22b_fp_probe.md).
 
-Gate 4 (dated historical `proj_ppr`) is the blocker for `evaluable=1`. ESPN live API cannot time-travel; Clay PDF / FantasyPros API are the leading probes; ECR≠projections.
+Next: labeled **ADP-structural** ablation on 12-team FFC 2024
+([`PHASE2_P22C_ADP_STRUCTURAL.md`](PHASE2_P22C_ADP_STRUCTURAL.md)).
+Not production `marginal`.

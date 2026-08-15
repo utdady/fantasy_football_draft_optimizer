@@ -19,8 +19,10 @@
 > historical eval snapshot + outcomes ([`results/PHASE2_P22_SOURCES.md`](results/PHASE2_P22_SOURCES.md)).
 > Stage A spike: FFC 2024 10-team request **failed** league-size check (`evaluable=0`).
 > **P2.2B:** projection source audit — [`results/PHASE2_P22B_PROJECTION_AUDIT.md`](results/PHASE2_P22B_PROJECTION_AUDIT.md)
-> (Gate 4 still open; no replay). FP probe CLI ready — needs `FANTASYPROS_API_KEY`
+> **P2.2B CLOSED:** no dated historical projections confirmed via FantasyPros free API
 > ([`results/phase2_p22b_fp_probe.md`](results/phase2_p22b_fp_probe.md)).
+> **Next:** labeled ADP-structural track
+> ([`results/PHASE2_P22C_ADP_STRUCTURAL.md`](results/PHASE2_P22C_ADP_STRUCTURAL.md)).
 
 ## Setup
 
@@ -30,6 +32,7 @@ python -m venv .venv
 # Windows: .\.venv\Scripts\Activate.ps1
 # macOS/Linux: source .venv/bin/activate
 pip install -e ".[dev]"
+# Optional: copy .env.example → .env and set FANTASYPROS_API_KEY for FP probe
 ```
 
 ## Ingest players

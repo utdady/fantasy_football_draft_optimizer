@@ -1,0 +1,119 @@
+# P2.2C — ADP-structural evaluation (labeled ablation)
+
+**Status:** methodology frozen; implementation starting. **Not** production `marginal`.
+
+**Parents:** [`PHASE2_P22_SOURCES.md`](PHASE2_P22_SOURCES.md) · P2.2A
+[`phase2_p22_feasibility_2024_12tm.md`](phase2_p22_feasibility_2024_12tm.md) ·
+P2.2B closed [`phase2_p22b_fp_probe.md`](phase2_p22b_fp_probe.md)
+
+---
+
+## Why this exists
+
+P2.2B could not confirm dated historical **projections** for 2024 via FantasyPros
+free API. Rather than invent ECR→points or pay for unknown provenance, we run an
+honest ablation:
+
+> Does **roster construction / scarcity reasoning** improve realized PPR when the
+> only decision-time value signal is historical ADP?
+
+This is **not** “does production `marginal` beat ADP.”
+
+---
+
+## Frozen labels (do not blur)
+
+| Field | Value |
+| --- | --- |
+| `decision_market` | FFC |
+| `league_size` | **12** (not 10 — FFC 2024 meta) |
+| `scoring` | PPR |
+| `value_signal` | ADP-derived structural curve |
+| `outcomes` | nflverse 2024 actual PPR (`nflverse_computed`) |
+| `snapshot_date` / ADP `as_of` | FFC window end `2024-09-01` |
+
+**Honesty bar:** FFC ≠ ESPN · 12 ≠ 10 · ADP-curve ≠ ESPN `proj_ppr` · ECR ≠ proj.
+
+### Strategy names (required)
+
+| Name | Meaning |
+| --- | --- |
+| `adp_baseline` | Always pick best remaining ADP (lowest ADP) |
+| `adp_structural` | Same marginal **roster-construction** machinery as V1, but `proj_ppr` replaced by an **ADP-derived** value curve |
+| `adp_structural_vor` | Optional later: VOR-lite on the same ADP-derived curve |
+
+Do **not** register these as UI default. Do **not** rename them to `marginal`.
+
+---
+
+## Optimizer vs evaluator
+
+| Data | Optimizer? | Evaluator? |
+| --- | ---: | ---: |
+| FFC 2024 ADP (dated window) | ✅ | — |
+| ADP-derived value curve | ✅ | — |
+| Draft slot / 12-team snake / roster rules | ✅ | — |
+| Actual 2024 PPR (nflverse) | ❌ | ✅ |
+| ESPN / FP projections | ❌ | ❌ |
+| In-season injuries | ❌ | ❌ |
+
+---
+
+## ADP → value curve (freeze before coding)
+
+Invert ADP into a monotone season-value proxy used **only** as the structural
+signal (not claimed to be a true projection):
+
+\[
+v(i) = V_{\max} \cdot \frac{\mathrm{ADP}_{\mathrm{ref}} - \mathrm{ADP}_i}
+{\mathrm{ADP}_{\mathrm{ref}} - \mathrm{ADP}_{\min}}
+\]
+
+with clamps so deeper ADP still has small positive \(v\) if needed for numerics.
+Exact constants (`V_max`, `ADP_ref`) must be written into the experiment report
+before the first scored run and **not tuned** after seeing outcome Δ.
+
+**Rule:** do not change the curve to make structural beat baseline.
+
+---
+
+## Experiment steps (order)
+
+1. Freeze decision snapshot from FFC 2024 **12-team** cut (`evaluable=0`,
+   `validation_status=source_validation`, reason notes ADP-structural track).
+2. Attach mapped canonical IDs + ensure outcome coverage for draftable pool.
+3. Leakage validate (`*_as_of ≤ snapshot_date`).
+4. Replay: `adp_baseline` vs `adp_structural` (same slots/seeds).
+5. Score rosters with **actual** starter PPR (same slots as league).
+6. Report \(\Delta = \mathrm{PPR}_{structural} - \mathrm{PPR}_{baseline}\) by slot.
+7. Only then consider `evaluable=1` for this **labeled** experiment (still not
+   Stage B “marginal vs ADP on ESPN proj”).
+
+---
+
+## Possible outcomes (all scientifically useful)
+
+| Result | Interpretation |
+| --- | --- |
+| **A** structural ≫ baseline | Roster construction has real-world value even on ADP-only signal → justifies later projection hunt / V3 interest |
+| **B** structural ≈ baseline | Phase 1 sim edge may be projection-environment artifact |
+| **C** structural ≪ baseline | Strong warning against VOR sophistication before fixing value signal |
+
+---
+
+## Explicit non-goals
+
+- Calling this production `marginal` validation
+- Using 12-team results to claim 10-team ESPN-league wins
+- V2 / β / robust_min / V3
+- Tuning ADP curve after seeing outcomes
+- ECR→points
+
+---
+
+## Progress
+
+```text
+P2.2B  ██████████ CLOSED (FP free API)
+P2.2C  ░░░░░░░░░░ METHODOLOGY FROZEN — implement next
+```

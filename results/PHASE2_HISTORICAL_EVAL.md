@@ -73,7 +73,7 @@ Label markets honestly: **FFC ADP ≠ ESPN ADP**, **12-team ≠ 10-team**, **ECR
 | ID | Milestone | Done when |
 | --- | --- | --- |
 | **P2.1** | Historical snapshot ingestion | ✅ `2026-preseason-2026-08-12` frozen + validate PASS (**pipeline proof**, `evaluable=0`) |
-| **P2.2** | Outcome + projection path | 🟡 **2A** feasibility done; **2B** projection audit done ([`PHASE2_P22B_PROJECTION_AUDIT.md`](PHASE2_P22B_PROJECTION_AUDIT.md)); still **not evaluable** |
+| **P2.2** | Outcome + projection path | 🟡 **2A** done · **2B CLOSED** (FP free API) · **2C** ADP-structural methodology frozen ([`PHASE2_P22C_ADP_STRUCTURAL.md`](PHASE2_P22C_ADP_STRUCTURAL.md)) |
 | **P2.3** | Leakage validator | ✅ module + snapshot gate (`validate_snapshot`) |
 | **P2.4** | Historical draft replay | Existing strategies draft from an **`evaluable=1`** snapshot only |
 | **P2.5** | Outcome scoring | Rosters → actual starter PPR |
