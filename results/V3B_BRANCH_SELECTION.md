@@ -43,8 +43,8 @@ A implementation → A−D test → **stop**.
 | V3-A | Does calibration improve construction? | Mean ↑, left tail worse | Mixed / tradeoff |
 | B.0 | Is same-pos \(M_D - r^*\) sufficient? | −24.3 / 42% WR / p10 −204 | ❌ Falsified |
 | B.1 | Is \(M_D - v(a^*)\) sufficient? | 0 policy changes (Δ≡0) | ❌ Policy-inert |
-| **A** | Cross-pos **marginal** OC \(M_D(p)-M_D(q^*)\)? | **Not tested** | 🟡 Selected next |
-| **B** | One-step state-dependent construction? | **Not tested** | 🟡 Deferred |
+| **A** | Cross-pos **marginal** OC \(M_D(p)-M_D(q^*)\)? | 0/60 pick changes (Δ≡0) | ❌ Policy-inert |
+| **B** | One-step state-dependent construction? | **Not tested** | 🟡 **Design licensed** (A switch) |
 
 ---
 
@@ -210,9 +210,9 @@ Production V3 only after a convincing construction result — not before.
 | V3-A calibration | 🟡 Successful valuation / construction tradeoff — **frozen** |
 | B.0 | ❌ Falsified |
 | B.1 | ❌ Policy-inert |
-| Branch A | 🟢 **Selected** — operationalization frozen ([`V3B_A_OPERATIONALIZATION.md`](V3B_A_OPERATIONALIZATION.md)); implementation gated |
-| Branch B | 🟡 Deferred (hypothesis only) |
-| A / B implementation | 🔴 No active implementation |
+| Branch A | ❌ **Policy-inert** (`phase2_v3ba_ladder.md`) — no A.1 |
+| Branch B | 🟡 **Design licensed** (one-step state-dep OC, not V2) — no code yet |
+| A / B implementation | A done (inert); B 🔴 no active implementation |
 | UI | `marginal` |
 | `evaluable` | **0** |
 
