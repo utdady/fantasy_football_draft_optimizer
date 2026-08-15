@@ -232,8 +232,9 @@ Legal:
 | Cross-position hypothesis | 🟢 frozen |
 | B.1.0 operationalization | 🟢 **frozen here** |
 | B.1 implementation | 🟢 run; **proxy inert** (Δ≡0 / picks=D) |
+| Post-B.1 branch | 🟢 frozen — [`V3B_CONSTRUCTION_BRANCH_FREEZE.md`](V3B_CONSTRUCTION_BRANCH_FREEZE.md) |
 | B.0 | 🔴 falsified (do not revive) |
-| Lookahead / V2 | 🔴 frozen |
+| Lookahead / V2 | 🔴 frozen (Branch B named only in freeze doc) |
 | UI | `marginal` |
 
 ---
