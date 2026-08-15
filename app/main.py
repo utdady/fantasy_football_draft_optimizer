@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from draftopt import db
-from draftopt.config import ROSTER_PRESETS, get_roster_preset
+from draftopt.config import N_TEAMS, PICK_CLOCK_SECONDS, ROSTER_PRESETS, get_roster_preset
 from draftopt.draft.cpu import cpu_pick
 from draftopt.draft.grade import grade_draft
 from draftopt.draft.state import (
@@ -45,7 +45,7 @@ def payload(conn, draft_id: str, strategy: str = "marginal") -> dict:
 
 
 class CreateDraftBody(BaseModel):
-    user_slot: int = Field(default=1, ge=1, le=10)
+    user_slot: int = Field(default=1, ge=1, le=N_TEAMS)
     user_name: str = Field(default="You", min_length=1, max_length=40)
     roster_preset: str = Field(default="league_default")
 
@@ -69,7 +69,13 @@ def status():
             "SELECT source, pulled_at, n_rows FROM ingest_runs ORDER BY id DESC LIMIT 4"
         ).fetchall()
         presets = [get_roster_preset(pid) for pid in ROSTER_PRESETS]
-        return {"players": n, "ingest": [dict(r) for r in last], "roster_presets": presets}
+        return {
+            "players": n,
+            "ingest": [dict(r) for r in last],
+            "roster_presets": presets,
+            "n_teams": N_TEAMS,
+            "pick_clock_seconds": PICK_CLOCK_SECONDS,
+        }
     finally:
         conn.close()
 

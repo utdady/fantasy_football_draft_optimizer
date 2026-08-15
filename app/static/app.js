@@ -39,13 +39,24 @@ let cpuBusy = false;
 let autopicking = false;
 let takeCollapsed = localStorage.getItem("takeCollapsed") === "1";
 let presets = [];
+let nTeams = 12;
 
-for (let i = 1; i <= 10; i++) {
-  const opt = document.createElement("option");
-  opt.value = String(i);
-  opt.textContent = `${i} (${i}.01 / ${11 - i}.10)`;
-  slotSelect.appendChild(opt);
+function fillSlotOptions(n) {
+  nTeams = n;
+  const prev = slotSelect.value || localStorage.getItem("userSlot") || "1";
+  slotSelect.innerHTML = "";
+  for (let i = 1; i <= n; i++) {
+    const opt = document.createElement("option");
+    opt.value = String(i);
+    const r2 = n + 1 - i;
+    opt.textContent = `${i} (${i}.01 / 2.${String(r2).padStart(2, "0")})`;
+    slotSelect.appendChild(opt);
+  }
+  const ok = [...slotSelect.options].some((o) => o.value === prev);
+  slotSelect.value = ok ? prev : "1";
 }
+
+fillSlotOptions(12);
 nameInput.value = localStorage.getItem("userName") || "";
 slotSelect.value = localStorage.getItem("userSlot") || "1";
 
@@ -109,7 +120,7 @@ function stopClock() {
 function startClock() {
   stopClock();
   if (!state || state.complete || !state.is_user_turn) return;
-  const secs = state.pick_clock_seconds || 90;
+  const secs = state.pick_clock_seconds || 60;
   deadline = Date.now() + secs * 1000;
   clockEl.hidden = false;
   tickClock();
@@ -276,7 +287,7 @@ function populateTeamsFromHits() {
 function render() {
   metaEl.textContent = pickLabel();
   const rosterLabel = state?.roster?.label ? ` · ${state.roster.label}` : "";
-  draftSub.textContent = `V0 · 10-team PPR snake · ${state?.n_rounds || "?"} rounds${rosterLabel}`;
+  draftSub.textContent = `V0 · ${state?.n_teams || nTeams}-team PPR snake · ${state?.n_rounds || "?"} rounds${rosterLabel}`;
   search.disabled = !state || !state.is_user_turn || state.complete;
   filterPos.disabled = search.disabled;
   filterTeam.disabled = search.disabled;
@@ -552,6 +563,8 @@ document.addEventListener("keydown", (e) => {
 (async function init() {
   try {
     const st = await api("/api/status");
+    if (st.n_teams) fillSlotOptions(Number(st.n_teams));
+    slotSelect.value = localStorage.getItem("userSlot") || "1";
     presets = st.roster_presets || [];
     rosterSelect.innerHTML = "";
     for (const p of presets) {
@@ -562,6 +575,10 @@ document.addEventListener("keydown", (e) => {
     }
     rosterSelect.value = localStorage.getItem("rosterPreset") || "league_default";
     updateRosterDesc();
+    const setupSub = document.querySelector("#setup .sub");
+    if (setupSub && st.n_teams && st.pick_clock_seconds) {
+      setupSub.textContent = `${st.n_teams}-team PPR snake · ${st.pick_clock_seconds}-second clock on your pick`;
+    }
     if (!st.players) {
       showBanner(setupBanner, "No players in the database. Run: python -m draftopt.ingest");
     }

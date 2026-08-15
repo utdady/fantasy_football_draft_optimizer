@@ -5,9 +5,9 @@ from pathlib import Path
 MODE = "redraft"
 SCORING = "PPR"
 SEASON = 2026
-N_TEAMS = 10
+N_TEAMS = 12
 USER_SLOT_DEFAULT = 1
-PICK_CLOCK_SECONDS = 90
+PICK_CLOCK_SECONDS = 60
 
 # Default league: no K, IR is a roster slot but not drafted.
 ROSTER_PRESETS = {

@@ -1,6 +1,6 @@
 # Data Sources Checklist
 
-League assumptions for V0: **10-team · PPR · snake · redraft · ESPN**.
+League assumptions for V0: **12-team · PPR · snake · redraft · ESPN** (60s pick clock).
 
 Layers (do not mix in code):
 

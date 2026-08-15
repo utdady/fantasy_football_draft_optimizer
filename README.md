@@ -1,6 +1,6 @@
 # Fantasy Draft Optimizer
 
-10-team PPR snake redraft practice room + V1 marginal lineup-value recommendations.
+12-team PPR snake redraft practice room + V1 marginal lineup-value recommendations.
 
 > **Core thesis: 🟡 preliminary support (C−B > 0 after feasibility + DST controls).
 > V3-A calibration: 🟡 supported / frozen (D−C tradeoff). V3-B construction: 🔴 closed.
@@ -55,7 +55,7 @@ Open **http://127.0.0.1:8001**
 
 1. Enter name, slot, and lineup preset (default: no K, 7 bench).
 2. CPU teams pick with ADP + noise.
-3. On your turn (90s clock), TAKE uses **V1 marginal starter value** (FLEX-aware) from ESPN projections.
+3. On your turn (60s clock), TAKE uses **V1 marginal starter value** (FLEX-aware) from ESPN projections.
 4. Timeout autodrafts the V1 recommendation. `]` toggles TAKE. Ctrl+Z undoes your pick.
 
 Baseline ADP strategy remains available for experiments (`strategy=adp` on API / backtest).

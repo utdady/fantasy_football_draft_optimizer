@@ -540,7 +540,7 @@ def _md(report: dict) -> str:
     lat = fm.get("latency_ms") or {}
     lines.extend(
         [
-            "## Full 10-team mock (slot 1, seed 42)",
+            "## Full mock (slot 1, seed 42)",
             "",
             f"- complete checks embedded; board picks: {fm.get('n_board_picks')}",
             f"- user pos mix: `{fm.get('pos_counts')}`",
