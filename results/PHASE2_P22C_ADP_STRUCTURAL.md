@@ -1,9 +1,10 @@
 # P2.2C — ADP-structural evaluation (labeled ablation)
 
-**Status:** ADP-feasible ladder + C−B mechanism complete
+**Status:** ADP-feasible ladder + C−B mechanism + left-tail loss-case inspection complete
 ([`phase2_p22c_adp_feasible_ladder.md`](phase2_p22c_adp_feasible_ladder.md),
-[`phase2_p22c_valuation_cb_mechanism.md`](phase2_p22c_valuation_cb_mechanism.md)).
-**Not** production `marginal`. `evaluable` still 0. V3 still blocked (interpret mechanism before design).
+[`phase2_p22c_valuation_cb_mechanism.md`](phase2_p22c_valuation_cb_mechanism.md),
+[`phase2_p22c_loss_case_inspection.md`](phase2_p22c_loss_case_inspection.md)).
+**Not** production `marginal`. `evaluable` still 0. V3 still blocked (interpret failure mechanism before design).
 
 **Parents:** [`PHASE2_P22_SOURCES.md`](PHASE2_P22_SOURCES.md) · P2.2A
 [`phase2_p22_feasibility_2024_12tm.md`](phase2_p22_feasibility_2024_12tm.md) ·
@@ -187,6 +188,22 @@ Offline attribution from the ladder JSON (no re-sim):
 | Left tail | Worst 10 mean **−128**; losses concentrated in **RB/TE/QB** and **r11-15**; often miss late RB/TE breakouts after early DST |
 
 Research question for V3 design remains: **are left-tail failures systematic valuation errors?** Do not chase mean until that is answered.
+
+### Left-tail loss-case inspection
+
+Artifact: [`phase2_p22c_loss_case_inspection.md`](phase2_p22c_loss_case_inspection.md)
+
+Worst 10 C−B pairs replayed with decision-time alternatives:
+
+| Finding | Detail |
+| --- | --- |
+| Fork timing | Almost all first forks in **R5–R8** |
+| Fork positions | C: TE/WR/RB · B: often **QB** or RB |
+| Fork pick actual | C wins **1**, loses **9** on the fork pick itself |
+| Post-fork | **10/10** have ≥80 PPR hindsight regret among shown alts later |
+| DST-at-fork | **Not** the dominant first-split pattern in this set |
+
+Provisional: losses look like **mid-draft valuation forks (often TE vs QB)** plus **downstream cascade**, not “forgot DST at the split.” Still hypotheses — V3 blocked.
 ### Commands
 
 ```bash
@@ -203,6 +220,9 @@ python -m draftopt.phase2.feasible_ladder_p22c --slots 1-12 --n-sims 5
 
 # C−B valuation mechanism (offline from ladder JSON; no re-sim)
 python -m draftopt.phase2.diagnose_valuation_p22c
+
+# Left-tail loss-case inspection (replays worst C−B pairs only)
+python -m draftopt.phase2.inspect_loss_cases_p22c
 ```
 
 Scoring contract: [`PHASE2_P22C_SCORING_CONTRACT_ppr_eval_v1_2024.md`](PHASE2_P22C_SCORING_CONTRACT_ppr_eval_v1_2024.md)
