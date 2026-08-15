@@ -1,0 +1,246 @@
+{
+  "stage": "V3B_smoke",
+  "created_at": "2026-08-15T12:57:17Z",
+  "ok": true,
+  "cases": [
+    {
+      "slot": 1,
+      "seed": 42,
+      "draft_id": "f76c3a14456f",
+      "d_top": [
+        {
+          "name": "Josh Allen",
+          "pos": "QB",
+          "marginal": 350.29
+        },
+        {
+          "name": "Patrick Mahomes",
+          "pos": "QB",
+          "marginal": 336.5
+        },
+        {
+          "name": "Jalen Hurts",
+          "pos": "QB",
+          "marginal": 320.77
+        },
+        {
+          "name": "Lamar Jackson",
+          "pos": "QB",
+          "marginal": 302.81
+        },
+        {
+          "name": "C.J. Stroud",
+          "pos": "QB",
+          "marginal": 285.74
+        },
+        {
+          "name": "Tyreek Hill",
+          "pos": "WR",
+          "marginal": 285.09
+        },
+        {
+          "name": "CeeDee Lamb",
+          "pos": "WR",
+          "marginal": 285.09
+        },
+        {
+          "name": "Amon-Ra St. Brown",
+          "pos": "WR",
+          "marginal": 285.09
+        }
+      ],
+      "e_top": [
+        {
+          "name": "Josh Allen",
+          "pos": "QB",
+          "marginal_d": 350.29,
+          "replacement": 336.4992,
+          "replacement_missing": false,
+          "marginal_e": 13.79
+        },
+        {
+          "name": "Travis Kelce",
+          "pos": "TE",
+          "marginal_d": 191.16,
+          "replacement": 190.9327,
+          "replacement_missing": false,
+          "marginal_e": 0.23
+        },
+        {
+          "name": "Christian McCaffrey",
+          "pos": "RB",
+          "marginal_d": 247.04,
+          "replacement": 247.042,
+          "replacement_missing": false,
+          "marginal_e": -0.0
+        },
+        {
+          "name": "Breece Hall",
+          "pos": "RB",
+          "marginal_d": 247.04,
+          "replacement": 247.042,
+          "replacement_missing": false,
+          "marginal_e": -0.0
+        },
+        {
+          "name": "Tyreek Hill",
+          "pos": "WR",
+          "marginal_d": 285.09,
+          "replacement": 285.0891,
+          "replacement_missing": false,
+          "marginal_e": 0.0
+        },
+        {
+          "name": "CeeDee Lamb",
+          "pos": "WR",
+          "marginal_d": 285.09,
+          "replacement": 285.0891,
+          "replacement_missing": false,
+          "marginal_e": 0.0
+        },
+        {
+          "name": "Bijan Robinson",
+          "pos": "RB",
+          "marginal_d": 247.04,
+          "replacement": 247.042,
+          "replacement_missing": false,
+          "marginal_e": -0.0
+        },
+        {
+          "name": "Amon-Ra St. Brown",
+          "pos": "WR",
+          "marginal_d": 285.09,
+          "replacement": 285.0891,
+          "replacement_missing": false,
+          "marginal_e": 0.0
+        }
+      ],
+      "n_d": 51,
+      "n_e": 51,
+      "md_identical_across_d_and_e": true,
+      "me_equals_md_minus_r": true,
+      "d_top1": "Josh Allen",
+      "e_top1": "Josh Allen"
+    },
+    {
+      "slot": 8,
+      "seed": 44,
+      "draft_id": "b8fb783027a3",
+      "d_top": [
+        {
+          "name": "Josh Allen",
+          "pos": "QB",
+          "marginal": 350.29
+        },
+        {
+          "name": "Patrick Mahomes",
+          "pos": "QB",
+          "marginal": 336.5
+        },
+        {
+          "name": "Jalen Hurts",
+          "pos": "QB",
+          "marginal": 320.77
+        },
+        {
+          "name": "Lamar Jackson",
+          "pos": "QB",
+          "marginal": 302.81
+        },
+        {
+          "name": "C.J. Stroud",
+          "pos": "QB",
+          "marginal": 285.74
+        },
+        {
+          "name": "Justin Jefferson",
+          "pos": "WR",
+          "marginal": 280.88
+        },
+        {
+          "name": "A.J. Brown",
+          "pos": "WR",
+          "marginal": 272.75
+        },
+        {
+          "name": "Anthony Richardson Sr.",
+          "pos": "QB",
+          "marginal": 272.65
+        }
+      ],
+      "e_top": [
+        {
+          "name": "Josh Allen",
+          "pos": "QB",
+          "marginal_d": 350.29,
+          "replacement": 336.4992,
+          "replacement_missing": false,
+          "marginal_e": 13.79
+        },
+        {
+          "name": "Christian McCaffrey",
+          "pos": "RB",
+          "marginal_d": 247.04,
+          "replacement": 236.0642,
+          "replacement_missing": false,
+          "marginal_e": 10.98
+        },
+        {
+          "name": "Justin Jefferson",
+          "pos": "WR",
+          "marginal_d": 280.88,
+          "replacement": 272.753,
+          "replacement_missing": false,
+          "marginal_e": 8.13
+        },
+        {
+          "name": "Travis Kelce",
+          "pos": "TE",
+          "marginal_d": 191.16,
+          "replacement": 190.9327,
+          "replacement_missing": false,
+          "marginal_e": 0.23
+        },
+        {
+          "name": "Sam LaPorta",
+          "pos": "TE",
+          "marginal_d": 190.93,
+          "replacement": 191.1643,
+          "replacement_missing": false,
+          "marginal_e": -0.23
+        },
+        {
+          "name": "Mark Andrews",
+          "pos": "TE",
+          "marginal_d": 190.39,
+          "replacement": 191.1643,
+          "replacement_missing": false,
+          "marginal_e": -0.77
+        },
+        {
+          "name": "A.J. Brown",
+          "pos": "WR",
+          "marginal_d": 272.75,
+          "replacement": 280.8836,
+          "replacement_missing": false,
+          "marginal_e": -8.13
+        },
+        {
+          "name": "Jonathan Taylor",
+          "pos": "RB",
+          "marginal_d": 236.06,
+          "replacement": 247.042,
+          "replacement_missing": false,
+          "marginal_e": -10.98
+        }
+      ],
+      "n_d": 48,
+      "n_e": 48,
+      "md_identical_across_d_and_e": true,
+      "me_equals_md_minus_r": true,
+      "d_top1": "Josh Allen",
+      "e_top1": "Josh Allen"
+    }
+  ],
+  "note": "Smoke only: verifies M_D reuse and M_E=M_D\u2212r*. Not the E\u2212D ladder."
+}

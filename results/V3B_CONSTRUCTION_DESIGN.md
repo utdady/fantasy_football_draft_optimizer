@@ -264,11 +264,17 @@ Do **not** write E until all boxes are acknowledged:
 - [x] D/E share identical frozen V3-A values
 - [x] Primary contrast E−D; success needs mean, median, WR, **and p10**
 - [x] Forbidden list frozen (no V2/λ/Allen engineering/map retune)
-- [ ] Strategy + ladder implemented under this contract (next PR after freeze)
-- [ ] Report written with E−D distribution + interpretation flags
+- [x] Replacement unit/spec tests (`tests/test_replacement_nextbest.py`)
+- [x] Strategy + ladder implemented under this contract (`adp_v3b`, `ladder_v3b_p22c`)
+- [x] Report written with E−D distribution + interpretation flags
+  ([`phase2_v3b_ladder.md`](phase2_v3b_ladder.md))
 
-**Next (after this freeze):** implement `adp_v3b` + same-board E−D ladder only.
-No parallel construction variants in the first E PR.
+**V3-B.0 result (do not invent E.1):** E−D full mean **−24.3**, median **−22.6**,
+WR **42%**, p10 **−204** → flag `e_minus_d_nonpositive` — construction
+hypothesis **fails cleanly** on this board. Map stays frozen; no λ/CVaR/V2.
+
+**Next:** document falsification; any new construction id requires a new design
+revision — not a silent retune of `replacement_nextbest_v1`.
 
 ---
 
@@ -279,8 +285,9 @@ No parallel construction variants in the first E PR.
 | V3-A valuation | 🟢 supported |
 | V3-A roster translation | 🟡 failure mechanism identified (`D_combination`) |
 | Replacement-cost hypothesis | 🟢 **formalized here** |
-| V3-B design | 🟢 **frozen** |
-| V3-B implementation | 🔴 blocked until checklist gate opens |
+| V3-B design | 🟢 **frozen** (`cb7a325`) |
+| V3-B.0 implementation | 🟢 run (`replacement_nextbest_v1`) |
+| V3-B.0 E−D result | 🔴 **fails cleanly** (mean −24 / WR 42% / p10 −204) |
 | Risk / survival / V2 | 🔴 remain frozen |
 | External validity | 🔴 one season / modeled opponents |
 | UI | `marginal` |
