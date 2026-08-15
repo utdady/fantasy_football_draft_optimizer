@@ -1,0 +1,37 @@
+{
+  "stage": "P2.2C_outcome_coverage",
+  "created_at": "2026-08-15T09:39:05Z",
+  "snapshot_id": "2024-preseason-2024-09-01-ffc12",
+  "season": 2024,
+  "contract_id": "ppr_eval_v1_2024",
+  "source": "nflverse_computed",
+  "evaluable": 0,
+  "contract": {
+    "contract_id": "ppr_eval_v1_2024",
+    "outcome_source": "nflverse_computed",
+    "outcome_season": 2024,
+    "decision_snapshot_id": "2024-preseason-2024-09-01-ffc12",
+    "n_teams": 12,
+    "n_rounds": 15,
+    "roster_preset": "league_default",
+    "season_type": "REG",
+    "missing_policy": "missing_identity / missing_weeks never score as 0; only observed_zero and observed_points enter eval_outcomes",
+    "starter_scoring": "Same greedy FLEX-aware lineup_ev as production; bench excluded from headline \u0394 (future commit). IR not drafted.",
+    "frozen": true
+  },
+  "n_pool": 205,
+  "n_offense": 193,
+  "n_dst": 12,
+  "offense_observed": 193,
+  "dst_observed": 12,
+  "by_state": {
+    "observed_points": 203,
+    "observed_zero": 2
+  },
+  "missing_sample": [],
+  "coalesce_violations": [],
+  "outcome_coverage_gate": "pass",
+  "outcome_coverage_gate_reasons": [],
+  "note": "Outcome coverage only. No strategy \u0394. missing \u2260 zero invariant checked. evaluable stays 0 until a later promotion step after \u0394 methodology is reviewed.",
+  "next": "Inspect this report. If gate=pass, next commit is boring \u0394: adp_baseline vs adp_structural on actual starter PPR under this contract."
+}

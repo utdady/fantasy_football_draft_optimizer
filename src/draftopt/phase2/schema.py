@@ -122,6 +122,22 @@ CREATE TABLE IF NOT EXISTS eval_picks (
 
 CREATE INDEX IF NOT EXISTS idx_eval_picks_player
     ON eval_picks(eval_draft_id, player_id);
+
+CREATE TABLE IF NOT EXISTS eval_outcome_status (
+    season INTEGER NOT NULL,
+    player_id TEXT NOT NULL,
+    contract_id TEXT NOT NULL,
+    outcome_state TEXT NOT NULL,
+    actual_ppr_points REAL,
+    games_played INTEGER,
+    source TEXT NOT NULL,
+    notes TEXT,
+    pulled_at TEXT NOT NULL,
+    PRIMARY KEY (season, player_id, contract_id, source)
+);
+
+CREATE INDEX IF NOT EXISTS idx_eval_outcome_status_state
+    ON eval_outcome_status(season, contract_id, outcome_state);
 """
 
 # Columns added after the first P2.1 freeze (CREATE IF NOT EXISTS does not alter).
@@ -133,6 +149,11 @@ _EVAL_SNAPSHOT_EXTRA_COLS: tuple[tuple[str, str], ...] = (
     ("validation_reason", "TEXT"),
 )
 
+_EVAL_OUTCOMES_EXTRA_COLS: tuple[tuple[str, str], ...] = (
+    ("contract_id", "TEXT"),
+    ("outcome_state", "TEXT"),
+)
+
 # Machine-readable refusal / validation reasons (spike + later gates).
 VALIDATION_REASONS = (
     "adp_as_of_unverified",
@@ -141,11 +162,13 @@ VALIDATION_REASONS = (
     "player_mapping_below_threshold",
     "outcome_coverage_below_threshold",
     "source_validation_pending",
+    "outcome_missing_identity",
+    "outcome_missing_weeks",
 )
 
 
 def migrate_eval_schema(conn: sqlite3.Connection) -> None:
-    """Create tables and add any missing eval_snapshots flag columns."""
+    """Create tables and add any missing eval_snapshots / outcomes columns."""
     conn.executescript(EVAL_SCHEMA)
     existing = {
         row[1]
@@ -154,4 +177,11 @@ def migrate_eval_schema(conn: sqlite3.Connection) -> None:
     for name, decl in _EVAL_SNAPSHOT_EXTRA_COLS:
         if name not in existing:
             conn.execute(f"ALTER TABLE eval_snapshots ADD COLUMN {name} {decl}")
+    out_cols = {
+        row[1]
+        for row in conn.execute("PRAGMA table_info(eval_outcomes)").fetchall()
+    }
+    for name, decl in _EVAL_OUTCOMES_EXTRA_COLS:
+        if name not in out_cols:
+            conn.execute(f"ALTER TABLE eval_outcomes ADD COLUMN {name} {decl}")
     conn.commit()

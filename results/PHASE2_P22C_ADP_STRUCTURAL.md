@@ -151,7 +151,7 @@ Coverage (`coverage_p22c`) is the gate before step 5.
 
 ```text
 P2.2B  ██████████ CLOSED (FP free API)
-P2.2C  █████░░░░░ mapping repair + coverage v2 (evaluable=0; PPR still blocked)
+P2.2C  ██████░░░░ mapping green + outcomes attach/gate (evaluable=0; Δ next)
 ```
 
 ### Commands
@@ -160,11 +160,15 @@ P2.2C  █████░░░░░ mapping repair + coverage v2 (evaluable=0;
 # Freeze FFC12 decision world (evaluable=0)
 python -m draftopt.phase2.materialize_p22c
 
-# Leakage + labeled replay smoke (ADP-curve starter pts — not actual PPR)
-python -m draftopt.phase2.smoke_p22c --slots 1,5,10 --n-sims 1
-
-# Decision-space coverage gate (before nflverse PPR)
-# Keep failed v1 artifact; write v2 after mapping repair:
+# Decision-space coverage (v2 after mapping repair)
 python -m draftopt.phase2.coverage_p22c --slots 1,5,10 --n-sims 3 \
   --out results/phase2_p22c_decision_space_coverage_v2.md
+
+# Attach 2024 nflverse outcomes under ppr_eval_v1_2024 (no Δ)
+python -m draftopt.phase2.attach_outcomes_p22c
+
+# Outcome coverage gate
+python -m draftopt.phase2.outcome_coverage_p22c
 ```
+
+Scoring contract: [`PHASE2_P22C_SCORING_CONTRACT_ppr_eval_v1_2024.md`](PHASE2_P22C_SCORING_CONTRACT_ppr_eval_v1_2024.md)

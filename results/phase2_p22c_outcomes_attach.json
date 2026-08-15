@@ -1,0 +1,30 @@
+{
+  "snapshot_id": "2024-preseason-2024-09-01-ffc12",
+  "season": 2024,
+  "contract_id": "ppr_eval_v1_2024",
+  "source": "nflverse_computed",
+  "pulled_at": "2026-08-15T09:38:48Z",
+  "evaluable": 0,
+  "n_pool": 205,
+  "n_weekly_rows": 2869,
+  "n_season_outcome_rows": 205,
+  "n_status_rows": 205,
+  "n_observed_points": 203,
+  "n_observed_zero": 2,
+  "n_missing_identity": 0,
+  "n_missing_weeks": 0,
+  "contract": {
+    "contract_id": "ppr_eval_v1_2024",
+    "outcome_source": "nflverse_computed",
+    "outcome_season": 2024,
+    "decision_snapshot_id": "2024-preseason-2024-09-01-ffc12",
+    "n_teams": 12,
+    "n_rounds": 15,
+    "roster_preset": "league_default",
+    "season_type": "REG",
+    "missing_policy": "missing_identity / missing_weeks never score as 0; only observed_zero and observed_points enter eval_outcomes",
+    "starter_scoring": "Same greedy FLEX-aware lineup_ev as production; bench excluded from headline \u0394 (future commit). IR not drafted.",
+    "frozen": true
+  },
+  "note": "Outcomes attached only. No strategy \u0394. evaluable remains 0. missing_* never stored as 0 in eval_outcomes."
+}
