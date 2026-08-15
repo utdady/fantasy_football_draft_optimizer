@@ -22,6 +22,9 @@
 > [`gate4`](results/phase2_v3a_gate4_leakage_audit.md).
 > `evaluable=0`. No UI / V2 / CVaR / construction retune.
 >
+> **Autopsy discipline:** [`results/AUTOPSY_GATE.md`](results/AUTOPSY_GATE.md) —
+> `marginal` is the control; dump cases / log disagreements before any new TAKE strategy.
+>
 > Phase 1 synthetic decision research is frozen. UI still uses raw **V1 `marginal`**.
 > V2 notes: [`results/V2_ALPHA_BASELINE.md`](results/V2_ALPHA_BASELINE.md),
 > [`results/V2_OBJECTIVE_DESIGN.md`](results/V2_OBJECTIVE_DESIGN.md).
@@ -57,6 +60,15 @@ Open **http://127.0.0.1:8001**
 2. CPU teams pick with ADP + noise.
 3. On your turn (60s clock), TAKE uses **V1 marginal starter value** (FLEX-aware) from ESPN projections.
 4. Timeout autodrafts the V1 recommendation. `]` toggles TAKE. Ctrl+Z undoes your pick.
+5. Optional: **Live league sim** (setup) to enter every seat's pick.
+6. **Autopsy** (does not change TAKE): **Dump case** / **Log disagree**, or:
+
+```powershell
+python -m draftopt.autopsy case --draft-id <id>
+python -m draftopt.autopsy analyze --draft-id <id> --players "Josh Allen,Jahmyr Gibbs,Puka Nacua" --out results/autopsy_r1.md
+```
+
+Gate rules: [`results/AUTOPSY_GATE.md`](results/AUTOPSY_GATE.md).
 
 Baseline ADP strategy remains available for experiments (`strategy=adp` on API / backtest).
 

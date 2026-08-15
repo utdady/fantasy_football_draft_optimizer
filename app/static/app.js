@@ -37,6 +37,8 @@ const showGradeBtn = document.getElementById("show-grade");
 const liveSimCheck = document.getElementById("live-sim");
 const cpuThisPickBtn = document.getElementById("cpu-this-pick");
 const undoBtn = document.getElementById("undo");
+const dumpCaseBtn = document.getElementById("dump-case");
+const logDisagreeBtn = document.getElementById("log-disagree");
 
 let draftId = localStorage.getItem("draftId");
 let state = null;
@@ -468,6 +470,64 @@ async function cpuThisPick() {
   }
 }
 
+async function dumpAutopsyCase() {
+  if (!draftId) return;
+  try {
+    const data = await api(`/api/drafts/${draftId}/autopsy/case`, { method: "POST" });
+    const top = (data.recommend || [])[0];
+    showBanner(
+      banner,
+      `Case dumped → ${data.path}` +
+        (top ? ` · TAKE ${top.name} (M ${top.marginal})` : "")
+    );
+  } catch (err) {
+    showBanner(banner, err.message);
+  }
+}
+
+async function logDisagreement() {
+  if (!draftId || !state) return;
+  const take = recs[0];
+  if (!take) {
+    showBanner(banner, "No TAKE recommendation to disagree with.");
+    return;
+  }
+  const chosenHit = hits[active];
+  const chosenName = chosenHit
+    ? chosenHit.name
+    : window.prompt(`You prefer whom instead of ${take.name}?`, search.value.trim() || "");
+  if (chosenHit && chosenHit.player_id === take.player_id) {
+    showBanner(banner, "Selected player is already TAKE — nothing to log.");
+    return;
+  }
+  if (!chosenHit && !chosenName) return;
+  const category =
+    window.prompt(
+      "Category: opportunity_cost | bad_data | roster_construction | human_policy | uncertainty | rec_sensible | other",
+      "opportunity_cost"
+    ) || "other";
+  const reason = window.prompt("Why? (short)", "") || "";
+  try {
+    const body = {
+      recommended_player_id: take.player_id,
+      category: category.trim(),
+      reason,
+    };
+    if (chosenHit) body.chosen_player_id = chosenHit.player_id;
+    else body.chosen_query = chosenName.trim();
+    const data = await api(`/api/drafts/${draftId}/autopsy/disagree`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+    showBanner(
+      banner,
+      `Logged disagree: TAKE ${data.recommended.name} → ${data.chosen.name} (${data.category})`
+    );
+  } catch (err) {
+    showBanner(banner, err.message);
+  }
+}
+
 async function timeoutAutopick() {
   if (autopicking || !draftId || !state || !state.is_user_turn) return;
   autopicking = true;
@@ -724,6 +784,16 @@ if (liveSimCheck) {
 if (cpuThisPickBtn) {
   cpuThisPickBtn.addEventListener("click", () => {
     cpuThisPick().catch((err) => showBanner(banner, err.message));
+  });
+}
+if (dumpCaseBtn) {
+  dumpCaseBtn.addEventListener("click", () => {
+    dumpAutopsyCase().catch((err) => showBanner(banner, err.message));
+  });
+}
+if (logDisagreeBtn) {
+  logDisagreeBtn.addEventListener("click", () => {
+    logDisagreement().catch((err) => showBanner(banner, err.message));
   });
 }
 document.getElementById("new-draft").addEventListener("click", () => {

@@ -5,6 +5,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
+from draftopt.autopsy import DISAGREE_CATEGORIES, autopsy_analyze, dump_case, format_analyze_markdown, log_disagreement
 from draftopt import db
 from draftopt.config import N_TEAMS, PICK_CLOCK_SECONDS, ROSTER_PRESETS, get_roster_preset
 from draftopt.draft.cpu import cpu_pick
@@ -57,6 +58,20 @@ class CreateDraftBody(BaseModel):
 class PickBody(BaseModel):
     player_id: str | None = None
     query: str | None = None
+
+
+class DisagreeBody(BaseModel):
+    recommended_player_id: str | None = None
+    recommended_query: str | None = None
+    chosen_player_id: str | None = None
+    chosen_query: str | None = None
+    category: str = "other"
+    reason: str = ""
+
+
+class AnalyzeBody(BaseModel):
+    players: list[str] = Field(default_factory=list)
+    n: int = Field(default=5, ge=1, le=20)
 
 
 @app.get("/")
@@ -216,6 +231,68 @@ def api_undo(draft_id: str):
     try:
         undo_pick(conn, draft_id)
         return payload(conn, draft_id)
+    except DraftError as e:
+        raise HTTPException(400, str(e)) from e
+    finally:
+        conn.close()
+
+
+@app.post("/api/drafts/{draft_id}/autopsy/case")
+def api_autopsy_case(draft_id: str, n: int = Query(default=10, ge=1, le=30)):
+    """Dump board + top-N M recommendations (does not change TAKE)."""
+    conn = get_conn()
+    try:
+        return dump_case(conn, draft_id, n_recs=n)
+    except DraftError as e:
+        raise HTTPException(404, str(e)) from e
+    finally:
+        conn.close()
+
+
+@app.post("/api/drafts/{draft_id}/autopsy/analyze")
+def api_autopsy_analyze(draft_id: str, body: AnalyzeBody):
+    """Diagnostic M + survival + next-pick stub table (does not change TAKE)."""
+    conn = get_conn()
+    try:
+        report = autopsy_analyze(
+            conn,
+            draft_id,
+            queries=body.players or None,
+            n_top=body.n,
+        )
+        report["markdown"] = format_analyze_markdown(report)
+        return report
+    except DraftError as e:
+        raise HTTPException(400, str(e)) from e
+    finally:
+        conn.close()
+
+
+@app.post("/api/drafts/{draft_id}/autopsy/disagree")
+def api_autopsy_disagree(draft_id: str, body: DisagreeBody):
+    """Append Gate-3 disagreement to results/autopsy_disagreements.jsonl."""
+    conn = get_conn()
+    try:
+        rec = body.recommended_player_id
+        ch = body.chosen_player_id
+        if not rec:
+            if not body.recommended_query:
+                raise HTTPException(400, "recommended_player_id or recommended_query required")
+            rec = resolve_player(conn, draft_id, body.recommended_query)
+        if not ch:
+            if not body.chosen_query:
+                raise HTTPException(400, "chosen_player_id or chosen_query required")
+            ch = resolve_player(conn, draft_id, body.chosen_query)
+        if body.category not in DISAGREE_CATEGORIES:
+            raise HTTPException(400, f"category must be one of {sorted(DISAGREE_CATEGORIES)}")
+        return log_disagreement(
+            conn,
+            draft_id,
+            recommended_player_id=rec,
+            chosen_player_id=ch,
+            reason=body.reason,
+            category=body.category,
+        )
     except DraftError as e:
         raise HTTPException(400, str(e)) from e
     finally:
