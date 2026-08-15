@@ -84,8 +84,8 @@ def contract_meta() -> dict:
             "only observed_zero and observed_points enter eval_outcomes"
         ),
         "starter_scoring": (
-            "Same greedy FLEX-aware lineup_ev as production; bench excluded from "
-            "headline Δ (future commit). IR not drafted."
+            "Same greedy FLEX-aware lineup_ev as production; headline Δ uses "
+            "starters only (bench recorded separately). IR not drafted."
         ),
         "frozen": True,
     }

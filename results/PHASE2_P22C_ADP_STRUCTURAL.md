@@ -151,24 +151,18 @@ Coverage (`coverage_p22c`) is the gate before step 5.
 
 ```text
 P2.2B  ██████████ CLOSED (FP free API)
-P2.2C  ██████░░░░ mapping green + outcomes attach/gate (evaluable=0; Δ next)
+P2.2C  ███████░░░ outcomes green; actual-PPR Δ runner (evaluable=0)
 ```
 
 ### Commands
 
 ```bash
-# Freeze FFC12 decision world (evaluable=0)
-python -m draftopt.phase2.materialize_p22c
-
-# Decision-space coverage (v2 after mapping repair)
-python -m draftopt.phase2.coverage_p22c --slots 1,5,10 --n-sims 3 \
-  --out results/phase2_p22c_decision_space_coverage_v2.md
-
-# Attach 2024 nflverse outcomes under ppr_eval_v1_2024 (no Δ)
+# Attach outcomes + coverage gate (already green on 61888bd)
 python -m draftopt.phase2.attach_outcomes_p22c
-
-# Outcome coverage gate
 python -m draftopt.phase2.outcome_coverage_p22c
+
+# Actual-PPR Δ (baseline vs structural) — modeled opponents; n=1 season
+python -m draftopt.phase2.delta_p22c --slots 1-12 --n-sims 5
 ```
 
 Scoring contract: [`PHASE2_P22C_SCORING_CONTRACT_ppr_eval_v1_2024.md`](PHASE2_P22C_SCORING_CONTRACT_ppr_eval_v1_2024.md)
