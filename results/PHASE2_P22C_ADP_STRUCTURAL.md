@@ -1,8 +1,9 @@
 # P2.2C — ADP-structural evaluation (labeled ablation)
 
-**Status:** ADP-feasible ladder complete
-([`phase2_p22c_adp_feasible_ladder.md`](phase2_p22c_adp_feasible_ladder.md)).
-**Not** production `marginal`. `evaluable` still 0. V3 still blocked.
+**Status:** ADP-feasible ladder + C−B mechanism complete
+([`phase2_p22c_adp_feasible_ladder.md`](phase2_p22c_adp_feasible_ladder.md),
+[`phase2_p22c_valuation_cb_mechanism.md`](phase2_p22c_valuation_cb_mechanism.md)).
+**Not** production `marginal`. `evaluable` still 0. V3 still blocked (interpret mechanism before design).
 
 **Parents:** [`PHASE2_P22_SOURCES.md`](PHASE2_P22_SOURCES.md) · P2.2A
 [`phase2_p22_feasibility_2024_12tm.md`](phase2_p22_feasibility_2024_12tm.md) ·
@@ -153,7 +154,7 @@ Coverage (`coverage_p22c`) is the gate before step 5.
 
 ```text
 P2.2B  ██████████ CLOSED (FP free API)
-P2.2C  █████████░ feasible ladder green; valuation C−B first evidence (evaluable=0)
+P2.2C  ██████████ feasible ladder + C−B mechanism (evaluable=0; V3 still blocked)
 ```
 
 ### ADP-feasible ladder (load-bearing)
@@ -172,6 +173,20 @@ DST fill: baseline 35% · feasible 100% · structural 100%.
 
 **Read:** C−A (+130) was contaminated by feasibility. After controlling with `adp_feasible`, structural still beats feasible on full and ex-DST — first evidence of a valuation/construction edge beyond “fill required slots.” Still n=1 season, modeled opponents; not V3 greenlight; UI stays `marginal`.
 
+### C−B mechanism (position / round / slot / left tail)
+
+Artifact: [`phase2_p22c_valuation_cb_mechanism.md`](phase2_p22c_valuation_cb_mechanism.md)
+
+Offline attribution from the ladder JSON (no re-sim):
+
+| Lens | Finding |
+| --- | --- |
+| Position | Mean C−B driven by **WR (+44)** and **TE (+26)**; QB ≈ 0; RB mean slightly negative |
+| Round band | Gains in all bands; mid **r6-10** and late still matter; R6 large +, R10/R12/R14 large − |
+| Slot | Highly uneven (n=5/slot); slot 7 outlier-strong; slot 1 contains the −282 min |
+| Left tail | Worst 10 mean **−128**; losses concentrated in **RB/TE/QB** and **r11-15**; often miss late RB/TE breakouts after early DST |
+
+Research question for V3 design remains: **are left-tail failures systematic valuation errors?** Do not chase mean until that is answered.
 ### Commands
 
 ```bash
@@ -185,6 +200,9 @@ python -m draftopt.phase2.delta_p22c --slots 1-12 --n-sims 5
 # Mechanism audit + ADP-feasible ladder
 python -m draftopt.phase2.diagnose_delta_p22c --slots 1-12 --n-sims 5
 python -m draftopt.phase2.feasible_ladder_p22c --slots 1-12 --n-sims 5
+
+# C−B valuation mechanism (offline from ladder JSON; no re-sim)
+python -m draftopt.phase2.diagnose_valuation_p22c
 ```
 
 Scoring contract: [`PHASE2_P22C_SCORING_CONTRACT_ppr_eval_v1_2024.md`](PHASE2_P22C_SCORING_CONTRACT_ppr_eval_v1_2024.md)

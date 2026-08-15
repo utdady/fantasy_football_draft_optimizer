@@ -2,28 +2,19 @@
 
 10-team PPR snake redraft practice room + V1 marginal lineup-value recommendations.
 
-> **V2-alpha is not yet validated as a real-world drafting advantage.** It currently
-> demonstrates an advantage over V1 baselines under an ADP-greedy simulated
-> lookahead (see [`results/V2_ALPHA_BASELINE.md`](results/V2_ALPHA_BASELINE.md)).
-> The UI still uses raw **V1 `marginal`**. Objective / scenario semantics for
-> further V2 work are frozen in [`results/V2_OBJECTIVE_DESIGN.md`](results/V2_OBJECTIVE_DESIGN.md)
-> — no new V2 strategy until that note is revised.
+> **Core thesis: 🟡 preliminary support (C−B > 0 after feasibility + DST controls).
+> External validity 🔴. V3 conceptually justified, implementation blocked pending
+> C−B mechanism. UI: `marginal`.**
 >
-> **Phase 2 (next research track):** historical snapshot + actual-points evaluation
-> ([`results/PHASE2_HISTORICAL_EVAL.md`](results/PHASE2_HISTORICAL_EVAL.md)). Algorithms
-> stay frozen; first promotion-worthy evidence must be leakage-safe **actual** PPR.
+> Evidence: ADP → ADP-feasible → structural ladder under 2024 FFC actual PPR
+> ([`results/phase2_p22c_adp_feasible_ladder.md`](results/phase2_p22c_adp_feasible_ladder.md);
+> track [`results/PHASE2_P22C_ADP_STRUCTURAL.md`](results/PHASE2_P22C_ADP_STRUCTURAL.md)).
+> `evaluable=0`. No V3 / λ / CVaR until the C−B mechanism report is interpreted.
 >
-> **P2.1 done:** frozen snapshot `2026-preseason-2026-08-12` in `data/draftopt_eval.db`
-> (**pipeline proof**, `evaluable=0` — not for actual-points claims). See
-> [`results/PHASE2_P21_SNAPSHOT.md`](results/PHASE2_P21_SNAPSHOT.md). Next: **P2.2**
-> historical eval snapshot + outcomes ([`results/PHASE2_P22_SOURCES.md`](results/PHASE2_P22_SOURCES.md)).
-> Stage A spike: FFC 2024 10-team request **failed** league-size check (`evaluable=0`).
-> **P2.2B:** projection source audit — [`results/PHASE2_P22B_PROJECTION_AUDIT.md`](results/PHASE2_P22B_PROJECTION_AUDIT.md)
-> **P2.2B CLOSED:** no dated historical projections confirmed via FantasyPros free API
-> ([`results/phase2_p22b_fp_probe.md`](results/phase2_p22b_fp_probe.md)).
-> **Next:** labeled ADP-structural track
-> ([`results/PHASE2_P22C_ADP_STRUCTURAL.md`](results/PHASE2_P22C_ADP_STRUCTURAL.md)).
-
+> Phase 1 synthetic decision research is frozen. UI still uses raw **V1 `marginal`**.
+> V2 notes: [`results/V2_ALPHA_BASELINE.md`](results/V2_ALPHA_BASELINE.md),
+> [`results/V2_OBJECTIVE_DESIGN.md`](results/V2_OBJECTIVE_DESIGN.md).
+>
 ## Setup
 
 ```powershell
