@@ -1,0 +1,134 @@
+{
+  "stage": "P2.2C_smoke",
+  "created_at": "2026-08-15T07:21:16Z",
+  "snapshot_id": "2024-preseason-2024-09-01-ffc12",
+  "evaluable": 0,
+  "decision_market": "FFC",
+  "league_size": 12,
+  "value_signal": "adp_linear_v1_2024_ffc12",
+  "scoring_note": "curve_starter_pts use ADP-derived values aliased as ESPN projections in draft_db. NOT actual 2024 PPR. NOT production marginal.",
+  "curve": {
+    "curve_id": "adp_linear_v1_2024_ffc12",
+    "formula": "v = clamp(V_FLOOR, V_MAX * (ADP_REF - adp) / (ADP_REF - 1), V_MAX)",
+    "V_MAX": 350.0,
+    "ADP_REF": 180.0,
+    "V_FLOOR": 1.0,
+    "frozen": true,
+    "note": "Do not change after outcome evaluation begins."
+  },
+  "leakage": "pass",
+  "n_findings": 0,
+  "snapshot_meta": {
+    "snapshot_id": "2024-preseason-2024-09-01-ffc12",
+    "snapshot_date": "2024-09-01",
+    "evaluable": 0,
+    "pipeline_proof": 0,
+    "validation_status": "source_validation",
+    "validation_reason": "historical_projection_missing"
+  },
+  "materialize": {
+    "snapshot_id": "2024-preseason-2024-09-01-ffc12",
+    "draft_db": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\draftopt_p22c.db",
+    "skipped_materialize": true
+  },
+  "n_teams": 12,
+  "n_rounds": 15,
+  "roster_preset": "league_default",
+  "strategies": [
+    "adp_baseline",
+    "adp_structural"
+  ],
+  "slots": [
+    1,
+    5,
+    10
+  ],
+  "n_sims": 1,
+  "seed0": 42,
+  "runs": [
+    {
+      "strategy": "adp_baseline",
+      "slot": 1,
+      "seed": 42,
+      "curve_starter_pts": 2075.754189944134,
+      "roster_curve_pts": 2936.5,
+      "starter_rank": 6,
+      "n_user_picks": 15,
+      "first_pick": "Christian McCaffrey"
+    },
+    {
+      "strategy": "adp_structural",
+      "slot": 1,
+      "seed": 42,
+      "curve_starter_pts": 2213.603351955307,
+      "roster_curve_pts": 2859.4,
+      "starter_rank": 1,
+      "n_user_picks": 15,
+      "first_pick": "Christian McCaffrey"
+    },
+    {
+      "strategy": "adp_baseline",
+      "slot": 5,
+      "seed": 42,
+      "curve_starter_pts": 2153.9664804469276,
+      "roster_curve_pts": 2943.3,
+      "starter_rank": 2,
+      "n_user_picks": 15,
+      "first_pick": "Christian McCaffrey"
+    },
+    {
+      "strategy": "adp_structural",
+      "slot": 5,
+      "seed": 42,
+      "curve_starter_pts": 2268.3519553072624,
+      "roster_curve_pts": 2856.3,
+      "starter_rank": 1,
+      "n_user_picks": 15,
+      "first_pick": "Christian McCaffrey"
+    },
+    {
+      "strategy": "adp_baseline",
+      "slot": 10,
+      "seed": 42,
+      "curve_starter_pts": 2137.346368715084,
+      "roster_curve_pts": 2925.5,
+      "starter_rank": 2,
+      "n_user_picks": 15,
+      "first_pick": "Bijan Robinson"
+    },
+    {
+      "strategy": "adp_structural",
+      "slot": 10,
+      "seed": 42,
+      "curve_starter_pts": 2227.290502793296,
+      "roster_curve_pts": 2819.7,
+      "starter_rank": 1,
+      "n_user_picks": 15,
+      "first_pick": "Bijan Robinson"
+    }
+  ],
+  "deltas_curve_only": [
+    {
+      "slot": 1,
+      "seed": 42,
+      "delta_curve_starter": 137.84916201117312,
+      "baseline": 2075.754189944134,
+      "structural": 2213.603351955307
+    },
+    {
+      "slot": 5,
+      "seed": 42,
+      "delta_curve_starter": 114.38547486033485,
+      "baseline": 2153.9664804469276,
+      "structural": 2268.3519553072624
+    },
+    {
+      "slot": 10,
+      "seed": 42,
+      "delta_curve_starter": 89.9441340782123,
+      "baseline": 2137.346368715084,
+      "structural": 2227.290502793296
+    }
+  ],
+  "next_gate": "Attach nflverse 2024 PPR outcomes and score \u0394 on actual points; keep evaluable=0 until coverage gates pass."
+}

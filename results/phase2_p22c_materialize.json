@@ -1,0 +1,40 @@
+{
+  "snapshot_id": "2024-preseason-2024-09-01-ffc12",
+  "evaluable": 0,
+  "pipeline_proof": 0,
+  "validation_status": "source_validation",
+  "validation_reason": "historical_projection_missing",
+  "as_of": "2024-09-01",
+  "n_players": 205,
+  "n_mapped": 179,
+  "n_unresolved": 26,
+  "mapping_coverage": 0.8731707317073171,
+  "curve": {
+    "curve_id": "adp_linear_v1_2024_ffc12",
+    "formula": "v = clamp(V_FLOOR, V_MAX * (ADP_REF - adp) / (ADP_REF - 1), V_MAX)",
+    "V_MAX": 350.0,
+    "ADP_REF": 180.0,
+    "V_FLOOR": 1.0,
+    "frozen": true,
+    "note": "Do not change after outcome evaluation begins."
+  },
+  "provenance": {
+    "gate": "pass",
+    "reason": null,
+    "requested_year": 2024,
+    "requested_teams": 12,
+    "meta_type": "PPR",
+    "meta_teams": 12,
+    "meta_rounds": 15,
+    "total_drafts": 1371,
+    "start_date": "2024-08-31",
+    "end_date": "2024-09-01",
+    "as_of": "2024-09-01",
+    "as_of_interpretation": "FFC meta.end_date (upper bound of draft window in meta); ADP is an aggregate over [start_date, end_date], not a single pick clock.",
+    "n_players": 205
+  },
+  "eval_db": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\draftopt_eval.db",
+  "draft_db": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\draftopt_p22c.db",
+  "raw_json": "data\\raw\\ffc_adp_ppr_12tm_2024.json",
+  "alias_note": "draft_db adp_snapshots/projections_snapshots use source='espn' as a plumbing alias for FFC ADP + ADP-curve values; reports must label FFC."
+}

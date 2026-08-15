@@ -1,6 +1,7 @@
 # P2.2C — ADP-structural evaluation (labeled ablation)
 
-**Status:** methodology frozen; implementation starting. **Not** production `marginal`.
+**Status:** methodology frozen; snapshot + labeled strategies + smoke runner
+landed. **Not** production `marginal`. Actual-PPR scoring still gated.
 
 **Parents:** [`PHASE2_P22_SOURCES.md`](PHASE2_P22_SOURCES.md) · P2.2A
 [`phase2_p22_feasibility_2024_12tm.md`](phase2_p22_feasibility_2024_12tm.md) ·
@@ -86,11 +87,15 @@ Chosen **before** any actual-PPR comparison. Changing these after seeing Δ is a
    `validation_status=source_validation`, reason notes ADP-structural track).
 2. Attach mapped canonical IDs + ensure outcome coverage for draftable pool.
 3. Leakage validate (`*_as_of ≤ snapshot_date`).
-4. Replay: `adp_baseline` vs `adp_structural` (same slots/seeds).
+4. Replay: `adp_baseline` vs `adp_structural` (same slots/seeds; **12 teams × 15 rounds**
+   matching FFC meta; `league_default` roster, K not drafted).
 5. Score rosters with **actual** starter PPR (same slots as league).
 6. Report \(\Delta = \mathrm{PPR}_{structural} - \mathrm{PPR}_{baseline}\) by slot.
 7. Only then consider `evaluable=1` for this **labeled** experiment (still not
    Stage B “marginal vs ADP on ESPN proj”).
+
+Smoke (`smoke_p22c`) stops after step 4 and reports ADP-**curve** starter Δ only —
+do not treat that as empirical validity.
 
 ---
 
@@ -118,5 +123,15 @@ Chosen **before** any actual-PPR comparison. Changing these after seeing Δ is a
 
 ```text
 P2.2B  ██████████ CLOSED (FP free API)
-P2.2C  ░░░░░░░░░░ METHODOLOGY FROZEN — implement next
+P2.2C  ███░░░░░░░ materialize + strategies + smoke (curve pts only; evaluable=0)
+```
+
+### Commands
+
+```bash
+# Freeze FFC12 decision world (evaluable=0)
+python -m draftopt.phase2.materialize_p22c
+
+# Leakage + labeled replay smoke (ADP-curve starter pts — not actual PPR)
+python -m draftopt.phase2.smoke_p22c --slots 1,5,10 --n-sims 1
 ```
