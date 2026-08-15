@@ -1,0 +1,46 @@
+{
+  "snapshot_id": "2024-preseason-2024-09-01-ffc12-v3a",
+  "evaluable": 0,
+  "pipeline_proof": 0,
+  "validation_status": "source_validation",
+  "validation_reason": "historical_projection_missing",
+  "as_of": "2024-09-01",
+  "n_players": 205,
+  "n_valued": 205,
+  "n_mapped": 205,
+  "n_unresolved": 0,
+  "mapping_coverage": 1.0,
+  "curve": {
+    "curve_id": "adp_emp_pos_v1_train_2021_2023",
+    "calibration_as_of": "2023-09-01",
+    "training_seasons": [
+      2021,
+      2022,
+      2023
+    ],
+    "n_train_pairs": 562,
+    "frozen": true,
+    "note": "Do not retune after seeing 2024 D\u2212B / D\u2212C."
+  },
+  "calibration_path": "results\\v3a_calibration_2021_2023.json",
+  "provenance": {
+    "gate": "pass",
+    "reason": null,
+    "requested_year": 2024,
+    "requested_teams": 12,
+    "meta_type": "PPR",
+    "meta_teams": 12,
+    "meta_rounds": 15,
+    "total_drafts": 1371,
+    "start_date": "2024-08-31",
+    "end_date": "2024-09-01",
+    "as_of": "2024-09-01",
+    "as_of_interpretation": "FFC meta.end_date (upper bound of draft window in meta); ADP is an aggregate over [start_date, end_date], not a single pick clock.",
+    "n_players": 205
+  },
+  "eval_db": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\draftopt_eval.db",
+  "draft_db": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\draftopt_p22c_v3a.db",
+  "raw_json": "data\\raw\\ffc_adp_ppr_12tm_2024.json",
+  "alias_note": "draft_db adp_snapshots/projections_snapshots use source='espn' as a plumbing alias for FFC ADP + V3-A calibrated values; reports must label FFC.",
+  "parent_structural_db": "data/draftopt_p22c.db (unchanged)"
+}

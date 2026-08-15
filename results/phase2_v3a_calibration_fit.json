@@ -1,0 +1,475 @@
+{
+  "curve_id": "adp_emp_pos_v1_train_2021_2023",
+  "created_at": "2026-08-15T12:11:13Z",
+  "training_seasons": [
+    2021,
+    2022,
+    2023
+  ],
+  "calibration_as_of": "2023-09-01",
+  "eval_snapshot_as_of": "2024-09-01",
+  "temporal_boundary": "Training 2021\u20132023 only. No 2024 outcome information used in fit.",
+  "rules": {
+    "adp_edges": [
+      1.0,
+      12.0,
+      24.0,
+      36.0,
+      48.0,
+      60.0,
+      84.0,
+      108.0,
+      132.0,
+      156.0,
+      180.0,
+      null
+    ],
+    "min_n": 5,
+    "monotone": "non-increasing value as ADP increases (PAVA)",
+    "rookie_rule": "none \u2014 2024 ADP through frozen map only",
+    "fallback": "global ALL-position map if position empty",
+    "missing_adp": "no value (None)"
+  },
+  "train_meta": {
+    "years": [
+      {
+        "year": 2021,
+        "as_of": "2021-09-01",
+        "start_date": "2021-08-31",
+        "end_date": "2021-09-01",
+        "n_ffc": 211,
+        "n_mapped": 209,
+        "n_train_pairs": 209,
+        "raw_path": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\raw\\ffc_adp_ppr_12tm_2021.json"
+      },
+      {
+        "year": 2022,
+        "as_of": "2022-09-04",
+        "start_date": "2022-09-03",
+        "end_date": "2022-09-04",
+        "n_ffc": 157,
+        "n_mapped": 155,
+        "n_train_pairs": 155,
+        "raw_path": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\raw\\ffc_adp_ppr_12tm_2022.json"
+      },
+      {
+        "year": 2023,
+        "as_of": "2023-09-01",
+        "start_date": "2023-08-30",
+        "end_date": "2023-09-01",
+        "n_ffc": 202,
+        "n_mapped": 198,
+        "n_train_pairs": 198,
+        "raw_path": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\raw\\ffc_adp_ppr_12tm_2023.json"
+      }
+    ]
+  },
+  "n_train_pairs": 562,
+  "positions": {
+    "QB": {
+      "n_pairs": 71,
+      "points": [
+        {
+          "lo": 12.0,
+          "hi": 36.0,
+          "n": 7,
+          "raw_mean": 352.9571,
+          "adp_center": 24.0,
+          "value": 352.9571
+        },
+        {
+          "lo": 36.0,
+          "hi": 48.0,
+          "n": 5,
+          "raw_mean": 309.392,
+          "adp_center": 42.0,
+          "value": 309.392
+        },
+        {
+          "lo": 48.0,
+          "hi": 60.0,
+          "n": 7,
+          "raw_mean": 273.4686,
+          "adp_center": 54.0,
+          "value": 273.4686
+        },
+        {
+          "lo": 60.0,
+          "hi": 84.0,
+          "n": 10,
+          "raw_mean": 261.26,
+          "adp_center": 72.0,
+          "value": 261.26
+        },
+        {
+          "lo": 84.0,
+          "hi": 108.0,
+          "n": 11,
+          "raw_mean": 181.7182,
+          "adp_center": 96.0,
+          "value": 198.7496
+        },
+        {
+          "lo": 108.0,
+          "hi": 132.0,
+          "n": 10,
+          "raw_mean": 209.732,
+          "adp_center": 120.0,
+          "value": 198.7496
+        },
+        {
+          "lo": 132.0,
+          "hi": 156.0,
+          "n": 14,
+          "raw_mean": 204.7986,
+          "adp_center": 144.0,
+          "value": 198.7496
+        },
+        {
+          "lo": 156.0,
+          "hi": 180.0,
+          "n": 7,
+          "raw_mean": 158.7571,
+          "adp_center": 168.0,
+          "value": 158.7571
+        }
+      ]
+    },
+    "RB": {
+      "n_pairs": 173,
+      "points": [
+        {
+          "lo": 1.0,
+          "hi": 12.0,
+          "n": 20,
+          "raw_mean": 247.042,
+          "adp_center": 6.5,
+          "value": 247.042
+        },
+        {
+          "lo": 12.0,
+          "hi": 24.0,
+          "n": 17,
+          "raw_mean": 208.7859,
+          "adp_center": 18.0,
+          "value": 208.7859
+        },
+        {
+          "lo": 24.0,
+          "hi": 36.0,
+          "n": 13,
+          "raw_mean": 191.2,
+          "adp_center": 30.0,
+          "value": 191.2
+        },
+        {
+          "lo": 36.0,
+          "hi": 48.0,
+          "n": 13,
+          "raw_mean": 169.6308,
+          "adp_center": 42.0,
+          "value": 169.6308
+        },
+        {
+          "lo": 48.0,
+          "hi": 60.0,
+          "n": 11,
+          "raw_mean": 108.8182,
+          "adp_center": 54.0,
+          "value": 134.1411
+        },
+        {
+          "lo": 60.0,
+          "hi": 84.0,
+          "n": 25,
+          "raw_mean": 159.464,
+          "adp_center": 72.0,
+          "value": 134.1411
+        },
+        {
+          "lo": 84.0,
+          "hi": 108.0,
+          "n": 25,
+          "raw_mean": 132.396,
+          "adp_center": 96.0,
+          "value": 132.396
+        },
+        {
+          "lo": 108.0,
+          "hi": 132.0,
+          "n": 26,
+          "raw_mean": 115.9269,
+          "adp_center": 120.0,
+          "value": 115.9269
+        },
+        {
+          "lo": 132.0,
+          "hi": 156.0,
+          "n": 12,
+          "raw_mean": 95.7833,
+          "adp_center": 144.0,
+          "value": 96.1508
+        },
+        {
+          "lo": 156.0,
+          "hi": 180.0,
+          "n": 11,
+          "raw_mean": 96.5182,
+          "adp_center": 168.0,
+          "value": 96.1508
+        }
+      ]
+    },
+    "WR": {
+      "n_pairs": 198,
+      "points": [
+        {
+          "lo": 1.0,
+          "hi": 12.0,
+          "n": 11,
+          "raw_mean": 285.0891,
+          "adp_center": 6.5,
+          "value": 285.0891
+        },
+        {
+          "lo": 12.0,
+          "hi": 24.0,
+          "n": 17,
+          "raw_mean": 252.8471,
+          "adp_center": 18.0,
+          "value": 252.8471
+        },
+        {
+          "lo": 24.0,
+          "hi": 36.0,
+          "n": 17,
+          "raw_mean": 207.8506,
+          "adp_center": 30.0,
+          "value": 215.6903
+        },
+        {
+          "lo": 36.0,
+          "hi": 48.0,
+          "n": 16,
+          "raw_mean": 223.53,
+          "adp_center": 42.0,
+          "value": 215.6903
+        },
+        {
+          "lo": 48.0,
+          "hi": 60.0,
+          "n": 15,
+          "raw_mean": 179.88,
+          "adp_center": 54.0,
+          "value": 179.88
+        },
+        {
+          "lo": 60.0,
+          "hi": 84.0,
+          "n": 29,
+          "raw_mean": 153.3366,
+          "adp_center": 72.0,
+          "value": 156.2834
+        },
+        {
+          "lo": 84.0,
+          "hi": 108.0,
+          "n": 31,
+          "raw_mean": 159.2303,
+          "adp_center": 96.0,
+          "value": 156.2834
+        },
+        {
+          "lo": 108.0,
+          "hi": 132.0,
+          "n": 28,
+          "raw_mean": 135.2821,
+          "adp_center": 120.0,
+          "value": 135.2821
+        },
+        {
+          "lo": 132.0,
+          "hi": 156.0,
+          "n": 18,
+          "raw_mean": 108.1744,
+          "adp_center": 144.0,
+          "value": 108.1744
+        },
+        {
+          "lo": 156.0,
+          "hi": 180.0,
+          "n": 16,
+          "raw_mean": 84.525,
+          "adp_center": 168.0,
+          "value": 84.525
+        }
+      ]
+    },
+    "TE": {
+      "n_pairs": 56,
+      "points": [
+        {
+          "lo": 1.0,
+          "hi": 36.0,
+          "n": 8,
+          "raw_mean": 191.4375,
+          "adp_center": 18.5,
+          "value": 191.4375
+        },
+        {
+          "lo": 36.0,
+          "hi": 60.0,
+          "n": 7,
+          "raw_mean": 190.0714,
+          "adp_center": 48.0,
+          "value": 190.0714
+        },
+        {
+          "lo": 60.0,
+          "hi": 84.0,
+          "n": 7,
+          "raw_mean": 126.1857,
+          "adp_center": 72.0,
+          "value": 134.304
+        },
+        {
+          "lo": 84.0,
+          "hi": 108.0,
+          "n": 9,
+          "raw_mean": 142.4222,
+          "adp_center": 96.0,
+          "value": 134.304
+        },
+        {
+          "lo": 108.0,
+          "hi": 132.0,
+          "n": 8,
+          "raw_mean": 106.25,
+          "adp_center": 120.0,
+          "value": 119.8456
+        },
+        {
+          "lo": 132.0,
+          "hi": 180.0,
+          "n": 17,
+          "raw_mean": 133.4412,
+          "adp_center": 156.0,
+          "value": 119.8456
+        }
+      ]
+    },
+    "DST": {
+      "n_pairs": 31,
+      "points": [
+        {
+          "lo": 108.0,
+          "hi": 132.0,
+          "n": 8,
+          "raw_mean": 97.625,
+          "adp_center": 120.0,
+          "value": 111.9596
+        },
+        {
+          "lo": 132.0,
+          "hi": 156.0,
+          "n": 17,
+          "raw_mean": 126.2941,
+          "adp_center": 144.0,
+          "value": 111.9596
+        },
+        {
+          "lo": 156.0,
+          "hi": 180.0,
+          "n": 6,
+          "raw_mean": 104.6667,
+          "adp_center": 168.0,
+          "value": 104.6667
+        }
+      ]
+    }
+  },
+  "global_fallback": {
+    "points": [
+      {
+        "lo": 1.0,
+        "hi": 12.0,
+        "n": 33,
+        "raw_mean": 259.3642,
+        "adp_center": 6.5,
+        "value": 259.3642
+      },
+      {
+        "lo": 12.0,
+        "hi": 24.0,
+        "n": 39,
+        "raw_mean": 239.3579,
+        "adp_center": 18.0,
+        "value": 239.3579
+      },
+      {
+        "lo": 24.0,
+        "hi": 36.0,
+        "n": 38,
+        "raw_mean": 211.8911,
+        "adp_center": 30.0,
+        "value": 213.0366
+      },
+      {
+        "lo": 36.0,
+        "hi": 48.0,
+        "n": 37,
+        "raw_mean": 214.1822,
+        "adp_center": 42.0,
+        "value": 213.0366
+      },
+      {
+        "lo": 48.0,
+        "hi": 60.0,
+        "n": 37,
+        "raw_mean": 176.8616,
+        "adp_center": 54.0,
+        "value": 176.8616
+      },
+      {
+        "lo": 60.0,
+        "hi": 84.0,
+        "n": 71,
+        "raw_mean": 168.0177,
+        "adp_center": 72.0,
+        "value": 168.0177
+      },
+      {
+        "lo": 84.0,
+        "hi": 108.0,
+        "n": 76,
+        "raw_mean": 151.6676,
+        "adp_center": 96.0,
+        "value": 151.6676
+      },
+      {
+        "lo": 108.0,
+        "hi": 132.0,
+        "n": 80,
+        "raw_mean": 131.629,
+        "adp_center": 120.0,
+        "value": 132.363
+      },
+      {
+        "lo": 132.0,
+        "hi": 156.0,
+        "n": 92,
+        "raw_mean": 133.097,
+        "adp_center": 144.0,
+        "value": 132.363
+      },
+      {
+        "lo": 156.0,
+        "hi": 180.0,
+        "n": 59,
+        "raw_mean": 111.4695,
+        "adp_center": 168.0,
+        "value": 111.4695
+      }
+    ]
+  }
+}

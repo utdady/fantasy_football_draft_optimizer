@@ -125,13 +125,11 @@ def run_year(year: int) -> dict:
 
     counts = defaultdict(int)
     pairs: list[dict] = []
+    adp_by_ffc = {str(p["ffc_player_id"]): p.get("adp") for p in players}
     for m in mapped:
         pos = (m.get("position") or "").upper()
         name = m.get("name")
-        adp = next(
-            (p["adp"] for p in players if str(p["ffc_player_id"]) == str(m.get("source_player_id"))),
-            None,
-        )
+        adp = adp_by_ffc.get(str(m.get("source_player_id")))
         if pos == "DST":
             scored = _score_dst(
                 m.get("team") or "",
@@ -149,12 +147,15 @@ def run_year(year: int) -> dict:
         if scored["state"] in {"observed_points", "observed_zero"} and adp is not None:
             pairs.append(
                 {
+                    "train_year": year,
                     "name": name,
                     "position": pos,
-                    "adp": adp,
-                    "actual_ppr": scored["points"],
+                    "adp": float(adp),
+                    "actual_ppr": float(scored["points"]),
+                    "outcome_state": scored["state"],
                     "player_id": m.get("player_id"),
                     "gsis_id": m.get("gsis_id"),
+                    "ffc_player_id": str(m.get("source_player_id")),
                 }
             )
 
@@ -170,6 +171,7 @@ def run_year(year: int) -> dict:
         "n_observed": n_obs,
         "observed_coverage_of_mapped": round(n_obs / n_mapped, 4) if n_mapped else 0.0,
         "n_train_pairs_adp_and_observed": len(pairs),
+        "train_pairs": pairs,
         "missing_never_coalesced_to_zero": True,
         "sample_pairs_head": pairs[:5],
     }
@@ -253,7 +255,12 @@ def main() -> None:
     # Drop bulky sample in md-facing json? keep light
     slim = dict(report)
     slim["years"] = [
-        {k: v for k, v in y.items() if k != "sample_pairs_head"} for y in report["years"]
+        {
+            k: v
+            for k, v in y.items()
+            if k not in {"sample_pairs_head", "train_pairs"}
+        }
+        for y in report["years"]
     ]
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(_md(report), encoding="utf-8")

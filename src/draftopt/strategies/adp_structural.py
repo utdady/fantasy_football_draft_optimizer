@@ -36,3 +36,22 @@ class AdpStructuralStrategy(MarginalValueStrategy):
                 f"[value=ADP-curve, not ESPN proj]"
             )
         return out
+
+
+class AdpV3aStrategy(MarginalValueStrategy):
+    """
+    Same marginal construction as adp_structural; season_points come from the
+    V3-A calibrated map (draftopt_p22c_v3a.db). Construction unchanged.
+    """
+
+    name = "adp_v3a"
+
+    def recommend(self, conn, draft_id: str, n: int = 3) -> list[dict]:
+        out = super().recommend(conn, draft_id, n=n)
+        for item in out:
+            item["strategy"] = self.name
+            item["why"] = (
+                f"P2.2C V3-A: {item.get('why', '')} "
+                f"[value=adp_emp_pos_v1_train_2021_2023]"
+            )
+        return out
