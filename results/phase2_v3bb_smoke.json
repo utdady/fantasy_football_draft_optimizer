@@ -1,0 +1,148 @@
+{
+  "stage": "V3BB_smoke",
+  "created_at": "2026-08-15T15:16:57Z",
+  "ok": true,
+  "cases": [
+    {
+      "slot": 1,
+      "seed": 42,
+      "draft_id": "dc8276d5637d",
+      "md_identical_across_d_and_b": true,
+      "mb_equals_md_plus_c": true,
+      "d_top1": "Josh Allen",
+      "b_top1": "Tyreek Hill",
+      "order_changed": true,
+      "b_top": [
+        {
+          "name": "Tyreek Hill",
+          "pos": "WR",
+          "marginal_d": 285.09,
+          "continuation": 350.29480000000007,
+          "marginal_b": 635.38
+        },
+        {
+          "name": "CeeDee Lamb",
+          "pos": "WR",
+          "marginal_d": 285.09,
+          "continuation": 350.29480000000007,
+          "marginal_b": 635.38
+        },
+        {
+          "name": "Amon-Ra St. Brown",
+          "pos": "WR",
+          "marginal_d": 285.09,
+          "continuation": 350.29480000000007,
+          "marginal_b": 635.38
+        },
+        {
+          "name": "Josh Allen",
+          "pos": "QB",
+          "marginal_d": 350.29,
+          "continuation": 285.08910000000003,
+          "marginal_b": 635.38
+        },
+        {
+          "name": "Ja'Marr Chase",
+          "pos": "WR",
+          "marginal_d": 283.13,
+          "continuation": 350.29479999999995,
+          "marginal_b": 633.42
+        },
+        {
+          "name": "Justin Jefferson",
+          "pos": "WR",
+          "marginal_d": 280.88,
+          "continuation": 350.2948,
+          "marginal_b": 631.17
+        },
+        {
+          "name": "A.J. Brown",
+          "pos": "WR",
+          "marginal_d": 272.75,
+          "continuation": 350.29480000000007,
+          "marginal_b": 623.04
+        },
+        {
+          "name": "Patrick Mahomes",
+          "pos": "QB",
+          "marginal_d": 336.5,
+          "continuation": 285.0890999999999,
+          "marginal_b": 621.59
+        }
+      ],
+      "n_d": 51,
+      "n_b": 51
+    },
+    {
+      "slot": 8,
+      "seed": 44,
+      "draft_id": "bad431a227a6",
+      "md_identical_across_d_and_b": true,
+      "mb_equals_md_plus_c": true,
+      "d_top1": "Josh Allen",
+      "b_top1": "Justin Jefferson",
+      "order_changed": true,
+      "b_top": [
+        {
+          "name": "Justin Jefferson",
+          "pos": "WR",
+          "marginal_d": 280.88,
+          "continuation": 350.2948,
+          "marginal_b": 631.17
+        },
+        {
+          "name": "Josh Allen",
+          "pos": "QB",
+          "marginal_d": 350.29,
+          "continuation": 280.8836,
+          "marginal_b": 631.17
+        },
+        {
+          "name": "A.J. Brown",
+          "pos": "WR",
+          "marginal_d": 272.75,
+          "continuation": 350.29480000000007,
+          "marginal_b": 623.04
+        },
+        {
+          "name": "Garrett Wilson",
+          "pos": "WR",
+          "marginal_d": 269.39,
+          "continuation": 350.2948,
+          "marginal_b": 619.68
+        },
+        {
+          "name": "Patrick Mahomes",
+          "pos": "QB",
+          "marginal_d": 336.5,
+          "continuation": 280.8836,
+          "marginal_b": 617.38
+        },
+        {
+          "name": "Marvin Harrison Jr.",
+          "pos": "WR",
+          "marginal_d": 262.66,
+          "continuation": 350.2948,
+          "marginal_b": 612.95
+        },
+        {
+          "name": "Puka Nacua",
+          "pos": "WR",
+          "marginal_d": 260.7,
+          "continuation": 350.29479999999995,
+          "marginal_b": 610.99
+        },
+        {
+          "name": "Jalen Hurts",
+          "pos": "QB",
+          "marginal_d": 320.77,
+          "continuation": 280.8836,
+          "marginal_b": 601.65
+        }
+      ],
+      "n_d": 48,
+      "n_b": 48
+    }
+  ],
+  "note": "Smoke: M_D reuse and M_B=M_D+C. Gates P/N are unit tests."
+}

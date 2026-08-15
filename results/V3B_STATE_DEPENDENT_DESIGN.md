@@ -1,8 +1,8 @@
 # V3-B Branch B — one-step state-dependent design (frozen)
 
 **Status:** frozen **design / operationalization contract**.  
-**No Branch B strategy / ladder / eval code** until the implementation checklist
-and **both synthetic policy-sensitivity gates** pass.
+Gates P∧N **passed**; 60-board B−D **ran** → **active but falsified** (mean B−D −57.5).  
+See `phase2_v3bb_ladder.md` + `phase2_v3bb_mechanism_audit.md`. No B.1.1 / horizon↑ / λ.
 
 **Not V2.** Not multi-round lookahead. Not opponent simulation.
 
@@ -258,13 +258,14 @@ dominating), **do not** promote B to “OC validated” — record the finding a
 - [x] Gates P + N specified
 - [x] B−D metrics + stop rules frozen
 - [x] **Mandatory mechanism audit on positive B−D** (where/why; not optional)
-- [ ] Unit tests for \(T\), \(C\), formula, forbids
-- [ ] Synthetic Gate P pass
-- [ ] Synthetic Gate N pass
-- [ ] Strategy `adp_v3bb` (only if P∧N)
-- [ ] Smoke vs D
-- [ ] 60-board B−D; report; **stop**
-- [ ] Mechanism audit if any pick changes (required if B−D > 0)
+- [x] Unit tests for \(T\), \(C\), formula, forbids
+- [x] Synthetic Gate P pass
+- [x] Synthetic Gate N pass
+- [x] Strategy `adp_v3bb` (only if P∧N)
+- [x] Smoke vs D
+- [x] 60-board B−D; report; **stop**
+- [x] Mechanism audit if any pick changes (required if B−D > 0)
+  - Done as **light** where/why: B−D ≤ 0 → falsified; see `phase2_v3bb_mechanism_audit.md`
 
 ---
 
@@ -273,7 +274,7 @@ dominating), **do not** promote B to “OC validated” — record the finding a
 | Layer | Status |
 | --- | --- |
 | Branch B design | 🟢 **frozen here** |
-| Branch B implementation | 🔴 gated on P∧N |
+| Branch B implementation | ❌ **active + falsified** (60/60 diverge; mean B−D −57.5; R1 QB→WR) |
 | Branch A | ❌ structurally near-inert |
 | V2 / multi-round | 🔴 frozen (not this experiment) |
 | UI | `marginal` · `evaluable=0` |

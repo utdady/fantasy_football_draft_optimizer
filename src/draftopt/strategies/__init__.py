@@ -10,6 +10,7 @@ from draftopt.strategies.adp_structural import (
 from draftopt.strategies.adp_v3b import AdpV3bStrategy
 from draftopt.strategies.adp_v3b1 import AdpV3b1Strategy
 from draftopt.strategies.adp_v3ba import AdpV3baStrategy
+from draftopt.strategies.adp_v3bb import AdpV3bbStrategy
 from draftopt.strategies.base import DraftStrategy
 from draftopt.strategies.greedy import GreedyProjectionStrategy
 from draftopt.strategies.marginal import MarginalValueStrategy
@@ -38,6 +39,8 @@ def get_strategy(name: str = "marginal") -> DraftStrategy:
         return AdpV3b1Strategy()
     if key in {"adp_v3ba", "adp_v3b_a", "v3ba", "v3b_a"}:
         return AdpV3baStrategy()
+    if key in {"adp_v3bb", "adp_v3b_b", "v3bb", "v3b_b"}:
+        return AdpV3bbStrategy()
     if key in {"greedy", "greedy_proj", "projection"}:
         return GreedyProjectionStrategy()
     if key in {"marginal", "v1", "marginal_value", "raw_marginal"}:
@@ -64,6 +67,7 @@ __all__ = [
     "AdpV3bStrategy",
     "AdpV3b1Strategy",
     "AdpV3baStrategy",
+    "AdpV3bbStrategy",
     "DraftStrategy",
     "GreedyProjectionStrategy",
     "MarginalNoQBR1Strategy",
