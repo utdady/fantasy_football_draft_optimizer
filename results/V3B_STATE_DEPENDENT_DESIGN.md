@@ -2,7 +2,8 @@
 
 **Status:** frozen **design / operationalization contract**.  
 Gates P∧N **passed**; 60-board B−D **ran** → **active but falsified** (mean B−D −57.5).  
-See `phase2_v3bb_ladder.md` + `phase2_v3bb_mechanism_audit.md`. No B.1.1 / horizon↑ / λ.
+See `phase2_v3bb_ladder.md` + `phase2_v3bb_mechanism_audit.md`. No B.1.1 / horizon↑ / λ.  
+**Program closeout:** [`PHASE2_V3B_CLOSEOUT.md`](PHASE2_V3B_CLOSEOUT.md) (`6ad702b`).
 
 **Not V2.** Not multi-round lookahead. Not opponent simulation.
 

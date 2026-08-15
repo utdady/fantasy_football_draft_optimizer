@@ -44,7 +44,7 @@ A implementation → A−D test → **stop**.
 | B.0 | Is same-pos \(M_D - r^*\) sufficient? | −24.3 / 42% WR / p10 −204 | ❌ Falsified |
 | B.1 | Is \(M_D - v(a^*)\) sufficient? | 0 policy changes (Δ≡0) | ❌ Policy-inert |
 | **A** | Cross-pos **marginal** OC \(M_D(p)-M_D(q^*)\)? | 0/60 pick changes; 900/900 top1 match | ❌ **Structurally near-inert** (not a strong OC kill) |
-| **B** | One-step state-dependent construction? | **Not tested** | 🟢 Design frozen (`V3B_STATE_DEPENDENT_DESIGN.md`); impl gated on P∧N |
+| **B** | One-step state-dependent construction? | 60/60 diverge; mean B−D −57.5; R1 QB→WR | ❌ **Active but falsified** (`6ad702b`); program closed [`PHASE2_V3B_CLOSEOUT.md`](PHASE2_V3B_CLOSEOUT.md) |
 
 ---
 
@@ -211,8 +211,9 @@ Production V3 only after a convincing construction result — not before.
 | B.0 | ❌ Falsified |
 | B.1 | ❌ Policy-inert |
 | Branch A | ❌ **Structurally near-inert** — [`V3B_A_STRUCTURAL_POSTMORTEM.md`](V3B_A_STRUCTURAL_POSTMORTEM.md) |
-| Branch B | 🟢 **Design frozen** — [`V3B_STATE_DEPENDENT_DESIGN.md`](V3B_STATE_DEPENDENT_DESIGN.md); impl gated on synthetic P∧N |
-| A / B implementation | A done (structurally near-inert); B 🔴 no code until gates |
+| Branch B | ❌ **Active but falsified** — [`phase2_v3bb_ladder.md`](phase2_v3bb_ladder.md) (`6ad702b`) |
+| V3-B program | 🔴 **Closed** — [`PHASE2_V3B_CLOSEOUT.md`](PHASE2_V3B_CLOSEOUT.md) |
+| A / B implementation | A structurally near-inert; B implemented and falsified |
 | UI | `marginal` |
 | `evaluable` | **0** |
 
