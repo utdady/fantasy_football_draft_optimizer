@@ -34,6 +34,9 @@ const gradeModal = document.getElementById("grade-modal");
 const gradeBody = document.getElementById("grade-body");
 const gradeMethod = document.getElementById("grade-method");
 const showGradeBtn = document.getElementById("show-grade");
+const liveSimCheck = document.getElementById("live-sim");
+const cpuThisPickBtn = document.getElementById("cpu-this-pick");
+const undoBtn = document.getElementById("undo");
 
 let draftId = localStorage.getItem("draftId");
 let state = null;
@@ -162,11 +165,20 @@ function applyPayload(payload) {
   }
 }
 
+function isLiveSim() {
+  return state?.pick_mode === "live_sim";
+}
+
+function canHumanPick() {
+  return Boolean(state?.can_human_pick);
+}
+
 function pickLabel() {
   if (!state) return "No draft yet";
   if (state.complete) return "Draft complete";
   if (state.is_user_turn) return `Pick ${state.current_pick} · YOUR PICK`;
   const label = (state.team_labels || [])[state.current_team - 1] || `Team ${state.current_team}`;
+  if (isLiveSim()) return `Pick ${state.current_pick} · enter ${label}'s pick`;
   return `Pick ${state.current_pick} · ${label} is picking`;
 }
 
@@ -225,6 +237,11 @@ function renderTake() {
     return;
   }
   if (!state.is_user_turn) {
+    if (isLiveSim()) {
+      const label = (state.team_labels || [])[state.current_team - 1] || `Team ${state.current_team}`;
+      takeBody.innerHTML = `<p class="muted">Live sim — search and enter <strong>${label}</strong>'s pick. Your TAKE opens on your turn.</p>`;
+      return;
+    }
     takeBody.innerHTML = `<p class="muted">CPU is picking…</p>`;
     return;
   }
@@ -295,21 +312,37 @@ function populateTeamsFromHits() {
 function render() {
   metaEl.textContent = pickLabel();
   const rosterLabel = state?.roster?.label ? ` · ${state.roster.label}` : "";
-  draftSub.textContent = `V0 · ${state?.n_teams || nTeams}-team PPR snake · ${state?.n_rounds || "?"} rounds${rosterLabel}`;
-  search.disabled = !state || !state.is_user_turn || state.complete;
-  filterPos.disabled = search.disabled;
-  filterTeam.disabled = search.disabled;
-  filterSort.disabled = search.disabled;
+  const modeLabel = isLiveSim() ? " · live sim" : "";
+  draftSub.textContent = `V0 · ${state?.n_teams || nTeams}-team PPR snake · ${state?.n_rounds || "?"} rounds${rosterLabel}${modeLabel}`;
+  const picking = canHumanPick();
+  search.disabled = !picking;
+  filterPos.disabled = !picking;
+  filterTeam.disabled = !picking;
+  filterSort.disabled = !picking;
   search.classList.toggle("search-disabled", search.disabled);
-  search.placeholder = state && state.is_user_turn ? "Type a player, then Enter" : "Waiting for CPU…";
+  if (state?.complete) search.placeholder = "Draft complete";
+  else if (state?.is_user_turn) search.placeholder = "Type a player, then Enter";
+  else if (isLiveSim()) {
+    const label = (state.team_labels || [])[state.current_team - 1] || "them";
+    search.placeholder = `Enter ${label}'s pick…`;
+  } else search.placeholder = "Waiting for CPU…";
   // Hide K filter option if league has no K
   const kOpt = [...filterPos.options].find((o) => o.value === "K");
   if (kOpt && state?.roster?.slots) {
     kOpt.hidden = !state.roster.slots.K;
   }
+  if (undoBtn) {
+    undoBtn.textContent = isLiveSim() ? "Undo last pick" : "Undo my pick";
+  }
+  if (cpuThisPickBtn) {
+    cpuThisPickBtn.classList.toggle(
+      "hidden",
+      !isLiveSim() || !state || state.complete || state.is_user_turn
+    );
+  }
   renderBoard();
   renderTake();
-  if (state && state.is_user_turn && !state.complete) search.focus();
+  if (picking && !state.complete) search.focus();
 }
 
 function openGrade() {
@@ -352,7 +385,9 @@ async function afterStateChange() {
   }
   stopClock();
   await refreshSearch();
-  await cpuLoop();
+  if (!isLiveSim()) {
+    await cpuLoop();
+  }
 }
 
 async function cpuLoop() {
@@ -394,7 +429,7 @@ async function refreshSearch() {
 }
 
 async function pickCurrent() {
-  if (!draftId || !state || !state.is_user_turn) return;
+  if (!draftId || !state || !canHumanPick()) return;
   const chosen = hits[active];
   const body = chosen
     ? { player_id: chosen.player_id }
@@ -414,7 +449,22 @@ async function pickCurrent() {
     await afterStateChange();
   } catch (err) {
     showBanner(banner, err.message);
-    startClock();
+    if (state?.is_user_turn) startClock();
+  }
+}
+
+async function cpuThisPick() {
+  if (!draftId || !state || !isLiveSim() || state.is_user_turn || state.complete) return;
+  try {
+    const payload = await api(`/api/drafts/${draftId}/cpu`, { method: "POST" });
+    const last = payload.state.picks[payload.state.picks.length - 1];
+    showBanner(banner, `CPU filled ${last ? last.name : "a pick"} for this seat`);
+    search.value = "";
+    hits = [];
+    applyPayload(payload);
+    await afterStateChange();
+  } catch (err) {
+    showBanner(banner, err.message);
   }
 }
 
@@ -549,6 +599,8 @@ async function newDraftFromSetup() {
   localStorage.setItem("orderMode", mode);
 
   const body = { user_name, roster_preset, order_mode: mode, user_slot };
+  body.pick_mode = liveSimCheck?.checked ? "live_sim" : "user_only";
+  localStorage.setItem("liveSim", body.pick_mode === "live_sim" ? "1" : "0");
 
   if (mode === "random_all") {
     const opponents = collectOpponentNames();
@@ -664,6 +716,16 @@ clearOpponentsBtn.addEventListener("click", () => {
 });
 resumeBtn.addEventListener("click", resumeDraft);
 rosterSelect.addEventListener("change", updateRosterDesc);
+if (liveSimCheck) {
+  liveSimCheck.addEventListener("change", () => {
+    localStorage.setItem("liveSim", liveSimCheck.checked ? "1" : "0");
+  });
+}
+if (cpuThisPickBtn) {
+  cpuThisPickBtn.addEventListener("click", () => {
+    cpuThisPick().catch((err) => showBanner(banner, err.message));
+  });
+}
 document.getElementById("new-draft").addEventListener("click", () => {
   localStorage.removeItem("draftId");
   draftId = null;
@@ -733,6 +795,7 @@ document.addEventListener("keydown", (e) => {
     if (st.n_teams) fillSlotOptions(Number(st.n_teams));
     slotSelect.value = localStorage.getItem("userSlot") || "1";
     orderModeSelect.value = localStorage.getItem("orderMode") || "pick_slot";
+    if (liveSimCheck) liveSimCheck.checked = localStorage.getItem("liveSim") === "1";
     presets = st.roster_presets || [];
     rosterSelect.innerHTML = "";
     for (const p of presets) {

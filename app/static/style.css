@@ -74,6 +74,14 @@ button:hover { border-color: var(--accent); }
 .opponent-row { display: grid; grid-template-columns: 1fr; gap: 0.35rem; }
 .opponent-row.with-slot { grid-template-columns: 4.5rem 1fr; align-items: center; }
 .opponent-row label { font-size: 0.75rem; color: var(--muted); }
+.check-row {
+  flex-direction: row !important;
+  align-items: flex-start;
+  gap: 0.55rem !important;
+  cursor: pointer;
+}
+.check-row input { margin-top: 0.2rem; }
+.live-sim-hint { margin: -0.35rem 0 0; font-size: 0.8rem; }
 
 #draft-ui {
   height: 100vh;

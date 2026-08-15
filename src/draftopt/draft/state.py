@@ -182,6 +182,25 @@ def resolve_draft_seating(
     return slot, seating
 
 
+PICK_MODES = frozenset({"user_only", "live_sim"})
+
+
+def normalize_pick_mode(pick_mode: str | None) -> str:
+    mode = (pick_mode or "user_only").strip().lower()
+    if mode not in PICK_MODES:
+        raise DraftError(f"pick_mode must be one of {sorted(PICK_MODES)}")
+    return mode
+
+
+def draft_pick_mode(draft) -> str:
+    try:
+        raw = draft["pick_mode"]
+    except (KeyError, IndexError):
+        return "user_only"
+    mode = (raw or "user_only").strip().lower()
+    return mode if mode in PICK_MODES else "user_only"
+
+
 def create_draft(
     conn,
     user_slot: int = USER_SLOT_DEFAULT,
@@ -193,9 +212,11 @@ def create_draft(
     order_mode: str = "pick_slot",
     opponent_names: list[str] | None = None,
     team_names: dict | None = None,
+    pick_mode: str = "user_only",
     rng: random.Random | None = None,
 ) -> str:
     me = _clean_name(user_name, "You")
+    mode = normalize_pick_mode(pick_mode)
     slot, seating = resolve_draft_seating(
         n_teams=n_teams,
         user_name=me,
@@ -213,8 +234,8 @@ def create_draft(
         """
         INSERT INTO drafts (
             draft_id, created_at, current_pick, user_slot, user_name,
-            n_teams, n_rounds, roster_json, team_names_json
-        ) VALUES (?, ?, 1, ?, ?, ?, ?, ?, ?)
+            n_teams, n_rounds, roster_json, team_names_json, pick_mode
+        ) VALUES (?, ?, 1, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
             draft_id,
@@ -225,6 +246,7 @@ def create_draft(
             rounds,
             json.dumps(roster),
             names_json,
+            mode,
         ),
     )
     conn.commit()
@@ -286,9 +308,57 @@ def record_user_pick(conn, draft_id: str, player_id: str, made_by: str = "user")
     return record_pick(conn, draft_id, player_id, made_by=made_by)
 
 
-def undo_pick(conn, draft_id: str) -> dict:
-    """Undo the user's last pick and any CPU picks after it."""
+def record_human_pick(conn, draft_id: str, player_id: str, made_by: str | None = None) -> dict:
+    """
+    Human-entered pick for the seat currently on the clock.
+
+    - user_only: only your slot (same as record_user_pick)
+    - live_sim: any seat; friends are tagged made_by='proxy'
+    """
+    draft = _draft_row(conn, draft_id)
+    if draft_pick_mode(draft) == "live_sim":
+        total = draft["n_teams"] * draft["n_rounds"]
+        overall = draft["current_pick"]
+        if overall > total:
+            raise DraftError("draft is complete")
+        team_slot = team_for_pick(overall, draft["n_teams"])
+        tag = made_by
+        if tag is None:
+            tag = "user" if team_slot == draft["user_slot"] else "proxy"
+        return record_pick(conn, draft_id, player_id, made_by=tag)
+    return record_user_pick(conn, draft_id, player_id, made_by=made_by or "user")
+
+
+def undo_last_pick(conn, draft_id: str) -> dict:
+    """Undo only the most recent pick (any seat)."""
     _draft_row(conn, draft_id)
+    last = conn.execute(
+        """
+        SELECT overall FROM picks
+        WHERE draft_id = ?
+        ORDER BY overall DESC LIMIT 1
+        """,
+        (draft_id,),
+    ).fetchone()
+    if last is None:
+        raise DraftError("no picks to undo")
+    conn.execute(
+        "DELETE FROM picks WHERE draft_id = ? AND overall = ?",
+        (draft_id, last["overall"]),
+    )
+    conn.execute(
+        "UPDATE drafts SET current_pick = ? WHERE draft_id = ?",
+        (last["overall"], draft_id),
+    )
+    conn.commit()
+    return snapshot(conn, draft_id)
+
+
+def undo_pick(conn, draft_id: str) -> dict:
+    """Undo the user's last pick and any CPU picks after it (or last pick in live_sim)."""
+    draft = _draft_row(conn, draft_id)
+    if draft_pick_mode(draft) == "live_sim":
+        return undo_last_pick(conn, draft_id)
     last_user = conn.execute(
         """
         SELECT overall FROM picks
@@ -456,6 +526,8 @@ def snapshot(conn, draft_id: str) -> dict:
     labels_map = _parse_team_names_json(raw_names, n_teams, draft["user_slot"], user_name)
     labels = [labels_map[i] for i in range(1, n_teams + 1)]
     current_team = None if complete else team_for_pick(overall, n_teams)
+    pick_mode = draft_pick_mode(draft)
+    is_user = (not complete) and current_team == draft["user_slot"]
     return {
         "draft_id": draft_id,
         "user_slot": draft["user_slot"],
@@ -468,7 +540,9 @@ def snapshot(conn, draft_id: str) -> dict:
         "current_pick": overall if not complete else total,
         "current_team": current_team,
         "current_round": None if complete else round_for_pick(overall, n_teams),
-        "is_user_turn": (not complete) and current_team == draft["user_slot"],
+        "is_user_turn": is_user,
+        "pick_mode": pick_mode,
+        "can_human_pick": (not complete) and (is_user or pick_mode == "live_sim"),
         "complete": complete,
         "pick_clock_seconds": PICK_CLOCK_SECONDS,
         "picks": [dict(p) for p in picks],

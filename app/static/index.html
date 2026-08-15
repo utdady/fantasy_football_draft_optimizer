@@ -33,6 +33,11 @@
           <select id="roster-preset"></select>
         </label>
         <p id="roster-desc" class="muted"></p>
+        <label class="check-row">
+          <input id="live-sim" type="checkbox" />
+          <span>Live league sim — I enter every team's pick</span>
+        </label>
+        <p class="muted live-sim-hint">Mirror your real draft: type each friend's pick as it happens. Recommendations stay on your turn only. Use “CPU this pick” if someone is AFK.</p>
         <div id="league-panel" class="league-panel hidden">
           <div class="league-head">
             <span id="league-title">League mates</span>
@@ -58,6 +63,7 @@
         <button id="toggle-take" type="button" title="]">TAKE</button>
         <button id="show-grade" type="button" class="hidden">Scorecard</button>
         <button id="new-draft" type="button">New draft</button>
+        <button id="cpu-this-pick" type="button" class="hidden" title="Fill this seat with CPU">CPU this pick</button>
         <button id="undo" type="button" title="Ctrl+Z">Undo my pick</button>
       </div>
     </header>

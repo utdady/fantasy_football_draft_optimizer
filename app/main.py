@@ -12,7 +12,7 @@ from draftopt.draft.grade import grade_draft
 from draftopt.draft.state import (
     DraftError,
     create_draft,
-    record_user_pick,
+    record_human_pick,
     resolve_player,
     search_remaining,
     snapshot,
@@ -51,6 +51,7 @@ class CreateDraftBody(BaseModel):
     order_mode: str = Field(default="pick_slot")
     opponent_names: list[str] = Field(default_factory=list)
     team_names: dict[str, str] | None = None
+    pick_mode: str = Field(default="user_only")
 
 
 class PickBody(BaseModel):
@@ -100,6 +101,7 @@ def api_create_draft(body: CreateDraftBody):
             order_mode=body.order_mode,
             opponent_names=body.opponent_names,
             team_names=body.team_names,
+            pick_mode=body.pick_mode,
         )
         return payload(conn, draft_id)
     except DraftError as e:
@@ -170,7 +172,7 @@ def api_pick(draft_id: str, body: PickBody):
             if not body.query:
                 raise HTTPException(400, "player_id or query required")
             player_id = resolve_player(conn, draft_id, body.query)
-        record_user_pick(conn, draft_id, player_id, made_by="user")
+        record_human_pick(conn, draft_id, player_id, made_by=None)
         return payload(conn, draft_id)
     except DraftError as e:
         raise HTTPException(400, str(e)) from e
@@ -198,7 +200,7 @@ def api_autopick(draft_id: str, strategy: str = Query(default="marginal")):
         recs = recommend(conn, draft_id, n=1, strategy=strategy)
         if not recs:
             raise HTTPException(400, "no players remaining")
-        record_user_pick(conn, draft_id, recs[0]["player_id"], made_by="timeout")
+        record_human_pick(conn, draft_id, recs[0]["player_id"], made_by="timeout")
         return payload(conn, draft_id, strategy=strategy)
     except ValueError as e:
         raise HTTPException(400, str(e)) from e
