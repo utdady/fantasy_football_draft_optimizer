@@ -1,0 +1,291 @@
+{
+  "stage": "SHIP_2026_DRAFT_READINESS",
+  "created_at": "2026-08-15T16:23:38Z",
+  "db_path": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\draftopt.db",
+  "strategy": "marginal",
+  "n_teams": 10,
+  "claim": "Product readiness for 2026 live DB with frozen marginal. Not a construction / Phase-2 ladder.",
+  "db_checks": [
+    {
+      "check": "players_present",
+      "ok": true,
+      "detail": "n=882"
+    },
+    {
+      "check": "proj_pulled_at",
+      "ok": true,
+      "detail": "pulled_at=2026-08-15T16:18:27Z"
+    },
+    {
+      "check": "gibbs_2026_proj",
+      "ok": true,
+      "detail": "Gibbs season_points=365.3 (expect >=340 for 2026)"
+    },
+    {
+      "check": "espn_adp_coverage",
+      "ok": true,
+      "detail": "n_adp=800"
+    }
+  ],
+  "full_mock": {
+    "draft_id": "f9daf8964a70",
+    "slot": 1,
+    "seed": 42,
+    "user_picks": [
+      {
+        "overall": 1,
+        "name": "Josh Allen",
+        "position": "QB",
+        "marginal": 369.21
+      },
+      {
+        "overall": 20,
+        "name": "Derrick Henry",
+        "position": "RB",
+        "marginal": 274.43
+      },
+      {
+        "overall": 21,
+        "name": "Saquon Barkley",
+        "position": "RB",
+        "marginal": 273.86
+      },
+      {
+        "overall": 40,
+        "name": "Tyreek Hill",
+        "position": "WR",
+        "marginal": 263.71
+      },
+      {
+        "overall": 41,
+        "name": "Travis Etienne",
+        "position": "RB",
+        "marginal": 242.09
+      },
+      {
+        "overall": 60,
+        "name": "Keenan Allen",
+        "position": "WR",
+        "marginal": 212.6
+      },
+      {
+        "overall": 61,
+        "name": "Carnell Tate",
+        "position": "WR",
+        "marginal": 211.13
+      },
+      {
+        "overall": 80,
+        "name": "Travis Kelce",
+        "position": "TE",
+        "marginal": 177.0
+      },
+      {
+        "overall": 81,
+        "name": "Broncos D/ST",
+        "position": "DST",
+        "marginal": 130.67
+      },
+      {
+        "overall": 100,
+        "name": "Brian Thomas",
+        "position": "WR",
+        "marginal": 0.0
+      },
+      {
+        "overall": 101,
+        "name": "Matthew Golden",
+        "position": "WR",
+        "marginal": 0.0
+      },
+      {
+        "overall": 120,
+        "name": "RJ Harvey",
+        "position": "RB",
+        "marginal": 0.0
+      },
+      {
+        "overall": 121,
+        "name": "Isaiah Likely",
+        "position": "TE",
+        "marginal": 0.0
+      },
+      {
+        "overall": 140,
+        "name": "Blake Corum",
+        "position": "RB",
+        "marginal": 0.0
+      },
+      {
+        "overall": 141,
+        "name": "Chris Godwin",
+        "position": "WR",
+        "marginal": 0.0
+      },
+      {
+        "overall": 160,
+        "name": "Daniel Jones",
+        "position": "QB",
+        "marginal": 0.0
+      }
+    ],
+    "pos_counts": {
+      "QB": 2,
+      "RB": 5,
+      "WR": 6,
+      "TE": 2,
+      "DST": 1
+    },
+    "n_board_picks": 160,
+    "latency_ms": {
+      "n": 16,
+      "mean": 16.24,
+      "p50": 11.65,
+      "p95": 29.03,
+      "max": 33.99
+    },
+    "checks": [
+      {
+        "check": "full_draft_complete",
+        "ok": true,
+        "detail": "picks=160 complete=True"
+      },
+      {
+        "check": "no_duplicate_board_picks",
+        "ok": true,
+        "detail": "unique=160/160"
+      },
+      {
+        "check": "user_pick_count",
+        "ok": true,
+        "detail": "user_picks=16 expected=16"
+      },
+      {
+        "check": "recommend_never_empty",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "recommend_deterministic",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "no_drafted_in_recommend",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "picked_removed_from_pool",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "final_lineup_ev_flex",
+        "ok": true,
+        "detail": "total=2154.7 starters_slots={'QB': 1, 'RB': 2, 'WR': 2, 'TE': 1, 'DST': 1, 'FLEX': 2}"
+      }
+    ],
+    "issues": [],
+    "clock_seconds": 90,
+    "comfortable_vs_clock": true
+  },
+  "snipe_undo": {
+    "draft_id": "f51474cb89c6",
+    "checks": [
+      {
+        "check": "snipe_has_alts",
+        "ok": true,
+        "detail": "n_recs=3"
+      },
+      {
+        "check": "alt_pick_removes_chosen",
+        "ok": true,
+        "detail": "Jahmyr Gibbs"
+      },
+      {
+        "check": "skipped_target_still_available",
+        "ok": true,
+        "detail": "Josh Allen"
+      },
+      {
+        "check": "undo_restores_both",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "undo_recommend_stable",
+        "ok": true,
+        "detail": "got=Josh Allen"
+      }
+    ],
+    "top1": "Josh Allen",
+    "took": "Jahmyr Gibbs"
+  },
+  "late_board": {
+    "draft_id": "40e90379326f",
+    "last_pick": "Woody Marks",
+    "late_latency_ms": {
+      "n": 9,
+      "p50": 21.69,
+      "p95": 38.14,
+      "max": 39.56
+    },
+    "checks": [
+      {
+        "check": "late_draft_complete",
+        "ok": true,
+        "detail": "user_picks=16"
+      },
+      {
+        "check": "late_latency_under_1s_p95",
+        "ok": true,
+        "detail": "p95=38.1"
+      }
+    ]
+  },
+  "http_smoke": {
+    "base": "http://127.0.0.1:8001",
+    "draft_id": "5217e1a5dc7f",
+    "checks": [
+      {
+        "check": "http_status",
+        "ok": true,
+        "detail": "code=200"
+      },
+      {
+        "check": "http_players",
+        "ok": true,
+        "detail": "players=882"
+      },
+      {
+        "check": "http_create_draft",
+        "ok": true,
+        "detail": "code=200"
+      },
+      {
+        "check": "http_initial_recommend",
+        "ok": true,
+        "detail": "n=3"
+      },
+      {
+        "check": "http_autopick",
+        "ok": true,
+        "detail": "code=200 ms=79.4"
+      },
+      {
+        "check": "http_autopick",
+        "ok": true,
+        "detail": "code=200 ms=84.6"
+      }
+    ],
+    "top": "Josh Allen"
+  },
+  "summary": {
+    "n_checks": 25,
+    "n_pass": 25,
+    "n_fail": 0,
+    "all_pass": true,
+    "failed": []
+  }
+}
