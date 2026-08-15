@@ -213,10 +213,12 @@ Legal:
 - [x] \(N(R)\), \(\mathcal{A}(p)\), \(a^*\), \(M_{B1}=M_D-a^*\) named
 - [x] B.0 mechanical distinction + fixture test specified
 - [x] Four-way success criteria frozen (p10 first-class)
-- [ ] Unit/spec tests for \(N(R)\), \(a^*\), B.0≠B.1 fixture
-- [ ] Strategy `adp_v3b1` (or equivalent) reusing D’s \(M_D\) only
-- [ ] Smoke (1–2 boards): \(M_D\) identical; Δ attributable only to \(a^*\)
-- [ ] 60-board ladder vs D; report mean/median/WR/p10; **no retune**
+- [x] Unit/spec tests for \(N(R)\), \(a^*\), B.0≠B.1 fixture
+- [x] Strategy `adp_v3b1` (or equivalent) reusing D’s \(M_D\) only
+- [x] Smoke (1–2 boards): \(M_D\) identical; Δ attributable only to \(a^*\)
+- [x] 60-board ladder vs D; report mean/median/WR/p10; **no retune**
+  → **result:** B.1−D ≡ 0 on all 60 boards (picks identical to D); proxy inert;
+  see `phase2_v3b1_ladder.md`. Do not invent B.1.1.
 
 **Suggested strategy name (when opened):** `adp_v3b1`  
 **Suggested construction id:** `crosspos_empty_need_nextbest_v1`
@@ -229,7 +231,7 @@ Legal:
 | --- | --- |
 | Cross-position hypothesis | 🟢 frozen |
 | B.1.0 operationalization | 🟢 **frozen here** |
-| B.1 implementation | 🔴 gated |
+| B.1 implementation | 🟢 run; **proxy inert** (Δ≡0 / picks=D) |
 | B.0 | 🔴 falsified (do not revive) |
 | Lookahead / V2 | 🔴 frozen |
 | UI | `marginal` |

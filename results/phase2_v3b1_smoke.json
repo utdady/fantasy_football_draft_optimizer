@@ -1,0 +1,388 @@
+{
+  "stage": "V3B1_smoke",
+  "created_at": "2026-08-15T13:33:57Z",
+  "ok": true,
+  "cases": [
+    {
+      "slot": 1,
+      "seed": 42,
+      "draft_id": "e18b4eb72078",
+      "d_top": [
+        {
+          "name": "Josh Allen",
+          "pos": "QB",
+          "marginal": 350.29
+        },
+        {
+          "name": "Patrick Mahomes",
+          "pos": "QB",
+          "marginal": 336.5
+        },
+        {
+          "name": "Jalen Hurts",
+          "pos": "QB",
+          "marginal": 320.77
+        },
+        {
+          "name": "Lamar Jackson",
+          "pos": "QB",
+          "marginal": 302.81
+        },
+        {
+          "name": "C.J. Stroud",
+          "pos": "QB",
+          "marginal": 285.74
+        },
+        {
+          "name": "Tyreek Hill",
+          "pos": "WR",
+          "marginal": 285.09
+        },
+        {
+          "name": "CeeDee Lamb",
+          "pos": "WR",
+          "marginal": 285.09
+        },
+        {
+          "name": "Amon-Ra St. Brown",
+          "pos": "WR",
+          "marginal": 285.09
+        }
+      ],
+      "b1_top": [
+        {
+          "name": "Josh Allen",
+          "pos": "QB",
+          "marginal_d": 350.29,
+          "cross_alt": 285.0891,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": 65.2
+        },
+        {
+          "name": "Patrick Mahomes",
+          "pos": "QB",
+          "marginal_d": 336.5,
+          "cross_alt": 285.0891,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": 51.41
+        },
+        {
+          "name": "Jalen Hurts",
+          "pos": "QB",
+          "marginal_d": 320.77,
+          "cross_alt": 285.0891,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": 35.68
+        },
+        {
+          "name": "Lamar Jackson",
+          "pos": "QB",
+          "marginal_d": 302.81,
+          "cross_alt": 285.0891,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": 17.72
+        },
+        {
+          "name": "C.J. Stroud",
+          "pos": "QB",
+          "marginal_d": 285.74,
+          "cross_alt": 285.0891,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": 0.65
+        },
+        {
+          "name": "Anthony Richardson Sr.",
+          "pos": "QB",
+          "marginal_d": 272.65,
+          "cross_alt": 285.0891,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": -12.44
+        },
+        {
+          "name": "Joe Burrow",
+          "pos": "QB",
+          "marginal_d": 269.6,
+          "cross_alt": 285.0891,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": -15.49
+        },
+        {
+          "name": "Dak Prescott",
+          "pos": "QB",
+          "marginal_d": 262.75,
+          "cross_alt": 285.0891,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": -22.34
+        }
+      ],
+      "n_d": 51,
+      "n_b1": 51,
+      "md_identical_across_d_and_b1": true,
+      "mb1_equals_md_minus_a": true,
+      "d_top1": "Josh Allen",
+      "b1_top1": "Josh Allen",
+      "sample_N_R": [
+        "DST",
+        "QB",
+        "RB",
+        "TE",
+        "WR"
+      ]
+    },
+    {
+      "slot": 8,
+      "seed": 44,
+      "draft_id": "e8950071574d",
+      "d_top": [
+        {
+          "name": "Josh Allen",
+          "pos": "QB",
+          "marginal": 350.29
+        },
+        {
+          "name": "Patrick Mahomes",
+          "pos": "QB",
+          "marginal": 336.5
+        },
+        {
+          "name": "Jalen Hurts",
+          "pos": "QB",
+          "marginal": 320.77
+        },
+        {
+          "name": "Lamar Jackson",
+          "pos": "QB",
+          "marginal": 302.81
+        },
+        {
+          "name": "C.J. Stroud",
+          "pos": "QB",
+          "marginal": 285.74
+        },
+        {
+          "name": "Justin Jefferson",
+          "pos": "WR",
+          "marginal": 280.88
+        },
+        {
+          "name": "A.J. Brown",
+          "pos": "WR",
+          "marginal": 272.75
+        },
+        {
+          "name": "Anthony Richardson Sr.",
+          "pos": "QB",
+          "marginal": 272.65
+        }
+      ],
+      "b1_top": [
+        {
+          "name": "Josh Allen",
+          "pos": "QB",
+          "marginal_d": 350.29,
+          "cross_alt": 280.8836,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": 69.41
+        },
+        {
+          "name": "Patrick Mahomes",
+          "pos": "QB",
+          "marginal_d": 336.5,
+          "cross_alt": 280.8836,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": 55.62
+        },
+        {
+          "name": "Jalen Hurts",
+          "pos": "QB",
+          "marginal_d": 320.77,
+          "cross_alt": 280.8836,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": 39.89
+        },
+        {
+          "name": "Lamar Jackson",
+          "pos": "QB",
+          "marginal_d": 302.81,
+          "cross_alt": 280.8836,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": 21.93
+        },
+        {
+          "name": "C.J. Stroud",
+          "pos": "QB",
+          "marginal_d": 285.74,
+          "cross_alt": 280.8836,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": 4.86
+        },
+        {
+          "name": "Anthony Richardson Sr.",
+          "pos": "QB",
+          "marginal_d": 272.65,
+          "cross_alt": 280.8836,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": -8.23
+        },
+        {
+          "name": "Joe Burrow",
+          "pos": "QB",
+          "marginal_d": 269.6,
+          "cross_alt": 280.8836,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": -11.28
+        },
+        {
+          "name": "Dak Prescott",
+          "pos": "QB",
+          "marginal_d": 262.75,
+          "cross_alt": 280.8836,
+          "cross_alt_missing": false,
+          "cross_alt_pos": "WR",
+          "N_R": [
+            "DST",
+            "QB",
+            "RB",
+            "TE",
+            "WR"
+          ],
+          "marginal_b1": -18.13
+        }
+      ],
+      "n_d": 48,
+      "n_b1": 48,
+      "md_identical_across_d_and_b1": true,
+      "mb1_equals_md_minus_a": true,
+      "d_top1": "Josh Allen",
+      "b1_top1": "Josh Allen",
+      "sample_N_R": [
+        "DST",
+        "QB",
+        "RB",
+        "TE",
+        "WR"
+      ]
+    }
+  ],
+  "note": "Smoke only: verifies M_D reuse and M_B1=M_D\u2212a*. Not the B.1\u2212D ladder."
+}
