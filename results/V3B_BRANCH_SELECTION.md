@@ -143,8 +143,9 @@ When A is operationalized and implemented, the following are **pre-frozen**:
 | Forbidden | B.1.1-style retunes; position weights; λ/CVaR; lookahead; outcome leakage |
 | UI | `marginal` · `evaluable=0` |
 
-Exact \(q^*\) / construction id / strategy name live in the **A operationalization**
-doc (next gated artifact) — not here.
+Exact \(q^*\) / construction id / strategy name:
+[`V3B_A_OPERATIONALIZATION.md`](V3B_A_OPERATIONALIZATION.md)
+(`crosspos_empty_need_marginal_v1`, \(q^*=\arg\max M_D\)).
 
 ---
 
@@ -209,7 +210,7 @@ Production V3 only after a convincing construction result — not before.
 | V3-A calibration | 🟡 Successful valuation / construction tradeoff — **frozen** |
 | B.0 | ❌ Falsified |
 | B.1 | ❌ Policy-inert |
-| Branch A | 🟢 **Selected** — operationalization not yet opened |
+| Branch A | 🟢 **Selected** — operationalization frozen ([`V3B_A_OPERATIONALIZATION.md`](V3B_A_OPERATIONALIZATION.md)); implementation gated |
 | Branch B | 🟡 Deferred (hypothesis only) |
 | A / B implementation | 🔴 No active implementation |
 | UI | `marginal` |
