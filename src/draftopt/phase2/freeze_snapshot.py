@@ -14,7 +14,7 @@ from pathlib import Path
 from draftopt import db as live_db
 from draftopt.config import DB_PATH, EVAL_DB_PATH, SKILL_POSITIONS
 from draftopt.phase2.leakage import assert_snapshot_clean
-from draftopt.phase2.schema import EVAL_SCHEMA
+from draftopt.phase2.schema import migrate_eval_schema
 import sqlite3
 
 
@@ -27,8 +27,7 @@ def _connect_eval(path: Path) -> sqlite3.Connection:
 
 
 def _init_eval(conn: sqlite3.Connection) -> None:
-    conn.executescript(EVAL_SCHEMA)
-    conn.commit()
+    migrate_eval_schema(conn)
 
 
 def _utcnow() -> str:
@@ -50,12 +49,23 @@ def freeze_from_live(
     notes: str | None = None,
     adp_source: str = "espn",
     proj_source: str = "espn",
+    pipeline_proof: bool = True,
+    evaluable: bool = False,
+    outcome_season: int | None = None,
 ) -> dict:
     """
     Copy latest ADP + projections from live DB into eval_snapshot_* tables.
 
     as_of timestamps come from pulled_at on the source snapshot rows.
+
+    Live freezes default to pipeline_proof=True, evaluable=False (current
+    season has no realized outcomes yet). Do not flip evaluable without a
+    completed outcome season and honest historical as_of stamps.
     """
+    if evaluable and pipeline_proof:
+        raise ValueError("snapshot cannot be both pipeline_proof and evaluable")
+    if evaluable and outcome_season is None:
+        raise ValueError("outcome_season required when evaluable=True")
     live = live_db.connect(live_path or DB_PATH)
     live_db.init(live)
     eval_conn = _connect_eval(eval_path or EVAL_DB_PATH)
@@ -85,8 +95,12 @@ def freeze_from_live(
     snap_label = label or sid
     snap_notes = notes or (
         f"Frozen from live ingest DB. ADP {adp_source}@{adp_pull}; "
-        f"proj {proj_source}@{proj_pull}. Pipeline proof for P2.1 "
-        f"(outcomes come in P2.2)."
+        f"proj {proj_source}@{proj_pull}. "
+        + (
+            "PIPELINE PROOF only — not evaluable (no realized outcomes)."
+            if pipeline_proof
+            else "Evaluation snapshot."
+        )
     )
 
     # Latest ADP / proj per player for those pulls
@@ -149,10 +163,21 @@ def freeze_from_live(
     eval_conn.execute(
         """
         INSERT INTO eval_snapshots (
-            snapshot_id, season, snapshot_date, label, notes, created_at
-        ) VALUES (?, ?, ?, ?, ?, ?)
+            snapshot_id, season, snapshot_date, label, notes, created_at,
+            pipeline_proof, evaluable, outcome_season
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
-        (sid, year, snap_date, snap_label, snap_notes, _utcnow()),
+        (
+            sid,
+            year,
+            snap_date,
+            snap_label,
+            snap_notes,
+            _utcnow(),
+            1 if pipeline_proof else 0,
+            1 if evaluable else 0,
+            outcome_season,
+        ),
     )
     eval_conn.executemany(
         """
@@ -189,6 +214,9 @@ def freeze_from_live(
         "snapshot_date": snap_date,
         "label": snap_label,
         "n_players": n,
+        "pipeline_proof": bool(pipeline_proof),
+        "evaluable": bool(evaluable),
+        "outcome_season": outcome_season,
         "adp_pulled_at": adp_pull,
         "proj_pulled_at": proj_pull,
         "eval_db": str(eval_path or EVAL_DB_PATH),
@@ -223,6 +251,10 @@ def main() -> None:
     args.out_json.write_text(json.dumps(meta, indent=2), encoding="utf-8")
     print(f"Froze snapshot {meta['snapshot_id']}: {meta['n_players']} players")
     print(f"  date={meta['snapshot_date']} season={meta['season']}")
+    print(
+        f"  pipeline_proof={meta['pipeline_proof']} "
+        f"evaluable={meta['evaluable']}"
+    )
     print(f"  eval_db={meta['eval_db']}")
     print(f"  wrote {args.out_json}")
 

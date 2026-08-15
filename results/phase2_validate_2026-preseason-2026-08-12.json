@@ -3,6 +3,9 @@
   "season": 2026,
   "snapshot_date": "2026-08-12",
   "label": "2026-preseason-2026-08-12",
+  "pipeline_proof": 1,
+  "evaluable": 0,
+  "outcome_season": null,
   "n_players": 800,
   "ok": true,
   "checks": [
@@ -10,6 +13,16 @@
       "check": "snapshot_date_valid",
       "ok": true,
       "detail": "snapshot_date=2026-08-12 season=2026"
+    },
+    {
+      "check": "flags_mutually_consistent",
+      "ok": true,
+      "detail": "pipeline_proof=1 evaluable=0 outcome_season=None"
+    },
+    {
+      "check": "evaluable_has_outcome_season",
+      "ok": true,
+      "detail": "evaluable=0 outcome_season=None"
     },
     {
       "check": "player_count",

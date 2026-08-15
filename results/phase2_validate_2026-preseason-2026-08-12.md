@@ -3,11 +3,16 @@
 - season: **2026**
 - snapshot_date: **2026-08-12**
 - players: **800**
+- pipeline_proof: **1**
+- evaluable: **0**
+- outcome_season: **None**
 - overall: **PASS**
 
 | check | ok | detail |
 | --- | --- | --- |
 | snapshot_date_valid | ✓ | snapshot_date=2026-08-12 season=2026 |
+| flags_mutually_consistent | ✓ | pipeline_proof=1 evaluable=0 outcome_season=None |
+| evaluable_has_outcome_season | ✓ | evaluable=0 outcome_season=None |
 | player_count | ✓ | n=800 (min 200) |
 | player_ids_unique | ✓ | n=800 unique=800 |
 | positions_valid | ✓ | invalid=0 |

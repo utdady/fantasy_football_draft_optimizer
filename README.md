@@ -14,7 +14,12 @@
 > stay frozen; first promotion-worthy evidence must be leakage-safe **actual** PPR.
 >
 > **P2.1 done:** frozen snapshot `2026-preseason-2026-08-12` in `data/draftopt_eval.db`
-> (validate PASS — see [`results/phase2_validate_2026-preseason-2026-08-12.md`](results/phase2_validate_2026-preseason-2026-08-12.md)). Next: **P2.2 outcomes**.
+> (**pipeline proof**, `evaluable=0` — not for actual-points claims). See
+> [`results/PHASE2_P21_SNAPSHOT.md`](results/PHASE2_P21_SNAPSHOT.md). Next: **P2.2**
+> historical eval snapshot + outcomes ([`results/PHASE2_P22_SOURCES.md`](results/PHASE2_P22_SOURCES.md)).
+> Stage A spike: FFC 2024 10-team request **failed** league-size check (`evaluable=0`).
+> **P2.2B:** projection source audit — [`results/PHASE2_P22B_PROJECTION_AUDIT.md`](results/PHASE2_P22B_PROJECTION_AUDIT.md)
+> (Gate 4 still open; no replay).
 
 ## Setup
 

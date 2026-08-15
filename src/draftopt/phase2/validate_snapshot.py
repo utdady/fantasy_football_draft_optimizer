@@ -9,7 +9,7 @@ from pathlib import Path
 
 from draftopt.config import EVAL_DB_PATH, SKILL_POSITIONS
 from draftopt.phase2.leakage import validate_snapshot_table
-from draftopt.phase2.schema import EVAL_SCHEMA
+from draftopt.phase2.schema import migrate_eval_schema
 import sqlite3
 
 
@@ -22,8 +22,7 @@ def _connect_eval(path: Path) -> sqlite3.Connection:
 
 
 def _init_eval(conn: sqlite3.Connection) -> None:
-    conn.executescript(EVAL_SCHEMA)
-    conn.commit()
+    migrate_eval_schema(conn)
 
 # Coverage bars for a usable draft pool (skill positions with signal).
 MIN_PLAYERS = 200
@@ -67,6 +66,22 @@ def validate_snapshot(
         "snapshot_date_valid",
         bool(snap["snapshot_date"] and len(snap["snapshot_date"]) >= 10),
         f"snapshot_date={snap['snapshot_date']} season={snap['season']}",
+    )
+
+    # Classification flags (pipeline proof vs evaluable). Keys may be missing
+    # on very old DBs until migrate_eval_schema runs (always called above).
+    pp = int(snap["pipeline_proof"] or 0)
+    ev = int(snap["evaluable"] or 0)
+    outcome_season = snap["outcome_season"]
+    add(
+        "flags_mutually_consistent",
+        not (pp == 1 and ev == 1),
+        f"pipeline_proof={pp} evaluable={ev} outcome_season={outcome_season}",
+    )
+    add(
+        "evaluable_has_outcome_season",
+        ev == 0 or outcome_season is not None,
+        f"evaluable={ev} outcome_season={outcome_season}",
     )
 
     rows = conn.execute(
@@ -164,6 +179,9 @@ def validate_snapshot(
         "season": snap["season"],
         "snapshot_date": snap["snapshot_date"],
         "label": snap["label"],
+        "pipeline_proof": pp,
+        "evaluable": ev,
+        "outcome_season": outcome_season,
         "n_players": n,
         "ok": ok,
         "checks": checks,
@@ -177,6 +195,9 @@ def to_markdown(report: dict) -> str:
         f"- season: **{report.get('season')}**",
         f"- snapshot_date: **{report.get('snapshot_date')}**",
         f"- players: **{report.get('n_players')}**",
+        f"- pipeline_proof: **{report.get('pipeline_proof')}**",
+        f"- evaluable: **{report.get('evaluable')}**",
+        f"- outcome_season: **{report.get('outcome_season')}**",
         f"- overall: **{'PASS' if report.get('ok') else 'FAIL'}**",
         "",
         "| check | ok | detail |",

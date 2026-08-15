@@ -1,0 +1,171 @@
+{
+  "stage": "A_feasibility",
+  "snapshot_id": "2024-preseason-2024-09-01-ffc-pending",
+  "evaluable": 0,
+  "pipeline_proof": 0,
+  "validation_status": "source_validation",
+  "validation_reason": "historical_projection_missing",
+  "validation_reasons_all": [
+    "historical_projection_missing"
+  ],
+  "ffc_raw_path": "data\\raw\\ffc_adp_ppr_10tm_2024.json",
+  "provenance": {
+    "gate": "pass",
+    "reason": null,
+    "requested_year": 2024,
+    "requested_teams": 12,
+    "meta_type": "PPR",
+    "meta_teams": 12,
+    "meta_rounds": 15,
+    "total_drafts": 1371,
+    "start_date": "2024-08-31",
+    "end_date": "2024-09-01",
+    "as_of": "2024-09-01",
+    "as_of_interpretation": "FFC meta.end_date (upper bound of draft window in meta); ADP is an aggregate over [start_date, end_date], not a single pick clock.",
+    "n_players": 205
+  },
+  "mapping": {
+    "n_ffc": 205,
+    "n_mapped": 179,
+    "n_manual": 0,
+    "n_unresolved": 26,
+    "coverage": 0.8731707317073171,
+    "name_only_joins": 0,
+    "unresolved_sample": [
+      {
+        "source": "ffc",
+        "source_player_id": "4863",
+        "name": "Travis Etienne Jr.",
+        "position": "RB",
+        "team": "JAX",
+        "reason": "no_crosswalk_match"
+      },
+      {
+        "source": "ffc",
+        "source_player_id": "3246",
+        "name": "Deebo Samuel Sr.",
+        "position": "WR",
+        "team": "SF",
+        "reason": "no_crosswalk_match"
+      },
+      {
+        "source": "ffc",
+        "source_player_id": "5652",
+        "name": "James Cook III",
+        "position": "RB",
+        "team": "BUF",
+        "reason": "no_crosswalk_match"
+      },
+      {
+        "source": "ffc",
+        "source_player_id": "5625",
+        "name": "Kenneth Walker",
+        "position": "RB",
+        "team": "SEA",
+        "reason": "no_crosswalk_match"
+      },
+      {
+        "source": "ffc",
+        "source_player_id": "4880",
+        "name": "Michael Pittman Jr.",
+        "position": "WR",
+        "team": "IND",
+        "reason": "no_crosswalk_match"
+      },
+      {
+        "source": "ffc",
+        "source_player_id": "2507",
+        "name": "Aaron Jones Sr.",
+        "position": "RB",
+        "team": "MIN",
+        "reason": "no_crosswalk_match"
+      },
+      {
+        "source": "ffc",
+        "source_player_id": "5679",
+        "name": "Anthony Richardson Sr.",
+        "position": "QB",
+        "team": "IND",
+        "reason": "no_crosswalk_match"
+      },
+      {
+        "source": "ffc",
+        "source_player_id": "2465",
+        "name": "Chris Godwin Jr.",
+        "position": "WR",
+        "team": "TB",
+        "reason": "no_crosswalk_match"
+      },
+      {
+        "source": "ffc",
+        "source_player_id": "5181",
+        "name": "Kyle Pitts Sr.",
+        "position": "TE",
+        "team": "ATL",
+        "reason": "no_crosswalk_match"
+      },
+      {
+        "source": "ffc",
+        "source_player_id": "3249",
+        "name": "Hollywood Brown",
+        "position": "WR",
+        "team": "KC",
+        "reason": "no_crosswalk_match"
+      },
+      {
+        "source": "ffc",
+        "source_player_id": "2436",
+        "name": "Mike Williams",
+        "position": "WR",
+        "team": "PIT",
+        "reason": "no_crosswalk_match"
+      },
+      {
+        "source": "ffc",
+        "source_player_id": "1332",
+        "name": "Baltimore Defense",
+        "position": "DST",
+        "team": "BAL",
+        "reason": "no_crosswalk_match"
+      },
+      {
+        "source": "ffc",
+        "source_player_id": "1326",
+        "name": "San Francisco Defense",
+        "position": "DST",
+        "team": "SF",
+        "reason": "no_crosswalk_match"
+      },
+      {
+        "source": "ffc",
+        "source_player_id": "1308",
+        "name": "Dallas Defense",
+        "position": "DST",
+        "team": "DAL",
+        "reason": "no_crosswalk_match"
+      },
+      {
+        "source": "ffc",
+        "source_player_id": "1321",
+        "name": "NY Jets Defense",
+        "position": "DST",
+        "team": "NYJ",
+        "reason": "no_crosswalk_match"
+      }
+    ]
+  },
+  "outcomes": null,
+  "outcome_coverage_mapped_gsis": {
+    "n_mapped_with_gsis": 179,
+    "n_with_outcomes": 0,
+    "coverage": 0.0
+  },
+  "gates": {
+    "ffc_adp_provenance": "pass",
+    "player_mapping": "pass",
+    "outcome_coverage": "skip",
+    "historical_projection": "fail",
+    "evaluable": "fail"
+  },
+  "eval_db": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\draftopt_eval.db"
+}

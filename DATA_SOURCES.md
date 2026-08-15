@@ -36,8 +36,8 @@ Layers (do not mix in code):
 
 | Status | Source | Layer | Why | Access | Blocker |
 |--------|--------|-------|-----|--------|---------|
-| [ ] | **Fantasy Football Calculator ADP API** | Market | 10-team PPR ADP + **historical years** for backtests | Free + attribution | Cloudflare 403 from some environments — verify from home/browser |
-| [ ] | **FantasyPros official API** | Market + expectation + news | Multi-platform ADP, projections, injuries, news | Free prototype key · HOF ~$9/mo personal prod | Request key at FantasyPros |
+| [~] | **Fantasy Football Calculator ADP API** | Market | 10-team PPR ADP + historical years | Free + attribution | Cloudflare 403 from some envs; **2024 historical returned meta.teams=12** for teams=10 request — see P2.2 spike |
+| [ ] | **FantasyPros official API** | Market + expectation + news | Multi-platform ADP, projections, injuries, news | Free prototype key · HOF ~$9/mo personal prod | **P2.2B:** needed to probe whether *historical* 2024 preseason projections include a publish date — see [`results/PHASE2_P22B_PROJECTION_AUDIT.md`](results/PHASE2_P22B_PROJECTION_AUDIT.md) |
 | [ ] | **nflverse / `nflreadpy`** | Identity + history | Players, weekly/season stats, schedules, later PBP | Free downloads | Needed before serious backtests / own projections |
 
 ### Extra fields once unlocked
@@ -105,7 +105,7 @@ Treat every external pull as a **versioned snapshot**, not a mutable “current 
 | **V0** data + draft-state + keyboard UI | Sleeper + DynastyProcess IDs/ECR + ESPN ADP/proj |
 | **V1** marginal lineup value | Same (+ bye / injury in lineup EV) |
 | **V1.5** backtesting | + FFC historical ADP and/or our own ADP snapshots; nflverse stats for outcomes |
-| **Phase 2 historical eval** | Decision-time snapshots vs outcome DB; leakage validator; actual PPR scoring — see [`results/PHASE2_HISTORICAL_EVAL.md`](results/PHASE2_HISTORICAL_EVAL.md) |
+| **Phase 2 historical eval** | Decision-time snapshots vs outcome DB; leakage validator; actual PPR scoring — see [`results/PHASE2_HISTORICAL_EVAL.md`](results/PHASE2_HISTORICAL_EVAL.md); source hunt [`results/PHASE2_P22_SOURCES.md`](results/PHASE2_P22_SOURCES.md). Current 2026 freeze is **pipeline proof** (`evaluable=0`) only. |
 | **V2–V3** draft-aware / survival | Same + richer market (FP multi-ADP if available); **frozen pending Phase 2** |
 | **V4** Monte Carlo | + projection uncertainty (ECR `sd` first; distributions later) |
 | **V5** live ESPN | ESPN draft observation (separate from valuation sources) |

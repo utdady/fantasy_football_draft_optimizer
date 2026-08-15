@@ -58,15 +58,26 @@ Question Phase 2 answers:
 
 | ID | Milestone | Done when |
 | --- | --- | --- |
-| **P2.1** | Historical snapshot ingestion | ✅ `2026-preseason-2026-08-12` frozen + validate PASS |
-| **P2.2** | Outcome ingestion | Actual season PPR in outcome tables (separate) |
+| **P2.1** | Historical snapshot ingestion | ✅ `2026-preseason-2026-08-12` frozen + validate PASS (**pipeline proof**, `evaluable=0`) |
+| **P2.2** | Outcome + projection path | 🟡 **2A** feasibility done; **2B** projection audit done ([`PHASE2_P22B_PROJECTION_AUDIT.md`](PHASE2_P22B_PROJECTION_AUDIT.md)); still **not evaluable** |
 | **P2.3** | Leakage validator | ✅ module + snapshot gate (`validate_snapshot`) |
-| **P2.4** | Historical draft replay | Existing strategies draft from a snapshot |
+| **P2.4** | Historical draft replay | Existing strategies draft from an **`evaluable=1`** snapshot only |
 | **P2.5** | Outcome scoring | Rosters → actual starter PPR |
 | **P2.6** | Baseline comparison | ADP vs `marginal` on actual points |
 | **P2.7** | VOR / V2 experiments | Only after P2.1–P2.6 are green |
 
 **Do not start P2.7 before P2.3.** Contaminated pipelines waste more time than slow data work.
+
+### Snapshot kinds
+
+| Kind | Flags | Allowed for |
+| --- | --- | --- |
+| **PIPELINE PROOF** | `pipeline_proof=1`, `evaluable=0` | Ingest / leakage validation only |
+| **EVALUATION** | `pipeline_proof=0`, `evaluable=1`, `outcome_season` set | Replay, scoring, ADP vs `marginal` |
+
+Hard gate: `draftopt.phase2.require_evaluable(conn, snapshot_id)` — raises
+`SnapshotNotEvaluable` otherwise. Never mutate a frozen id’s meaning; mint a
+new dated id if you need a different cut.
 
 ### First MVP cut
 
@@ -76,11 +87,14 @@ current live ingest (with `pulled_at` as `as_of`) is a valid **P2.1 pipeline
 proof** — outcomes (P2.2) wait until actual season points exist.
 
 ```powershell
-# Freeze live ESPN ADP/proj into data/draftopt_eval.db
+# Freeze live ESPN ADP/proj into data/draftopt_eval.db (defaults: pipeline_proof)
 python -m draftopt.phase2.freeze_snapshot
 
 # Validate (must PASS before P2.2)
 python -m draftopt.phase2.validate_snapshot 2026-preseason-2026-08-12
+
+# Evaluation gate must REFUSE this id
+python -m draftopt.phase2.assert_evaluable 2026-preseason-2026-08-12
 ```
 
 ---
@@ -98,6 +112,11 @@ python -m draftopt.phase2.validate_snapshot 2026-preseason-2026-08-12
 | `snapshot_date` | ISO date — decision cutoff |
 | `label` | e.g. `2024-preseason-late-aug` |
 | `notes` | free text |
+| `pipeline_proof` | 1 = ingest/leakage proof only |
+| `evaluable` | 1 = allowed for replay/scoring |
+| `outcome_season` | season year for actual PPR (required if evaluable) |
+| `validation_status` | e.g. `source_validation` |
+| `validation_reason` | e.g. `adp_as_of_unverified`, `historical_projection_missing` |
 
 **`eval_snapshot_players`**
 
@@ -147,8 +166,11 @@ Outcomes attach only in a **scoring** step that reads picks + `eval_outcomes`.
 
 See `src/draftopt/phase2/`:
 
-- `schema.py` — DDL for the tables above (not auto-migrated into live UI DB yet)
+- `schema.py` — DDL + `migrate_eval_schema` (flag columns)
 - `leakage.py` — validator: every decision row must satisfy `*_as_of ≤ snapshot_date`
+- `evaluable.py` — `require_evaluable` hard gate for runners
+- `mark_snapshot.py` — set `pipeline_proof` / `evaluable` / `outcome_season`
+- `freeze_snapshot.py` / `validate_snapshot.py` — P2.1 freeze + validate
 
 Apply deliberately when implementing P2.1 (separate eval DB path recommended: e.g. `data/draftopt_eval.db` vs live `data/draftopt.db`).
 
