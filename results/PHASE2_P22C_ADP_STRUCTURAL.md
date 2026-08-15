@@ -59,21 +59,24 @@ Do **not** register these as UI default. Do **not** rename them to `marginal`.
 
 ---
 
-## ADP → value curve (freeze before coding)
+## ADP → value curve (FROZEN — do not retune after outcomes)
 
-Invert ADP into a monotone season-value proxy used **only** as the structural
-signal (not claimed to be a true projection):
+**Curve ID:** `adp_linear_v1_2024_ffc12`  
+**Code:** `src/draftopt/phase2/adp_value_curve.py`
 
 \[
-v(i) = V_{\max} \cdot \frac{\mathrm{ADP}_{\mathrm{ref}} - \mathrm{ADP}_i}
-{\mathrm{ADP}_{\mathrm{ref}} - \mathrm{ADP}_{\min}}
+v = \mathrm{clamp}\big(V_{\mathrm{floor}},\;
+V_{\max}\cdot\frac{\mathrm{ADP}_{\mathrm{ref}}-\mathrm{ADP}}{\mathrm{ADP}_{\mathrm{ref}}-1},\;
+V_{\max}\big)
 \]
 
-with clamps so deeper ADP still has small positive \(v\) if needed for numerics.
-Exact constants (`V_max`, `ADP_ref`) must be written into the experiment report
-before the first scored run and **not tuned** after seeing outcome Δ.
+| Constant | Value |
+| --- | ---: |
+| `V_MAX` | 350 |
+| `ADP_REF` | 180 |
+| `V_FLOOR` | 1 |
 
-**Rule:** do not change the curve to make structural beat baseline.
+Chosen **before** any actual-PPR comparison. Changing these after seeing Δ is a methodology leak.
 
 ---
 

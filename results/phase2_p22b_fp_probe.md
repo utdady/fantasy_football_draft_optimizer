@@ -1,37 +1,24 @@
 # P2.2B — FantasyPros projections API probe
 
-**Status: CLOSED / BLOCKED for Stage B**
-
-- probed_at: `2026-08-15T06:46:50Z` (and earlier `06:41:25Z`)
+- probed_at: `2026-08-15T07:05:29Z`
 - season: **2024**
-- http_status: **403**
+- http_status: **None**
 - gate: **fail**
-- verdict: **blocked_auth**
-- reason: `api_forbidden`
+- verdict: **blocked_no_key**
+- reason: `api_key_missing`
 
-## Auth canary
+## Notes
 
-Probe code now hits `/public/v2/json/nfl/players` before projections so a later
-re-run can distinguish invalid key vs projections-only deny. Both attempts that
-reached projections (legacy then public+legacy) returned **403** on
-`.../nfl/2024/projections`.
+- Set FANTASYPROS_API_KEY in gitignored `.env` (see `.env.example`) or in the shell, then re-run.
+- Checked .env path: C:\Users\addyb\fantasy_football_draft_optimizer\.env.
+- Without a key the API returns 403; historical as_of cannot be verified.
+- Docs: GET /public/v2/json/nfl/{season}/projections?week=0&scoring=PPR (week=0 = preseason). No as_of query parameter is documented — provenance must come from response fields or fail closed.
 
-Error body observed (no key material): `{"message":"Forbidden"}`.
+## Date-like fields (sample)
 
-## Scientific close
-
-> **No historical projection source meeting the project's provenance and leakage
-> requirements was confirmed for the 2024 evaluation window via the FantasyPros
-> free API.**
-
-Do **not** purchase HOF solely to rescue this experiment unless dated historical
-preseason projections are explicitly documented. Stop FP archaeology.
-
-## Next
-
-**P2.2C — labeled ADP-structural track** (12-team FFC). See
-[`PHASE2_P22C_ADP_STRUCTURAL.md`](PHASE2_P22C_ADP_STRUCTURAL.md).
+_None found._
 
 ## Hard rule
 
 No verifiable as_of → **reject for Stage B**. Do not convert ECR→points.
+Re-run: `python -m draftopt.phase2.fp_projection_probe --season 2024`

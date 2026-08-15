@@ -1,23 +1,17 @@
 {
-  "status": "closed_blocked",
-  "probed_at": "2026-08-15T06:46:50Z",
+  "probed_at": "2026-08-15T07:05:29Z",
   "season": 2024,
-  "http_status": 403,
+  "http_status": null,
   "gate": "fail",
-  "verdict": "blocked_auth",
-  "reason": "api_forbidden",
-  "error_body": {
-    "message": "Forbidden"
-  },
-  "request": {
-    "week": 0,
-    "scoring": "PPR",
-    "position": "RB",
-    "urls_tried": [
-      "https://api.fantasypros.com/public/v2/json/nfl/2024/projections",
-      "https://api.fantasypros.com/v2/json/nfl/2024/projections"
-    ]
-  },
-  "scientific_close": "No historical projection source meeting the project's provenance and leakage requirements was confirmed for the 2024 evaluation window via the FantasyPros free API.",
-  "next": "P2.2C labeled ADP-structural track"
+  "reason": "api_key_missing",
+  "has_players": false,
+  "n_players_sample_endpoint": null,
+  "dateish_fields": [],
+  "verdict": "blocked_no_key",
+  "notes": [
+    "Set FANTASYPROS_API_KEY in gitignored `.env` (see `.env.example`) or in the shell, then re-run.",
+    "Checked .env path: C:\\Users\\addyb\\fantasy_football_draft_optimizer\\.env.",
+    "Without a key the API returns 403; historical as_of cannot be verified.",
+    "Docs: GET /public/v2/json/nfl/{season}/projections?week=0&scoring=PPR (week=0 = preseason). No as_of query parameter is documented \u2014 provenance must come from response fields or fail closed."
+  ]
 }

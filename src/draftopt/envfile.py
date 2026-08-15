@@ -21,7 +21,8 @@ def load_dotenv(path: Path | None = None) -> Path | None:
     env_path = path or (ROOT / ".env")
     if not env_path.is_file():
         return None
-    for raw in env_path.read_text(encoding="utf-8").splitlines():
+    text = env_path.read_text(encoding="utf-8-sig")
+    for raw in text.splitlines():
         line = raw.strip()
         if not line or line.startswith("#"):
             continue
