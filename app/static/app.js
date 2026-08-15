@@ -315,7 +315,7 @@ function render() {
   metaEl.textContent = pickLabel();
   const rosterLabel = state?.roster?.label ? ` · ${state.roster.label}` : "";
   const modeLabel = isLiveSim() ? " · live sim" : "";
-  draftSub.textContent = `V0 · ${state?.n_teams || nTeams}-team PPR snake · ${state?.n_rounds || "?"} rounds${rosterLabel}${modeLabel}`;
+  draftSub.textContent = `id ${state?.draft_id || "—"} · ${state?.n_teams || nTeams}-team PPR snake · ${state?.n_rounds || "?"} rounds${rosterLabel}${modeLabel}`;
   const picking = canHumanPick();
   search.disabled = !picking;
   filterPos.disabled = !picking;
@@ -477,7 +477,7 @@ async function dumpAutopsyCase() {
     const top = (data.recommend || [])[0];
     showBanner(
       banner,
-      `Case dumped → ${data.path}` +
+      `Case dumped · draft ${draftId} → ${data.path}` +
         (top ? ` · TAKE ${top.name} (M ${top.marginal})` : "")
     );
   } catch (err) {
@@ -865,7 +865,7 @@ document.addEventListener("keydown", (e) => {
     if (st.n_teams) fillSlotOptions(Number(st.n_teams));
     slotSelect.value = localStorage.getItem("userSlot") || "1";
     orderModeSelect.value = localStorage.getItem("orderMode") || "pick_slot";
-    if (liveSimCheck) liveSimCheck.checked = localStorage.getItem("liveSim") === "1";
+    if (liveSimCheck) liveSimCheck.checked = localStorage.getItem("liveSim") !== "0";
     presets = st.roster_presets || [];
     rosterSelect.innerHTML = "";
     for (const p of presets) {
