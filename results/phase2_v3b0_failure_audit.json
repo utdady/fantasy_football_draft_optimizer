@@ -1,0 +1,7327 @@
+{
+  "stage": "V3B0_FAILURE_AUDIT",
+  "created_at": "2026-08-15T13:12:05Z",
+  "curve_id": "adp_emp_pos_v1_train_2021_2023",
+  "construction_id": "replacement_nextbest_v1",
+  "contract_id": "ppr_eval_v1_2024",
+  "evaluable": 0,
+  "source_ladder": "results\\phase2_v3b_ladder.json",
+  "claim": "Descriptive audit of why V3-B.0 E\u2212D failed. First D\u2260E divergence is the anchor; decision-time M_D/r*/M_E joined via targeted replay. No new objective; not E.1.",
+  "methodological_rule": "Failure \u2192 mechanism audit \u2192 hypothesis \u2192 design contract \u2192 implementation. Do not tweak r* after this report.",
+  "contract": {
+    "contract_id": "ppr_eval_v1_2024",
+    "outcome_source": "nflverse_computed",
+    "outcome_season": 2024,
+    "decision_snapshot_id": "2024-preseason-2024-09-01-ffc12",
+    "n_teams": 12,
+    "n_rounds": 15,
+    "roster_preset": "league_default",
+    "season_type": "REG",
+    "missing_policy": "missing_identity / missing_weeks never score as 0; only observed_zero and observed_points enter eval_outcomes",
+    "starter_scoring": "Same greedy FLEX-aware lineup_ev as production; headline \u0394 uses starters only (bench recorded separately). IR not drafted.",
+    "frozen": true
+  },
+  "n_pairs": 60,
+  "findings": [
+    "E\u2212D mean=-24.25 on 60 boards (60 diverge at \u22651 pick).",
+    "First-fork bands: {'r1-5': 60}",
+    "Top first-fork transitions: [('WR->RB', 45), ('WR->TE', 12), ('QB->RB', 3)]",
+    "At first fork, mean M_D(D)\u2212M_D(E)=+34.68 (positive \u21d2 E left higher M_D on the table).",
+    "Mean fraction of pool with |M_E|\u22641 at first fork: 4.7%.",
+    "Pool r*/v at first forks: mean=1.300, median=1.253.",
+    "Starter TE E\u2212D mean=+93.32; RB mean=+269.80; WR mean=-383.97."
+  ],
+  "section1_divergence": {
+    "n_boards_with_divergence": 60,
+    "mean_changed_picks_per_board": 10.7167,
+    "first_fork_rounds": {
+      "1": 3,
+      "2": 22,
+      "3": 10,
+      "4": 25
+    },
+    "first_fork_bands": {
+      "r1-5": 60
+    },
+    "first_fork_d_positions": {
+      "WR": 57,
+      "QB": 3
+    },
+    "first_fork_e_positions": {
+      "RB": 48,
+      "TE": 12
+    },
+    "first_fork_transitions": {
+      "WR->RB": 45,
+      "WR->TE": 12,
+      "QB->RB": 3
+    }
+  },
+  "section2_attribution": {
+    "fork_pick_actual_e_minus_d": {
+      "n": 60,
+      "mean": 10.6713,
+      "median": -7.2,
+      "stdev": 85.6217,
+      "min": -158.3,
+      "p10": -92.4,
+      "p25": -39.93,
+      "p75": 55.725,
+      "p90": 145.28,
+      "max": 223.2,
+      "n_positive": 27,
+      "n_negative": 33,
+      "n_zero": 0,
+      "win_rate": 0.45
+    },
+    "starter_e_minus_d_by_pos": {
+      "QB": {
+        "n": 60,
+        "mean": -2.6657,
+        "median": 0.0,
+        "stdev": 14.7747,
+        "min": -96.02,
+        "p10": 0.0,
+        "p25": 0.0,
+        "p75": 0.0,
+        "p90": 0.0,
+        "max": 0.0,
+        "n_positive": 0,
+        "n_negative": 2,
+        "n_zero": 58,
+        "win_rate": 0.0
+      },
+      "RB": {
+        "n": 60,
+        "mean": 269.8,
+        "median": 272.55,
+        "stdev": 217.081,
+        "min": -263.5,
+        "p10": 18.0,
+        "p25": 132.25,
+        "p75": 372.175,
+        "p90": 549.66,
+        "max": 781.6,
+        "n_positive": 54,
+        "n_negative": 5,
+        "n_zero": 1,
+        "win_rate": 0.9
+      },
+      "WR": {
+        "n": 60,
+        "mean": -383.9733,
+        "median": -381.0,
+        "stdev": 209.4665,
+        "min": -765.8,
+        "p10": -654.39,
+        "p25": -523.125,
+        "p75": -238.775,
+        "p90": -72.5,
+        "max": 58.58,
+        "n_positive": 2,
+        "n_negative": 58,
+        "n_zero": 0,
+        "win_rate": 0.0333
+      },
+      "TE": {
+        "n": 60,
+        "mean": 93.3193,
+        "median": 108.5,
+        "stdev": 146.287,
+        "min": -394.9,
+        "p10": -67.42,
+        "p25": 0.0,
+        "p75": 232.9,
+        "p90": 255.7,
+        "max": 324.6,
+        "n_positive": 41,
+        "n_negative": 13,
+        "n_zero": 6,
+        "win_rate": 0.6833
+      },
+      "DST": {
+        "n": 60,
+        "mean": -0.7333,
+        "median": 0.0,
+        "stdev": 3.4142,
+        "min": -20.0,
+        "p10": 0.0,
+        "p25": 0.0,
+        "p75": 0.0,
+        "p90": 0.0,
+        "max": 8.0,
+        "n_positive": 1,
+        "n_negative": 5,
+        "n_zero": 54,
+        "win_rate": 0.0167
+      },
+      "K": {
+        "n": 60,
+        "mean": 0.0,
+        "median": 0.0,
+        "stdev": 0.0,
+        "min": 0.0,
+        "p10": 0.0,
+        "p25": 0.0,
+        "p75": 0.0,
+        "p90": 0.0,
+        "max": 0.0,
+        "n_positive": 0,
+        "n_negative": 0,
+        "n_zero": 60,
+        "win_rate": 0.0
+      }
+    },
+    "starter_e_minus_d_by_band": {
+      "r1-5": {
+        "n": 60,
+        "mean": 144.9093,
+        "median": 117.8,
+        "stdev": 150.3368,
+        "min": -169.3,
+        "p10": -19.798,
+        "p25": 32.275,
+        "p75": 238.645,
+        "p90": 315.78,
+        "max": 583.3,
+        "n_positive": 52,
+        "n_negative": 8,
+        "n_zero": 0,
+        "win_rate": 0.8667
+      },
+      "r6-10": {
+        "n": 60,
+        "mean": 3.1033,
+        "median": 0.0,
+        "stdev": 190.7705,
+        "min": -381.5,
+        "p10": -237.1,
+        "p25": -126.425,
+        "p75": 117.25,
+        "p90": 250.84,
+        "max": 477.4,
+        "n_positive": 28,
+        "n_negative": 28,
+        "n_zero": 4,
+        "win_rate": 0.4667
+      },
+      "r11-15": {
+        "n": 60,
+        "mean": -172.2657,
+        "median": -190.75,
+        "stdev": 208.7572,
+        "min": -648.7,
+        "p10": -428.78,
+        "p25": -313.15,
+        "p75": 0.525,
+        "p90": 66.19,
+        "max": 308.3,
+        "n_positive": 15,
+        "n_negative": 44,
+        "n_zero": 1,
+        "win_rate": 0.25
+      }
+    },
+    "mean_starter_delta_by_pos": {
+      "QB": -2.6657,
+      "RB": 269.8,
+      "WR": -383.9733,
+      "TE": 93.3193,
+      "DST": -0.7333,
+      "K": 0.0
+    }
+  },
+  "section3_immediate_sacrifice": {
+    "n_joined": 60,
+    "rows": [
+      {
+        "slot": 1,
+        "seed": 42,
+        "round": 2,
+        "e_minus_d_full": -143.38,
+        "d": {
+          "player_id": "2133",
+          "name": "Davante Adams",
+          "position": "WR",
+          "calibrated_value": 246.6543,
+          "marginal_d": 246.65,
+          "replacement": 242.0097,
+          "replacement_missing": false,
+          "marginal_e": 4.64,
+          "actual_ppr": 241.3
+        },
+        "e": {
+          "player_id": "7543",
+          "name": "Travis Etienne Jr.",
+          "position": "RB",
+          "calibrated_value": 210.1165,
+          "marginal_d": 210.12,
+          "replacement": 200.5791,
+          "replacement_missing": false,
+          "marginal_e": 9.54,
+          "actual_ppr": 130.2
+        },
+        "fork_actual_delta_e_minus_d": -111.1,
+        "n_near_zero_me": 3,
+        "n_pool": 54,
+        "near_zero_me_frac": 0.0556,
+        "md_sacrifice_d_minus_e": 36.53,
+        "me_adv_e_minus_d": 4.9
+      },
+      {
+        "slot": 1,
+        "seed": 43,
+        "round": 2,
+        "e_minus_d_full": 153.48,
+        "d": {
+          "player_id": "8112",
+          "name": "Drake London",
+          "position": "WR",
+          "calibrated_value": 242.0097,
+          "marginal_d": 242.01,
+          "replacement": 227.4566,
+          "replacement_missing": false,
+          "marginal_e": 14.55,
+          "actual_ppr": 280.8
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 210.1165,
+          "replacement_missing": false,
+          "marginal_e": 25.94,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": -36.1,
+        "n_near_zero_me": 3,
+        "n_pool": 54,
+        "near_zero_me_frac": 0.0556,
+        "md_sacrifice_d_minus_e": 5.95,
+        "me_adv_e_minus_d": 11.39
+      },
+      {
+        "slot": 1,
+        "seed": 44,
+        "round": 4,
+        "e_minus_d_full": 92.4,
+        "d": {
+          "player_id": "6803",
+          "name": "Brandon Aiyuk",
+          "position": "WR",
+          "calibrated_value": 197.4867,
+          "marginal_d": 197.49,
+          "replacement": 194.2041,
+          "replacement_missing": false,
+          "marginal_e": 3.29,
+          "actual_ppr": 62.4
+        },
+        "e": {
+          "player_id": "4199",
+          "name": "Aaron Jones Sr.",
+          "position": "RB",
+          "calibrated_value": 157.8009,
+          "marginal_d": 157.8,
+          "replacement": 134.1411,
+          "replacement_missing": false,
+          "marginal_e": 23.66,
+          "actual_ppr": 241.6
+        },
+        "fork_actual_delta_e_minus_d": 179.2,
+        "n_near_zero_me": 0,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0,
+        "md_sacrifice_d_minus_e": 39.69,
+        "me_adv_e_minus_d": 20.37
+      },
+      {
+        "slot": 1,
+        "seed": 45,
+        "round": 4,
+        "e_minus_d_full": -8.5,
+        "d": {
+          "player_id": "4983",
+          "name": "DJ Moore",
+          "position": "WR",
+          "calibrated_value": 210.6172,
+          "marginal_d": 210.62,
+          "replacement": 206.1409,
+          "replacement_missing": false,
+          "marginal_e": 4.48,
+          "actual_ppr": 238.1
+        },
+        "e": {
+          "player_id": "8151",
+          "name": "Kenneth Walker",
+          "position": "RB",
+          "calibrated_value": 181.1344,
+          "marginal_d": 181.13,
+          "replacement": 153.0689,
+          "replacement_missing": false,
+          "marginal_e": 28.06,
+          "actual_ppr": 181.2
+        },
+        "fork_actual_delta_e_minus_d": -56.9,
+        "n_near_zero_me": 0,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0,
+        "md_sacrifice_d_minus_e": 29.49,
+        "me_adv_e_minus_d": 23.58
+      },
+      {
+        "slot": 1,
+        "seed": 46,
+        "round": 2,
+        "e_minus_d_full": -27.3,
+        "d": {
+          "player_id": "8112",
+          "name": "Drake London",
+          "position": "WR",
+          "calibrated_value": 242.0097,
+          "marginal_d": 242.01,
+          "replacement": 237.3651,
+          "replacement_missing": false,
+          "marginal_e": 4.64,
+          "actual_ppr": 280.8
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 210.1165,
+          "replacement_missing": false,
+          "marginal_e": 25.94,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": -36.1,
+        "n_near_zero_me": 3,
+        "n_pool": 54,
+        "near_zero_me_frac": 0.0556,
+        "md_sacrifice_d_minus_e": 5.95,
+        "me_adv_e_minus_d": 21.3
+      },
+      {
+        "slot": 2,
+        "seed": 42,
+        "round": 2,
+        "e_minus_d_full": 278.08,
+        "d": {
+          "player_id": "2133",
+          "name": "Davante Adams",
+          "position": "WR",
+          "calibrated_value": 246.6543,
+          "marginal_d": 246.65,
+          "replacement": 242.0097,
+          "replacement_missing": false,
+          "marginal_e": 4.64,
+          "actual_ppr": 241.3
+        },
+        "e": {
+          "player_id": "7543",
+          "name": "Travis Etienne Jr.",
+          "position": "RB",
+          "calibrated_value": 210.1165,
+          "marginal_d": 210.12,
+          "replacement": 200.5791,
+          "replacement_missing": false,
+          "marginal_e": 9.54,
+          "actual_ppr": 130.2
+        },
+        "fork_actual_delta_e_minus_d": -111.1,
+        "n_near_zero_me": 3,
+        "n_pool": 54,
+        "near_zero_me_frac": 0.0556,
+        "md_sacrifice_d_minus_e": 36.53,
+        "me_adv_e_minus_d": 4.9
+      },
+      {
+        "slot": 2,
+        "seed": 43,
+        "round": 2,
+        "e_minus_d_full": 55.08,
+        "d": {
+          "player_id": "8112",
+          "name": "Drake London",
+          "position": "WR",
+          "calibrated_value": 242.0097,
+          "marginal_d": 242.01,
+          "replacement": 227.4566,
+          "replacement_missing": false,
+          "marginal_e": 14.55,
+          "actual_ppr": 280.8
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 210.1165,
+          "replacement_missing": false,
+          "marginal_e": 25.94,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": -36.1,
+        "n_near_zero_me": 3,
+        "n_pool": 54,
+        "near_zero_me_frac": 0.0556,
+        "md_sacrifice_d_minus_e": 5.95,
+        "me_adv_e_minus_d": 11.39
+      },
+      {
+        "slot": 2,
+        "seed": 44,
+        "round": 4,
+        "e_minus_d_full": -95.1,
+        "d": {
+          "player_id": "6803",
+          "name": "Brandon Aiyuk",
+          "position": "WR",
+          "calibrated_value": 197.4867,
+          "marginal_d": 197.49,
+          "replacement": 194.2041,
+          "replacement_missing": false,
+          "marginal_e": 3.29,
+          "actual_ppr": 62.4
+        },
+        "e": {
+          "player_id": "5012",
+          "name": "Mark Andrews",
+          "position": "TE",
+          "calibrated_value": 190.3863,
+          "marginal_d": 190.39,
+          "replacement": 184.4947,
+          "replacement_missing": false,
+          "marginal_e": 5.9,
+          "actual_ppr": 188.8
+        },
+        "fork_actual_delta_e_minus_d": 126.4,
+        "n_near_zero_me": 0,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0,
+        "md_sacrifice_d_minus_e": 7.1,
+        "me_adv_e_minus_d": 2.61
+      },
+      {
+        "slot": 2,
+        "seed": 45,
+        "round": 4,
+        "e_minus_d_full": -47.1,
+        "d": {
+          "player_id": "4983",
+          "name": "DJ Moore",
+          "position": "WR",
+          "calibrated_value": 210.6172,
+          "marginal_d": 210.62,
+          "replacement": 206.1409,
+          "replacement_missing": false,
+          "marginal_e": 4.48,
+          "actual_ppr": 238.1
+        },
+        "e": {
+          "player_id": "5012",
+          "name": "Mark Andrews",
+          "position": "TE",
+          "calibrated_value": 190.3863,
+          "marginal_d": 190.39,
+          "replacement": 164.279,
+          "replacement_missing": false,
+          "marginal_e": 26.11,
+          "actual_ppr": 188.8
+        },
+        "fork_actual_delta_e_minus_d": -49.3,
+        "n_near_zero_me": 0,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0,
+        "md_sacrifice_d_minus_e": 20.23,
+        "me_adv_e_minus_d": 21.63
+      },
+      {
+        "slot": 2,
+        "seed": 46,
+        "round": 2,
+        "e_minus_d_full": 267.6,
+        "d": {
+          "player_id": "8112",
+          "name": "Drake London",
+          "position": "WR",
+          "calibrated_value": 242.0097,
+          "marginal_d": 242.01,
+          "replacement": 237.3651,
+          "replacement_missing": false,
+          "marginal_e": 4.64,
+          "actual_ppr": 280.8
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 210.1165,
+          "replacement_missing": false,
+          "marginal_e": 25.94,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": -36.1,
+        "n_near_zero_me": 3,
+        "n_pool": 54,
+        "near_zero_me_frac": 0.0556,
+        "md_sacrifice_d_minus_e": 5.95,
+        "me_adv_e_minus_d": 21.3
+      },
+      {
+        "slot": 3,
+        "seed": 42,
+        "round": 4,
+        "e_minus_d_full": -14.3,
+        "d": {
+          "player_id": "2449",
+          "name": "Stefon Diggs",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 210.6172,
+          "replacement_missing": false,
+          "marginal_e": 5.07,
+          "actual_ppr": 121.92
+        },
+        "e": {
+          "player_id": "8130",
+          "name": "Trey McBride",
+          "position": "TE",
+          "calibrated_value": 184.4947,
+          "marginal_d": 184.49,
+          "replacement": 164.279,
+          "replacement_missing": false,
+          "marginal_e": 20.21,
+          "actual_ppr": 243.8
+        },
+        "fork_actual_delta_e_minus_d": 121.88,
+        "n_near_zero_me": 0,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0,
+        "md_sacrifice_d_minus_e": 31.2,
+        "me_adv_e_minus_d": 15.14
+      },
+      {
+        "slot": 3,
+        "seed": 43,
+        "round": 2,
+        "e_minus_d_full": -3.0,
+        "d": {
+          "player_id": "2133",
+          "name": "Davante Adams",
+          "position": "WR",
+          "calibrated_value": 246.6543,
+          "marginal_d": 246.65,
+          "replacement": 242.0097,
+          "replacement_missing": false,
+          "marginal_e": 4.64,
+          "actual_ppr": 241.3
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 210.1165,
+          "replacement_missing": false,
+          "marginal_e": 25.94,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": 3.4,
+        "n_near_zero_me": 3,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0545,
+        "md_sacrifice_d_minus_e": 10.59,
+        "me_adv_e_minus_d": 21.3
+      },
+      {
+        "slot": 3,
+        "seed": 44,
+        "round": 3,
+        "e_minus_d_full": 56.0,
+        "d": {
+          "player_id": "8112",
+          "name": "Drake London",
+          "position": "WR",
+          "calibrated_value": 242.0097,
+          "marginal_d": 242.01,
+          "replacement": 237.3651,
+          "replacement_missing": false,
+          "marginal_e": 4.64,
+          "actual_ppr": 280.8
+        },
+        "e": {
+          "player_id": "3198",
+          "name": "Derrick Henry",
+          "position": "RB",
+          "calibrated_value": 215.7718,
+          "marginal_d": 215.77,
+          "replacement": 210.1165,
+          "replacement_missing": false,
+          "marginal_e": 5.65,
+          "actual_ppr": 336.4
+        },
+        "fork_actual_delta_e_minus_d": 55.6,
+        "n_near_zero_me": 3,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0545,
+        "md_sacrifice_d_minus_e": 26.24,
+        "me_adv_e_minus_d": 1.01
+      },
+      {
+        "slot": 3,
+        "seed": 45,
+        "round": 4,
+        "e_minus_d_full": -585.8,
+        "d": {
+          "player_id": "5846",
+          "name": "DK Metcalf",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 210.6172,
+          "replacement_missing": false,
+          "marginal_e": 5.07,
+          "actual_ppr": 191.2
+        },
+        "e": {
+          "player_id": "5012",
+          "name": "Mark Andrews",
+          "position": "TE",
+          "calibrated_value": 190.3863,
+          "marginal_d": 190.39,
+          "replacement": 164.279,
+          "replacement_missing": false,
+          "marginal_e": 26.11,
+          "actual_ppr": 188.8
+        },
+        "fork_actual_delta_e_minus_d": -2.4,
+        "n_near_zero_me": 0,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0,
+        "md_sacrifice_d_minus_e": 25.3,
+        "me_adv_e_minus_d": 21.04
+      },
+      {
+        "slot": 3,
+        "seed": 46,
+        "round": 2,
+        "e_minus_d_full": 341.66,
+        "d": {
+          "player_id": "2133",
+          "name": "Davante Adams",
+          "position": "WR",
+          "calibrated_value": 246.6543,
+          "marginal_d": 246.65,
+          "replacement": 242.0097,
+          "replacement_missing": false,
+          "marginal_e": 4.64,
+          "actual_ppr": 241.3
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 210.1165,
+          "replacement_missing": false,
+          "marginal_e": 25.94,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": 3.4,
+        "n_near_zero_me": 3,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0545,
+        "md_sacrifice_d_minus_e": 10.59,
+        "me_adv_e_minus_d": 21.3
+      },
+      {
+        "slot": 4,
+        "seed": 42,
+        "round": 4,
+        "e_minus_d_full": 88.7,
+        "d": {
+          "player_id": "5846",
+          "name": "DK Metcalf",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 191.2
+        },
+        "e": {
+          "player_id": "8130",
+          "name": "Trey McBride",
+          "position": "TE",
+          "calibrated_value": 184.4947,
+          "marginal_d": 184.49,
+          "replacement": 164.279,
+          "replacement_missing": false,
+          "marginal_e": 20.21,
+          "actual_ppr": 243.8
+        },
+        "fork_actual_delta_e_minus_d": 52.6,
+        "n_near_zero_me": 2,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0357,
+        "md_sacrifice_d_minus_e": 31.2,
+        "me_adv_e_minus_d": 20.21
+      },
+      {
+        "slot": 4,
+        "seed": 43,
+        "round": 4,
+        "e_minus_d_full": -198.58,
+        "d": {
+          "player_id": "2216",
+          "name": "Mike Evans",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 240.4
+        },
+        "e": {
+          "player_id": "5012",
+          "name": "Mark Andrews",
+          "position": "TE",
+          "calibrated_value": 190.3863,
+          "marginal_d": 190.39,
+          "replacement": 164.279,
+          "replacement_missing": false,
+          "marginal_e": 26.11,
+          "actual_ppr": 188.8
+        },
+        "fork_actual_delta_e_minus_d": -51.6,
+        "n_near_zero_me": 3,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0536,
+        "md_sacrifice_d_minus_e": 25.3,
+        "me_adv_e_minus_d": 26.11
+      },
+      {
+        "slot": 4,
+        "seed": 44,
+        "round": 3,
+        "e_minus_d_full": 218.4,
+        "d": {
+          "player_id": "5872",
+          "name": "Deebo Samuel Sr.",
+          "position": "WR",
+          "calibrated_value": 237.3651,
+          "marginal_d": 237.37,
+          "replacement": 227.4566,
+          "replacement_missing": false,
+          "marginal_e": 9.91,
+          "actual_ppr": 155.6
+        },
+        "e": {
+          "player_id": "3198",
+          "name": "Derrick Henry",
+          "position": "RB",
+          "calibrated_value": 215.7718,
+          "marginal_d": 215.77,
+          "replacement": 203.8032,
+          "replacement_missing": false,
+          "marginal_e": 11.97,
+          "actual_ppr": 336.4
+        },
+        "fork_actual_delta_e_minus_d": 180.8,
+        "n_near_zero_me": 3,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0545,
+        "md_sacrifice_d_minus_e": 21.6,
+        "me_adv_e_minus_d": 2.06
+      },
+      {
+        "slot": 4,
+        "seed": 45,
+        "round": 4,
+        "e_minus_d_full": -263.8,
+        "d": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 273.6
+        },
+        "e": {
+          "player_id": "8138",
+          "name": "James Cook III",
+          "position": "RB",
+          "calibrated_value": 190.6608,
+          "marginal_d": 190.66,
+          "replacement": 153.0689,
+          "replacement_missing": false,
+          "marginal_e": 37.59,
+          "actual_ppr": 266.7
+        },
+        "fork_actual_delta_e_minus_d": -6.9,
+        "n_near_zero_me": 2,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0357,
+        "md_sacrifice_d_minus_e": 25.03,
+        "me_adv_e_minus_d": 37.59
+      },
+      {
+        "slot": 4,
+        "seed": 46,
+        "round": 4,
+        "e_minus_d_full": -17.9,
+        "d": {
+          "player_id": "7569",
+          "name": "Nico Collins",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 210.6
+        },
+        "e": {
+          "player_id": "4199",
+          "name": "Aaron Jones Sr.",
+          "position": "RB",
+          "calibrated_value": 157.8009,
+          "marginal_d": 157.8,
+          "replacement": 134.1411,
+          "replacement_missing": false,
+          "marginal_e": 23.66,
+          "actual_ppr": 241.6
+        },
+        "fork_actual_delta_e_minus_d": 31.0,
+        "n_near_zero_me": 3,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0536,
+        "md_sacrifice_d_minus_e": 57.89,
+        "me_adv_e_minus_d": 23.66
+      },
+      {
+        "slot": 5,
+        "seed": 42,
+        "round": 4,
+        "e_minus_d_full": 94.0,
+        "d": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 273.6
+        },
+        "e": {
+          "player_id": "4199",
+          "name": "Aaron Jones Sr.",
+          "position": "RB",
+          "calibrated_value": 157.8009,
+          "marginal_d": 157.8,
+          "replacement": 134.1411,
+          "replacement_missing": false,
+          "marginal_e": 23.66,
+          "actual_ppr": 241.6
+        },
+        "fork_actual_delta_e_minus_d": -32.0,
+        "n_near_zero_me": 3,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0536,
+        "md_sacrifice_d_minus_e": 57.89,
+        "me_adv_e_minus_d": 23.66
+      },
+      {
+        "slot": 5,
+        "seed": 43,
+        "round": 3,
+        "e_minus_d_full": -300.8,
+        "d": {
+          "player_id": "8112",
+          "name": "Drake London",
+          "position": "WR",
+          "calibrated_value": 242.0097,
+          "marginal_d": 242.01,
+          "replacement": 227.4566,
+          "replacement_missing": false,
+          "marginal_e": 14.55,
+          "actual_ppr": 280.8
+        },
+        "e": {
+          "player_id": "5850",
+          "name": "Josh Jacobs",
+          "position": "RB",
+          "calibrated_value": 200.5791,
+          "marginal_d": 200.58,
+          "replacement": 182.2128,
+          "replacement_missing": false,
+          "marginal_e": 18.37,
+          "actual_ppr": 293.1
+        },
+        "fork_actual_delta_e_minus_d": 12.3,
+        "n_near_zero_me": 3,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0545,
+        "md_sacrifice_d_minus_e": 41.43,
+        "me_adv_e_minus_d": 3.82
+      },
+      {
+        "slot": 5,
+        "seed": 44,
+        "round": 4,
+        "e_minus_d_full": -54.9,
+        "d": {
+          "player_id": "4983",
+          "name": "DJ Moore",
+          "position": "WR",
+          "calibrated_value": 210.6172,
+          "marginal_d": 210.62,
+          "replacement": 206.1409,
+          "replacement_missing": false,
+          "marginal_e": 4.48,
+          "actual_ppr": 238.1
+        },
+        "e": {
+          "player_id": "5012",
+          "name": "Mark Andrews",
+          "position": "TE",
+          "calibrated_value": 190.3863,
+          "marginal_d": 190.39,
+          "replacement": 184.4947,
+          "replacement_missing": false,
+          "marginal_e": 5.9,
+          "actual_ppr": 188.8
+        },
+        "fork_actual_delta_e_minus_d": -49.3,
+        "n_near_zero_me": 0,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0,
+        "md_sacrifice_d_minus_e": 20.23,
+        "me_adv_e_minus_d": 1.42
+      },
+      {
+        "slot": 5,
+        "seed": 45,
+        "round": 4,
+        "e_minus_d_full": -152.5,
+        "d": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 273.6
+        },
+        "e": {
+          "player_id": "8151",
+          "name": "Kenneth Walker",
+          "position": "RB",
+          "calibrated_value": 181.1344,
+          "marginal_d": 181.13,
+          "replacement": 153.0689,
+          "replacement_missing": false,
+          "marginal_e": 28.06,
+          "actual_ppr": 181.2
+        },
+        "fork_actual_delta_e_minus_d": -92.4,
+        "n_near_zero_me": 2,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0357,
+        "md_sacrifice_d_minus_e": 34.56,
+        "me_adv_e_minus_d": 28.06
+      },
+      {
+        "slot": 5,
+        "seed": 46,
+        "round": 3,
+        "e_minus_d_full": -73.0,
+        "d": {
+          "player_id": "8112",
+          "name": "Drake London",
+          "position": "WR",
+          "calibrated_value": 242.0097,
+          "marginal_d": 242.01,
+          "replacement": 237.3651,
+          "replacement_missing": false,
+          "marginal_e": 4.64,
+          "actual_ppr": 280.8
+        },
+        "e": {
+          "player_id": "5012",
+          "name": "Mark Andrews",
+          "position": "TE",
+          "calibrated_value": 190.3863,
+          "marginal_d": 190.39,
+          "replacement": 184.4947,
+          "replacement_missing": false,
+          "marginal_e": 5.9,
+          "actual_ppr": 188.8
+        },
+        "fork_actual_delta_e_minus_d": -92.0,
+        "n_near_zero_me": 0,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0,
+        "md_sacrifice_d_minus_e": 51.62,
+        "me_adv_e_minus_d": 1.26
+      },
+      {
+        "slot": 6,
+        "seed": 42,
+        "round": 4,
+        "e_minus_d_full": 89.3,
+        "d": {
+          "player_id": "7569",
+          "name": "Nico Collins",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 210.6
+        },
+        "e": {
+          "player_id": "8130",
+          "name": "Trey McBride",
+          "position": "TE",
+          "calibrated_value": 184.4947,
+          "marginal_d": 184.49,
+          "replacement": 164.279,
+          "replacement_missing": false,
+          "marginal_e": 20.21,
+          "actual_ppr": 243.8
+        },
+        "fork_actual_delta_e_minus_d": 33.2,
+        "n_near_zero_me": 4,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0727,
+        "md_sacrifice_d_minus_e": 31.2,
+        "me_adv_e_minus_d": 20.21
+      },
+      {
+        "slot": 6,
+        "seed": 43,
+        "round": 3,
+        "e_minus_d_full": 96.1,
+        "d": {
+          "player_id": "8144",
+          "name": "Chris Olave",
+          "position": "WR",
+          "calibrated_value": 227.4566,
+          "marginal_d": 227.46,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": 11.77,
+          "actual_ppr": 76.7
+        },
+        "e": {
+          "player_id": "9226",
+          "name": "De'Von Achane",
+          "position": "RB",
+          "calibrated_value": 203.8032,
+          "marginal_d": 203.8,
+          "replacement": 182.2128,
+          "replacement_missing": false,
+          "marginal_e": 21.59,
+          "actual_ppr": 299.9
+        },
+        "fork_actual_delta_e_minus_d": 223.2,
+        "n_near_zero_me": 3,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0545,
+        "md_sacrifice_d_minus_e": 23.66,
+        "me_adv_e_minus_d": 9.82
+      },
+      {
+        "slot": 6,
+        "seed": 44,
+        "round": 4,
+        "e_minus_d_full": 134.4,
+        "d": {
+          "player_id": "4983",
+          "name": "DJ Moore",
+          "position": "WR",
+          "calibrated_value": 210.6172,
+          "marginal_d": 210.62,
+          "replacement": 206.1409,
+          "replacement_missing": false,
+          "marginal_e": 4.48,
+          "actual_ppr": 238.1
+        },
+        "e": {
+          "player_id": "8151",
+          "name": "Kenneth Walker",
+          "position": "RB",
+          "calibrated_value": 181.1344,
+          "marginal_d": 181.13,
+          "replacement": 157.8009,
+          "replacement_missing": false,
+          "marginal_e": 23.33,
+          "actual_ppr": 181.2
+        },
+        "fork_actual_delta_e_minus_d": -56.9,
+        "n_near_zero_me": 0,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0,
+        "md_sacrifice_d_minus_e": 29.49,
+        "me_adv_e_minus_d": 18.85
+      },
+      {
+        "slot": 6,
+        "seed": 45,
+        "round": 2,
+        "e_minus_d_full": -55.6,
+        "d": {
+          "player_id": "8146",
+          "name": "Garrett Wilson",
+          "position": "WR",
+          "calibrated_value": 269.3886,
+          "marginal_d": 269.39,
+          "replacement": 250.0603,
+          "replacement_missing": false,
+          "marginal_e": 19.33,
+          "actual_ppr": 251.9
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 210.1165,
+          "replacement_missing": false,
+          "marginal_e": 25.94,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": -7.2,
+        "n_near_zero_me": 3,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0545,
+        "md_sacrifice_d_minus_e": 33.33,
+        "me_adv_e_minus_d": 6.61
+      },
+      {
+        "slot": 6,
+        "seed": 46,
+        "round": 2,
+        "e_minus_d_full": 236.4,
+        "d": {
+          "player_id": "4039",
+          "name": "Cooper Kupp",
+          "position": "WR",
+          "calibrated_value": 250.0603,
+          "marginal_d": 250.06,
+          "replacement": 246.6543,
+          "replacement_missing": false,
+          "marginal_e": 3.41,
+          "actual_ppr": 175.0
+        },
+        "e": {
+          "player_id": "9509",
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "calibrated_value": 247.042,
+          "marginal_d": 247.04,
+          "replacement": 236.0642,
+          "replacement_missing": false,
+          "marginal_e": 10.98,
+          "actual_ppr": 341.7
+        },
+        "fork_actual_delta_e_minus_d": 166.7,
+        "n_near_zero_me": 3,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0545,
+        "md_sacrifice_d_minus_e": 3.02,
+        "me_adv_e_minus_d": 7.57
+      },
+      {
+        "slot": 7,
+        "seed": 42,
+        "round": 4,
+        "e_minus_d_full": 37.0,
+        "d": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 273.6
+        },
+        "e": {
+          "player_id": "4035",
+          "name": "Alvin Kamara",
+          "position": "RB",
+          "calibrated_value": 187.0659,
+          "marginal_d": 187.07,
+          "replacement": 157.8009,
+          "replacement_missing": false,
+          "marginal_e": 29.27,
+          "actual_ppr": 265.3
+        },
+        "fork_actual_delta_e_minus_d": -8.3,
+        "n_near_zero_me": 3,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0545,
+        "md_sacrifice_d_minus_e": 28.62,
+        "me_adv_e_minus_d": 29.27
+      },
+      {
+        "slot": 7,
+        "seed": 43,
+        "round": 4,
+        "e_minus_d_full": -169.5,
+        "d": {
+          "player_id": "2216",
+          "name": "Mike Evans",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 240.4
+        },
+        "e": {
+          "player_id": "4199",
+          "name": "Aaron Jones Sr.",
+          "position": "RB",
+          "calibrated_value": 157.8009,
+          "marginal_d": 157.8,
+          "replacement": 134.1411,
+          "replacement_missing": false,
+          "marginal_e": 23.66,
+          "actual_ppr": 241.6
+        },
+        "fork_actual_delta_e_minus_d": 1.2,
+        "n_near_zero_me": 5,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0909,
+        "md_sacrifice_d_minus_e": 57.89,
+        "me_adv_e_minus_d": 23.66
+      },
+      {
+        "slot": 7,
+        "seed": 44,
+        "round": 4,
+        "e_minus_d_full": 17.2,
+        "d": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 273.6
+        },
+        "e": {
+          "player_id": "8151",
+          "name": "Kenneth Walker",
+          "position": "RB",
+          "calibrated_value": 181.1344,
+          "marginal_d": 181.13,
+          "replacement": 157.8009,
+          "replacement_missing": false,
+          "marginal_e": 23.33,
+          "actual_ppr": 181.2
+        },
+        "fork_actual_delta_e_minus_d": -92.4,
+        "n_near_zero_me": 2,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0364,
+        "md_sacrifice_d_minus_e": 34.56,
+        "me_adv_e_minus_d": 23.33
+      },
+      {
+        "slot": 7,
+        "seed": 45,
+        "round": 2,
+        "e_minus_d_full": -256.4,
+        "d": {
+          "player_id": "8146",
+          "name": "Garrett Wilson",
+          "position": "WR",
+          "calibrated_value": 269.3886,
+          "marginal_d": 269.39,
+          "replacement": 250.0603,
+          "replacement_missing": false,
+          "marginal_e": 19.33,
+          "actual_ppr": 251.9
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 215.7718,
+          "replacement_missing": false,
+          "marginal_e": 20.29,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": -7.2,
+        "n_near_zero_me": 3,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0545,
+        "md_sacrifice_d_minus_e": 33.33,
+        "me_adv_e_minus_d": 0.96
+      },
+      {
+        "slot": 7,
+        "seed": 46,
+        "round": 3,
+        "e_minus_d_full": 144.5,
+        "d": {
+          "player_id": "7526",
+          "name": "Jaylen Waddle",
+          "position": "WR",
+          "calibrated_value": 218.4771,
+          "marginal_d": 218.48,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": 2.79,
+          "actual_ppr": 149.6
+        },
+        "e": {
+          "player_id": "9226",
+          "name": "De'Von Achane",
+          "position": "RB",
+          "calibrated_value": 203.8032,
+          "marginal_d": 203.8,
+          "replacement": 192.6655,
+          "replacement_missing": false,
+          "marginal_e": 11.13,
+          "actual_ppr": 299.9
+        },
+        "fork_actual_delta_e_minus_d": 150.3,
+        "n_near_zero_me": 0,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0,
+        "md_sacrifice_d_minus_e": 14.68,
+        "me_adv_e_minus_d": 8.34
+      },
+      {
+        "slot": 8,
+        "seed": 42,
+        "round": 4,
+        "e_minus_d_full": -49.1,
+        "d": {
+          "player_id": "7569",
+          "name": "Nico Collins",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 210.6
+        },
+        "e": {
+          "player_id": "5012",
+          "name": "Mark Andrews",
+          "position": "TE",
+          "calibrated_value": 190.3863,
+          "marginal_d": 190.39,
+          "replacement": 184.4947,
+          "replacement_missing": false,
+          "marginal_e": 5.9,
+          "actual_ppr": 188.8
+        },
+        "fork_actual_delta_e_minus_d": -21.8,
+        "n_near_zero_me": 4,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0727,
+        "md_sacrifice_d_minus_e": 25.3,
+        "me_adv_e_minus_d": 5.9
+      },
+      {
+        "slot": 8,
+        "seed": 43,
+        "round": 4,
+        "e_minus_d_full": -75.7,
+        "d": {
+          "player_id": "7525",
+          "name": "DeVonta Smith",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 199.4
+        },
+        "e": {
+          "player_id": "4018",
+          "name": "Joe Mixon",
+          "position": "RB",
+          "calibrated_value": 182.2128,
+          "marginal_d": 182.21,
+          "replacement": 157.8009,
+          "replacement_missing": false,
+          "marginal_e": 24.41,
+          "actual_ppr": 240.5
+        },
+        "fork_actual_delta_e_minus_d": 41.1,
+        "n_near_zero_me": 4,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0727,
+        "md_sacrifice_d_minus_e": 33.48,
+        "me_adv_e_minus_d": 24.41
+      },
+      {
+        "slot": 8,
+        "seed": 44,
+        "round": 4,
+        "e_minus_d_full": -181.9,
+        "d": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 273.6
+        },
+        "e": {
+          "player_id": "8151",
+          "name": "Kenneth Walker",
+          "position": "RB",
+          "calibrated_value": 181.1344,
+          "marginal_d": 181.13,
+          "replacement": 157.8009,
+          "replacement_missing": false,
+          "marginal_e": 23.33,
+          "actual_ppr": 181.2
+        },
+        "fork_actual_delta_e_minus_d": -92.4,
+        "n_near_zero_me": 2,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0364,
+        "md_sacrifice_d_minus_e": 34.56,
+        "me_adv_e_minus_d": 23.33
+      },
+      {
+        "slot": 8,
+        "seed": 45,
+        "round": 2,
+        "e_minus_d_full": 125.2,
+        "d": {
+          "player_id": "5859",
+          "name": "A.J. Brown",
+          "position": "WR",
+          "calibrated_value": 272.753,
+          "marginal_d": 272.75,
+          "replacement": 269.3886,
+          "replacement_missing": false,
+          "marginal_e": 3.36,
+          "actual_ppr": 216.9
+        },
+        "e": {
+          "player_id": "3198",
+          "name": "Derrick Henry",
+          "position": "RB",
+          "calibrated_value": 215.7718,
+          "marginal_d": 215.77,
+          "replacement": 210.1165,
+          "replacement_missing": false,
+          "marginal_e": 5.65,
+          "actual_ppr": 336.4
+        },
+        "fork_actual_delta_e_minus_d": 119.5,
+        "n_near_zero_me": 3,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0545,
+        "md_sacrifice_d_minus_e": 56.98,
+        "me_adv_e_minus_d": 2.29
+      },
+      {
+        "slot": 8,
+        "seed": 46,
+        "round": 4,
+        "e_minus_d_full": -51.5,
+        "d": {
+          "player_id": "11632",
+          "name": "Malik Nabers",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 273.6
+        },
+        "e": {
+          "player_id": "4199",
+          "name": "Aaron Jones Sr.",
+          "position": "RB",
+          "calibrated_value": 157.8009,
+          "marginal_d": 157.8,
+          "replacement": 134.1411,
+          "replacement_missing": false,
+          "marginal_e": 23.66,
+          "actual_ppr": 241.6
+        },
+        "fork_actual_delta_e_minus_d": -32.0,
+        "n_near_zero_me": 2,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0364,
+        "md_sacrifice_d_minus_e": 57.89,
+        "me_adv_e_minus_d": 23.66
+      },
+      {
+        "slot": 9,
+        "seed": 42,
+        "round": 3,
+        "e_minus_d_full": -67.8,
+        "d": {
+          "player_id": "7569",
+          "name": "Nico Collins",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 210.6
+        },
+        "e": {
+          "player_id": "8138",
+          "name": "James Cook III",
+          "position": "RB",
+          "calibrated_value": 190.6608,
+          "marginal_d": 190.66,
+          "replacement": 187.0659,
+          "replacement_missing": false,
+          "marginal_e": 3.59,
+          "actual_ppr": 266.7
+        },
+        "fork_actual_delta_e_minus_d": 56.1,
+        "n_near_zero_me": 7,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.125,
+        "md_sacrifice_d_minus_e": 25.03,
+        "me_adv_e_minus_d": 3.59
+      },
+      {
+        "slot": 9,
+        "seed": 43,
+        "round": 4,
+        "e_minus_d_full": -61.0,
+        "d": {
+          "player_id": "2216",
+          "name": "Mike Evans",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 240.4
+        },
+        "e": {
+          "player_id": "4018",
+          "name": "Joe Mixon",
+          "position": "RB",
+          "calibrated_value": 182.2128,
+          "marginal_d": 182.21,
+          "replacement": 157.8009,
+          "replacement_missing": false,
+          "marginal_e": 24.41,
+          "actual_ppr": 240.5
+        },
+        "fork_actual_delta_e_minus_d": 0.1,
+        "n_near_zero_me": 4,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0714,
+        "md_sacrifice_d_minus_e": 33.48,
+        "me_adv_e_minus_d": 24.41
+      },
+      {
+        "slot": 9,
+        "seed": 44,
+        "round": 2,
+        "e_minus_d_full": -175.1,
+        "d": {
+          "player_id": "11628",
+          "name": "Marvin Harrison Jr.",
+          "position": "WR",
+          "calibrated_value": 262.6599,
+          "marginal_d": 262.66,
+          "replacement": 250.0603,
+          "replacement_missing": false,
+          "marginal_e": 12.6,
+          "actual_ppr": 196.5
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 215.7718,
+          "replacement_missing": false,
+          "marginal_e": 20.29,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": 48.2,
+        "n_near_zero_me": 3,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0545,
+        "md_sacrifice_d_minus_e": 26.6,
+        "me_adv_e_minus_d": 7.69
+      },
+      {
+        "slot": 9,
+        "seed": 45,
+        "round": 2,
+        "e_minus_d_full": -180.1,
+        "d": {
+          "player_id": "8146",
+          "name": "Garrett Wilson",
+          "position": "WR",
+          "calibrated_value": 269.3886,
+          "marginal_d": 269.39,
+          "replacement": 262.6599,
+          "replacement_missing": false,
+          "marginal_e": 6.73,
+          "actual_ppr": 251.9
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 215.7718,
+          "replacement_missing": false,
+          "marginal_e": 20.29,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": -7.2,
+        "n_near_zero_me": 3,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0545,
+        "md_sacrifice_d_minus_e": 33.33,
+        "me_adv_e_minus_d": 13.56
+      },
+      {
+        "slot": 9,
+        "seed": 46,
+        "round": 2,
+        "e_minus_d_full": 107.3,
+        "d": {
+          "player_id": "3321",
+          "name": "Tyreek Hill",
+          "position": "WR",
+          "calibrated_value": 285.0891,
+          "marginal_d": 285.09,
+          "replacement": 272.753,
+          "replacement_missing": false,
+          "marginal_e": 12.34,
+          "actual_ppr": 218.2
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 210.1165,
+          "replacement_missing": false,
+          "marginal_e": 25.94,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": 26.5,
+        "n_near_zero_me": 3,
+        "n_pool": 55,
+        "near_zero_me_frac": 0.0545,
+        "md_sacrifice_d_minus_e": 49.03,
+        "me_adv_e_minus_d": 13.6
+      },
+      {
+        "slot": 10,
+        "seed": 42,
+        "round": 2,
+        "e_minus_d_full": 187.4,
+        "d": {
+          "player_id": "8146",
+          "name": "Garrett Wilson",
+          "position": "WR",
+          "calibrated_value": 269.3886,
+          "marginal_d": 269.39,
+          "replacement": 260.6973,
+          "replacement_missing": false,
+          "marginal_e": 8.69,
+          "actual_ppr": 251.9
+        },
+        "e": {
+          "player_id": "4866",
+          "name": "Saquon Barkley",
+          "position": "RB",
+          "calibrated_value": 231.0742,
+          "marginal_d": 231.07,
+          "replacement": 215.7718,
+          "replacement_missing": false,
+          "marginal_e": 15.3,
+          "actual_ppr": 355.3
+        },
+        "fork_actual_delta_e_minus_d": 103.4,
+        "n_near_zero_me": 3,
+        "n_pool": 54,
+        "near_zero_me_frac": 0.0556,
+        "md_sacrifice_d_minus_e": 38.32,
+        "me_adv_e_minus_d": 6.61
+      },
+      {
+        "slot": 10,
+        "seed": 43,
+        "round": 4,
+        "e_minus_d_full": -290.9,
+        "d": {
+          "player_id": "7525",
+          "name": "DeVonta Smith",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 199.4
+        },
+        "e": {
+          "player_id": "5012",
+          "name": "Mark Andrews",
+          "position": "TE",
+          "calibrated_value": 190.3863,
+          "marginal_d": 190.39,
+          "replacement": 184.4947,
+          "replacement_missing": false,
+          "marginal_e": 5.9,
+          "actual_ppr": 188.8
+        },
+        "fork_actual_delta_e_minus_d": -10.6,
+        "n_near_zero_me": 4,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0714,
+        "md_sacrifice_d_minus_e": 25.3,
+        "me_adv_e_minus_d": 5.9
+      },
+      {
+        "slot": 10,
+        "seed": 44,
+        "round": 4,
+        "e_minus_d_full": -38.4,
+        "d": {
+          "player_id": "7526",
+          "name": "Jaylen Waddle",
+          "position": "WR",
+          "calibrated_value": 218.4771,
+          "marginal_d": 218.48,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": 2.79,
+          "actual_ppr": 149.6
+        },
+        "e": {
+          "player_id": "4199",
+          "name": "Aaron Jones Sr.",
+          "position": "RB",
+          "calibrated_value": 157.8009,
+          "marginal_d": 157.8,
+          "replacement": 153.0689,
+          "replacement_missing": false,
+          "marginal_e": 4.73,
+          "actual_ppr": 241.6
+        },
+        "fork_actual_delta_e_minus_d": 92.0,
+        "n_near_zero_me": 2,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0357,
+        "md_sacrifice_d_minus_e": 60.68,
+        "me_adv_e_minus_d": 1.94
+      },
+      {
+        "slot": 10,
+        "seed": 45,
+        "round": 2,
+        "e_minus_d_full": 101.0,
+        "d": {
+          "player_id": "5859",
+          "name": "A.J. Brown",
+          "position": "WR",
+          "calibrated_value": 272.753,
+          "marginal_d": 272.75,
+          "replacement": 262.6599,
+          "replacement_missing": false,
+          "marginal_e": 10.09,
+          "actual_ppr": 216.9
+        },
+        "e": {
+          "player_id": "9221",
+          "name": "Jahmyr Gibbs",
+          "position": "RB",
+          "calibrated_value": 237.3948,
+          "marginal_d": 237.39,
+          "replacement": 215.7718,
+          "replacement_missing": false,
+          "marginal_e": 21.62,
+          "actual_ppr": 362.9
+        },
+        "fork_actual_delta_e_minus_d": 146.0,
+        "n_near_zero_me": 3,
+        "n_pool": 54,
+        "near_zero_me_frac": 0.0556,
+        "md_sacrifice_d_minus_e": 35.36,
+        "me_adv_e_minus_d": 11.53
+      },
+      {
+        "slot": 10,
+        "seed": 46,
+        "round": 2,
+        "e_minus_d_full": -188.1,
+        "d": {
+          "player_id": "7564",
+          "name": "Ja'Marr Chase",
+          "position": "WR",
+          "calibrated_value": 283.1265,
+          "marginal_d": 283.13,
+          "replacement": 272.753,
+          "replacement_missing": false,
+          "marginal_e": 10.38,
+          "actual_ppr": 403.0
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 210.1165,
+          "replacement_missing": false,
+          "marginal_e": 25.94,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": -158.3,
+        "n_near_zero_me": 3,
+        "n_pool": 54,
+        "near_zero_me_frac": 0.0556,
+        "md_sacrifice_d_minus_e": 47.07,
+        "me_adv_e_minus_d": 15.56
+      },
+      {
+        "slot": 11,
+        "seed": 42,
+        "round": 3,
+        "e_minus_d_full": -144.6,
+        "d": {
+          "player_id": "7569",
+          "name": "Nico Collins",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 210.6
+        },
+        "e": {
+          "player_id": "8138",
+          "name": "James Cook III",
+          "position": "RB",
+          "calibrated_value": 190.6608,
+          "marginal_d": 190.66,
+          "replacement": 181.1344,
+          "replacement_missing": false,
+          "marginal_e": 9.53,
+          "actual_ppr": 266.7
+        },
+        "fork_actual_delta_e_minus_d": 56.1,
+        "n_near_zero_me": 5,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0893,
+        "md_sacrifice_d_minus_e": 25.03,
+        "me_adv_e_minus_d": 9.53
+      },
+      {
+        "slot": 11,
+        "seed": 43,
+        "round": 1,
+        "e_minus_d_full": -156.82,
+        "d": {
+          "player_id": "4984",
+          "name": "Josh Allen",
+          "position": "QB",
+          "calibrated_value": 350.2948,
+          "marginal_d": 350.29,
+          "replacement": 336.4992,
+          "replacement_missing": false,
+          "marginal_e": 13.79,
+          "actual_ppr": 379.04
+        },
+        "e": {
+          "player_id": "9509",
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "calibrated_value": 247.042,
+          "marginal_d": 247.04,
+          "replacement": 231.0742,
+          "replacement_missing": false,
+          "marginal_e": 15.97,
+          "actual_ppr": 341.7
+        },
+        "fork_actual_delta_e_minus_d": -37.34,
+        "n_near_zero_me": 3,
+        "n_pool": 51,
+        "near_zero_me_frac": 0.0588,
+        "md_sacrifice_d_minus_e": 103.25,
+        "me_adv_e_minus_d": 2.18
+      },
+      {
+        "slot": 11,
+        "seed": 44,
+        "round": 2,
+        "e_minus_d_full": -16.6,
+        "d": {
+          "player_id": "8146",
+          "name": "Garrett Wilson",
+          "position": "WR",
+          "calibrated_value": 269.3886,
+          "marginal_d": 269.39,
+          "replacement": 262.6599,
+          "replacement_missing": false,
+          "marginal_e": 6.73,
+          "actual_ppr": 251.9
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 215.7718,
+          "replacement_missing": false,
+          "marginal_e": 20.29,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": -7.2,
+        "n_near_zero_me": 3,
+        "n_pool": 53,
+        "near_zero_me_frac": 0.0566,
+        "md_sacrifice_d_minus_e": 33.33,
+        "me_adv_e_minus_d": 13.56
+      },
+      {
+        "slot": 11,
+        "seed": 45,
+        "round": 2,
+        "e_minus_d_full": -267.08,
+        "d": {
+          "player_id": "6794",
+          "name": "Justin Jefferson",
+          "position": "WR",
+          "calibrated_value": 280.8836,
+          "marginal_d": 280.88,
+          "replacement": 272.753,
+          "replacement_missing": false,
+          "marginal_e": 8.13,
+          "actual_ppr": 317.48
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 215.7718,
+          "replacement_missing": false,
+          "marginal_e": 20.29,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": -72.78,
+        "n_near_zero_me": 3,
+        "n_pool": 53,
+        "near_zero_me_frac": 0.0566,
+        "md_sacrifice_d_minus_e": 44.82,
+        "me_adv_e_minus_d": 12.16
+      },
+      {
+        "slot": 11,
+        "seed": 46,
+        "round": 2,
+        "e_minus_d_full": 56.3,
+        "d": {
+          "player_id": "7564",
+          "name": "Ja'Marr Chase",
+          "position": "WR",
+          "calibrated_value": 283.1265,
+          "marginal_d": 283.13,
+          "replacement": 272.753,
+          "replacement_missing": false,
+          "marginal_e": 10.38,
+          "actual_ppr": 403.0
+        },
+        "e": {
+          "player_id": "4866",
+          "name": "Saquon Barkley",
+          "position": "RB",
+          "calibrated_value": 231.0742,
+          "marginal_d": 231.07,
+          "replacement": 210.1165,
+          "replacement_missing": false,
+          "marginal_e": 20.95,
+          "actual_ppr": 355.3
+        },
+        "fork_actual_delta_e_minus_d": -47.7,
+        "n_near_zero_me": 3,
+        "n_pool": 53,
+        "near_zero_me_frac": 0.0566,
+        "md_sacrifice_d_minus_e": 52.06,
+        "me_adv_e_minus_d": 10.57
+      },
+      {
+        "slot": 12,
+        "seed": 42,
+        "round": 2,
+        "e_minus_d_full": 266.2,
+        "d": {
+          "player_id": "11628",
+          "name": "Marvin Harrison Jr.",
+          "position": "WR",
+          "calibrated_value": 262.6599,
+          "marginal_d": 262.66,
+          "replacement": 260.6973,
+          "replacement_missing": false,
+          "marginal_e": 1.96,
+          "actual_ppr": 196.5
+        },
+        "e": {
+          "player_id": "9509",
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "calibrated_value": 247.042,
+          "marginal_d": 247.04,
+          "replacement": 236.0642,
+          "replacement_missing": false,
+          "marginal_e": 10.98,
+          "actual_ppr": 341.7
+        },
+        "fork_actual_delta_e_minus_d": 145.2,
+        "n_near_zero_me": 3,
+        "n_pool": 52,
+        "near_zero_me_frac": 0.0577,
+        "md_sacrifice_d_minus_e": 15.62,
+        "me_adv_e_minus_d": 9.02
+      },
+      {
+        "slot": 12,
+        "seed": 43,
+        "round": 1,
+        "e_minus_d_full": 4.08,
+        "d": {
+          "player_id": "4984",
+          "name": "Josh Allen",
+          "position": "QB",
+          "calibrated_value": 350.2948,
+          "marginal_d": 350.29,
+          "replacement": 336.4992,
+          "replacement_missing": false,
+          "marginal_e": 13.79,
+          "actual_ppr": 379.04
+        },
+        "e": {
+          "player_id": "9509",
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "calibrated_value": 247.042,
+          "marginal_d": 247.04,
+          "replacement": 231.0742,
+          "replacement_missing": false,
+          "marginal_e": 15.97,
+          "actual_ppr": 341.7
+        },
+        "fork_actual_delta_e_minus_d": -37.34,
+        "n_near_zero_me": 3,
+        "n_pool": 52,
+        "near_zero_me_frac": 0.0577,
+        "md_sacrifice_d_minus_e": 103.25,
+        "me_adv_e_minus_d": 2.18
+      },
+      {
+        "slot": 12,
+        "seed": 44,
+        "round": 1,
+        "e_minus_d_full": 59.2,
+        "d": {
+          "player_id": "4984",
+          "name": "Josh Allen",
+          "position": "QB",
+          "calibrated_value": 350.2948,
+          "marginal_d": 350.29,
+          "replacement": 336.4992,
+          "replacement_missing": false,
+          "marginal_e": 13.79,
+          "actual_ppr": 379.04
+        },
+        "e": {
+          "player_id": "6813",
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "calibrated_value": 236.0642,
+          "marginal_d": 236.06,
+          "replacement": 215.7718,
+          "replacement_missing": false,
+          "marginal_e": 20.29,
+          "actual_ppr": 244.7
+        },
+        "fork_actual_delta_e_minus_d": -134.34,
+        "n_near_zero_me": 3,
+        "n_pool": 52,
+        "near_zero_me_frac": 0.0577,
+        "md_sacrifice_d_minus_e": 114.23,
+        "me_adv_e_minus_d": 6.5
+      },
+      {
+        "slot": 12,
+        "seed": 45,
+        "round": 3,
+        "e_minus_d_full": -198.6,
+        "d": {
+          "player_id": "7569",
+          "name": "Nico Collins",
+          "position": "WR",
+          "calibrated_value": 215.6903,
+          "marginal_d": 215.69,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": -0.0,
+          "actual_ppr": 210.6
+        },
+        "e": {
+          "player_id": "5012",
+          "name": "Mark Andrews",
+          "position": "TE",
+          "calibrated_value": 190.3863,
+          "marginal_d": 190.39,
+          "replacement": 164.279,
+          "replacement_missing": false,
+          "marginal_e": 26.11,
+          "actual_ppr": 188.8
+        },
+        "fork_actual_delta_e_minus_d": -21.8,
+        "n_near_zero_me": 5,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0893,
+        "md_sacrifice_d_minus_e": 25.3,
+        "me_adv_e_minus_d": 26.11
+      },
+      {
+        "slot": 12,
+        "seed": 46,
+        "round": 3,
+        "e_minus_d_full": -151.4,
+        "d": {
+          "player_id": "7526",
+          "name": "Jaylen Waddle",
+          "position": "WR",
+          "calibrated_value": 218.4771,
+          "marginal_d": 218.48,
+          "replacement": 215.6903,
+          "replacement_missing": false,
+          "marginal_e": 2.79,
+          "actual_ppr": 149.6
+        },
+        "e": {
+          "player_id": "8138",
+          "name": "James Cook III",
+          "position": "RB",
+          "calibrated_value": 190.6608,
+          "marginal_d": 190.66,
+          "replacement": 182.2128,
+          "replacement_missing": false,
+          "marginal_e": 8.45,
+          "actual_ppr": 266.7
+        },
+        "fork_actual_delta_e_minus_d": 117.1,
+        "n_near_zero_me": 0,
+        "n_pool": 56,
+        "near_zero_me_frac": 0.0,
+        "md_sacrifice_d_minus_e": 27.82,
+        "me_adv_e_minus_d": 5.66
+      }
+    ],
+    "md_sacrifice_d_minus_e": {
+      "n": 60,
+      "mean": 34.6823,
+      "median": 31.2,
+      "stdev": 22.1479,
+      "min": 3.02,
+      "p10": 10.241,
+      "p25": 25.03,
+      "p75": 40.125,
+      "p90": 57.89,
+      "max": 114.23,
+      "n_positive": 60,
+      "n_negative": 0,
+      "n_zero": 0,
+      "win_rate": 1.0
+    },
+    "me_adv_e_minus_d": {
+      "n": 60,
+      "mean": 13.6847,
+      "median": 11.845,
+      "stdev": 9.2469,
+      "min": 0.96,
+      "p10": 2.168,
+      "p25": 5.84,
+      "p75": 21.3825,
+      "p90": 24.41,
+      "max": 37.59,
+      "n_positive": 60,
+      "n_negative": 0,
+      "n_zero": 0,
+      "win_rate": 1.0
+    },
+    "fork_actual_when_joined": {
+      "n": 60,
+      "mean": 10.6713,
+      "median": -7.2,
+      "stdev": 85.6217,
+      "min": -158.3,
+      "p10": -92.4,
+      "p25": -39.93,
+      "p75": 55.725,
+      "p90": 145.28,
+      "max": 223.2,
+      "n_positive": 27,
+      "n_negative": 33,
+      "n_zero": 0,
+      "win_rate": 0.45
+    }
+  },
+  "section4_new_holes": {
+    "mean_roster_count_delta_e_minus_d": {
+      "QB": -1.0667,
+      "RB": 1.5667,
+      "WR": -2.8833,
+      "TE": 1.2833,
+      "DST": 1.1,
+      "K": 0.0
+    },
+    "note": "Roster pick-count \u0394 (E\u2212D), not starter points. ex-DST+TE E\u2212D\u2248\u2212117 elevates TE scrutiny.",
+    "starter_te_e_minus_d": {
+      "n": 60,
+      "mean": 93.3193,
+      "median": 108.5,
+      "stdev": 146.287,
+      "min": -394.9,
+      "p10": -67.42,
+      "p25": 0.0,
+      "p75": 232.9,
+      "p90": 255.7,
+      "max": 324.6,
+      "n_positive": 41,
+      "n_negative": 13,
+      "n_zero": 6,
+      "win_rate": 0.6833
+    },
+    "starter_rb_e_minus_d": {
+      "n": 60,
+      "mean": 269.8,
+      "median": 272.55,
+      "stdev": 217.081,
+      "min": -263.5,
+      "p10": 18.0,
+      "p25": 132.25,
+      "p75": 372.175,
+      "p90": 549.66,
+      "max": 781.6,
+      "n_positive": 54,
+      "n_negative": 5,
+      "n_zero": 1,
+      "win_rate": 0.9
+    }
+  },
+  "section5_replacement_collapse": {
+    "r_over_v_pool": {
+      "n": 3294,
+      "mean": 1.3003,
+      "median": 1.2527,
+      "stdev": 0.2361,
+      "min": 0.8028,
+      "p10": 1.0041,
+      "p25": 1.1235,
+      "p75": 1.4449,
+      "p90": 1.6931,
+      "max": 2.1196,
+      "n_positive": 3294,
+      "n_negative": 0,
+      "n_zero": 0,
+      "win_rate": 1.0
+    },
+    "near_zero_me_frac_by_board": {
+      "n": 60,
+      "mean": 0.0472,
+      "median": 0.0545,
+      "stdev": 0.0268,
+      "min": 0.0,
+      "p10": 0.0,
+      "p25": 0.0362,
+      "p75": 0.0566,
+      "p90": 0.0727,
+      "max": 0.125,
+      "n_positive": 49,
+      "n_negative": 0,
+      "n_zero": 11,
+      "win_rate": 0.8167
+    },
+    "note": "At first-fork decision pools: r*/v and fraction with |M_E|\u22641. High r*/v + near-zero M_E \u21d2 absolute valuation collapsed."
+  },
+  "pairs": [
+    {
+      "slot": 1,
+      "seed": 42,
+      "e_minus_d_full": -143.38,
+      "e_minus_d_ex_dst_te": -261.58,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 297.9,
+        "WR": -559.48,
+        "TE": 118.2,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 23.12,
+        "r6-10": 21.5,
+        "r11-15": -188.0
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 0.0,
+        "WR": -4.0,
+        "TE": 4.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Davante Adams",
+        "e_name": "Travis Etienne Jr.",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 241.3,
+        "e_actual": 130.2,
+        "fork_actual_delta_e_minus_d": -111.1,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Drake London",
+            "e": "Josh Jacobs",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Brandon Aiyuk",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Zack Moss",
+            "e": "Keenan Allen",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Jonathon Brooks",
+            "e": "Dalton Schultz",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 8,
+            "round": 9,
+            "d": "Calvin Ridley",
+            "e": "T.J. Hockenson",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 1,
+      "seed": 43,
+      "e_minus_d_full": 153.48,
+      "e_minus_d_ex_dst_te": -79.42,
+      "n_changed_picks": 12,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": -138.0,
+        "WR": 58.58,
+        "TE": 232.9,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 248.08,
+        "r6-10": 121.3,
+        "r11-15": -215.9
+      },
+      "pos_count_delta": {
+        "QB": -2.0,
+        "RB": 1.0,
+        "WR": 0.0,
+        "TE": 1.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Drake London",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 280.8,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": -36.1,
+        "n_subsequent_divergences": 11,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Jonathan Taylor",
+            "e": "Drake London",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Stefon Diggs",
+            "e": "Kenneth Walker",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Brandon Aiyuk",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Evan Engram",
+            "e": "Zay Flowers",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Austin Ekeler",
+            "e": "David Njoku",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 1,
+      "seed": 44,
+      "e_minus_d_full": 92.4,
+      "e_minus_d_ex_dst_te": 34.8,
+      "n_changed_picks": 8,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 257.8,
+        "WR": -223.0,
+        "TE": 57.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 307.7,
+        "r6-10": -115.3,
+        "r11-15": -100.0
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 1.0,
+        "WR": 0.0,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Brandon Aiyuk",
+        "e_name": "Aaron Jones Sr.",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 62.4,
+        "e_actual": 241.6,
+        "fork_actual_delta_e_minus_d": 179.2,
+        "n_subsequent_divergences": 7,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Amari Cooper",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "Tank Dell",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Nick Chubb",
+            "e": "Rashee Rice",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Courtland Sutton",
+            "e": "Rico Dowdle",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 12,
+            "round": 13,
+            "d": "Joshua Palmer",
+            "e": "Zach Charbonnet",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 1,
+      "seed": 45,
+      "e_minus_d_full": -8.5,
+      "e_minus_d_ex_dst_te": -256.3,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 20.0,
+        "WR": -276.3,
+        "TE": 247.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 287.5,
+        "r6-10": 249.1,
+        "r11-15": -545.1
+      },
+      "pos_count_delta": {
+        "QB": -2.0,
+        "RB": 1.0,
+        "WR": -2.0,
+        "TE": 2.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "DJ Moore",
+        "e_name": "Kenneth Walker",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 238.1,
+        "e_actual": 181.2,
+        "fork_actual_delta_e_minus_d": -56.9,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Michael Pittman Jr.",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Evan Engram",
+            "e": "George Pickens",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Raheem Mostert",
+            "e": "Chris Godwin Jr.",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Jonathon Brooks",
+            "e": "Devin Singletary",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 8,
+            "round": 9,
+            "d": "Kyler Murray",
+            "e": "David Njoku",
+            "d_pos": "QB",
+            "e_pos": "TE"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 1,
+      "seed": 46,
+      "e_minus_d_full": -27.3,
+      "e_minus_d_ex_dst_te": -288.4,
+      "n_changed_picks": 13,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 361.3,
+        "WR": -649.7,
+        "TE": 261.1,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": -65.9,
+        "r6-10": 17.1,
+        "r11-15": 21.5
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 4.0,
+        "WR": -6.0,
+        "TE": 1.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Drake London",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 280.8,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": -36.1,
+        "n_subsequent_divergences": 12,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Deebo Samuel Sr.",
+            "e": "Travis Etienne Jr.",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Malik Nabers",
+            "e": "Trey McBride",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Stefon Diggs",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "Rashee Rice",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Najee Harris",
+            "e": "Jayden Reed",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 2,
+      "seed": 42,
+      "e_minus_d_full": 278.08,
+      "e_minus_d_ex_dst_te": 34.28,
+      "n_changed_picks": 12,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 549.2,
+        "WR": -514.92,
+        "TE": 243.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": -19.12,
+        "r6-10": -11.1,
+        "r11-15": 308.3
+      },
+      "pos_count_delta": {
+        "QB": -3.0,
+        "RB": 3.0,
+        "WR": -3.0,
+        "TE": 3.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Davante Adams",
+        "e_name": "Travis Etienne Jr.",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 241.3,
+        "e_actual": 130.2,
+        "fork_actual_delta_e_minus_d": -111.1,
+        "n_subsequent_divergences": 11,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Drake London",
+            "e": "Josh Jacobs",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Stefon Diggs",
+            "e": "Trey McBride",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Michael Pittman Jr.",
+            "e": "James Conner",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Zack Moss",
+            "e": "Keenan Allen",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Tyjae Spears",
+            "e": "Hollywood Brown",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 2,
+      "seed": 43,
+      "e_minus_d_full": 55.08,
+      "e_minus_d_ex_dst_te": -177.82,
+      "n_changed_picks": 10,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 228.0,
+        "WR": -405.82,
+        "TE": 232.9,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 71.18,
+        "r6-10": -213.9,
+        "r11-15": 197.8
+      },
+      "pos_count_delta": {
+        "QB": -2.0,
+        "RB": 2.0,
+        "WR": -1.0,
+        "TE": 3.0,
+        "DST": -2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Drake London",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 280.8,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": -36.1,
+        "n_subsequent_divergences": 9,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Chris Olave",
+            "e": "Drake London",
+            "d_pos": "WR",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Mike Evans",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "D'Andre Swift",
+            "e": "Zay Flowers",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 8,
+            "round": 9,
+            "d": "Jaxon Smith-Njigba",
+            "e": "David Njoku",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Brock Purdy",
+            "e": "Rico Dowdle",
+            "d_pos": "QB",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 2,
+      "seed": 44,
+      "e_minus_d_full": -95.1,
+      "e_minus_d_ex_dst_te": -283.9,
+      "n_changed_picks": 7,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": -60.4,
+        "WR": -223.5,
+        "TE": 188.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 66.1,
+        "r6-10": -200.7,
+        "r11-15": 39.5
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 1.0,
+        "WR": -4.0,
+        "TE": 3.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Brandon Aiyuk",
+        "e_name": "Mark Andrews",
+        "d_pos": "WR",
+        "e_pos": "TE",
+        "d_actual": 62.4,
+        "e_actual": 188.8,
+        "fork_actual_delta_e_minus_d": 126.4,
+        "n_subsequent_divergences": 6,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Amari Cooper",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Tony Pollard",
+            "e": "Jaylen Warren",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Courtland Sutton",
+            "e": "Rico Dowdle",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 12,
+            "round": 13,
+            "d": "Joshua Palmer",
+            "e": "Zach Charbonnet",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 13,
+            "round": 14,
+            "d": "Jahan Dotson",
+            "e": "Dawson Knox",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 2,
+      "seed": 45,
+      "e_minus_d_full": -47.1,
+      "e_minus_d_ex_dst_te": -146.4,
+      "n_changed_picks": 10,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": -92.8,
+        "WR": -53.6,
+        "TE": 99.3,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 97.1,
+        "r6-10": -133.4,
+        "r11-15": -10.8
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 2.0,
+        "WR": -3.0,
+        "TE": 1.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "DJ Moore",
+        "e_name": "Mark Andrews",
+        "d_pos": "WR",
+        "e_pos": "TE",
+        "d_actual": 238.1,
+        "e_actual": 188.8,
+        "fork_actual_delta_e_minus_d": -49.3,
+        "n_subsequent_divergences": 9,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "James Cook III",
+            "e": "DJ Moore",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Jayden Reed",
+            "e": "George Pickens",
+            "d_pos": "WR",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Evan Engram",
+            "e": "Rhamondre Stevenson",
+            "d_pos": "TE",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 8,
+            "round": 9,
+            "d": "Xavier Worthy",
+            "e": "Dallas Goedert",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Blake Corum",
+            "e": "San Francisco Defense",
+            "d_pos": "RB",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 2,
+      "seed": 46,
+      "e_minus_d_full": 267.6,
+      "e_minus_d_ex_dst_te": 260.4,
+      "n_changed_picks": 13,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 335.0,
+        "WR": -74.6,
+        "TE": 7.2,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 167.1,
+        "r6-10": 131.6,
+        "r11-15": -31.1
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 3.0,
+        "WR": -3.0,
+        "TE": 1.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Drake London",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 280.8,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": -36.1,
+        "n_subsequent_divergences": 12,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Deebo Samuel Sr.",
+            "e": "Drake London",
+            "d_pos": "WR",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Stefon Diggs",
+            "e": "Trey McBride",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Michael Pittman Jr.",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "George Kittle",
+            "e": "Jayden Reed",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Raheem Mostert",
+            "e": "Terry McLaurin",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 3,
+      "seed": 42,
+      "e_minus_d_full": -14.3,
+      "e_minus_d_ex_dst_te": -258.1,
+      "n_changed_picks": 10,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 52.2,
+        "WR": -310.3,
+        "TE": 243.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 331.8,
+        "r6-10": 42.8,
+        "r11-15": -388.9
+      },
+      "pos_count_delta": {
+        "QB": -2.0,
+        "RB": 0.0,
+        "WR": -3.0,
+        "TE": 3.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Stefon Diggs",
+        "e_name": "Trey McBride",
+        "d_pos": "WR",
+        "e_pos": "TE",
+        "d_actual": 121.92,
+        "e_actual": 243.8,
+        "fork_actual_delta_e_minus_d": 121.88,
+        "n_subsequent_divergences": 9,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Michael Pittman Jr.",
+            "e": "James Conner",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Zack Moss",
+            "e": "Jake Ferguson",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Javonte Williams",
+            "e": "Tony Pollard",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Tyler Lockett",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Brian Thomas Jr.",
+            "e": "Dallas Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 3,
+      "seed": 43,
+      "e_minus_d_full": -3.0,
+      "e_minus_d_ex_dst_te": -88.2,
+      "n_changed_picks": 12,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 271.8,
+        "WR": -360.0,
+        "TE": 85.2,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 153.9,
+        "r6-10": -318.1,
+        "r11-15": 161.2
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 0.0,
+        "WR": 0.0,
+        "TE": 0.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Davante Adams",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 241.3,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": 3.4,
+        "n_subsequent_divergences": 11,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Drake London",
+            "e": "Davante Adams",
+            "d_pos": "WR",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Mike Evans",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Michael Pittman Jr.",
+            "e": "Aaron Jones Sr.",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Evan Engram",
+            "e": "Christian Kirk",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "D'Andre Swift",
+            "e": "Chris Godwin Jr.",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 3,
+      "seed": 44,
+      "e_minus_d_full": 56.0,
+      "e_minus_d_ex_dst_te": -160.2,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 384.6,
+        "WR": -544.8,
+        "TE": 216.2,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 430.5,
+        "r6-10": -369.6,
+        "r11-15": -4.9
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": -4.0,
+        "TE": 1.0,
+        "DST": 3.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 2,
+        "round": 3,
+        "d_name": "Drake London",
+        "e_name": "Derrick Henry",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 280.8,
+        "e_actual": 336.4,
+        "fork_actual_delta_e_minus_d": 55.6,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Brandon Aiyuk",
+            "e": "Trey McBride",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Amari Cooper",
+            "e": "James Conner",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "Christian Kirk",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Nick Chubb",
+            "e": "Rashee Rice",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Tony Pollard",
+            "e": "Dallas Goedert",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 3,
+      "seed": 45,
+      "e_minus_d_full": -585.8,
+      "e_minus_d_ex_dst_te": -744.2,
+      "n_changed_picks": 10,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": -263.5,
+        "WR": -480.7,
+        "TE": 158.4,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 112.0,
+        "r6-10": -71.8,
+        "r11-15": -626.0
+      },
+      "pos_count_delta": {
+        "QB": -2.0,
+        "RB": 2.0,
+        "WR": -4.0,
+        "TE": 2.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "DK Metcalf",
+        "e_name": "Mark Andrews",
+        "d_pos": "WR",
+        "e_pos": "TE",
+        "d_actual": 191.2,
+        "e_actual": 188.8,
+        "fork_actual_delta_e_minus_d": -2.4,
+        "n_subsequent_divergences": 9,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "DJ Moore",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "George Pickens",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Rhamondre Stevenson",
+            "e": "Raheem Mostert",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Brock Purdy",
+            "e": "San Francisco Defense",
+            "d_pos": "QB",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Brian Thomas Jr.",
+            "e": "Dallas Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 3,
+      "seed": 46,
+      "e_minus_d_full": 341.66,
+      "e_minus_d_ex_dst_te": 200.2,
+      "n_changed_picks": 13,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 761.7,
+        "WR": -561.5,
+        "TE": 141.46,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": -7.3,
+        "r6-10": 238.0,
+        "r11-15": 110.96
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 2.0,
+        "WR": -6.0,
+        "TE": 2.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Davante Adams",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 241.3,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": 3.4,
+        "n_subsequent_divergences": 12,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Drake London",
+            "e": "De'Von Achane",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Malik Nabers",
+            "e": "Trey McBride",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Stefon Diggs",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Evan Engram",
+            "e": "Keenan Allen",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Zack Moss",
+            "e": "Terry McLaurin",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 4,
+      "seed": 42,
+      "e_minus_d_full": 88.7,
+      "e_minus_d_ex_dst_te": -155.1,
+      "n_changed_picks": 9,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 43.6,
+        "WR": -198.7,
+        "TE": 243.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 306.4,
+        "r6-10": -228.9,
+        "r11-15": 11.2
+      },
+      "pos_count_delta": {
+        "QB": -2.0,
+        "RB": -1.0,
+        "WR": -1.0,
+        "TE": 2.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "DK Metcalf",
+        "e_name": "Trey McBride",
+        "d_pos": "WR",
+        "e_pos": "TE",
+        "d_actual": 191.2,
+        "e_actual": 243.8,
+        "fork_actual_delta_e_minus_d": 52.6,
+        "n_subsequent_divergences": 8,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Brandon Aiyuk",
+            "e": "James Conner",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Raheem Mostert",
+            "e": "Christian Kirk",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "DeAndre Hopkins",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Blake Corum",
+            "e": "Dallas Defense",
+            "d_pos": "RB",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 11,
+            "round": 12,
+            "d": "Trevor Lawrence",
+            "e": "Tyler Allgeier",
+            "d_pos": "QB",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 4,
+      "seed": 43,
+      "e_minus_d_full": -198.58,
+      "e_minus_d_ex_dst_te": -256.18,
+      "n_changed_picks": 7,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 102.6,
+        "WR": -358.78,
+        "TE": 57.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 70.32,
+        "r6-10": 158.3,
+        "r11-15": -427.2
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": -2.0,
+        "TE": 1.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Mike Evans",
+        "e_name": "Mark Andrews",
+        "d_pos": "WR",
+        "e_pos": "TE",
+        "d_actual": 240.4,
+        "e_actual": 188.8,
+        "fork_actual_delta_e_minus_d": -51.6,
+        "n_subsequent_divergences": 6,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "Christian Kirk",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "DeAndre Hopkins",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Courtland Sutton",
+            "e": "Dallas Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 12,
+            "round": 13,
+            "d": "Zach Charbonnet",
+            "e": "Khalil Herbert",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 13,
+            "round": 14,
+            "d": "Detroit Defense",
+            "e": "Josh Downs",
+            "d_pos": "DST",
+            "e_pos": "WR"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 4,
+      "seed": 44,
+      "e_minus_d_full": 218.4,
+      "e_minus_d_ex_dst_te": 29.6,
+      "n_changed_picks": 8,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 292.6,
+        "WR": -263.0,
+        "TE": 188.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 369.6,
+        "r6-10": -241.6,
+        "r11-15": 90.4
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 0.0,
+        "WR": -2.0,
+        "TE": 2.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 2,
+        "round": 3,
+        "d_name": "Deebo Samuel Sr.",
+        "e_name": "Derrick Henry",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 155.6,
+        "e_actual": 336.4,
+        "fork_actual_delta_e_minus_d": 180.8,
+        "n_subsequent_divergences": 7,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Brandon Aiyuk",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Nick Chubb",
+            "e": "Tank Dell",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Chuba Hubbard",
+            "e": "San Francisco Defense",
+            "d_pos": "RB",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Justin Herbert",
+            "e": "Rico Dowdle",
+            "d_pos": "QB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 11,
+            "round": 12,
+            "d": "Ty Chandler",
+            "e": "Khalil Herbert",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 4,
+      "seed": 45,
+      "e_minus_d_full": -263.8,
+      "e_minus_d_ex_dst_te": -363.1,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 55.1,
+        "WR": -418.2,
+        "TE": 99.3,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 20.5,
+        "r6-10": -71.8,
+        "r11-15": -212.5
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 1.0,
+        "WR": -3.0,
+        "TE": 1.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Malik Nabers",
+        "e_name": "James Cook III",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 273.6,
+        "e_actual": 266.7,
+        "fork_actual_delta_e_minus_d": -6.9,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "DJ Moore",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Evan Engram",
+            "e": "George Pickens",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Rhamondre Stevenson",
+            "e": "Rashee Rice",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Austin Ekeler",
+            "e": "Devin Singletary",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Brock Purdy",
+            "e": "San Francisco Defense",
+            "d_pos": "QB",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 4,
+      "seed": 46,
+      "e_minus_d_full": -17.9,
+      "e_minus_d_ex_dst_te": 68.0,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 307.6,
+        "WR": -239.6,
+        "TE": -65.9,
+        "DST": -20.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 31.0,
+        "r6-10": -148.1,
+        "r11-15": 99.2
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 2.0,
+        "WR": -3.0,
+        "TE": 1.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Nico Collins",
+        "e_name": "Aaron Jones Sr.",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 210.6,
+        "e_actual": 241.6,
+        "fork_actual_delta_e_minus_d": 31.0,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Stefon Diggs",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "Rashee Rice",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Najee Harris",
+            "e": "Nick Chubb",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Javonte Williams",
+            "e": "Jake Ferguson",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Romeo Doubs",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 5,
+      "seed": 42,
+      "e_minus_d_full": 94.0,
+      "e_minus_d_ex_dst_te": -18.6,
+      "n_changed_picks": 10,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 125.5,
+        "WR": -144.1,
+        "TE": 112.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 211.8,
+        "r6-10": 250.2,
+        "r11-15": -368.0
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": -2.0,
+        "WR": -1.0,
+        "TE": 1.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Malik Nabers",
+        "e_name": "Aaron Jones Sr.",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 273.6,
+        "e_actual": 241.6,
+        "fork_actual_delta_e_minus_d": -32.0,
+        "n_subsequent_divergences": 9,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Brandon Aiyuk",
+            "e": "Trey McBride",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "Keenan Allen",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Nick Chubb",
+            "e": "Jayden Reed",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Trey Benson",
+            "e": "San Francisco Defense",
+            "d_pos": "RB",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Brian Thomas Jr.",
+            "e": "Dallas Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 5,
+      "seed": 43,
+      "e_minus_d_full": -300.8,
+      "e_minus_d_ex_dst_te": -590.4,
+      "n_changed_picks": 10,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 106.2,
+        "WR": -696.6,
+        "TE": 289.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 61.5,
+        "r6-10": 64.9,
+        "r11-15": -427.2
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 3.0,
+        "WR": -6.0,
+        "TE": 1.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 2,
+        "round": 3,
+        "d_name": "Drake London",
+        "e_name": "Josh Jacobs",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 280.8,
+        "e_actual": 293.1,
+        "fork_actual_delta_e_minus_d": 12.3,
+        "n_subsequent_divergences": 9,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Mike Evans",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Brandon Aiyuk",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Zack Moss",
+            "e": "Rashee Rice",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "DeAndre Hopkins",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Courtland Sutton",
+            "e": "Dallas Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 5,
+      "seed": 44,
+      "e_minus_d_full": -54.9,
+      "e_minus_d_ex_dst_te": -344.5,
+      "n_changed_picks": 8,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 134.5,
+        "WR": -479.0,
+        "TE": 289.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 51.5,
+        "r6-10": -63.3,
+        "r11-15": -43.1
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 3.0,
+        "WR": -5.0,
+        "TE": 2.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "DJ Moore",
+        "e_name": "Mark Andrews",
+        "d_pos": "WR",
+        "e_pos": "TE",
+        "d_actual": 238.1,
+        "e_actual": 188.8,
+        "fork_actual_delta_e_minus_d": -49.3,
+        "n_subsequent_divergences": 7,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Amari Cooper",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Romeo Doubs",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Justin Herbert",
+            "e": "Rico Dowdle",
+            "d_pos": "QB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 11,
+            "round": 12,
+            "d": "Ty Chandler",
+            "e": "Khalil Herbert",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 12,
+            "round": 13,
+            "d": "Joshua Palmer",
+            "e": "Kimani Vidal",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 5,
+      "seed": 45,
+      "e_minus_d_full": -152.5,
+      "e_minus_d_ex_dst_te": -122.1,
+      "n_changed_picks": 9,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 273.3,
+        "WR": -395.4,
+        "TE": -30.4,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 162.2,
+        "r6-10": 54.8,
+        "r11-15": -369.5
+      },
+      "pos_count_delta": {
+        "QB": -2.0,
+        "RB": 2.0,
+        "WR": -3.0,
+        "TE": 1.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Malik Nabers",
+        "e_name": "Kenneth Walker",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 273.6,
+        "e_actual": 181.2,
+        "fork_actual_delta_e_minus_d": -92.4,
+        "n_subsequent_divergences": 8,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "DJ Moore",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "Keenan Allen",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Nick Chubb",
+            "e": "Rashee Rice",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Brock Purdy",
+            "e": "San Francisco Defense",
+            "d_pos": "QB",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Brian Thomas Jr.",
+            "e": "Dallas Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 5,
+      "seed": 46,
+      "e_minus_d_full": -73.0,
+      "e_minus_d_ex_dst_te": -6.3,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 280.3,
+        "WR": -286.6,
+        "TE": -66.7,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 118.7,
+        "r6-10": -173.4,
+        "r11-15": -18.3
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": -3.0,
+        "TE": 1.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 2,
+        "round": 3,
+        "d_name": "Drake London",
+        "e_name": "Mark Andrews",
+        "d_pos": "WR",
+        "e_pos": "TE",
+        "d_actual": 280.8,
+        "e_actual": 188.8,
+        "fork_actual_delta_e_minus_d": -92.0,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Malik Nabers",
+            "e": "Trey McBride",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Stefon Diggs",
+            "e": "Joe Mixon",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "George Kittle",
+            "e": "Rashee Rice",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Najee Harris",
+            "e": "Terry McLaurin",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Romeo Doubs",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 6,
+      "seed": 42,
+      "e_minus_d_full": 89.3,
+      "e_minus_d_ex_dst_te": -23.3,
+      "n_changed_picks": 10,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 91.1,
+        "WR": -114.4,
+        "TE": 112.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 287.0,
+        "r6-10": 65.8,
+        "r11-15": -263.5
+      },
+      "pos_count_delta": {
+        "QB": -3.0,
+        "RB": -1.0,
+        "WR": 0.0,
+        "TE": 1.0,
+        "DST": 3.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Nico Collins",
+        "e_name": "Trey McBride",
+        "d_pos": "WR",
+        "e_pos": "TE",
+        "d_actual": 210.6,
+        "e_actual": 243.8,
+        "fork_actual_delta_e_minus_d": 33.2,
+        "n_subsequent_divergences": 9,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Brandon Aiyuk",
+            "e": "James Conner",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "Christian Kirk",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Nick Chubb",
+            "e": "Jayden Reed",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Brock Purdy",
+            "e": "San Francisco Defense",
+            "d_pos": "QB",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Courtland Sutton",
+            "e": "Dallas Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 6,
+      "seed": 43,
+      "e_minus_d_full": 96.1,
+      "e_minus_d_ex_dst_te": 170.0,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 196.5,
+        "WR": -26.5,
+        "TE": -73.9,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 248.3,
+        "r6-10": -88.3,
+        "r11-15": -63.9
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 2.0,
+        "WR": -1.0,
+        "TE": -1.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 2,
+        "round": 3,
+        "d_name": "Chris Olave",
+        "e_name": "De'Von Achane",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 76.7,
+        "e_actual": 299.9,
+        "fork_actual_delta_e_minus_d": 223.2,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Mike Evans",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Amari Cooper",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "Tee Higgins",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Najee Harris",
+            "e": "Chris Godwin Jr.",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "DeAndre Hopkins",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 6,
+      "seed": 44,
+      "e_minus_d_full": 134.4,
+      "e_minus_d_ex_dst_te": -1.4,
+      "n_changed_picks": 10,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 368.8,
+        "WR": -370.2,
+        "TE": 135.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": -56.9,
+        "r6-10": 127.8,
+        "r11-15": 63.5
+      },
+      "pos_count_delta": {
+        "QB": -2.0,
+        "RB": 1.0,
+        "WR": -3.0,
+        "TE": 3.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "DJ Moore",
+        "e_name": "Kenneth Walker",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 238.1,
+        "e_actual": 181.2,
+        "fork_actual_delta_e_minus_d": -56.9,
+        "n_subsequent_divergences": 9,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Amari Cooper",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Dalton Kincaid",
+            "e": "George Kittle",
+            "d_pos": "TE",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Nick Chubb",
+            "e": "Evan Engram",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Romeo Doubs",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "J.K. Dobbins",
+            "e": "Rico Dowdle",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 6,
+      "seed": 45,
+      "e_minus_d_full": -55.6,
+      "e_minus_d_ex_dst_te": -310.7,
+      "n_changed_picks": 12,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 424.1,
+        "WR": -734.8,
+        "TE": 255.1,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": -93.5,
+        "r6-10": 262.2,
+        "r11-15": -224.3
+      },
+      "pos_count_delta": {
+        "QB": -3.0,
+        "RB": 4.0,
+        "WR": -4.0,
+        "TE": 1.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Garrett Wilson",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 251.9,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": -7.2,
+        "n_subsequent_divergences": 11,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Chris Olave",
+            "e": "Travis Etienne Jr.",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Malik Nabers",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "DJ Moore",
+            "e": "George Kittle",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Evan Engram",
+            "e": "George Pickens",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Jonathon Brooks",
+            "e": "Christian Watson",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 6,
+      "seed": 46,
+      "e_minus_d_full": 236.4,
+      "e_minus_d_ex_dst_te": 87.9,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 482.9,
+        "WR": -395.0,
+        "TE": 148.5,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 583.3,
+        "r6-10": -9.4,
+        "r11-15": -337.5
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": -1.0,
+        "WR": -3.0,
+        "TE": 1.0,
+        "DST": 3.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Cooper Kupp",
+        "e_name": "Bijan Robinson",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 175.0,
+        "e_actual": 341.7,
+        "fork_actual_delta_e_minus_d": 166.7,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Malik Nabers",
+            "e": "Aaron Jones Sr.",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Stefon Diggs",
+            "e": "Malik Nabers",
+            "d_pos": "WR",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Zack Moss",
+            "e": "Chris Godwin Jr.",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Javonte Williams",
+            "e": "David Njoku",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "DeAndre Hopkins",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 7,
+      "seed": 42,
+      "e_minus_d_full": 37.0,
+      "e_minus_d_ex_dst_te": -141.9,
+      "n_changed_picks": 9,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 218.7,
+        "WR": -360.6,
+        "TE": 178.9,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 235.5,
+        "r6-10": 302.4,
+        "r11-15": -500.9
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": -2.0,
+        "TE": 1.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Malik Nabers",
+        "e_name": "Alvin Kamara",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 273.6,
+        "e_actual": 265.3,
+        "fork_actual_delta_e_minus_d": -8.3,
+        "n_subsequent_divergences": 8,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Amari Cooper",
+            "e": "Trey McBride",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "George Kittle",
+            "d_pos": "TE",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Zamir White",
+            "e": "Jayden Reed",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Tyler Lockett",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Brian Thomas Jr.",
+            "e": "Rico Dowdle",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 7,
+      "seed": 43,
+      "e_minus_d_full": -169.5,
+      "e_minus_d_ex_dst_te": 93.2,
+      "n_changed_picks": 9,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 439.4,
+        "WR": -346.2,
+        "TE": -262.7,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 77.9,
+        "r6-10": 0.0,
+        "r11-15": -247.4
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 4.0,
+        "WR": -4.0,
+        "TE": 1.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Mike Evans",
+        "e_name": "Aaron Jones Sr.",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 240.4,
+        "e_actual": 241.6,
+        "fork_actual_delta_e_minus_d": 1.2,
+        "n_subsequent_divergences": 8,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Christian Kirk",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Jonathon Brooks",
+            "e": "Jake Ferguson",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Rome Odunze",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Khalil Shakir",
+            "e": "Rico Dowdle",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 11,
+            "round": 12,
+            "d": "Brock Bowers",
+            "e": "Elijah Mitchell",
+            "d_pos": "TE",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 7,
+      "seed": 44,
+      "e_minus_d_full": 17.2,
+      "e_minus_d_ex_dst_te": 17.2,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 220.8,
+        "WR": -203.6,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 144.2,
+        "r6-10": -151.2,
+        "r11-15": 24.2
+      },
+      "pos_count_delta": {
+        "QB": -3.0,
+        "RB": 3.0,
+        "WR": -2.0,
+        "TE": 1.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Malik Nabers",
+        "e_name": "Kenneth Walker",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 273.6,
+        "e_actual": 181.2,
+        "fork_actual_delta_e_minus_d": -92.4,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Amari Cooper",
+            "e": "George Kittle",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "George Kittle",
+            "e": "Zay Flowers",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Jaylen Warren",
+            "e": "Rashee Rice",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Devin Singletary",
+            "e": "Raheem Mostert",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Romeo Doubs",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 7,
+      "seed": 45,
+      "e_minus_d_full": -256.4,
+      "e_minus_d_ex_dst_te": -256.4,
+      "n_changed_picks": 12,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 370.0,
+        "WR": -626.4,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 30.6,
+        "r6-10": -41.2,
+        "r11-15": -245.8
+      },
+      "pos_count_delta": {
+        "QB": -3.0,
+        "RB": 4.0,
+        "WR": -4.0,
+        "TE": 1.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Garrett Wilson",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 251.9,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": -7.2,
+        "n_subsequent_divergences": 11,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Nico Collins",
+            "e": "Travis Etienne Jr.",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Malik Nabers",
+            "e": "Kenneth Walker",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kenneth Walker",
+            "e": "Tank Dell",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Evan Engram",
+            "e": "Raheem Mostert",
+            "d_pos": "TE",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Devin Singletary",
+            "e": "Evan Engram",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 7,
+      "seed": 46,
+      "e_minus_d_full": 144.5,
+      "e_minus_d_ex_dst_te": 258.7,
+      "n_changed_picks": 12,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 423.4,
+        "WR": -164.7,
+        "TE": -114.2,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 330.9,
+        "r6-10": 256.6,
+        "r11-15": -443.0
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": -2.0,
+        "TE": -1.0,
+        "DST": 3.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 2,
+        "round": 3,
+        "d_name": "Jaylen Waddle",
+        "e_name": "De'Von Achane",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 149.6,
+        "e_actual": 299.9,
+        "fork_actual_delta_e_minus_d": 150.3,
+        "n_subsequent_divergences": 11,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Nico Collins",
+            "e": "Aaron Jones Sr.",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Mark Andrews",
+            "e": "Dalton Kincaid",
+            "d_pos": "TE",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Christian Kirk",
+            "e": "Malik Nabers",
+            "d_pos": "WR",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Najee Harris",
+            "e": "Jayden Reed",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Javonte Williams",
+            "e": "David Njoku",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 8,
+      "seed": 42,
+      "e_minus_d_full": -49.1,
+      "e_minus_d_ex_dst_te": -311.4,
+      "n_changed_picks": 8,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": -311.4,
+        "TE": 262.3,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 222.0,
+        "r6-10": 0.0,
+        "r11-15": -271.1
+      },
+      "pos_count_delta": {
+        "QB": -2.0,
+        "RB": 0.0,
+        "WR": -2.0,
+        "TE": 2.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Nico Collins",
+        "e_name": "Mark Andrews",
+        "d_pos": "WR",
+        "e_pos": "TE",
+        "d_actual": 210.6,
+        "e_actual": 188.8,
+        "fork_actual_delta_e_minus_d": -21.8,
+        "n_subsequent_divergences": 7,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Brandon Aiyuk",
+            "e": "Trey McBride",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Brock Purdy",
+            "e": "San Francisco Defense",
+            "d_pos": "QB",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Courtland Sutton",
+            "e": "Dallas Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 11,
+            "round": 12,
+            "d": "Caleb Williams",
+            "e": "Blake Corum",
+            "d_pos": "QB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 12,
+            "round": 13,
+            "d": "Pat Freiermuth",
+            "e": "Ray Davis",
+            "d_pos": "TE",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 8,
+      "seed": 43,
+      "e_minus_d_full": -75.7,
+      "e_minus_d_ex_dst_te": -180.1,
+      "n_changed_picks": 9,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 184.1,
+        "WR": -364.2,
+        "TE": 104.4,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 116.9,
+        "r6-10": -55.4,
+        "r11-15": -137.2
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 2.0,
+        "WR": -2.0,
+        "TE": 1.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "DeVonta Smith",
+        "e_name": "Joe Mixon",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 199.4,
+        "e_actual": 240.5,
+        "fork_actual_delta_e_minus_d": 41.1,
+        "n_subsequent_divergences": 8,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Michael Pittman Jr.",
+            "e": "Aaron Jones Sr.",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Jonathon Brooks",
+            "e": "Jake Ferguson",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Brian Robinson",
+            "e": "San Francisco Defense",
+            "d_pos": "RB",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Khalil Shakir",
+            "e": "Tyler Allgeier",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 11,
+            "round": 12,
+            "d": "T.J. Hockenson",
+            "e": "Elijah Mitchell",
+            "d_pos": "TE",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 8,
+      "seed": 44,
+      "e_minus_d_full": -181.9,
+      "e_minus_d_ex_dst_te": -181.9,
+      "n_changed_picks": 9,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 209.9,
+        "WR": -391.8,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 30.3,
+        "r6-10": -124.1,
+        "r11-15": -88.1
+      },
+      "pos_count_delta": {
+        "QB": -3.0,
+        "RB": 3.0,
+        "WR": -2.0,
+        "TE": 1.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Malik Nabers",
+        "e_name": "Kenneth Walker",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 273.6,
+        "e_actual": 181.2,
+        "fork_actual_delta_e_minus_d": -92.4,
+        "n_subsequent_divergences": 8,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Nick Chubb",
+            "e": "Rashee Rice",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Jaylen Warren",
+            "e": "Nick Chubb",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Rome Odunze",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Rico Dowdle",
+            "e": "Tyler Allgeier",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 11,
+            "round": 12,
+            "d": "Kirk Cousins",
+            "e": "Elijah Mitchell",
+            "d_pos": "QB",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 8,
+      "seed": 45,
+      "e_minus_d_full": 125.2,
+      "e_minus_d_ex_dst_te": -122.6,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 342.4,
+        "WR": -465.0,
+        "TE": 247.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 215.8,
+        "r6-10": 115.9,
+        "r11-15": -206.5
+      },
+      "pos_count_delta": {
+        "QB": -2.0,
+        "RB": 3.0,
+        "WR": -5.0,
+        "TE": 3.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "A.J. Brown",
+        "e_name": "Derrick Henry",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 216.9,
+        "e_actual": 336.4,
+        "fork_actual_delta_e_minus_d": 119.5,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Nico Collins",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "DJ Moore",
+            "e": "Kenneth Walker",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kenneth Walker",
+            "e": "DJ Moore",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Jonathon Brooks",
+            "e": "David Njoku",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Brock Purdy",
+            "e": "San Francisco Defense",
+            "d_pos": "QB",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 8,
+      "seed": 46,
+      "e_minus_d_full": -51.5,
+      "e_minus_d_ex_dst_te": -13.1,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": -42.8,
+        "WR": 29.7,
+        "TE": -30.4,
+        "DST": -8.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": -169.3,
+        "r6-10": 477.4,
+        "r11-15": -359.6
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": -1.0,
+        "TE": 0.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Malik Nabers",
+        "e_name": "Aaron Jones Sr.",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 273.6,
+        "e_actual": 241.6,
+        "fork_actual_delta_e_minus_d": -32.0,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "DJ Moore",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "Malik Nabers",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Javonte Williams",
+            "e": "Terry McLaurin",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Tony Pollard",
+            "e": "Javonte Williams",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Ezekiel Elliott",
+            "e": "San Francisco Defense",
+            "d_pos": "RB",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 9,
+      "seed": 42,
+      "e_minus_d_full": -67.8,
+      "e_minus_d_ex_dst_te": -370.7,
+      "n_changed_picks": 10,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 259.7,
+        "WR": -630.4,
+        "TE": 302.9,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 207.5,
+        "r6-10": -50.4,
+        "r11-15": -224.9
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": -4.0,
+        "TE": 2.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 2,
+        "round": 3,
+        "d_name": "Nico Collins",
+        "e_name": "James Cook III",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 210.6,
+        "e_actual": 266.7,
+        "fork_actual_delta_e_minus_d": 56.1,
+        "n_subsequent_divergences": 9,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Malik Nabers",
+            "e": "Kenneth Walker",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Brandon Aiyuk",
+            "e": "Trey McBride",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Jaylen Warren",
+            "e": "Chris Godwin Jr.",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Gus Edwards",
+            "e": "San Francisco Defense",
+            "d_pos": "RB",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Brian Thomas Jr.",
+            "e": "Dallas Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 9,
+      "seed": 43,
+      "e_minus_d_full": -61.0,
+      "e_minus_d_ex_dst_te": -34.2,
+      "n_changed_picks": 9,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 312.0,
+        "WR": -346.2,
+        "TE": -26.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 76.8,
+        "r6-10": -26.8,
+        "r11-15": -111.0
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 2.0,
+        "WR": -2.0,
+        "TE": 1.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Mike Evans",
+        "e_name": "Joe Mixon",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 240.4,
+        "e_actual": 240.5,
+        "fork_actual_delta_e_minus_d": 0.1,
+        "n_subsequent_divergences": 8,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "Christian Kirk",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Zamir White",
+            "e": "Jake Ferguson",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Rome Odunze",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Khalil Shakir",
+            "e": "Tyler Allgeier",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 11,
+            "round": 12,
+            "d": "Tyler Allgeier",
+            "e": "Elijah Mitchell",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 9,
+      "seed": 44,
+      "e_minus_d_full": -175.1,
+      "e_minus_d_ex_dst_te": -418.9,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 144.1,
+        "WR": -563.0,
+        "TE": 243.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 18.4,
+        "r6-10": 0.0,
+        "r11-15": -193.5
+      },
+      "pos_count_delta": {
+        "QB": -2.0,
+        "RB": -1.0,
+        "WR": 0.0,
+        "TE": 2.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Marvin Harrison Jr.",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 196.5,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": 48.2,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Malik Nabers",
+            "e": "Trey McBride",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Amari Cooper",
+            "e": "Brandon Aiyuk",
+            "d_pos": "WR",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Jaylen Warren",
+            "e": "Rashee Rice",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Jonathon Brooks",
+            "e": "Jaylen Warren",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Ezekiel Elliott",
+            "e": "San Francisco Defense",
+            "d_pos": "RB",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 9,
+      "seed": 45,
+      "e_minus_d_full": -180.1,
+      "e_minus_d_ex_dst_te": -198.6,
+      "n_changed_picks": 12,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 289.2,
+        "WR": -487.8,
+        "TE": 18.5,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 42.0,
+        "r6-10": 45.7,
+        "r11-15": -267.8
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 4.0,
+        "WR": -5.0,
+        "TE": 1.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Garrett Wilson",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 251.9,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": -7.2,
+        "n_subsequent_divergences": 11,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Nico Collins",
+            "e": "Travis Etienne Jr.",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Mike Evans",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Michael Pittman Jr.",
+            "e": "Kenneth Walker",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kenneth Walker",
+            "e": "Mike Evans",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Kyle Pitts Sr.",
+            "e": "Evan Engram",
+            "d_pos": "TE",
+            "e_pos": "TE"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 9,
+      "seed": 46,
+      "e_minus_d_full": 107.3,
+      "e_minus_d_ex_dst_te": 502.2,
+      "n_changed_picks": 12,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 743.1,
+        "WR": -240.9,
+        "TE": -394.9,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 563.0,
+        "r6-10": -149.9,
+        "r11-15": -305.8
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 2.0,
+        "WR": -2.0,
+        "TE": -1.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Tyreek Hill",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 218.2,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": 26.5,
+        "n_subsequent_divergences": 11,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Jaylen Waddle",
+            "e": "De'Von Achane",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Malik Nabers",
+            "e": "Joe Mixon",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Tee Higgins",
+            "e": "Malik Nabers",
+            "d_pos": "WR",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "George Kittle",
+            "e": "Tee Higgins",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Javonte Williams",
+            "e": "Jake Ferguson",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 10,
+      "seed": 42,
+      "e_minus_d_full": 187.4,
+      "e_minus_d_ex_dst_te": -137.2,
+      "n_changed_picks": 13,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 496.5,
+        "WR": -633.7,
+        "TE": 324.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 73.3,
+        "r6-10": 398.1,
+        "r11-15": -284.0
+      },
+      "pos_count_delta": {
+        "QB": -2.0,
+        "RB": 3.0,
+        "WR": -4.0,
+        "TE": 2.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Garrett Wilson",
+        "e_name": "Saquon Barkley",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 251.9,
+        "e_actual": 355.3,
+        "fork_actual_delta_e_minus_d": 103.4,
+        "n_subsequent_divergences": 12,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Nico Collins",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Malik Nabers",
+            "e": "Alvin Kamara",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Christian Kirk",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Dalton Kincaid",
+            "e": "George Kittle",
+            "d_pos": "TE",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Zack Moss",
+            "e": "Calvin Ridley",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 10,
+      "seed": 43,
+      "e_minus_d_full": -290.9,
+      "e_minus_d_ex_dst_te": -343.9,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 106.2,
+        "WR": -450.1,
+        "TE": 53.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 166.9,
+        "r6-10": -381.5,
+        "r11-15": -76.3
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 3.0,
+        "WR": -4.0,
+        "TE": 1.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "DeVonta Smith",
+        "e_name": "Mark Andrews",
+        "d_pos": "WR",
+        "e_pos": "TE",
+        "d_actual": 199.4,
+        "e_actual": 188.8,
+        "fork_actual_delta_e_minus_d": -10.6,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Christian Kirk",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "George Kittle",
+            "e": "Christian Kirk",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Zamir White",
+            "e": "Zack Moss",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Zack Moss",
+            "e": "Jonathon Brooks",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Rome Odunze",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 10,
+      "seed": 44,
+      "e_minus_d_full": -38.4,
+      "e_minus_d_ex_dst_te": 131.9,
+      "n_changed_picks": 8,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 158.8,
+        "WR": -26.9,
+        "TE": -170.3,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 214.7,
+        "r6-10": 0.0,
+        "r11-15": -253.1
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 0.0,
+        "WR": 0.0,
+        "TE": 0.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 3,
+        "round": 4,
+        "d_name": "Jaylen Waddle",
+        "e_name": "Aaron Jones Sr.",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 149.6,
+        "e_actual": 241.6,
+        "fork_actual_delta_e_minus_d": 92.0,
+        "n_subsequent_divergences": 7,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Jaylen Warren",
+            "e": "Rashee Rice",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Ezekiel Elliott",
+            "e": "San Francisco Defense",
+            "d_pos": "RB",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Rico Dowdle",
+            "e": "Jaleel McLaughlin",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 11,
+            "round": 12,
+            "d": "Tyler Allgeier",
+            "e": "Elijah Mitchell",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 12,
+            "round": 13,
+            "d": "Aaron Rodgers",
+            "e": "Ty Chandler",
+            "d_pos": "QB",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 10,
+      "seed": 45,
+      "e_minus_d_full": 101.0,
+      "e_minus_d_ex_dst_te": 142.7,
+      "n_changed_picks": 12,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 193.4,
+        "WR": -50.7,
+        "TE": -41.7,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 314.1,
+        "r6-10": 435.6,
+        "r11-15": -648.7
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 1.0,
+        "WR": -2.0,
+        "TE": 1.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "A.J. Brown",
+        "e_name": "Jahmyr Gibbs",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 216.9,
+        "e_actual": 362.9,
+        "fork_actual_delta_e_minus_d": 146.0,
+        "n_subsequent_divergences": 11,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Nico Collins",
+            "e": "James Cook III",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Malik Nabers",
+            "e": "Nico Collins",
+            "d_pos": "WR",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "Zay Flowers",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Zack Moss",
+            "e": "Terry McLaurin",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Javonte Williams",
+            "e": "Evan Engram",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 10,
+      "seed": 46,
+      "e_minus_d_full": -188.1,
+      "e_minus_d_ex_dst_te": -254.7,
+      "n_changed_picks": 12,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 443.2,
+        "WR": -697.9,
+        "TE": 74.6,
+        "DST": -8.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 188.6,
+        "r6-10": 18.7,
+        "r11-15": -395.4
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 1.0,
+        "WR": -3.0,
+        "TE": 2.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Ja'Marr Chase",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 403.0,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": -158.3,
+        "n_subsequent_divergences": 11,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Jaylen Waddle",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Malik Nabers",
+            "e": "Joe Mixon",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Mark Andrews",
+            "e": "DK Metcalf",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Zack Moss",
+            "e": "Evan Engram",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Javonte Williams",
+            "e": "David Njoku",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 11,
+      "seed": 42,
+      "e_minus_d_full": -144.6,
+      "e_minus_d_ex_dst_te": -144.6,
+      "n_changed_picks": 10,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 362.2,
+        "WR": -506.8,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 37.9,
+        "r6-10": -13.5,
+        "r11-15": -169.0
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 3.0,
+        "WR": -5.0,
+        "TE": 1.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 2,
+        "round": 3,
+        "d_name": "Nico Collins",
+        "e_name": "James Cook III",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 210.6,
+        "e_actual": 266.7,
+        "fork_actual_delta_e_minus_d": 56.1,
+        "n_subsequent_divergences": 9,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "DeVonta Smith",
+            "e": "Kenneth Walker",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Christian Kirk",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Tony Pollard",
+            "e": "Xavier Worthy",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Rome Odunze",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          },
+          {
+            "pick_index": 10,
+            "round": 11,
+            "d": "Brian Thomas Jr.",
+            "e": "Dallas Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 11,
+      "seed": 43,
+      "e_minus_d_full": -156.82,
+      "e_minus_d_ex_dst_te": -164.82,
+      "n_changed_picks": 14,
+      "pos_delta_starters": {
+        "QB": -96.02,
+        "RB": 697.0,
+        "WR": -765.8,
+        "TE": 0.0,
+        "DST": 8.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 103.58,
+        "r6-10": -297.7,
+        "r11-15": 37.3
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 2.0,
+        "WR": -3.0,
+        "TE": 0.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 0,
+        "round": 1,
+        "d_name": "Josh Allen",
+        "e_name": "Bijan Robinson",
+        "d_pos": "QB",
+        "e_pos": "RB",
+        "d_actual": 379.04,
+        "e_actual": 341.7,
+        "fork_actual_delta_e_minus_d": -37.34,
+        "n_subsequent_divergences": 13,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 1,
+            "round": 2,
+            "d": "CeeDee Lamb",
+            "e": "Saquon Barkley",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "DeVonta Smith",
+            "e": "Patrick Mahomes",
+            "d_pos": "WR",
+            "e_pos": "QB"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Malik Nabers",
+            "e": "Joe Mixon",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "DJ Moore",
+            "e": "George Kittle",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "George Kittle",
+            "e": "Christian Kirk",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 11,
+      "seed": 44,
+      "e_minus_d_full": -16.6,
+      "e_minus_d_ex_dst_te": -165.1,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 180.9,
+        "WR": -346.0,
+        "TE": 148.5,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 188.9,
+        "r6-10": 129.7,
+        "r11-15": -335.2
+      },
+      "pos_count_delta": {
+        "QB": -3.0,
+        "RB": 2.0,
+        "WR": -2.0,
+        "TE": 2.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Garrett Wilson",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 251.9,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": -7.2,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "DeVonta Smith",
+            "e": "Travis Etienne Jr.",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Stefon Diggs",
+            "e": "Alvin Kamara",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Nick Chubb",
+            "e": "David Njoku",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Jaylen Warren",
+            "e": "Christian Watson",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Ezekiel Elliott",
+            "e": "San Francisco Defense",
+            "d_pos": "RB",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 11,
+      "seed": 45,
+      "e_minus_d_full": -267.08,
+      "e_minus_d_ex_dst_te": -324.68,
+      "n_changed_picks": 12,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 299.2,
+        "WR": -623.88,
+        "TE": 57.6,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": -57.18,
+        "r6-10": 78.3,
+        "r11-15": -288.2
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 2.0,
+        "WR": -4.0,
+        "TE": 1.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Justin Jefferson",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 317.48,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": -72.78,
+        "n_subsequent_divergences": 11,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Nico Collins",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Mike Evans",
+            "e": "Travis Etienne Jr.",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Malik Nabers",
+            "e": "Nico Collins",
+            "d_pos": "WR",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Kyle Pitts Sr.",
+            "e": "Zay Flowers",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Devin Singletary",
+            "e": "Jonathon Brooks",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 11,
+      "seed": 46,
+      "e_minus_d_full": 56.3,
+      "e_minus_d_ex_dst_te": -179.5,
+      "n_changed_picks": 12,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 553.8,
+        "WR": -733.3,
+        "TE": 243.8,
+        "DST": -8.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": -25.9,
+        "r6-10": 243.3,
+        "r11-15": -161.1
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 3.0,
+        "WR": -6.0,
+        "TE": 3.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Ja'Marr Chase",
+        "e_name": "Saquon Barkley",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 403.0,
+        "e_actual": 355.3,
+        "fork_actual_delta_e_minus_d": -47.7,
+        "n_subsequent_divergences": 11,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Jaylen Waddle",
+            "e": "Mark Andrews",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Mike Evans",
+            "e": "Trey McBride",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Tee Higgins",
+            "e": "Joe Mixon",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Zack Moss",
+            "e": "Terry McLaurin",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Javonte Williams",
+            "e": "Christian Watson",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 12,
+      "seed": 42,
+      "e_minus_d_full": 266.2,
+      "e_minus_d_ex_dst_te": 130.4,
+      "n_changed_picks": 13,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 626.9,
+        "WR": -496.5,
+        "TE": 135.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 183.1,
+        "r6-10": 67.8,
+        "r11-15": 15.3
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 4.0,
+        "WR": -4.0,
+        "TE": 1.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 1,
+        "round": 2,
+        "d_name": "Marvin Harrison Jr.",
+        "e_name": "Bijan Robinson",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 196.5,
+        "e_actual": 341.7,
+        "fork_actual_delta_e_minus_d": 145.2,
+        "n_subsequent_divergences": 12,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Nico Collins",
+            "e": "James Cook III",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "DeVonta Smith",
+            "e": "Kenneth Walker",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Christian Kirk",
+            "e": "Dalton Kincaid",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "Dalton Kincaid",
+            "e": "George Kittle",
+            "d_pos": "TE",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Zack Moss",
+            "e": "Xavier Worthy",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 12,
+      "seed": 43,
+      "e_minus_d_full": 4.08,
+      "e_minus_d_ex_dst_te": 4.08,
+      "n_changed_picks": 14,
+      "pos_delta_starters": {
+        "QB": -63.92,
+        "RB": 781.6,
+        "WR": -713.6,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 273.48,
+        "r6-10": -269.4,
+        "r11-15": 0.0
+      },
+      "pos_count_delta": {
+        "QB": -2.0,
+        "RB": 4.0,
+        "WR": -2.0,
+        "TE": 0.0,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 0,
+        "round": 1,
+        "d_name": "Josh Allen",
+        "e_name": "Bijan Robinson",
+        "d_pos": "QB",
+        "e_pos": "RB",
+        "d_actual": 379.04,
+        "e_actual": 341.7,
+        "fork_actual_delta_e_minus_d": -37.34,
+        "n_subsequent_divergences": 13,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 1,
+            "round": 2,
+            "d": "CeeDee Lamb",
+            "e": "Saquon Barkley",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "Mike Evans",
+            "e": "Kenneth Walker",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Malik Nabers",
+            "e": "Jalen Hurts",
+            "d_pos": "WR",
+            "e_pos": "QB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Christian Kirk",
+            "e": "George Kittle",
+            "d_pos": "WR",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "George Kittle",
+            "e": "Christian Kirk",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 12,
+      "seed": 44,
+      "e_minus_d_full": 59.2,
+      "e_minus_d_ex_dst_te": -89.3,
+      "n_changed_picks": 12,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 378.7,
+        "WR": -468.0,
+        "TE": 148.5,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 32.7,
+        "r6-10": 24.4,
+        "r11-15": 2.1
+      },
+      "pos_count_delta": {
+        "QB": -1.0,
+        "RB": 0.0,
+        "WR": -1.0,
+        "TE": 1.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 0,
+        "round": 1,
+        "d_name": "Josh Allen",
+        "e_name": "Jonathan Taylor",
+        "d_pos": "QB",
+        "e_pos": "RB",
+        "d_actual": 379.04,
+        "e_actual": 244.7,
+        "fork_actual_delta_e_minus_d": -134.34,
+        "n_subsequent_divergences": 11,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 1,
+            "round": 2,
+            "d": "A.J. Brown",
+            "e": "Josh Allen",
+            "d_pos": "WR",
+            "e_pos": "QB"
+          },
+          {
+            "pick_index": 2,
+            "round": 3,
+            "d": "DeVonta Smith",
+            "e": "Travis Etienne Jr.",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "DK Metcalf",
+            "e": "Alvin Kamara",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Jaylen Warren",
+            "e": "Rashee Rice",
+            "d_pos": "RB",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Jonathon Brooks",
+            "e": "David Njoku",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 12,
+      "seed": 45,
+      "e_minus_d_full": -198.6,
+      "e_minus_d_ex_dst_te": -150.8,
+      "n_changed_picks": 12,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 365.1,
+        "WR": -515.9,
+        "TE": -47.8,
+        "DST": 0.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 15.6,
+        "r6-10": -236.6,
+        "r11-15": 22.4
+      },
+      "pos_count_delta": {
+        "QB": 0.0,
+        "RB": 4.0,
+        "WR": -7.0,
+        "TE": 2.0,
+        "DST": 1.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 2,
+        "round": 3,
+        "d_name": "Nico Collins",
+        "e_name": "Mark Andrews",
+        "d_pos": "WR",
+        "e_pos": "TE",
+        "d_actual": 210.6,
+        "e_actual": 188.8,
+        "fork_actual_delta_e_minus_d": -21.8,
+        "n_subsequent_divergences": 11,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Mike Evans",
+            "e": "Travis Etienne Jr.",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 4,
+            "round": 5,
+            "d": "Malik Nabers",
+            "e": "Nico Collins",
+            "d_pos": "WR",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "George Kittle",
+            "e": "Dalton Kincaid",
+            "d_pos": "TE",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Tony Pollard",
+            "e": "Evan Engram",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Jonathon Brooks",
+            "e": "Tony Pollard",
+            "d_pos": "RB",
+            "e_pos": "RB"
+          }
+        ]
+      }
+    },
+    {
+      "slot": 12,
+      "seed": 46,
+      "e_minus_d_full": -151.4,
+      "e_minus_d_ex_dst_te": -55.3,
+      "n_changed_picks": 11,
+      "pos_delta_starters": {
+        "QB": 0.0,
+        "RB": 181.0,
+        "WR": -236.3,
+        "TE": -88.1,
+        "DST": -8.0,
+        "K": 0.0
+      },
+      "band_delta_starters": {
+        "r1-5": 266.8,
+        "r6-10": 43.3,
+        "r11-15": -461.5
+      },
+      "pos_count_delta": {
+        "QB": 1.0,
+        "RB": 1.0,
+        "WR": -4.0,
+        "TE": 0.0,
+        "DST": 2.0,
+        "K": 0.0
+      },
+      "fork": {
+        "pick_index": 2,
+        "round": 3,
+        "d_name": "Jaylen Waddle",
+        "e_name": "James Cook III",
+        "d_pos": "WR",
+        "e_pos": "RB",
+        "d_actual": 149.6,
+        "e_actual": 266.7,
+        "fork_actual_delta_e_minus_d": 117.1,
+        "n_subsequent_divergences": 10,
+        "subsequent_divergences_head": [
+          {
+            "pick_index": 3,
+            "round": 4,
+            "d": "Mike Evans",
+            "e": "Joe Mixon",
+            "d_pos": "WR",
+            "e_pos": "RB"
+          },
+          {
+            "pick_index": 5,
+            "round": 6,
+            "d": "George Kittle",
+            "e": "Tee Higgins",
+            "d_pos": "TE",
+            "e_pos": "WR"
+          },
+          {
+            "pick_index": 6,
+            "round": 7,
+            "d": "Javonte Williams",
+            "e": "Jake Ferguson",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 7,
+            "round": 8,
+            "d": "Tony Pollard",
+            "e": "David Njoku",
+            "d_pos": "RB",
+            "e_pos": "TE"
+          },
+          {
+            "pick_index": 9,
+            "round": 10,
+            "d": "Rome Odunze",
+            "e": "San Francisco Defense",
+            "d_pos": "WR",
+            "e_pos": "DST"
+          }
+        ]
+      }
+    }
+  ]
+}
