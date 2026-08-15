@@ -1,116 +1,115 @@
 # Autopsy gate — experimental discipline
 
 **Status:** active product rule  
-**Instrumentation:** `46f5691` (not a strategy commit)  
+**Instrumentation:** `46f5691` (not a strategy commit) · live_sim `9225113`  
 **Production TAKE:** frozen V1 **`marginal`** (`M`) only  
+**Autopsy stubs:** frozen (crude sigmoid + ADP-greedy next-pick) — **do not improve yet**  
 **Not authorized:** shipping survival / lookahead / VOR / construction into TAKE
 
 ---
 
-## Principle
-
-> We are not currently building V2. We are deciding whether V2 deserves to exist.
-
-`marginal` is the **control group**. Every future strategy must beat it under a predefined evaluation before it may influence TAKE.
-
-`live_sim` generates realistic boards. Autopsy tooling inspects decisions **without** changing recommendations.
+## Current research state
 
 ```text
-TAKE → frozen marginal
-     → live_sim real board
-     → awkward / disagreement pick
-     → dump case + log disagree (as felt)
-     → offline analyze (M, P(survive), Δ)
-     → classify
-     → only then a hypothesis / experiment
+marginal
+   │
+   ├── production TAKE ──────────────── FROZEN
+   │
+   └── autopsy
+          │
+          ├── Gate 1: empty 1.01 ────── CLOSED (pass / inconclusive)
+          │     artifact: results/autopsy_r1.md  (04d7304)
+          │     do not rerun Allen/Gibbs on empty boards
+          │
+          └── Gate 2: live_sim ──────── NEXT
+                    │
+                    ├── collect disagreements (as felt)
+                    ├── include a few “TAKE was right” controls
+                    ├── classify causes
+                    └── ask whether future value is the
+                        dominant missing signal on real boards
 ```
 
 ---
 
-## What to dump
+## Gate 1 — CLOSED
 
-Do **not** dump only 1.01. Dump picks that feel questionable:
+Empty 1.01, slot 1, draft `eb8374278e41`.
 
-1. **R1 QB vs RB/WR** (Allen vs Gibbs/Puka/…)
-2. **Won't survive** — TAKE says wait; board looks like it will take him
-3. **Obviously survives** — TAKE says take now
-4. **Positional runs** — 3+ RB/WR/QB/TE in a burst
-5. **Awkward roster / FLEX** — RB–WR–FLEX interactions
-6. **Late-round weirdness** — especially `M ≈ 0`
+| Question | Answer |
+| --- | --- |
+| Is `marginal` behaving strangely? | **No.** Allen 369.21 > Gibbs 365.27 > Puka 356.57 (~4 pt M gap) |
+| Is there a plausible better draft objective? | **Possibly.** Stub 2-pick EV: Allen ~642, Gibbs ~688 |
+| Does that authorize V2? | **No.** Same long-wait V2-alpha family; already failed production |
 
-Log disagreements **exactly as experienced**. Do not pre-decide the category must be scarcity.
+The autopsy **explains why** a human might prefer Gibbs without proving the proposed solution is better. Those two questions stay un-blurred.
 
-Example:
-
-```text
-Pick: 1.01
-TAKE: Josh Allen
-Human: Jahmyr Gibbs
-Category: opportunity_cost
-Reason: elite RB much harder to replace than QB
-```
+**Forbidden:** more empty-board Allen/Gibbs variations.
 
 ---
 
-## Gates (required before Path A)
+## Gate 2 — live_sim (open)
 
-### Gate 1 — Frozen case
+Do **not** manufacture cases. Let the draft produce them.
+
+High-value logs:
+
+| | When | Example |
+| --- | --- | --- |
+| **A** | TAKE you strongly reject | TAKE QB, you RB |
+| **B** | TAKE wait / other; you think X disappears | “X won’t survive” |
+| **C** | Rec changes a lot after a positional run | board-state response |
+| **D** | TAKE feels obviously correct | **control**, not just complaints |
+
+Log **exactly as experienced**. Do not pre-assign scarcity.
+
+Sample size: enough **distinct failure modes**, not an arbitrary 100 drafts.
+
+If the first ~15 awkward decisions cluster as:
+
+| Pattern | Then the project is… |
+| --- | --- |
+| “won’t survive” | opportunity-cost / possible V2 ticket later |
+| “projection is stale” | information layer, not V2 |
+| “I just don’t want QB early” | Path C policy |
+| TAKE was actually reasonable | leave `marginal` |
+
+Until that classification exists, **no new optimizer strategy** and **no better survival model**.
+
+We are asking: *does this frozen hypothesis repeatedly explain live disagreements?*  
+Only a consistent **yes** earns engineering on a real survival model.
+
+---
+
+## Frozen stubs (do not retune)
+
+- `P(survive)` — crude ADP sigmoid  
+- next-pick — ADP-greedy `two_pick_ev`  
+
+Improving them now would be building a beautiful survival model for a problem that may not dominate.
+
+---
+
+## Loop
+
+**Frozen `marginal` → live_sim → dump + disagree → offline analyze (same stubs) → classify → only then Path B/A/C.**
 
 ```powershell
 python -m draftopt.autopsy case --draft-id <id>
-```
-
-### Gate 2 — Transparent autopsy
-
-For the first awkward cases, **do not aggregate**. Analyze named candidates:
-
-```powershell
-python -m draftopt.autopsy analyze --draft-id <id> --players "Josh Allen,Jahmyr Gibbs,Puka Nacua" --out results/autopsy_r1.md
-```
-
-Inspect **separately**: `M`, crude `P(survive)`, `Δ(EV−M)`.
-
-Question: **does the future-board term contain enough signal to explain the human disagreement?**
-
-A ranking flip is interesting; the **explanation** matters more at first.
-
-`P(survive)` and ADP-greedy next-pick are **crude diagnostic stubs**. Do not conclude from one number (e.g. “17% → draft Gibbs”).
-
-If the stub never helps explain real disagreements → **do not build lookahead**.
-
-### Gate 3 — Human judgment under the clock
-
-```powershell
-python -m draftopt.autopsy disagree --draft-id <id> --recommended "..." --chosen "..." --category opportunity_cost --reason "..."
+python -m draftopt.autopsy analyze --draft-id <id> --players "A,B,C" --out results/autopsy_<label>.md
+python -m draftopt.autopsy disagree --draft-id <id> --recommended "..." --chosen "..." --category ... --reason "..."
 ```
 
 Categories: `opportunity_cost` · `bad_data` · `roster_construction` · `human_policy` · `uncertainty` · `rec_sensible` · `other`
 
 ---
 
-## Success criterion (after ~20–30 awkward picks)
+## Paths (still gated)
 
-Classify disagreements; **then** choose the next build:
-
-| Mostly this | Next step |
-| --- | --- |
-| Opportunity cost / survival | V2 experiment *may* earn a ticket |
-| Projection / data / news | Information layer, not V2 |
-| “I just don’t want R1 QB” | Path C policy overlay |
-| TAKE was actually reasonable | Leave `marginal` alone |
-
-Until that table exists, no new optimizer strategy.
-
----
-
-## Paths
-
-| Path | Meaning | Risk |
+| Path | Meaning | When |
 | --- | --- | --- |
-| **A** | New ranking engine in TAKE | High — V3-B lesson |
-| **B** | Diagnostic overlay beside TAKE | Low — only after offline autopsies |
-| **C** | Soft policy (e.g. no R1 QB) | Product preference, not math superiority |
+| **A** | New ranking engine in TAKE | Only after live classification + beat-control |
+| **B** | Diagnostic overlay beside TAKE | After offline autopsies, still not TAKE |
+| **C** | Soft policy (e.g. no R1 QB) | If disagreements are preference, not math |
 
----
-
-Artifacts: `results/autopsy_cases/` · `results/autopsy_disagreements.jsonl`
+Artifacts: `results/autopsy_cases/` · `results/autopsy_disagreements.jsonl` · `results/autopsy_r1.md`

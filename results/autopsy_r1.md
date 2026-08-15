@@ -1,5 +1,7 @@
 # Autopsy · draft `eb8374278e41` · pick 1
 
+**Gate 1: CLOSED** (pass / inconclusive). Do not rerun empty-board Allen/Gibbs. Next: live_sim Gate 2.
+
 - board_hash: `e3b0c44298fc1c14`
 - control: **marginal**
 - next user overall: 24
@@ -30,6 +32,7 @@ Inspect separately. Stubs only. TAKE unchanged.
 - **P(survive):** Gibbs/Puka are unlikely to last 22 picks; Allen (ADP ~23) is a coin flip at pick 24. This *directionally* matches “elite RB will not survive.” It is a crude sigmoid, not a model.
 - **d(EV-M):** The ADP-greedy future **does** flip the ranking (Gibbs 687.8 vs Allen 642.3) because taking Allen lets the next 22 ADP names eat the skill pool and leaves Breece; taking Gibbs leaves a QB (Lamar). That is the same long-wait V2-alpha mechanism we already tested — **not** evidence to ship lookahead.
 
-**Does the future-board term explain the disagreement?** Plausibly, as a story. **Does this earn V2?** No. One empty-board case + two uncalibrated stubs. Need live boards and 20–30 logged disagreements.
+**Does the future-board term explain the disagreement?** Plausibly, as a story. **Does this earn V2?** No — same V2-alpha long-wait mechanism; need messy live boards (Gate 2), not more empty 1.01s.
+
 
 Draft: `eb8374278e41`. Case: `results/autopsy_cases/eb8374278e41_pick1_e3b0c44298fc1c14.json`.

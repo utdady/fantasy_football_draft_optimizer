@@ -22,8 +22,8 @@
 > [`gate4`](results/phase2_v3a_gate4_leakage_audit.md).
 > `evaluable=0`. No UI / V2 / CVaR / construction retune.
 >
-> **Autopsy discipline:** [`results/AUTOPSY_GATE.md`](results/AUTOPSY_GATE.md) —
-> `marginal` is the control; dump cases / log disagreements before any new TAKE strategy.
+> **Autopsy:** Gate 1 empty 1.01 **closed** (pass / inconclusive). Gate 2 = live_sim.
+> Stubs frozen. TAKE = `marginal`. [`results/AUTOPSY_GATE.md`](results/AUTOPSY_GATE.md).
 >
 > Phase 1 synthetic decision research is frozen. UI still uses raw **V1 `marginal`**.
 > V2 notes: [`results/V2_ALPHA_BASELINE.md`](results/V2_ALPHA_BASELINE.md),
