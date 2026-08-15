@@ -238,8 +238,12 @@ Legal:
 - [x] Strategy `adp_v3ba` reusing D’s \(M_D\) only
 - [x] Smoke: \(M_D\) identical to D; Δ attributable only to \(M_D(q^*)\)
 - [x] 60-board ladder vs D; report mean/median/WR/p10 + **n boards with pick Δ**; **no retune**
-  → **result:** A−D ≡ 0; **0/60** boards with pick change (policy-inert);
-  see `phase2_v3ba_ladder.md`. **Stop A. No A.1.** Open Branch B **design** only.
+  → **result:** A−D ≡ 0; **0/60** pick changes. Reading amended:
+  **structurally near-inert** (incumbent protection + missing-alt fallback),
+  not a strong empirical kill of OC —
+  see [`V3B_A_STRUCTURAL_POSTMORTEM.md`](V3B_A_STRUCTURAL_POSTMORTEM.md) /
+  `phase2_v3ba_structural_inertness.md`. **No A.1.** Branch B design must
+  forbid the trivial-shift / incumbent-protecting score shape.
 
 ---
 
@@ -249,7 +253,7 @@ Legal:
 | --- | --- |
 | Branch A selection | 🟢 frozen (`3465c06`) |
 | A operationalization | 🟢 **frozen here** |
-| A implementation | 🟢 run; **policy-inert** (0/60 pick changes) |
+| A implementation | 🟢 run; **structurally near-inert** (see postmortem) |
 | B.1 | ❌ inert (do not revive / retune) |
 | Branch B | 🟡 **design licensed** by A switch rule — not implemented |
 | UI | `marginal` · `evaluable=0` |
