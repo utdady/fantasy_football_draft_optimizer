@@ -43,6 +43,7 @@ const logDisagreeBtn = document.getElementById("log-disagree");
 let draftId = localStorage.getItem("draftId");
 let state = null;
 let recs = [];
+let overlay = null;
 let grade = null;
 let hits = [];
 let active = 0;
@@ -153,6 +154,7 @@ function tickClock() {
 function applyPayload(payload) {
   state = payload.state;
   recs = payload.recommend || [];
+  overlay = payload.overlay || null;
   grade = payload.grade || null;
   draftId = state.draft_id;
   localStorage.setItem("draftId", draftId);
@@ -252,24 +254,52 @@ function renderTake() {
     return;
   }
   const top = recs[0];
+  const ovRec = (overlay?.recommend || []).find((r) => r.player_id === top.player_id) || {};
   const rest = recs
     .slice(1)
-    .map(
-      (p) =>
-        `<li><span class="pos ${p.position}">${p.position}</span> ${p.name}
-         <div class="muted">${p.marginal != null ? `Δ ${fmt(p.marginal)} · ` : ""}ADP ${fmt(p.adp_espn)} · ECR ${fmt(p.ecr_fp_ppr)}</div></li>`
-    )
+    .map((p) => {
+      const o = (overlay?.recommend || []).find((r) => r.player_id === p.player_id) || {};
+      const fpBits = [
+        o.fp_ecr != null ? `FP ${fmt(o.fp_ecr)}` : null,
+        o.fp_proj != null ? `FPproj ${fmt(o.fp_proj)}` : null,
+      ]
+        .filter(Boolean)
+        .join(" · ");
+      return `<li><span class="pos ${p.position}">${p.position}</span> ${p.name}
+         <div class="muted">${p.marginal != null ? `Δ ${fmt(p.marginal)} · ` : ""}ADP ${fmt(p.adp_espn)} · ECR ${fmt(p.ecr_fp_ppr)}${fpBits ? ` · ${fpBits}` : ""}</div></li>`;
+    })
     .join("");
   const marg =
     top.marginal != null
       ? `Δ ${fmt(top.marginal)} starter pts · ${fmt(top.lineup_before)} → ${fmt(top.lineup_after)}`
       : "";
+  const fpLine = [
+    ovRec.fp_ecr != null ? `FP ECR ${fmt(ovRec.fp_ecr)}` : null,
+    ovRec.fp_proj != null ? `FP proj ${fmt(ovRec.fp_proj)}` : null,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+  const fpTop = (overlay?.top_remaining || [])
+    .slice(0, 5)
+    .map((p) => `${p.name} (${fmt(p.fp_ecr)})`)
+    .join(" · ");
+  const divergeNote = overlay?.take_vs_fp?.note
+    ? `<p class="muted overlay-note">${overlay.take_vs_fp.note}</p>`
+    : "";
+  const fpBlock =
+    overlay?.available
+      ? `<h2 style="margin-top:0.9rem">FP consensus <span class="muted">(overlay)</span></h2>
+         ${fpTop ? `<p class="muted">${fpTop}</p>` : `<p class="muted">No FP API ranks remaining.</p>`}
+         ${divergeNote}
+         <p class="muted" style="font-size:0.75rem">${overlay.disclaimer || ""}</p>`
+      : `<p class="muted" style="margin-top:0.75rem">FP overlay empty — run <code>python -m draftopt.fp_overlay</code></p>`;
   takeBody.innerHTML = `
     <p class="primary"><span class="pos ${top.position}">${top.position}</span> ${top.name}</p>
     <p class="muted">${top.why || ""}</p>
-    <p class="muted">${marg}${marg ? " · " : ""}ADP ${fmt(top.adp_espn)} · ECR ${fmt(top.ecr_fp_ppr)}</p>
+    <p class="muted">${marg}${marg ? " · " : ""}ADP ${fmt(top.adp_espn)} · ECR ${fmt(top.ecr_fp_ppr)}${fpLine ? ` · ${fpLine}` : ""}</p>
     <h2 style="margin-top:0.9rem">Next</h2>
-    <ol>${rest}</ol>`;
+    <ol>${rest}</ol>
+    ${fpBlock}`;
 }
 
 function fmt(v) {

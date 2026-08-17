@@ -30,6 +30,7 @@ draftopt-trace-v2 = "draftopt.trace_v2_divergence:main"
 draftopt-stress-opponent = "draftopt.stress_opponent:main"
 draftopt-latency = "draftopt.latency_bench:main"
 draftopt-autopsy = "draftopt.autopsy:main"
+draftopt-fp-overlay = "draftopt.fp_overlay:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

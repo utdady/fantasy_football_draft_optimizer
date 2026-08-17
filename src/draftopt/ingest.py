@@ -277,6 +277,14 @@ def run_ingest(conn=None) -> dict[str, Any]:
             "ecr": len(ecr_rows),
             "espn": len(espn_rows),
         }
+        # Optional live FP overlay (does not feed marginal).
+        try:
+            from draftopt.fp_overlay import refresh_fp_overlay
+
+            fp_stats = refresh_fp_overlay(conn)
+            stats["fantasypros_overlay"] = fp_stats
+        except Exception as e:  # noqa: BLE001 — ingest must not fail on overlay
+            stats["fantasypros_overlay"] = {"ok": False, "reason": str(e)}
         conn.commit()
         return stats
     finally:

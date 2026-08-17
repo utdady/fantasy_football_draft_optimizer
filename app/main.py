@@ -19,6 +19,7 @@ from draftopt.draft.state import (
     snapshot,
     undo_pick,
 )
+from draftopt.fp_overlay import build_overlay
 from draftopt.recommend import recommend
 from draftopt.strategies import get_strategy
 
@@ -35,10 +36,12 @@ def get_conn():
 
 def payload(conn, draft_id: str, strategy: str = "marginal") -> dict:
     state = snapshot(conn, draft_id)
+    recs = recommend(conn, draft_id, strategy=strategy)
     out = {
         "state": state,
-        "recommend": recommend(conn, draft_id, strategy=strategy),
+        "recommend": recs,
         "strategy": strategy,
+        "overlay": build_overlay(conn, draft_id, recs),
     }
     if state.get("complete"):
         out["grade"] = grade_draft(conn, draft_id)
@@ -72,6 +75,21 @@ class DisagreeBody(BaseModel):
 class AnalyzeBody(BaseModel):
     players: list[str] = Field(default_factory=list)
     n: int = Field(default=5, ge=1, le=20)
+
+
+@app.post("/api/overlay/fantasypros")
+def api_refresh_fp_overlay():
+    """Refresh FantasyPros live overlay snapshots (does not change TAKE)."""
+    from draftopt.fp_overlay import refresh_fp_overlay
+
+    conn = get_conn()
+    try:
+        stats = refresh_fp_overlay(conn)
+        if not stats.get("ok"):
+            raise HTTPException(400, stats.get("reason") or "overlay refresh failed")
+        return stats
+    finally:
+        conn.close()
 
 
 @app.get("/")

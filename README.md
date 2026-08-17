@@ -24,6 +24,7 @@
 >
 > **Autopsy:** Gate 1 empty 1.01 **closed** (pass / inconclusive). Gate 2 = live_sim.
 > Stubs frozen. TAKE = `marginal`. [`results/AUTOPSY_GATE.md`](results/AUTOPSY_GATE.md).
+> **FP overlay:** live FantasyPros consensus/proj beside TAKE only — `python -m draftopt.fp_overlay`.
 >
 > Phase 1 synthetic decision research is frozen. UI still uses raw **V1 `marginal`**.
 > V2 notes: [`results/V2_ALPHA_BASELINE.md`](results/V2_ALPHA_BASELINE.md),
@@ -69,6 +70,17 @@ python -m draftopt.autopsy analyze --draft-id <id> --players "Josh Allen,Jahmyr 
 ```
 
 Gate rules: [`results/AUTOPSY_GATE.md`](results/AUTOPSY_GATE.md).
+
+## FantasyPros overlay (optional)
+
+Live FP consensus + PPR projections appear **beside** TAKE. They do **not** change `marginal`.
+
+```powershell
+# requires FANTASYPROS_API_KEY in .env
+python -m draftopt.fp_overlay
+```
+
+Free-tier API returns ~top-10 overall ECR. DynastyProcess ECR remains the full-board mirror.
 
 Baseline ADP strategy remains available for experiments (`strategy=adp` on API / backtest).
 
