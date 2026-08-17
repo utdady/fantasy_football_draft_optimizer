@@ -77,108 +77,60 @@ def _parse_team_names_json(raw: str | None, n_teams: int, user_slot: int, user_n
     return labels
 
 
+ORDER_MODES = frozenset({"pick_slot", "random_slot"})
+
+
+def normalize_order_mode(order_mode: str | None) -> str:
+    mode = (order_mode or "pick_slot").strip().lower()
+    if mode not in ORDER_MODES:
+        raise DraftError(f"order_mode must be one of {sorted(ORDER_MODES)}")
+    return mode
+
+
 def resolve_draft_seating(
     *,
     n_teams: int = N_TEAMS,
     user_name: str = "You",
     order_mode: str = "pick_slot",
     user_slot: int | None = None,
-    opponent_names: list[str] | None = None,
     team_names: dict | None = None,
     rng: random.Random | None = None,
 ) -> tuple[int, dict[int, str]]:
-    """
-    Resolve (user_slot, slot->display name).
+    """Resolve (user_slot, slot->display name).
 
-    Modes:
-    - pick_slot: use user_slot; optional opponent_names fill other seats in order
-    - random_slot: random user_slot; optional opponent_names fill remaining seats randomly
-    - random_all: user + (n_teams-1) opponents shuffled into all seats
-    - fixed: team_names maps every slot 1..n_teams; exactly one seat is the user
+    pick_slot: use user_slot. random_slot: random seat. Other seats are CPU N
+    unless team_names labels them.
     """
     rng = rng or random.Random()
     me = _clean_name(user_name, "You")
-    mode = (order_mode or "pick_slot").strip().lower()
-    opponents = [_clean_name(n) for n in (opponent_names or []) if _clean_name(n)]
-
-    if mode == "fixed":
-        if not team_names:
-            raise DraftError("fixed order requires team_names for every slot")
-        seating: dict[int, str] = {}
-        for key, val in team_names.items():
-            try:
-                slot = int(key)
-            except (TypeError, ValueError) as e:
-                raise DraftError(f"invalid slot key {key!r}") from e
-            if not 1 <= slot <= n_teams:
-                raise DraftError(f"slot must be 1..{n_teams}")
-            name = _clean_name(str(val))
-            if not name:
-                raise DraftError(f"empty name for slot {slot}")
-            if slot in seating:
-                raise DraftError(f"duplicate slot {slot}")
-            seating[slot] = name
-        if len(seating) != n_teams:
-            missing = sorted(set(range(1, n_teams + 1)) - set(seating))
-            raise DraftError(f"fixed order missing slots: {missing}")
-        # User seat: prefer explicit user_slot if name matches; else unique name match
-        user_seats = [s for s, n in seating.items() if fold(n) == fold(me)]
-        if user_slot is not None:
-            if not 1 <= int(user_slot) <= n_teams:
-                raise DraftError(f"user_slot must be 1..{n_teams}")
-            if fold(seating[int(user_slot)]) != fold(me):
-                raise DraftError("user_slot name must match your name in fixed order")
-            slot = int(user_slot)
-        else:
-            if len(user_seats) != 1:
-                raise DraftError(
-                    "fixed order needs your name on exactly one slot "
-                    f"(found {len(user_seats)})"
-                )
-            slot = user_seats[0]
-        seating[slot] = me
-        return slot, seating
-
-    if mode == "random_all":
-        if len(opponents) != n_teams - 1:
-            raise DraftError(
-                f"random_all needs exactly {n_teams - 1} opponent names "
-                f"(got {len(opponents)})"
-            )
-        if any(fold(n) == fold(me) for n in opponents):
-            raise DraftError("opponent names must not match your name")
-        if len({fold(n) for n in opponents}) != len(opponents):
-            raise DraftError("opponent names must be unique")
-        names = [me, *opponents]
-        rng.shuffle(names)
-        seating = {i + 1: names[i] for i in range(n_teams)}
-        slot = next(s for s, n in seating.items() if fold(n) == fold(me))
-        seating[slot] = me
-        return slot, seating
-
-    # pick_slot / random_slot
+    mode = normalize_order_mode(order_mode)
     if mode == "random_slot":
         slot = rng.randint(1, n_teams)
     else:
         slot = int(user_slot if user_slot is not None else USER_SLOT_DEFAULT)
         if not 1 <= slot <= n_teams:
             raise DraftError(f"user_slot must be 1..{n_teams}")
-
     seating = {i: f"CPU {i}" for i in range(1, n_teams + 1)}
-    other_slots = [i for i in range(1, n_teams + 1) if i != slot]
-    if opponents:
-        if len(opponents) > n_teams - 1:
-            raise DraftError(f"at most {n_teams - 1} opponent names")
-        if any(fold(n) == fold(me) for n in opponents):
-            raise DraftError("opponent names must not match your name")
-        if len({fold(n) for n in opponents}) != len(opponents):
-            raise DraftError("opponent names must be unique")
-        fill = list(other_slots)
-        if mode == "random_slot":
-            rng.shuffle(fill)
-        for i, name in enumerate(opponents):
-            seating[fill[i]] = name
     seating[slot] = me
+    if team_names:
+        seen = {fold(me)}
+        for key, val in team_names.items():
+            try:
+                other = int(key)
+            except (TypeError, ValueError) as e:
+                raise DraftError(f"invalid slot key {key!r}") from e
+            if not 1 <= other <= n_teams:
+                raise DraftError(f"slot must be 1..{n_teams}")
+            if other == slot:
+                continue
+            name = _clean_name(str(val))
+            if not name:
+                continue
+            folded = fold(name)
+            if folded in seen:
+                raise DraftError("seat names must be unique")
+            seen.add(folded)
+            seating[other] = name
     return slot, seating
 
 
@@ -210,7 +162,6 @@ def create_draft(
     n_rounds: int | None = None,
     *,
     order_mode: str = "pick_slot",
-    opponent_names: list[str] | None = None,
     team_names: dict | None = None,
     pick_mode: str = "user_only",
     rng: random.Random | None = None,
@@ -222,7 +173,6 @@ def create_draft(
         user_name=me,
         order_mode=order_mode,
         user_slot=user_slot,
-        opponent_names=opponent_names,
         team_names=team_names,
         rng=rng,
     )

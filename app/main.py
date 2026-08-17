@@ -53,7 +53,6 @@ class CreateDraftBody(BaseModel):
     user_name: str = Field(default="You", min_length=1, max_length=40)
     roster_preset: str = Field(default="league_default")
     order_mode: str = Field(default="pick_slot")
-    opponent_names: list[str] = Field(default_factory=list)
     team_names: dict[str, str] | None = None
     pick_mode: str = Field(default="user_only")
 
@@ -132,7 +131,6 @@ def api_create_draft(body: CreateDraftBody):
             user_name=body.user_name,
             roster_preset=body.roster_preset,
             order_mode=body.order_mode,
-            opponent_names=body.opponent_names,
             team_names=body.team_names,
             pick_mode=body.pick_mode,
         )

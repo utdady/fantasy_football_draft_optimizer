@@ -1,20 +1,20 @@
 {
   "stage": "SHIP_2026_DRAFT_READINESS",
-  "created_at": "2026-08-15T16:23:38Z",
+  "created_at": "2026-08-17T05:38:49Z",
   "db_path": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\draftopt.db",
   "strategy": "marginal",
-  "n_teams": 10,
+  "n_teams": 12,
   "claim": "Product readiness for 2026 live DB with frozen marginal. Not a construction / Phase-2 ladder.",
   "db_checks": [
     {
       "check": "players_present",
       "ok": true,
-      "detail": "n=882"
+      "detail": "n=857"
     },
     {
       "check": "proj_pulled_at",
       "ok": true,
-      "detail": "pulled_at=2026-08-15T16:18:27Z"
+      "detail": "pulled_at=2026-08-17T05:37:43Z"
     },
     {
       "check": "gibbs_2026_proj",
@@ -28,7 +28,7 @@
     }
   ],
   "full_mock": {
-    "draft_id": "f9daf8964a70",
+    "draft_id": "1f67eaf21d98",
     "slot": 1,
     "seed": 42,
     "user_picks": [
@@ -39,121 +39,121 @@
         "marginal": 369.21
       },
       {
-        "overall": 20,
+        "overall": 24,
         "name": "Derrick Henry",
         "position": "RB",
-        "marginal": 274.43
+        "marginal": 274.4
       },
       {
-        "overall": 21,
-        "name": "Saquon Barkley",
+        "overall": 25,
+        "name": "Kenneth Walker",
         "position": "RB",
-        "marginal": 273.86
+        "marginal": 272.65
       },
       {
-        "overall": 40,
+        "overall": 48,
         "name": "Tyreek Hill",
         "position": "WR",
         "marginal": 263.71
       },
       {
-        "overall": 41,
-        "name": "Travis Etienne",
-        "position": "RB",
-        "marginal": 242.09
+        "overall": 49,
+        "name": "Davante Adams",
+        "position": "WR",
+        "marginal": 232.32
       },
       {
-        "overall": 60,
+        "overall": 72,
         "name": "Keenan Allen",
         "position": "WR",
         "marginal": 212.6
       },
       {
-        "overall": 61,
-        "name": "Carnell Tate",
-        "position": "WR",
-        "marginal": 211.13
+        "overall": 73,
+        "name": "Austin Ekeler",
+        "position": "RB",
+        "marginal": 207.83
       },
       {
-        "overall": 80,
-        "name": "Travis Kelce",
+        "overall": 96,
+        "name": "Mark Andrews",
         "position": "TE",
-        "marginal": 177.0
+        "marginal": 169.18
       },
       {
-        "overall": 81,
+        "overall": 97,
         "name": "Broncos D/ST",
         "position": "DST",
         "marginal": 130.67
       },
       {
-        "overall": 100,
-        "name": "Brian Thomas",
-        "position": "WR",
-        "marginal": 0.0
-      },
-      {
-        "overall": 101,
-        "name": "Matthew Golden",
-        "position": "WR",
-        "marginal": 0.0
-      },
-      {
         "overall": 120,
-        "name": "RJ Harvey",
+        "name": "Jonathon Brooks",
         "position": "RB",
         "marginal": 0.0
       },
       {
         "overall": 121,
-        "name": "Isaiah Likely",
-        "position": "TE",
-        "marginal": 0.0
-      },
-      {
-        "overall": 140,
-        "name": "Blake Corum",
-        "position": "RB",
-        "marginal": 0.0
-      },
-      {
-        "overall": 141,
-        "name": "Chris Godwin",
+        "name": "Makai Lemon",
         "position": "WR",
         "marginal": 0.0
       },
       {
-        "overall": 160,
-        "name": "Daniel Jones",
+        "overall": 144,
+        "name": "Jayden Reed",
+        "position": "WR",
+        "marginal": 0.0
+      },
+      {
+        "overall": 145,
+        "name": "Kyler Murray",
+        "position": "QB",
+        "marginal": 0.0
+      },
+      {
+        "overall": 168,
+        "name": "Chiefs D/ST",
+        "position": "DST",
+        "marginal": 0.0
+      },
+      {
+        "overall": 169,
+        "name": "Denzel Boston",
+        "position": "WR",
+        "marginal": 0.0
+      },
+      {
+        "overall": 192,
+        "name": "Cam Ward",
         "position": "QB",
         "marginal": 0.0
       }
     ],
     "pos_counts": {
-      "QB": 2,
-      "RB": 5,
+      "QB": 3,
+      "RB": 4,
       "WR": 6,
-      "TE": 2,
-      "DST": 1
+      "TE": 1,
+      "DST": 2
     },
-    "n_board_picks": 160,
+    "n_board_picks": 192,
     "latency_ms": {
       "n": 16,
-      "mean": 16.24,
-      "p50": 11.65,
-      "p95": 29.03,
-      "max": 33.99
+      "mean": 13.39,
+      "p50": 13.15,
+      "p95": 14.91,
+      "max": 15.72
     },
     "checks": [
       {
         "check": "full_draft_complete",
         "ok": true,
-        "detail": "picks=160 complete=True"
+        "detail": "picks=192 complete=True"
       },
       {
         "check": "no_duplicate_board_picks",
         "ok": true,
-        "detail": "unique=160/160"
+        "detail": "unique=192/192"
       },
       {
         "check": "user_pick_count",
@@ -183,15 +183,15 @@
       {
         "check": "final_lineup_ev_flex",
         "ok": true,
-        "detail": "total=2154.7 starters_slots={'QB': 1, 'RB': 2, 'WR': 2, 'TE': 1, 'DST': 1, 'FLEX': 2}"
+        "detail": "total=2132.6 starters_slots={'QB': 1, 'RB': 2, 'WR': 2, 'TE': 1, 'DST': 1, 'FLEX': 2}"
       }
     ],
     "issues": [],
-    "clock_seconds": 90,
+    "clock_seconds": 60,
     "comfortable_vs_clock": true
   },
   "snipe_undo": {
-    "draft_id": "f51474cb89c6",
+    "draft_id": "24bf10704783",
     "checks": [
       {
         "check": "snipe_has_alts",
@@ -223,13 +223,13 @@
     "took": "Jahmyr Gibbs"
   },
   "late_board": {
-    "draft_id": "40e90379326f",
-    "last_pick": "Woody Marks",
+    "draft_id": "de315bd8dc11",
+    "last_pick": "Vikings D/ST",
     "late_latency_ms": {
       "n": 9,
-      "p50": 21.69,
-      "p95": 38.14,
-      "max": 39.56
+      "p50": 14.43,
+      "p95": 15.2,
+      "max": 15.28
     },
     "checks": [
       {
@@ -240,13 +240,13 @@
       {
         "check": "late_latency_under_1s_p95",
         "ok": true,
-        "detail": "p95=38.1"
+        "detail": "p95=15.2"
       }
     ]
   },
   "http_smoke": {
     "base": "http://127.0.0.1:8001",
-    "draft_id": "5217e1a5dc7f",
+    "draft_id": "ef63af41235d",
     "checks": [
       {
         "check": "http_status",
@@ -256,7 +256,7 @@
       {
         "check": "http_players",
         "ok": true,
-        "detail": "players=882"
+        "detail": "players=857"
       },
       {
         "check": "http_create_draft",
@@ -271,12 +271,12 @@
       {
         "check": "http_autopick",
         "ok": true,
-        "detail": "code=200 ms=79.4"
+        "detail": "code=200 ms=38.3"
       },
       {
         "check": "http_autopick",
         "ok": true,
-        "detail": "code=200 ms=84.6"
+        "detail": "code=200 ms=41.3"
       }
     ],
     "top": "Josh Allen"

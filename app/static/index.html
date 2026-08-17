@@ -19,33 +19,28 @@
           <select id="order-mode">
             <option value="pick_slot">Pick my slot</option>
             <option value="random_slot">Randomize my slot</option>
-            <option value="random_all">Name league + randomize all seats</option>
-            <option value="fixed">Set everyone's slot (practice)</option>
+            <option value="live_sim">Live league sim</option>
           </select>
         </label>
         <div id="slot-row">
-          <label>My draft slot
+          <label id="slot-picker">My draft slot
             <select id="user-slot"></select>
           </label>
-          <button id="shuffle-my-slot" type="button" class="secondary">Randomize my slot</button>
+          <button id="shuffle-my-slot" type="button" class="secondary hidden">Randomize my slot</button>
+        </div>
+        <p id="live-sim-hint" class="muted live-sim-hint hidden">Gate 2: enter friends' real picks. When TAKE feels wrong (or obviously right), Dump case + Log disagree. Don't use CPU unless someone is AFK.</p>
+        <div id="league-panel" class="league-panel hidden">
+          <div class="league-head">
+            <span id="league-title">League seats</span>
+            <button id="clear-seats" type="button" class="secondary">Clear</button>
+          </div>
+          <p id="league-hint" class="muted">Name each slot. Your seat is locked to your name; blank seats stay CPU.</p>
+          <div id="seat-list" class="opponent-list"></div>
         </div>
         <label>Lineup
           <select id="roster-preset"></select>
         </label>
         <p id="roster-desc" class="muted"></p>
-        <label class="check-row">
-          <input id="live-sim" type="checkbox" />
-          <span>Live league sim — I enter every team's pick</span>
-        </label>
-        <p class="muted live-sim-hint">Gate 2: check this, enter friends' real picks. When TAKE feels wrong (or obviously right), Dump case + Log disagree. Don't use CPU unless someone is AFK.</p>
-        <div id="league-panel" class="league-panel hidden">
-          <div class="league-head">
-            <span id="league-title">League mates</span>
-            <button id="clear-opponents" type="button" class="secondary">Clear</button>
-          </div>
-          <p id="league-hint" class="muted"></p>
-          <div id="opponent-list" class="opponent-list"></div>
-        </div>
         <button type="submit">Start draft</button>
         <button id="resume" type="button" class="hidden">Resume last draft</button>
       </form>

@@ -72,7 +72,7 @@ def test_search_hides_kickers_in_no_k_league(catalog, conn):
 
 
 def test_grade_ranks_teams(catalog, conn):
-    draft_id = create_draft(conn, user_slot=1, user_name="Tester", n_rounds=2)
+    draft_id = create_draft(conn, user_slot=1, user_name="Tester", n_teams=10, n_rounds=2)
     record_pick(conn, draft_id, "1002", made_by="user")
     grade = grade_draft(conn, draft_id)
     assert grade["user"]["is_user"] is True
