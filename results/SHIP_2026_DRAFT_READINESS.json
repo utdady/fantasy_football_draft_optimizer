@@ -1,6 +1,6 @@
 {
   "stage": "SHIP_2026_DRAFT_READINESS",
-  "created_at": "2026-08-17T05:38:49Z",
+  "created_at": "2026-08-17T07:05:55Z",
   "db_path": "C:\\Users\\addyb\\fantasy_football_draft_optimizer\\data\\draftopt.db",
   "strategy": "marginal",
   "n_teams": 12,
@@ -25,10 +25,15 @@
       "check": "espn_adp_coverage",
       "ok": true,
       "detail": "n_adp=800"
+    },
+    {
+      "check": "draftable_skill_proj",
+      "ok": true,
+      "detail": "missing=0 (skill ADP<160 need ESPN pts>0)"
     }
   ],
   "full_mock": {
-    "draft_id": "1f67eaf21d98",
+    "draft_id": "85f32ecf7824",
     "slot": 1,
     "seed": 42,
     "user_picks": [
@@ -139,10 +144,10 @@
     "n_board_picks": 192,
     "latency_ms": {
       "n": 16,
-      "mean": 13.39,
-      "p50": 13.15,
-      "p95": 14.91,
-      "max": 15.72
+      "mean": 13.61,
+      "p50": 13.39,
+      "p95": 15.33,
+      "max": 15.71
     },
     "checks": [
       {
@@ -191,7 +196,7 @@
     "comfortable_vs_clock": true
   },
   "snipe_undo": {
-    "draft_id": "24bf10704783",
+    "draft_id": "6b5fa1251792",
     "checks": [
       {
         "check": "snipe_has_alts",
@@ -223,13 +228,13 @@
     "took": "Jahmyr Gibbs"
   },
   "late_board": {
-    "draft_id": "de315bd8dc11",
+    "draft_id": "0faac842c477",
     "last_pick": "Vikings D/ST",
     "late_latency_ms": {
       "n": 9,
-      "p50": 14.43,
-      "p95": 15.2,
-      "max": 15.28
+      "p50": 13.52,
+      "p95": 14.71,
+      "max": 14.74
     },
     "checks": [
       {
@@ -240,50 +245,13 @@
       {
         "check": "late_latency_under_1s_p95",
         "ok": true,
-        "detail": "p95=15.2"
+        "detail": "p95=14.7"
       }
     ]
   },
-  "http_smoke": {
-    "base": "http://127.0.0.1:8001",
-    "draft_id": "ef63af41235d",
-    "checks": [
-      {
-        "check": "http_status",
-        "ok": true,
-        "detail": "code=200"
-      },
-      {
-        "check": "http_players",
-        "ok": true,
-        "detail": "players=857"
-      },
-      {
-        "check": "http_create_draft",
-        "ok": true,
-        "detail": "code=200"
-      },
-      {
-        "check": "http_initial_recommend",
-        "ok": true,
-        "detail": "n=3"
-      },
-      {
-        "check": "http_autopick",
-        "ok": true,
-        "detail": "code=200 ms=38.3"
-      },
-      {
-        "check": "http_autopick",
-        "ok": true,
-        "detail": "code=200 ms=41.3"
-      }
-    ],
-    "top": "Josh Allen"
-  },
   "summary": {
-    "n_checks": 25,
-    "n_pass": 25,
+    "n_checks": 20,
+    "n_pass": 20,
     "n_fail": 0,
     "all_pass": true,
     "failed": []

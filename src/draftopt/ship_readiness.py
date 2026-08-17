@@ -83,6 +83,25 @@ def check_db(conn) -> list[dict]:
         "SELECT COUNT(*) AS n FROM adp_snapshots WHERE source='espn'"
     ).fetchone()["n"]
     out.append(_check("espn_adp_coverage", n_adp >= 700, f"n_adp={n_adp}"))
+    draftable_missing = conn.execute(
+        """
+        SELECT COUNT(*) AS n
+        FROM players p
+        JOIN adp_snapshots a ON a.player_id = p.player_id AND a.source = 'espn'
+        LEFT JOIN projections_snapshots pr
+            ON pr.player_id = p.player_id AND pr.source = 'espn'
+        WHERE p.position IN ('QB', 'RB', 'WR', 'TE')
+          AND a.adp < 160
+          AND (pr.season_points IS NULL OR pr.season_points <= 0)
+        """
+    ).fetchone()["n"]
+    out.append(
+        _check(
+            "draftable_skill_proj",
+            draftable_missing == 0,
+            f"missing={draftable_missing} (skill ADP<160 need ESPN pts>0)",
+        )
+    )
     return out
 
 

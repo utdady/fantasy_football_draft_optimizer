@@ -1,9 +1,9 @@
 # 2026 draft readiness (frozen `marginal`)
 
-- created: `2026-08-17T05:38:49Z`
+- created: `2026-08-17T07:05:55Z`
 - db: `C:\Users\addyb\fantasy_football_draft_optimizer\data\draftopt.db`
 - strategy: **marginal** · teams: 12
-- checks: **25/25 pass**
+- checks: **20/20 pass**
 
 Product readiness for 2026 live DB with frozen marginal. Not a construction / Phase-2 ladder.
 
@@ -15,7 +15,7 @@ Product readiness for 2026 live DB with frozen marginal. Not a construction / Ph
 
 - complete checks embedded; board picks: 192
 - user pos mix: `{'QB': 3, 'RB': 4, 'WR': 6, 'TE': 1, 'DST': 2}`
-- recommend latency ms: p50=13.15 p95=14.91 max=15.72 (clock=60s)
+- recommend latency ms: p50=13.39 p95=15.33 max=15.71 (clock=60s)
 - comfortable vs 5% of clock: **True**
 
 ### User picks
@@ -50,17 +50,11 @@ Product readiness for 2026 live DB with frozen marginal. Not a construction / Ph
 ### Late-board recommend + latency
 
 - PASS `late_draft_complete` user_picks=16
-- PASS `late_latency_under_1s_p95` p95=15.2
-- late latency: `{'n': 9, 'p50': 14.43, 'p95': 15.2, 'max': 15.28}`
+- PASS `late_latency_under_1s_p95` p95=14.7
+- late latency: `{'n': 9, 'p50': 13.52, 'p95': 14.71, 'max': 14.74}`
 
 ### HTTP API smoke (`/api`)
 
-- PASS `http_status` code=200
-- PASS `http_players` players=857
-- PASS `http_create_draft` code=200
-- PASS `http_initial_recommend` n=3
-- PASS `http_autopick` code=200 ms=38.3
-- PASS `http_autopick` code=200 ms=41.3
 
 ## DB gates
 
@@ -68,6 +62,7 @@ Product readiness for 2026 live DB with frozen marginal. Not a construction / Ph
 - PASS `proj_pulled_at` pulled_at=2026-08-17T05:37:43Z
 - PASS `gibbs_2026_proj` Gibbs season_points=365.3 (expect >=340 for 2026)
 - PASS `espn_adp_coverage` n_adp=800
+- PASS `draftable_skill_proj` missing=0 (skill ADP<160 need ESPN pts>0)
 
 ## Next
 
