@@ -30,6 +30,17 @@
 > V2 notes: [`results/V2_ALPHA_BASELINE.md`](results/V2_ALPHA_BASELINE.md),
 > [`results/V2_OBJECTIVE_DESIGN.md`](results/V2_OBJECTIVE_DESIGN.md).
 >
+## Docs (research spine)
+
+| Document | Job |
+|---|---|
+| [ROADMAP.md](ROADMAP.md) | Version ladder + FREEZE -> CAPTURE -> MEASURE -> DIAGNOSE -> IMPROVE -> BACKTEST -> FREEZE |
+| [docs/PROJECT.md](docs/PROJECT.md) | Methods encyclopedia (provenance, math in code, experiment map) |
+| [docs/LAB_LOG.md](docs/LAB_LOG.md) | Append-only experiments + hypothesis board (**log wins over roadmap**) |
+| [docs/HARNESS_SPEC.md](docs/HARNESS_SPEC.md) | As-of-T / leakage / evaluable gates |
+| [docs/FORMAL.md](docs/FORMAL.md) | Evaluation integrity (property tests -> optional Lean; **not** a version gate) |
+| [results/AUTOPSY_GATE.md](results/AUTOPSY_GATE.md) | Live Gate 2 protocol (TAKE stays marginal) |
+
 ## Setup
 
 ```powershell

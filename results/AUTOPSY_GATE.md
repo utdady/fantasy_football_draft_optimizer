@@ -8,6 +8,8 @@
 
 ---
 
+**Docs spine:** [../ROADMAP.md](../ROADMAP.md) · [../docs/LAB_LOG.md](../docs/LAB_LOG.md) (E007) · [../docs/PROJECT.md](../docs/PROJECT.md) · [../docs/FORMAL.md](../docs/FORMAL.md)
+
 ## Current research state
 
 ```text
