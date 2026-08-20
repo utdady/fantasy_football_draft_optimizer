@@ -37,10 +37,27 @@ const cpuThisPickBtn = document.getElementById("cpu-this-pick");
 const undoBtn = document.getElementById("undo");
 const dumpCaseBtn = document.getElementById("dump-case");
 const logDisagreeBtn = document.getElementById("log-disagree");
+const autopsyModal = document.getElementById("autopsy-modal");
+const autopsySummary = document.getElementById("autopsy-summary");
+const autopsyAlts = document.getElementById("autopsy-alts");
+const autopsyCats = document.getElementById("autopsy-cats");
+const autopsyReason = document.getElementById("autopsy-reason");
+const autopsyDumpPath = document.getElementById("autopsy-dump-path");
+const autopsyContinueBtn = document.getElementById("autopsy-continue");
 
 let draftId = localStorage.getItem("draftId");
 let state = null;
 let recs = [];
+let autopsyPaused = false;
+let pendingAutopsy = null;
+const AUTOPSY_CATEGORIES = [
+  "opportunity_cost",
+  "bad_data",
+  "roster_construction",
+  "human_policy",
+  "uncertainty",
+  "other",
+];
 let overlay = null;
 let grade = null;
 let hits = [];
@@ -172,7 +189,7 @@ function isLiveSim() {
 }
 
 function canHumanPick() {
-  return Boolean(state?.can_human_pick);
+  return Boolean(state?.can_human_pick) && !autopsyPaused;
 }
 
 function pickLabel() {
@@ -401,6 +418,11 @@ function openGrade() {
 }
 
 async function afterStateChange() {
+  if (autopsyPaused) {
+    render();
+    stopClock();
+    return;
+  }
   render();
   if (!state || state.complete) {
     stopClock();
@@ -458,8 +480,110 @@ async function refreshSearch() {
   renderPlayerTable();
 }
 
+function slimTakeSnapshot(list) {
+  return (list || []).slice(0, 5).map((r) => ({
+    player_id: r.player_id,
+    name: r.name,
+    position: r.position,
+    team: r.team,
+    marginal: r.marginal,
+    lineup_before: r.lineup_before,
+    lineup_after: r.lineup_after,
+    adp_espn: r.adp_espn,
+    proj_espn: r.proj_espn || r.season_points,
+    why: r.why,
+  }));
+}
+
+function closeAutopsyModal() {
+  if (autopsyModal) autopsyModal.classList.add("hidden");
+  if (autopsyCats) autopsyCats.innerHTML = "";
+  if (autopsyReason) autopsyReason.value = "";
+  if (autopsyDumpPath) autopsyDumpPath.textContent = "";
+  if (autopsyAlts) autopsyAlts.textContent = "";
+  pendingAutopsy = null;
+  autopsyPaused = false;
+}
+
+function openAutopsyModal(ctx) {
+  pendingAutopsy = ctx;
+  autopsyPaused = true;
+  stopClock();
+  const take = (ctx.take_at_decision || [])[0] || {};
+  const chosen = ctx.chosen || {};
+  autopsySummary.textContent =
+    `You took: ${chosen.name || "?"} | TAKE was: ${take.name || "?"}` +
+    (take.marginal != null ? ` (M ${take.marginal})` : "");
+  const alts = (ctx.take_at_decision || [])
+    .slice(1, 3)
+    .map((r) => `${r.name}${r.marginal != null ? ` ${r.marginal}` : ""}`)
+    .join(" / ");
+  autopsyAlts.textContent = alts ? `Also in TAKE top: ${alts}` : "";
+  autopsyDumpPath.textContent = ctx.case_path
+    ? `Case dumped: ${ctx.case_path}`
+    : "Case dump pending...";
+  autopsyReason.value = "";
+  autopsyCats.innerHTML = "";
+  for (const cat of AUTOPSY_CATEGORIES) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = cat.replaceAll("_", " ");
+    btn.dataset.cat = cat;
+    btn.addEventListener("click", () => {
+      for (const b of autopsyCats.querySelectorAll("button")) b.classList.remove("active");
+      btn.classList.add("active");
+      pendingAutopsy.category = cat;
+    });
+    autopsyCats.appendChild(btn);
+  }
+  autopsyModal.classList.remove("hidden");
+  autopsyContinueBtn.focus();
+}
+
+async function continueAutopsyModal() {
+  if (!pendingAutopsy || !draftId) {
+    closeAutopsyModal();
+    await afterStateChange();
+    return;
+  }
+  const ctx = pendingAutopsy;
+  const category = ctx.category || "other";
+  const skipped = !ctx.category;
+  const reason = (autopsyReason.value || "").trim();
+  try {
+    await api(`/api/drafts/${draftId}/autopsy/disagree`, {
+      method: "POST",
+      body: JSON.stringify({
+        recommended_player_id: ctx.take_id,
+        chosen_player_id: ctx.chosen_id,
+        category,
+        reason,
+        skipped_reason: skipped,
+        case_path: ctx.case_path || null,
+        take_at_decision: ctx.take_at_decision,
+        overall_at_decision: ctx.overall_at_decision,
+        trigger: "post_pick_diverge",
+      }),
+    });
+    showBanner(
+      banner,
+      skipped
+        ? `Logged diverge (no category) ? TAKE ${ctx.take_name} ? ${ctx.chosen_name}`
+        : `Logged diverge: TAKE ${ctx.take_name} ? ${ctx.chosen_name} (${category})`
+    );
+  } catch (err) {
+    showBanner(banner, err.message);
+  }
+  closeAutopsyModal();
+  await afterStateChange();
+}
+
 async function pickCurrent() {
-  if (!draftId || !state || !canHumanPick()) return;
+  if (!draftId || !state || !canHumanPick() || autopsyPaused) return;
+  const wasUserTurn = Boolean(state.is_user_turn);
+  const overallAtDecision = state.current_pick;
+  const takeAtDecision = wasUserTurn ? slimTakeSnapshot(recs) : null;
+  const takeId = takeAtDecision && takeAtDecision[0] ? takeAtDecision[0].player_id : null;
   const chosen = hits[active];
   const body = chosen
     ? { player_id: chosen.player_id }
@@ -476,6 +600,42 @@ async function pickCurrent() {
     hits = [];
     renderPlayerTable();
     applyPayload(payload);
+    const last = (payload.state.picks || [])[(payload.state.picks || []).length - 1];
+    const diverged =
+      wasUserTurn &&
+      takeId &&
+      last &&
+      String(last.player_id) !== String(takeId);
+    if (diverged) {
+      let casePath = null;
+      try {
+        const dumped = await api(`/api/drafts/${draftId}/autopsy/case`, {
+          method: "POST",
+          body: JSON.stringify({
+            trigger: "post_pick_diverge",
+            chosen_player_id: last.player_id,
+            take_at_decision: takeAtDecision,
+            overall_at_decision: overallAtDecision,
+            n: Math.max(takeAtDecision.length, 5),
+          }),
+        });
+        casePath = dumped.path || null;
+      } catch (err) {
+        showBanner(banner, `Pick saved; case dump failed: ${err.message}`);
+      }
+      openAutopsyModal({
+        take_id: takeId,
+        take_name: takeAtDecision[0].name,
+        chosen_id: last.player_id,
+        chosen_name: last.name,
+        chosen: last,
+        take_at_decision: takeAtDecision,
+        overall_at_decision: overallAtDecision,
+        case_path: casePath,
+        category: null,
+      });
+      return;
+    }
     await afterStateChange();
   } catch (err) {
     showBanner(banner, err.message);
@@ -501,7 +661,10 @@ async function cpuThisPick() {
 async function dumpAutopsyCase() {
   if (!draftId) return;
   try {
-    const data = await api(`/api/drafts/${draftId}/autopsy/case`, { method: "POST" });
+    const data = await api(`/api/drafts/${draftId}/autopsy/case`, {
+      method: "POST",
+      body: JSON.stringify({ trigger: "manual" }),
+    });
     const top = (data.recommend || [])[0];
     showBanner(
       banner,
@@ -793,6 +956,11 @@ if (cpuThisPickBtn) {
 if (dumpCaseBtn) {
   dumpCaseBtn.addEventListener("click", () => {
     dumpAutopsyCase().catch((err) => showBanner(banner, err.message));
+  });
+}
+if (autopsyContinueBtn) {
+  autopsyContinueBtn.addEventListener("click", () => {
+    continueAutopsyModal().catch((err) => showBanner(banner, err.message));
   });
 }
 if (logDisagreeBtn) {

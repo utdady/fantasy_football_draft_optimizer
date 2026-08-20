@@ -68,3 +68,57 @@ def test_disagreement_log(catalog, conn, tmp_path, monkeypatch):
             chosen_player_id=rows[1]["player_id"],
             category="not_a_real_category",
         )
+
+
+def test_post_pick_diverge_freezes_take(catalog, conn, tmp_path, monkeypatch):
+    monkeypatch.setattr("draftopt.autopsy.CASES_DIR", tmp_path / "cases")
+    monkeypatch.setattr("draftopt.autopsy.DISAGREE_PATH", tmp_path / "disagree.jsonl")
+    draft_id = create_draft(conn, user_slot=1)
+    report = autopsy_analyze(conn, draft_id, n_top=3)
+    rows = [r for r in report["candidates"] if r.get("ok")]
+    assert len(rows) >= 2
+    take = [
+        {
+            "player_id": rows[0]["player_id"],
+            "name": rows[0]["name"],
+            "position": rows[0].get("position"),
+            "marginal": rows[0].get("M"),
+        },
+        {
+            "player_id": rows[1]["player_id"],
+            "name": rows[1]["name"],
+            "position": rows[1].get("position"),
+            "marginal": rows[1].get("M"),
+        },
+    ]
+    dumped = dump_case(
+        conn,
+        draft_id,
+        trigger="post_pick_diverge",
+        chosen_player_id=rows[1]["player_id"],
+        take_at_decision=take,
+        overall_at_decision=1,
+    )
+    assert dumped["trigger"] == "post_pick_diverge"
+    assert dumped["overall_at_decision"] == 1
+    assert dumped["recommend"][0]["player_id"] == rows[0]["player_id"]
+    assert dumped["chosen"]["player_id"] == rows[1]["player_id"]
+    assert dumped["take_at_decision"][0]["marginal"] == rows[0].get("M")
+
+    entry = log_disagreement(
+        conn,
+        draft_id,
+        recommended_player_id=rows[0]["player_id"],
+        chosen_player_id=rows[1]["player_id"],
+        category="other",
+        skipped_reason=True,
+        case_path=dumped["path"],
+        take_at_decision=take,
+        overall_at_decision=1,
+        trigger="post_pick_diverge",
+    )
+    assert entry["skipped_reason"] is True
+    assert entry["trigger"] == "post_pick_diverge"
+    assert entry["case_path"] == dumped["path"]
+    assert entry["recommended"]["M"] == rows[0].get("M")
+

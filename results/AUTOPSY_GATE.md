@@ -54,6 +54,9 @@ The autopsy **explains why** a human might prefer Gibbs without proving the prop
 
 Do **not** manufacture cases. Let the draft produce them.
 
+**Post-pick capture (UI):** after *your* pick is committed, if chosen ? TAKE the app auto-dumps the case with frozen pre-pick TAKE math, then pauses for optional category/note. Continue never blocks (`skipped_reason=true` if no category). Autopick / CPU / opponent live_sim seats do not trigger this. Observability only ? TAKE stays `marginal`.
+
+
 High-value logs:
 
 | | When | Example |

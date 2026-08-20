@@ -141,6 +141,25 @@
     </div>
   </div>
 
+  <div id="autopsy-modal" class="modal hidden">
+    <div class="modal-card autopsy-card">
+      <div class="modal-head">
+        <h2>Post-pick note</h2>
+      </div>
+      <p id="autopsy-summary" class="autopsy-summary"></p>
+      <p id="autopsy-alts" class="muted"></p>
+      <p class="muted">Why? (optional ? Continue never blocks)</p>
+      <div id="autopsy-cats" class="autopsy-cats"></div>
+      <label class="autopsy-note-label">Optional note
+        <input id="autopsy-reason" type="text" maxlength="500" placeholder="short why" />
+      </label>
+      <p id="autopsy-dump-path" class="muted autopsy-dump"></p>
+      <div class="autopsy-actions">
+        <button id="autopsy-continue" type="button">Continue</button>
+      </div>
+    </div>
+  </div>
+
   <script src="/static/app.js"></script>
 </body>
 </html>

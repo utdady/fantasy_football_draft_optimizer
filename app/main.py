@@ -69,6 +69,19 @@ class DisagreeBody(BaseModel):
     chosen_query: str | None = None
     category: str = "other"
     reason: str = ""
+    skipped_reason: bool = False
+    case_path: str | None = None
+    take_at_decision: list[dict] | None = None
+    overall_at_decision: int | None = None
+    trigger: str = "manual"
+
+
+class CaseDumpBody(BaseModel):
+    n: int = Field(default=10, ge=1, le=30)
+    trigger: str = "manual"
+    chosen_player_id: str | None = None
+    take_at_decision: list[dict] | None = None
+    overall_at_decision: int | None = None
 
 
 class AnalyzeBody(BaseModel):
@@ -254,11 +267,24 @@ def api_undo(draft_id: str):
 
 
 @app.post("/api/drafts/{draft_id}/autopsy/case")
-def api_autopsy_case(draft_id: str, n: int = Query(default=10, ge=1, le=30)):
+def api_autopsy_case(
+    draft_id: str,
+    n: int = Query(default=10, ge=1, le=30),
+    body: CaseDumpBody | None = None,
+):
     """Dump board + top-N M recommendations (does not change TAKE)."""
     conn = get_conn()
     try:
-        return dump_case(conn, draft_id, n_recs=n)
+        opts = body or CaseDumpBody(n=n)
+        return dump_case(
+            conn,
+            draft_id,
+            n_recs=opts.n if body else n,
+            trigger=opts.trigger,
+            chosen_player_id=opts.chosen_player_id,
+            take_at_decision=opts.take_at_decision,
+            overall_at_decision=opts.overall_at_decision,
+        )
     except DraftError as e:
         raise HTTPException(404, str(e)) from e
     finally:
@@ -308,6 +334,11 @@ def api_autopsy_disagree(draft_id: str, body: DisagreeBody):
             chosen_player_id=ch,
             reason=body.reason,
             category=body.category,
+            skipped_reason=body.skipped_reason,
+            case_path=body.case_path,
+            take_at_decision=body.take_at_decision,
+            overall_at_decision=body.overall_at_decision,
+            trigger=body.trigger,
         )
     except DraftError as e:
         raise HTTPException(400, str(e)) from e

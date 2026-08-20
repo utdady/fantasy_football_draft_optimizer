@@ -252,6 +252,23 @@ button:hover { border-color: var(--accent); }
   padding: 1rem 1.1rem 1.2rem;
 }
 .modal-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.autopsy-card { width: min(28rem, 100%); }
+.autopsy-summary { font-size: 1.05rem; margin: 0.35rem 0 0.25rem; }
+.autopsy-cats { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.55rem 0 0.75rem; }
+.autopsy-cats button {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+  padding: 0.35rem 0.55rem;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+}
+.autopsy-cats button.active { border-color: var(--current); color: var(--current); }
+.autopsy-note-label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.85rem; color: var(--muted); }
+.autopsy-note-label input { font: inherit; padding: 0.4rem 0.5rem; }
+.autopsy-actions { display: flex; justify-content: flex-end; margin-top: 0.9rem; }
+.autopsy-dump { font-size: 0.75rem; margin-top: 0.5rem; word-break: break-all; }
 .grade-table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; font-size: 0.9rem; }
 .grade-table th, .grade-table td { padding: 0.4rem 0.5rem; border-bottom: 1px solid var(--line); text-align: left; }
 .grade-table .you-row { background: #2a3a2d; }

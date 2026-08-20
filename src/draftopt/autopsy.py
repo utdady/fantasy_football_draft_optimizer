@@ -75,21 +75,73 @@ def crude_survival_prob(
     return round(1.0 / (1.0 + math.exp(-x)), 4)
 
 
-def dump_case(conn, draft_id: str, *, n_recs: int = 10) -> dict:
-    """Snapshot board + top-N M recommendations to results/autopsy_cases/."""
+def _slim_rec(r: dict) -> dict:
+    return {
+        "player_id": r.get("player_id"),
+        "name": r.get("name"),
+        "position": r.get("position"),
+        "team": r.get("team"),
+        "marginal": r.get("marginal"),
+        "lineup_before": r.get("lineup_before"),
+        "lineup_after": r.get("lineup_after"),
+        "adp_espn": r.get("adp_espn"),
+        "proj_espn": r.get("proj_espn") or r.get("season_points"),
+        "why": r.get("why"),
+    }
+
+
+def dump_case(
+    conn,
+    draft_id: str,
+    *,
+    n_recs: int = 10,
+    trigger: str = "manual",
+    chosen_player_id: str | None = None,
+    take_at_decision: list[dict] | None = None,
+    overall_at_decision: int | None = None,
+) -> dict:
+    """Snapshot board + top-N M recommendations to results/autopsy_cases/.
+
+    For post-pick diverge capture, pass frozen ``take_at_decision`` (pre-pick TAKE)
+    so the dump stays historically reproducible after the roster changes.
+    """
     state = snapshot(conn, draft_id)
-    recs = MarginalValueStrategy().recommend(conn, draft_id, n=n_recs)
     draft = _draft_row(conn, draft_id)
-    overall = int(draft["current_pick"])
+    overall_now = int(draft["current_pick"])
+    decision_overall = int(overall_at_decision) if overall_at_decision else overall_now
     n_teams = int(draft["n_teams"])
     n_rounds = int(draft["n_rounds"])
     user_slot = int(draft["user_slot"])
-    nxt = next_user_overall(overall, user_slot, n_teams, n_rounds=n_rounds)
-    until = picks_until_next(overall, user_slot, n_teams, n_rounds=n_rounds)
+    nxt = next_user_overall(overall_now, user_slot, n_teams, n_rounds=n_rounds)
+    until = picks_until_next(overall_now, user_slot, n_teams, n_rounds=n_rounds)
+
+    frozen = [_slim_rec(r) for r in (take_at_decision or []) if r]
+    if frozen:
+        recommend = frozen
+    else:
+        recommend = [
+            _slim_rec(r)
+            for r in MarginalValueStrategy().recommend(conn, draft_id, n=n_recs)
+        ]
+
+    chosen_meta = None
+    if chosen_player_id:
+        row = conn.execute(
+            "SELECT player_id, name, position, team FROM players WHERE player_id = ?",
+            (chosen_player_id,),
+        ).fetchone()
+        if row:
+            chosen_meta = {
+                "player_id": row["player_id"],
+                "name": row["name"],
+                "position": row["position"],
+                "team": row["team"],
+            }
 
     payload = {
         "created_at": _utcnow(),
         "kind": "case_dump",
+        "trigger": (trigger or "manual").strip().lower(),
         "draft_id": draft_id,
         "board_hash": board_hash(state),
         "pick_mode": state.get("pick_mode"),
@@ -100,26 +152,15 @@ def dump_case(conn, draft_id: str, *, n_recs: int = 10) -> dict:
         "current_round": state.get("current_round"),
         "is_user_turn": state.get("is_user_turn"),
         "complete": state.get("complete"),
+        "overall_at_decision": decision_overall,
         "n_teams": n_teams,
         "n_rounds": n_rounds,
         "next_user_overall": nxt,
         "picks_until_next": until,
         "control": "marginal",
-        "recommend": [
-            {
-                "player_id": r.get("player_id"),
-                "name": r.get("name"),
-                "position": r.get("position"),
-                "team": r.get("team"),
-                "marginal": r.get("marginal"),
-                "lineup_before": r.get("lineup_before"),
-                "lineup_after": r.get("lineup_after"),
-                "adp_espn": r.get("adp_espn"),
-                "proj_espn": r.get("proj_espn"),
-                "why": r.get("why"),
-            }
-            for r in recs
-        ],
+        "recommend": recommend,
+        "take_at_decision": frozen or None,
+        "chosen": chosen_meta,
         "picks": [
             {
                 "overall": p.get("overall"),
@@ -134,7 +175,7 @@ def dump_case(conn, draft_id: str, *, n_recs: int = 10) -> dict:
         "team_labels": state.get("team_labels"),
     }
     CASES_DIR.mkdir(parents=True, exist_ok=True)
-    fname = f"{draft_id}_pick{overall}_{payload['board_hash']}.json"
+    fname = f"{draft_id}_pick{decision_overall}_{payload['board_hash']}.json"
     path = CASES_DIR / fname
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     try:
@@ -359,8 +400,13 @@ def log_disagreement(
     chosen_player_id: str,
     reason: str = "",
     category: str = "other",
+    skipped_reason: bool = False,
+    case_path: str | None = None,
+    take_at_decision: list[dict] | None = None,
+    overall_at_decision: int | None = None,
+    trigger: str = "manual",
 ) -> dict:
-    """Append one Gate-3 disagreement row to results/autopsy_disagreements.jsonl."""
+    """Append one Gate-2 disagreement row to results/autopsy_disagreements.jsonl."""
     cat = (category or "other").strip().lower()
     if cat not in DISAGREE_CATEGORIES:
         raise DraftError(
@@ -368,8 +414,28 @@ def log_disagreement(
         )
     state = snapshot(conn, draft_id)
     draft = _draft_row(conn, draft_id)
-    recs = MarginalValueStrategy().recommend(conn, draft_id, n=5)
-    rec_by_id = {r["player_id"]: r for r in recs}
+    frozen = [_slim_rec(r) for r in (take_at_decision or []) if r]
+    if frozen:
+        take_top = [
+            {
+                "player_id": r.get("player_id"),
+                "name": r.get("name"),
+                "marginal": r.get("marginal"),
+            }
+            for r in frozen[:3]
+        ]
+        rec_by_id = {r["player_id"]: r for r in frozen if r.get("player_id")}
+    else:
+        recs = MarginalValueStrategy().recommend(conn, draft_id, n=5)
+        take_top = [
+            {
+                "player_id": r.get("player_id"),
+                "name": r.get("name"),
+                "marginal": r.get("marginal"),
+            }
+            for r in recs[:3]
+        ]
+        rec_by_id = {r["player_id"]: r for r in recs}
 
     def _player_meta(pid: str) -> dict:
         row = conn.execute(
@@ -378,21 +444,23 @@ def log_disagreement(
         ).fetchone()
         if row is None:
             raise DraftError(f"unknown player {pid}")
-        m = rec_by_id.get(pid)
+        meta = rec_by_id.get(pid) or {}
         return {
             "player_id": row["player_id"],
             "name": row["name"],
             "position": row["position"],
             "team": row["team"],
-            "M": m.get("marginal") if m else None,
+            "M": meta.get("marginal"),
         }
 
     entry = {
         "created_at": _utcnow(),
         "kind": "disagreement",
+        "trigger": (trigger or "manual").strip().lower(),
         "draft_id": draft_id,
         "board_hash": board_hash(state),
         "current_pick": draft["current_pick"],
+        "overall_at_decision": overall_at_decision,
         "user_slot": draft["user_slot"],
         "pick_mode": state.get("pick_mode"),
         "is_user_turn": state.get("is_user_turn"),
@@ -400,14 +468,10 @@ def log_disagreement(
         "chosen": _player_meta(chosen_player_id),
         "category": cat,
         "reason": (reason or "").strip()[:500],
-        "take_top": [
-            {
-                "player_id": r.get("player_id"),
-                "name": r.get("name"),
-                "marginal": r.get("marginal"),
-            }
-            for r in recs[:3]
-        ],
+        "skipped_reason": bool(skipped_reason),
+        "case_path": case_path,
+        "take_at_decision": frozen or None,
+        "take_top": take_top,
     }
     DISAGREE_PATH.parent.mkdir(parents=True, exist_ok=True)
     with DISAGREE_PATH.open("a", encoding="utf-8") as f:
