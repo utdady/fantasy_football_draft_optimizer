@@ -1,0 +1,189 @@
+{
+  "created_at": "2026-08-17T06:52:57Z",
+  "kind": "case_dump",
+  "draft_id": "cd50535e5868",
+  "board_hash": "4483b81fd6ca39ce",
+  "pick_mode": "user_only",
+  "user_slot": 5,
+  "user_name": "addy",
+  "current_pick": 5,
+  "current_team": 5,
+  "current_round": 1,
+  "is_user_turn": true,
+  "complete": false,
+  "n_teams": 12,
+  "n_rounds": 16,
+  "next_user_overall": 20,
+  "picks_until_next": 14,
+  "control": "marginal",
+  "recommend": [
+    {
+      "player_id": "4984",
+      "name": "Josh Allen",
+      "position": "QB",
+      "team": "BUF",
+      "marginal": 369.21,
+      "lineup_before": 0.0,
+      "lineup_after": 369.21,
+      "adp_espn": 22.18,
+      "proj_espn": 369.20836371,
+      "why": "+369.2 starter pts (fills QB)"
+    },
+    {
+      "player_id": "9221",
+      "name": "Jahmyr Gibbs",
+      "position": "RB",
+      "team": "DET",
+      "marginal": 365.27,
+      "lineup_before": 0.0,
+      "lineup_after": 365.27,
+      "adp_espn": 1.53,
+      "proj_espn": 365.27169647,
+      "why": "+365.3 starter pts (fills RB)"
+    },
+    {
+      "player_id": "9493",
+      "name": "Puka Nacua",
+      "position": "WR",
+      "team": "LAR",
+      "marginal": 356.31,
+      "lineup_before": 0.0,
+      "lineup_after": 356.31,
+      "adp_espn": 4.26,
+      "proj_espn": 356.31201474,
+      "why": "+356.3 starter pts (fills WR)"
+    },
+    {
+      "player_id": "4034",
+      "name": "Christian McCaffrey",
+      "position": "RB",
+      "team": "SF",
+      "marginal": 343.28,
+      "lineup_before": 0.0,
+      "lineup_after": 343.28,
+      "adp_espn": 6.62,
+      "proj_espn": 343.28046884,
+      "why": "+343.3 starter pts (fills RB)"
+    },
+    {
+      "player_id": "9488",
+      "name": "Jaxon Smith-Njigba",
+      "position": "WR",
+      "team": "SEA",
+      "marginal": 326.76,
+      "lineup_before": 0.0,
+      "lineup_after": 326.76,
+      "adp_espn": 5.87,
+      "proj_espn": 326.75509788,
+      "why": "+326.8 starter pts (fills WR)"
+    },
+    {
+      "player_id": "4881",
+      "name": "Lamar Jackson",
+      "position": "QB",
+      "team": "BAL",
+      "marginal": 322.51,
+      "lineup_before": 0.0,
+      "lineup_after": 322.51,
+      "adp_espn": 38.75,
+      "proj_espn": 322.50756913,
+      "why": "+322.5 starter pts (fills QB)"
+    },
+    {
+      "player_id": "6904",
+      "name": "Jalen Hurts",
+      "position": "QB",
+      "team": "PHI",
+      "marginal": 320.73,
+      "lineup_before": 0.0,
+      "lineup_after": 320.73,
+      "adp_espn": 52.5,
+      "proj_espn": 320.7304207,
+      "why": "+320.7 starter pts (fills QB)"
+    },
+    {
+      "player_id": "11564",
+      "name": "Drake Maye",
+      "position": "QB",
+      "team": "NE",
+      "marginal": 318.97,
+      "lineup_before": 0.0,
+      "lineup_after": 318.97,
+      "adp_espn": 47.32,
+      "proj_espn": 318.97271543,
+      "why": "+319.0 starter pts (fills QB)"
+    },
+    {
+      "player_id": "11566",
+      "name": "Jayden Daniels",
+      "position": "QB",
+      "team": "WAS",
+      "marginal": 318.45,
+      "lineup_before": 0.0,
+      "lineup_after": 318.45,
+      "adp_espn": 50.78,
+      "proj_espn": 318.44982186,
+      "why": "+318.4 starter pts (fills QB)"
+    },
+    {
+      "player_id": "6813",
+      "name": "Jonathan Taylor",
+      "position": "RB",
+      "team": "IND",
+      "marginal": 316.96,
+      "lineup_before": 0.0,
+      "lineup_after": 316.96,
+      "adp_espn": 8.06,
+      "proj_espn": 316.95902749,
+      "why": "+317.0 starter pts (fills RB)"
+    }
+  ],
+  "picks": [
+    {
+      "overall": 1,
+      "team_slot": 1,
+      "player_id": "7564",
+      "name": "Ja'Marr Chase",
+      "position": "WR",
+      "made_by": "cpu"
+    },
+    {
+      "overall": 2,
+      "team_slot": 2,
+      "player_id": "7547",
+      "name": "Amon-Ra St. Brown",
+      "position": "WR",
+      "made_by": "cpu"
+    },
+    {
+      "overall": 3,
+      "team_slot": 3,
+      "player_id": "9509",
+      "name": "Bijan Robinson",
+      "position": "RB",
+      "made_by": "cpu"
+    },
+    {
+      "overall": 4,
+      "team_slot": 4,
+      "player_id": "9226",
+      "name": "De'Von Achane",
+      "position": "RB",
+      "made_by": "cpu"
+    }
+  ],
+  "team_labels": [
+    "CPU 1",
+    "CPU 2",
+    "CPU 3",
+    "CPU 4",
+    "addy",
+    "CPU 6",
+    "CPU 7",
+    "CPU 8",
+    "CPU 9",
+    "CPU 10",
+    "CPU 11",
+    "CPU 12"
+  ]
+}
